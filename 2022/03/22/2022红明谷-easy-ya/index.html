@@ -6,14 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Tag: 光滑数攻击 | ZimaBlue&#39;s Blog</title>
+  <title>2022红明谷-easy_ya | ZimaBlue&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="ZimaBlue&#39;s Blog">
-<meta property="og:url" content="http://example.com/tags/%E5%85%89%E6%BB%91%E6%95%B0%E6%94%BB%E5%87%BB/index.html">
+  <meta name="description" content="​    红明谷一共就八个题，和小老弟组队，做了四个题 RANK50。密码学有两道，一题是copper，另一题是sm2，不会做。这里简单记录一下第一题。 12345678910111213141516171819202122232425262728293031323334from Crypto.Util.number import *import osfrom flag import flagde">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2022红明谷-easy_ya">
+<meta property="og:url" content="http://example.com/2022/03/22/2022%E7%BA%A2%E6%98%8E%E8%B0%B7-easy-ya/index.html">
 <meta property="og:site_name" content="ZimaBlue&#39;s Blog">
+<meta property="og:description" content="​    红明谷一共就八个题，和小老弟组队，做了四个题 RANK50。密码学有两道，一题是copper，另一题是sm2，不会做。这里简单记录一下第一题。 12345678910111213141516171819202122232425262728293031323334from Crypto.Util.number import *import osfrom flag import flagde">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-03-22T10:49:30.000Z">
+<meta property="article:modified_time" content="2022-03-22T11:06:12.903Z">
 <meta property="article:author" content="ZimaBlue">
+<meta property="article:tag" content="RSA">
+<meta property="article:tag" content="Copper">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="ZimaBlue&#39;s Blog" type="application/atom+xml">
@@ -164,56 +170,61 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-2022红明谷-easy-ya" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2022" class="archive-year">2022</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/03/17/pollard-s-p-1/" class="archive-article-date">
-  	<time datetime="2022-03-17T14:28:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-17</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/03/17/pollard-s-p-1/">pollard&#39;s p-1</a>
+    <h1 class="article-title" itemprop="name">
+      2022红明谷-easy_ya
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2022/03/22/2022%E7%BA%A2%E6%98%8E%E8%B0%B7-easy-ya/" class="archive-article-date">
+  	<time datetime="2022-03-22T10:49:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-22</time>
+</a>
+        
+		
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>​    红明谷一共就八个题，和小老弟组队，做了四个题 RANK50。密码学有两道，一题是copper，另一题是sm2，不会做。这里简单记录一下第一题。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> flag <span class="keyword">import</span> flag</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">gen</span>():</span></span><br><span class="line">    e = <span class="number">3</span></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            p = getPrime(<span class="number">512</span>)</span><br><span class="line">            q = getPrime(<span class="number">512</span>)</span><br><span class="line">            n = p*q</span><br><span class="line">            phi = (p-<span class="number">1</span>)*(q-<span class="number">1</span>)</span><br><span class="line">            d = inverse(e,phi)</span><br><span class="line">            <span class="keyword">return</span> p,q,d,n,e</span><br><span class="line">        <span class="keyword">except</span>:</span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">p,q,d,n,e = gen()</span><br><span class="line">r = getPrime(<span class="number">512</span>)</span><br><span class="line">m = bytes_to_long(flag+os.urandom(<span class="number">32</span>))</span><br><span class="line">M = m%r</span><br><span class="line">c = <span class="built_in">pow</span>(m,e,n)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;r = %d&quot;</span>%r)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;M = %d&quot;</span>%M)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;n = %d&quot;</span>%n)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;e = %d&quot;</span>%e)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;c = %d&quot;</span>%c)</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">r = 7996728164495259362822258548434922741290100998149465194487628664864256950051236186227986990712837371289585870678059397413537714250530572338774305952904473</span></span><br><span class="line"><span class="string">M = 4159518144549137412048572485195536187606187833861349516326031843059872501654790226936115271091120509781872925030241137272462161485445491493686121954785558</span></span><br><span class="line"><span class="string">n = 131552964273731742744001439326470035414270864348139594004117959631286500198956302913377947920677525319260242121507196043323292374736595943942956194902814842206268870941485429339132421676367167621812260482624743821671183297023718573293452354284932348802548838847981916748951828826237112194142035380559020560287</span></span><br><span class="line"><span class="string">e = 3</span></span><br><span class="line"><span class="string">c = 46794664006708417132147941918719938365671485176293172014575392203162005813544444720181151046818648417346292288656741056411780813044749520725718927535262618317679844671500204720286218754536643881483749892207516758305694529993542296670281548111692443639662220578293714396224325591697834572209746048616144307282</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>​    根据已知关系推导：</p>
+<script type="math/tex; mode=display">
+c = (r*x+M)^3modn</script><script type="math/tex; mode=display">
+m = M+r*x</script><p>​    那么就转化为求下面这个多项式的根：</p>
+<script type="math/tex; mode=display">
+((r*x+M)^3 - c) modn = 0</script><p>​    sage脚本：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">N = <span class="number">131552964273731742744001439326470035414270864348139594004117959631286500198956302913377947920677525319260242121507196043323292374736595943942956194902814842206268870941485429339132421676367167621812260482624743821671183297023718573293452354284932348802548838847981916748951828826237112194142035380559020560287</span></span><br><span class="line">e = <span class="number">3</span></span><br><span class="line">c = <span class="number">46794664006708417132147941918719938365671485176293172014575392203162005813544444720181151046818648417346292288656741056411780813044749520725718927535262618317679844671500204720286218754536643881483749892207516758305694529993542296670281548111692443639662220578293714396224325591697834572209746048616144307282</span></span><br><span class="line">M = <span class="number">4159518144549137412048572485195536187606187833861349516326031843059872501654790226936115271091120509781872925030241137272462161485445491493686121954785558</span></span><br><span class="line">r = <span class="number">7996728164495259362822258548434922741290100998149465194487628664864256950051236186227986990712837371289585870678059397413537714250530572338774305952904473</span></span><br><span class="line">kbits = <span class="number">100</span></span><br><span class="line">ZmodN = Zmod(N)</span><br><span class="line">P.&lt;x&gt; = PolynomialRing(ZmodN)</span><br><span class="line">f = (M + r*x)^e - c</span><br><span class="line">f=f.monic()</span><br><span class="line">x0 = f.small_roots(x=<span class="number">2</span>^kbits, beta=<span class="number">1</span>)[<span class="number">0</span>]  <span class="comment"># 这里的X选取不像上文用的是临界值，而是选了一个我们未知的x的最大可能值。X的选取并非严格，但至少得保证比临界值小。</span></span><br><span class="line"><span class="built_in">print</span>(x0)</span><br><span class="line"><span class="comment">#810968823598060539864535</span></span><br></pre></td></tr></table></figure>
+<p>​    利用x0还原m就解出来了。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">crypto</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">RSA</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">光滑数攻击</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Copper</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -227,26 +238,141 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="/categories/比赛/RSA/pollard-s-p-1//" class="article-tag-list-link color4">pollard's p-1</a>
+        			<a href="/categories/比赛/RSA/Copper//" class="article-tag-list-link color2">Copper</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2022/03/22/2022%E7%BA%A2%E6%98%8E%E8%B0%B7-easy-ya/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2022/03/17/pollard-s-p-1/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">pollard&#39;s p-1</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    目录，不存在的…
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
+  
+  
+  
+  <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+<script>
+  var cloudTieConfig = {
+    url: "http://example.com/2022/03/22/2022%E7%BA%A2%E6%98%8E%E8%B0%B7-easy-ya/", 
+    sourceId: "2022红明谷-easy-ya",
+    productKey: "true",
+    target: "cloud-tie-wrapper"
+  };
+</script>
+<script src="//img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
   
 
-    
+  
+
+  
+
+  
 
 
+
+
+<!--增加不蒜子统计-->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
           </div>
         </div>
       </div>
@@ -305,9 +431,9 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
