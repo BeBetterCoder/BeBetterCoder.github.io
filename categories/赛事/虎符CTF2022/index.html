@@ -6,19 +6,14 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Docker学习 | ZimaBlue&#39;s Blog</title>
+  <title>Category: 虎符CTF2022 | ZimaBlue&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一.认识Docker​    知乎的这个问题下面的回答讲的很清楚，尤其是木龙头师傅的回答，将操作系统、虚拟机以及容器串联起来解析，从宏观和微观两个角度认识Docker：https:&#x2F;&#x2F;www.zhihu.com&#x2F;question&#x2F;28300645 ​    我觉得认识镜像和容器的关系非常重要，请参考这篇文章：https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_40722827&#x2F;article&#x2F;det">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Docker学习">
-<meta property="og:url" content="http://example.com/2022/02/10/Docker%E5%AD%A6%E4%B9%A0/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="ZimaBlue&#39;s Blog">
+<meta property="og:url" content="http://example.com/categories/%E8%B5%9B%E4%BA%8B/%E8%99%8E%E7%AC%A6CTF2022/index.html">
 <meta property="og:site_name" content="ZimaBlue&#39;s Blog">
-<meta property="og:description" content="一.认识Docker​    知乎的这个问题下面的回答讲的很清楚，尤其是木龙头师傅的回答，将操作系统、虚拟机以及容器串联起来解析，从宏观和微观两个角度认识Docker：https:&#x2F;&#x2F;www.zhihu.com&#x2F;question&#x2F;28300645 ​    我觉得认识镜像和容器的关系非常重要，请参考这篇文章：https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_40722827&#x2F;article&#x2F;det">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-02-10T02:26:13.000Z">
-<meta property="article:modified_time" content="2022-02-12T15:10:51.941Z">
 <meta property="article:author" content="ZimaBlue">
-<meta property="article:tag" content="docker">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="ZimaBlue&#39;s Blog" type="application/atom+xml">
@@ -169,258 +164,77 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Docker学习" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      Docker学习
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2022" class="archive-year">2022</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2022/03/27/%E8%99%8E%E7%AC%A6CTF2022/" class="archive-article-date">
+  	<time datetime="2022-03-27T13:00:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-27</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2022/03/27/%E8%99%8E%E7%AC%A6CTF2022/">虎符CTF2022</a>
     </h1>
   
 
-        
-        <a href="/2022/02/10/Docker%E5%AD%A6%E4%B9%A0/" class="archive-article-date">
-  	<time datetime="2022-02-10T02:26:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-10</time>
-</a>
-        
-		
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="一-认识Docker"><a href="#一-认识Docker" class="headerlink" title="一.认识Docker"></a>一.认识Docker</h3><p>​    知乎的这个问题下面的回答讲的很清楚，尤其是木龙头师傅的回答，将操作系统、虚拟机以及容器串联起来解析，从宏观和微观两个角度认识Docker：<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/28300645">https://www.zhihu.com/question/28300645</a></p>
-<p>​    我觉得认识镜像和容器的关系非常重要，请参考这篇文章：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_40722827/article/details/102827125">https://blog.csdn.net/qq_40722827/article/details/102827125</a></p>
-<span id="more"></span>
-<h3 id="二-Docker基本命令及作用"><a href="#二-Docker基本命令及作用" class="headerlink" title="二.Docker基本命令及作用"></a>二.Docker基本命令及作用</h3><h4 id="1-Docker容器使用"><a href="#1-Docker容器使用" class="headerlink" title="1.Docker容器使用"></a>1.Docker容器使用</h4><p>​        注：由于解析器的原因，本篇中双短横线显示为一根较长横线</p>
-<p>​    （1）客户端直接输入docker可以查看docker客户端的所有命令选项，而docker command —help可以查看某个命令的具体参数</p>
-<p>​    （2）docker pull … 本地没有所需镜像的时候可以从仓库拉取镜像，如docker pull ubuntu</p>
-<p>​    （3）启动容器 docker run [OPTIONS] IMAGE [COMMAND] [ARG…] <strong>参数解析</strong>：</p>
-<p>-a stdin: 指定标准输入输出内容类型，可选 STDIN/STDOUT/STDERR 三项；</p>
-<p>-d: 后台运行容器，并返回容器ID；</p>
-<p>-i: 以交互模式运行容器，通常与 -t 同时使用；</p>
-<p>-P: 随机端口映射，容器内部端口随机映射到主机的端口</p>
-<p>-p: 指定端口映射，格式为：主机(宿主)端口:容器端口</p>
-<p>-t: 为容器重新分配一个伪输入终端，通常与 -i 同时使用；</p>
-<p>—name=”nginx-lb”: 为容器指定一个名称；</p>
-<p>—dns 8.8.8.8: 指定容器使用的DNS服务器，默认和宿主一致；</p>
-<p>—dns-search example.com: 指定容器DNS搜索域名，默认和宿主一致；</p>
-<p>-h “mars”: 指定容器的hostname；</p>
-<p>-e username=”ritchie”: 设置环境变量；</p>
-<p>—env-file=[]: 从指定文件读入环境变量；</p>
-<p>—cpuset=”0-2” or —cpuset=”0,1,2”: 绑定容器到指定CPU运行；</p>
-<p>-m :设置容器使用内存最大值；</p>
-<p>—net=”bridge”: 指定容器的网络连接类型，支持 bridge/host/none/container: 四种类型；</p>
-<p>—link=[]: 添加链接到另一个容器；</p>
-<p>—expose=[]: 开放一个端口或一组端口；</p>
-<p>—volume , -v: 绑定一个卷</p>
-<p>​    举例：使用docker镜像nginx:latest以后台模式启动一个容器,并将容器命名为mynginx。</p>
-<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="keyword">run</span><span class="bash"> --name mynginx -d nginx:latest</span></span><br></pre></td></tr></table></figure>
-<p>​        使用镜像nginx:latest以后台模式启动一个容器,并将容器的80端口映射到主机随机端口。</p>
-<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="keyword">run</span><span class="bash"> -P -d nginx:latest</span></span><br></pre></td></tr></table></figure>
-<p>​        使用镜像 nginx:latest，以后台模式启动一个容器,将容器的 80 端口映射到主机的 80 端口,主机的目录 /data 映射到容器的 /data。</p>
-<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="keyword">run</span><span class="bash"> -p 80:80 -v /data:/data -d nginx:latest <span class="comment"># :后边跟上版本号</span></span></span><br><span class="line"><span class="comment">#如果你不指定一个镜像的版本标签，例如你只使用 ubuntu，docker 将默认使用 ubuntu:latest 镜像。</span></span><br></pre></td></tr></table></figure>
-<p>​        以下命令使用 ubuntu 镜像启动一个容器，参数为以命令行模式进入该容器：</p>
-<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="keyword">run</span><span class="bash"> -it ubuntu /bin/bash   <span class="comment">#exit直接退出shell</span></span></span><br></pre></td></tr></table></figure>
-<p>​    （4）启动已停止的容器</p>
-<p>​        先查看有哪些容器：</p>
-<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps -a <span class="comment">#去掉-a则只会显示正在运行的容器</span></span><br></pre></td></tr></table></figure>
-<p>​        然后启动某个特定容器：</p>
-<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker start b750bbbcfd88  </span><br><span class="line">docker stop ... <span class="comment">#这是停止容器</span></span><br></pre></td></tr></table></figure>
-<p>​    （5）后台运行容器 （加了 <strong>-d</strong> 参数默认不会进入容器，想要进入容器需要使用指令 <strong>docker exec</strong>）</p>
-<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="keyword">run</span><span class="bash"> -itd --name ubuntu-test ubuntu /bin/bash</span></span><br></pre></td></tr></table></figure>
-<p>​        进入容器：</p>
-<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker attach <span class="number">1</span>e560fca3906 </span><br></pre></td></tr></table></figure>
-<p>​        更推荐使用docker exec，当我们退出容器shell的时候容器还会继续在后台运行，不会结束：</p>
-<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it <span class="number">243</span>c32535da7 /bin/bash</span><br></pre></td></tr></table></figure>
-<p>​        导出和导入容器</p>
-<p>​        导出：</p>
-<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker export <span class="number">1</span>e560fca3906 &gt; ubuntu.tar</span><br></pre></td></tr></table></figure>
-<p>​        可以使用 docker import 从容器快照文件中再导入为镜像，以下实例将快照文件 ubuntu.tar 导入到镜像 test/ubuntu:v1： 注：| 表示管道，上一条命令的输出，作为下一条命令参数，如 echo ‘yes’ | wc -l</p>
-<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat docker/ubuntu.tar | docker import - test/ubuntu:v1</span><br></pre></td></tr></table></figure>
-<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker import  my_ubuntu_v3.tar runoob/ubuntu:v4  <span class="comment">#方法二 更简单</span></span><br></pre></td></tr></table></figure>
-<p>​    （6）删除容器 用docker rm + id 要先停止容器才能删除，否则会报错，加上-f指令则会强制删除正在运行的容器</p>
-<p>​    （7）docker top + id 可以查看某个容器内部运行的进程</p>
-<p>​    （8）使用 docker inspect 来查看 Docker 的底层信息。它会返回一个 JSON 文件记录着 Docker 容器的配置和状态信息</p>
-<h4 id="2-Docker镜像使用"><a href="#2-Docker镜像使用" class="headerlink" title="2.Docker镜像使用"></a>2.Docker镜像使用</h4><p>​    （1）docker image列出本地镜像</p>
-<p>​    （2）查找搜索镜像可以用docker search …</p>
-<p>​    （3）docker rmi hello-world （删除名为hello-world的镜像）</p>
-<p>​    （4）创建镜像</p>
-<p>​        镜像不满足使用的需求时，有两种处理手段：</p>
-<p>​        a.更新镜像</p>
-<p>​        更新之前，需要用docker run 创建并进入交互shell，在运行的容器内使用apt-get update命令更新，完成以后输入exit退出容器的shell。然后可以通过命令 docker commit 来提交更改的容器副本：也就是将容器存为镜像。</p>
-<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">runoob@runoob:~$ docker commit -m=<span class="string">&quot;has update&quot;</span> -a=<span class="string">&quot;runoob&quot;</span> e218edb10161 runoob/ubuntu:v2</span><br><span class="line">sha256:<span class="number">70</span>bf1840fd7c0d2d8ef0a42a817eb29f854c1af8f7c59fc03ac7bdee9545aff8</span><br><span class="line"><span class="comment">#m为详细信息，a为作者，runoob/ubuntu:v2为镜像名</span></span><br></pre></td></tr></table></figure>
-<p>​        b.构建镜像</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">docker</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">crypto</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/Docker学习//" class="article-tag-list-link color4">Docker学习</a>
+        			<a href="/categories/赛事//" class="article-tag-list-link color3">赛事</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/赛事/虎符CTF2022//" class="article-tag-list-link color5">虎符CTF2022</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2022/02/10/Docker%E5%AD%A6%E4%B9%A0/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2022/02/12/VNCTF2022/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          VNCTF2022
-        
-      </div>
-    </a>
   
   
-    <a href="/2022/02/09/%E5%8C%BA%E5%9D%97%E9%93%BE%E2%80%94%E7%AC%AC%E4%B8%80%E8%AF%BE%E2%80%94%E8%AE%A4%E8%AF%86%E5%8C%BA%E5%9D%97%E9%93%BE/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">区块链—第一课—认识区块链</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-        <div class="toc-container tooltip-left">
-            <i class="icon-font icon-category"></i>
-            <div class="tooltip tooltip-east">
-                <span class="tooltip-item">
-                </span>
-                <span class="tooltip-content">
-                    <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80-%E8%AE%A4%E8%AF%86Docker"><span class="toc-number">1.</span> <span class="toc-text">一.认识Docker</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C-Docker%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4%E5%8F%8A%E4%BD%9C%E7%94%A8"><span class="toc-number">2.</span> <span class="toc-text">二.Docker基本命令及作用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-Docker%E5%AE%B9%E5%99%A8%E4%BD%BF%E7%94%A8"><span class="toc-number">2.1.</span> <span class="toc-text">1.Docker容器使用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-Docker%E9%95%9C%E5%83%8F%E4%BD%BF%E7%94%A8"><span class="toc-number">2.2.</span> <span class="toc-text">2.Docker镜像使用</span></a></li></ol></li></ol>
-                    </div>
-                </span>
-            </div>
-        </div>
-        
-    </div>
-</aside>
-
-
-
-  
-  
-  
-  <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
-<script>
-  var cloudTieConfig = {
-    url: "http://example.com/2022/02/10/Docker%E5%AD%A6%E4%B9%A0/", 
-    sourceId: "Docker学习",
-    productKey: "true",
-    target: "cloud-tie-wrapper"
-  };
-</script>
-<script src="//img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+    </div></section>
   
 
-  
-
-  
-
-  
+    
 
 
-
-
-<!--增加不蒜子统计-->
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
           </div>
         </div>
       </div>
@@ -479,10 +293,10 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
 		isTag: false,
-		isCategory: false,
+		isCategory: true,
 		open_in_new: false,
 		toc_hide_index: true,
 		root: "/",

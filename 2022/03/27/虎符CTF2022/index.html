@@ -6,20 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Docker学习 | ZimaBlue&#39;s Blog</title>
+  <title>虎符CTF2022 | ZimaBlue&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一.认识Docker​    知乎的这个问题下面的回答讲的很清楚，尤其是木龙头师傅的回答，将操作系统、虚拟机以及容器串联起来解析，从宏观和微观两个角度认识Docker：https:&#x2F;&#x2F;www.zhihu.com&#x2F;question&#x2F;28300645 ​    我觉得认识镜像和容器的关系非常重要，请参考这篇文章：https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_40722827&#x2F;article&#x2F;det">
+  <meta name="description" content="​    和0x401的师傅们参加了虎符，进入了决赛，被带飞的感觉真好2333。本篇将持续记录对赛题的复现。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Docker学习">
-<meta property="og:url" content="http://example.com/2022/02/10/Docker%E5%AD%A6%E4%B9%A0/index.html">
+<meta property="og:title" content="虎符CTF2022">
+<meta property="og:url" content="http://example.com/2022/03/27/%E8%99%8E%E7%AC%A6CTF2022/index.html">
 <meta property="og:site_name" content="ZimaBlue&#39;s Blog">
-<meta property="og:description" content="一.认识Docker​    知乎的这个问题下面的回答讲的很清楚，尤其是木龙头师傅的回答，将操作系统、虚拟机以及容器串联起来解析，从宏观和微观两个角度认识Docker：https:&#x2F;&#x2F;www.zhihu.com&#x2F;question&#x2F;28300645 ​    我觉得认识镜像和容器的关系非常重要，请参考这篇文章：https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_40722827&#x2F;article&#x2F;det">
+<meta property="og:description" content="​    和0x401的师傅们参加了虎符，进入了决赛，被带飞的感觉真好2333。本篇将持续记录对赛题的复现。">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-02-10T02:26:13.000Z">
-<meta property="article:modified_time" content="2022-02-12T15:10:51.941Z">
+<meta property="og:image" content="http://example.com/2022/03/27/%E8%99%8E%E7%AC%A6CTF2022/1.png">
+<meta property="article:published_time" content="2022-03-27T13:00:04.000Z">
+<meta property="article:modified_time" content="2022-03-27T14:29:18.366Z">
 <meta property="article:author" content="ZimaBlue">
-<meta property="article:tag" content="docker">
+<meta property="article:tag" content="crypto">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2022/03/27/%E8%99%8E%E7%AC%A6CTF2022/1.png">
   
     <link rel="alternative" href="/atom.xml" title="ZimaBlue&#39;s Blog" type="application/atom+xml">
   
@@ -169,20 +171,20 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Docker学习" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-虎符CTF2022" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Docker学习
+      虎符CTF2022
     </h1>
   
 
         
-        <a href="/2022/02/10/Docker%E5%AD%A6%E4%B9%A0/" class="archive-article-date">
-  	<time datetime="2022-02-10T02:26:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-10</time>
+        <a href="/2022/03/27/%E8%99%8E%E7%AC%A6CTF2022/" class="archive-article-date">
+  	<time datetime="2022-03-27T13:00:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-27</time>
 </a>
         
 		
@@ -190,68 +192,26 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="一-认识Docker"><a href="#一-认识Docker" class="headerlink" title="一.认识Docker"></a>一.认识Docker</h3><p>​    知乎的这个问题下面的回答讲的很清楚，尤其是木龙头师傅的回答，将操作系统、虚拟机以及容器串联起来解析，从宏观和微观两个角度认识Docker：<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/28300645">https://www.zhihu.com/question/28300645</a></p>
-<p>​    我觉得认识镜像和容器的关系非常重要，请参考这篇文章：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_40722827/article/details/102827125">https://blog.csdn.net/qq_40722827/article/details/102827125</a></p>
+        <p>​    和0x401的师傅们参加了虎符，进入了决赛，被带飞的感觉真好2333。本篇将持续记录对赛题的复现。</p>
 <span id="more"></span>
-<h3 id="二-Docker基本命令及作用"><a href="#二-Docker基本命令及作用" class="headerlink" title="二.Docker基本命令及作用"></a>二.Docker基本命令及作用</h3><h4 id="1-Docker容器使用"><a href="#1-Docker容器使用" class="headerlink" title="1.Docker容器使用"></a>1.Docker容器使用</h4><p>​        注：由于解析器的原因，本篇中双短横线显示为一根较长横线</p>
-<p>​    （1）客户端直接输入docker可以查看docker客户端的所有命令选项，而docker command —help可以查看某个命令的具体参数</p>
-<p>​    （2）docker pull … 本地没有所需镜像的时候可以从仓库拉取镜像，如docker pull ubuntu</p>
-<p>​    （3）启动容器 docker run [OPTIONS] IMAGE [COMMAND] [ARG…] <strong>参数解析</strong>：</p>
-<p>-a stdin: 指定标准输入输出内容类型，可选 STDIN/STDOUT/STDERR 三项；</p>
-<p>-d: 后台运行容器，并返回容器ID；</p>
-<p>-i: 以交互模式运行容器，通常与 -t 同时使用；</p>
-<p>-P: 随机端口映射，容器内部端口随机映射到主机的端口</p>
-<p>-p: 指定端口映射，格式为：主机(宿主)端口:容器端口</p>
-<p>-t: 为容器重新分配一个伪输入终端，通常与 -i 同时使用；</p>
-<p>—name=”nginx-lb”: 为容器指定一个名称；</p>
-<p>—dns 8.8.8.8: 指定容器使用的DNS服务器，默认和宿主一致；</p>
-<p>—dns-search example.com: 指定容器DNS搜索域名，默认和宿主一致；</p>
-<p>-h “mars”: 指定容器的hostname；</p>
-<p>-e username=”ritchie”: 设置环境变量；</p>
-<p>—env-file=[]: 从指定文件读入环境变量；</p>
-<p>—cpuset=”0-2” or —cpuset=”0,1,2”: 绑定容器到指定CPU运行；</p>
-<p>-m :设置容器使用内存最大值；</p>
-<p>—net=”bridge”: 指定容器的网络连接类型，支持 bridge/host/none/container: 四种类型；</p>
-<p>—link=[]: 添加链接到另一个容器；</p>
-<p>—expose=[]: 开放一个端口或一组端口；</p>
-<p>—volume , -v: 绑定一个卷</p>
-<p>​    举例：使用docker镜像nginx:latest以后台模式启动一个容器,并将容器命名为mynginx。</p>
-<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="keyword">run</span><span class="bash"> --name mynginx -d nginx:latest</span></span><br></pre></td></tr></table></figure>
-<p>​        使用镜像nginx:latest以后台模式启动一个容器,并将容器的80端口映射到主机随机端口。</p>
-<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="keyword">run</span><span class="bash"> -P -d nginx:latest</span></span><br></pre></td></tr></table></figure>
-<p>​        使用镜像 nginx:latest，以后台模式启动一个容器,将容器的 80 端口映射到主机的 80 端口,主机的目录 /data 映射到容器的 /data。</p>
-<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="keyword">run</span><span class="bash"> -p 80:80 -v /data:/data -d nginx:latest <span class="comment"># :后边跟上版本号</span></span></span><br><span class="line"><span class="comment">#如果你不指定一个镜像的版本标签，例如你只使用 ubuntu，docker 将默认使用 ubuntu:latest 镜像。</span></span><br></pre></td></tr></table></figure>
-<p>​        以下命令使用 ubuntu 镜像启动一个容器，参数为以命令行模式进入该容器：</p>
-<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="keyword">run</span><span class="bash"> -it ubuntu /bin/bash   <span class="comment">#exit直接退出shell</span></span></span><br></pre></td></tr></table></figure>
-<p>​    （4）启动已停止的容器</p>
-<p>​        先查看有哪些容器：</p>
-<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps -a <span class="comment">#去掉-a则只会显示正在运行的容器</span></span><br></pre></td></tr></table></figure>
-<p>​        然后启动某个特定容器：</p>
-<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker start b750bbbcfd88  </span><br><span class="line">docker stop ... <span class="comment">#这是停止容器</span></span><br></pre></td></tr></table></figure>
-<p>​    （5）后台运行容器 （加了 <strong>-d</strong> 参数默认不会进入容器，想要进入容器需要使用指令 <strong>docker exec</strong>）</p>
-<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="keyword">run</span><span class="bash"> -itd --name ubuntu-test ubuntu /bin/bash</span></span><br></pre></td></tr></table></figure>
-<p>​        进入容器：</p>
-<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker attach <span class="number">1</span>e560fca3906 </span><br></pre></td></tr></table></figure>
-<p>​        更推荐使用docker exec，当我们退出容器shell的时候容器还会继续在后台运行，不会结束：</p>
-<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it <span class="number">243</span>c32535da7 /bin/bash</span><br></pre></td></tr></table></figure>
-<p>​        导出和导入容器</p>
-<p>​        导出：</p>
-<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker export <span class="number">1</span>e560fca3906 &gt; ubuntu.tar</span><br></pre></td></tr></table></figure>
-<p>​        可以使用 docker import 从容器快照文件中再导入为镜像，以下实例将快照文件 ubuntu.tar 导入到镜像 test/ubuntu:v1： 注：| 表示管道，上一条命令的输出，作为下一条命令参数，如 echo ‘yes’ | wc -l</p>
-<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat docker/ubuntu.tar | docker import - test/ubuntu:v1</span><br></pre></td></tr></table></figure>
-<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker import  my_ubuntu_v3.tar runoob/ubuntu:v4  <span class="comment">#方法二 更简单</span></span><br></pre></td></tr></table></figure>
-<p>​    （6）删除容器 用docker rm + id 要先停止容器才能删除，否则会报错，加上-f指令则会强制删除正在运行的容器</p>
-<p>​    （7）docker top + id 可以查看某个容器内部运行的进程</p>
-<p>​    （8）使用 docker inspect 来查看 Docker 的底层信息。它会返回一个 JSON 文件记录着 Docker 容器的配置和状态信息</p>
-<h4 id="2-Docker镜像使用"><a href="#2-Docker镜像使用" class="headerlink" title="2.Docker镜像使用"></a>2.Docker镜像使用</h4><p>​    （1）docker image列出本地镜像</p>
-<p>​    （2）查找搜索镜像可以用docker search …</p>
-<p>​    （3）docker rmi hello-world （删除名为hello-world的镜像）</p>
-<p>​    （4）创建镜像</p>
-<p>​        镜像不满足使用的需求时，有两种处理手段：</p>
-<p>​        a.更新镜像</p>
-<p>​        更新之前，需要用docker run 创建并进入交互shell，在运行的容器内使用apt-get update命令更新，完成以后输入exit退出容器的shell。然后可以通过命令 docker commit 来提交更改的容器副本：也就是将容器存为镜像。</p>
-<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">runoob@runoob:~$ docker commit -m=<span class="string">&quot;has update&quot;</span> -a=<span class="string">&quot;runoob&quot;</span> e218edb10161 runoob/ubuntu:v2</span><br><span class="line">sha256:<span class="number">70</span>bf1840fd7c0d2d8ef0a42a817eb29f854c1af8f7c59fc03ac7bdee9545aff8</span><br><span class="line"><span class="comment">#m为详细信息，a为作者，runoob/ubuntu:v2为镜像名</span></span><br></pre></td></tr></table></figure>
-<p>​        b.构建镜像</p>
+<h3 id="RRSSAA"><a href="#RRSSAA" class="headerlink" title="RRSSAA"></a>RRSSAA</h3><h4 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> random <span class="keyword">import</span> randint</span><br><span class="line"><span class="keyword">from</span> secret <span class="keyword">import</span> hint, flag</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">seq</span>(<span class="params">r, k</span>):</span></span><br><span class="line">    v = [r, <span class="number">2</span>]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, k):</span><br><span class="line">        v = [r*v[<span class="number">0</span>]-v[<span class="number">1</span>], v[<span class="number">0</span>]]</span><br><span class="line">    ret = v[<span class="number">0</span>] <span class="keyword">if</span> k != <span class="number">0</span> <span class="keyword">else</span> v[<span class="number">1</span>]</span><br><span class="line">    <span class="keyword">return</span> ret</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">encrypt</span>(<span class="params">m, e, n</span>):</span></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        r = randint(<span class="number">1</span>, n - <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">if</span> r != <span class="number">2</span> <span class="keyword">and</span> r != n - <span class="number">2</span> <span class="keyword">and</span> GCD(r, n) == <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">    v = seq(r, e)</span><br><span class="line">    <span class="built_in">print</span>(r)</span><br><span class="line">    <span class="keyword">return</span> ((<span class="number">1</span> + m*n) * v) % n**<span class="number">2</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">go</span>(<span class="params">beta, msg</span>):</span></span><br><span class="line">    nbits = <span class="number">1024</span></span><br><span class="line">    delta = <span class="number">0.63</span></span><br><span class="line"></span><br><span class="line">    p = getPrime(nbits // <span class="number">2</span>)</span><br><span class="line">    q = next_prime(p + (<span class="number">1</span> &lt;&lt; <span class="built_in">int</span>(nbits * beta)))</span><br><span class="line">    n = p * q</span><br><span class="line">    phi = (p**<span class="number">2</span> - <span class="number">1</span>) * (q**<span class="number">2</span> - <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        d = getPrime(<span class="built_in">int</span>(nbits * delta))</span><br><span class="line">        <span class="keyword">if</span> GCD(d, phi) == <span class="number">1</span>:</span><br><span class="line">            e = inverse(d, phi)</span><br><span class="line">            <span class="keyword">if</span> GCD(e, phi) == <span class="number">1</span>:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">    m = bytes_to_long(msg)</span><br><span class="line">    c = <span class="built_in">int</span>(encrypt(m, e, n))</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;n = <span class="subst">&#123;n&#125;</span>&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;e = <span class="subst">&#123;e&#125;</span>&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;c = <span class="subst">&#123;c&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line">go(<span class="number">0.33</span>, hint)</span><br><span class="line">go(<span class="number">0.44</span>, flag)</span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">n = 122774778628333786198247673730199699244621671207929503475974934116435291656353398717362903500544713183492877018211738292001516168567879903073296829793548881467270228989482723510323780292947403861546283099122868428902480999485625751961457245487615479377459707992802193391975415447673215862245349068018710525679</span></span><br><span class="line"><span class="string">e = 7105408692393780974425936359246908629062633111464343215149184058052422839553782885999575538955213539904607968494147112651103116202742324255190616790664935322773999797774246994193641076154786429287567308416036562198486649223818741008968261111017589015617705905631979526370180766874051731174064076871339400470062519500450745667838729104568633808272577378699913068193645578675484681151593983853443489561431176000585296710615726640355782811266099023653898050647891425956485791437516020367967793814415345332943552405865306305448753989707540163585481006631816856260061985275944250758886027672221219132999488907097750048011</span></span><br><span class="line"><span class="string">c = 2593129589804979134490367446026701647048897831627696427897506570257238733858989741279626614121210703780002736667183915826429635213867589464112850355422817678245007337553349507744893376944140333333044928907283949731124795240808354521353751152149301719465724014407412256933045835977081658410026081895650068864922666975525001601181989114436054060461228877148361720945120260382962899756912493868467226822547185396096960560068874538680230073168773182775945272726468512949751672553541335307512429217493003429882831235199830121519272447634533018024087697385363918421438799206577619692685090186486444886371979602617584956259</span></span><br><span class="line"><span class="string">n = 59969098213446598961510550233718258878862148298191323654672950330070587404726715299685997489142290693126366408044603303463518341243526241117556011994804902686998166238333549719269703453450958140262475942580009981324936992976252832887660977703209225426388975233018602730303262439218292062822981478737257836581</span></span><br><span class="line"><span class="string">e = 970698965238639683403205181589498135440069660016843488485401994654202837058754446853559143754852628922125327583411039117445415303888796067576548626904070971514824878024057391507617988385537930417136322298476467215300995795105008488692961624917433064070351961856959734368784774555385603000155569897078026670993484466622344106374637350023474339105113172687604783395923403613555236693496567851779400707953027457705617050061193750124237055690801725151098972239120476113241310088089420901051617493693842562637896252448161948655455277146925913049354086353328749354876619287042077221173795354616472050669799421983520421287</span></span><br><span class="line"><span class="string">c = 2757297249371055260112176788534868300821961060153993508569437878576838431569949051806118959108641317578931985550844206475198216543139472405873345269094341570473142756599117266569746703013099627523306340748466413993624965897996985230542275127290795414763432332819334757831671028121489964563214463689614865416498886490980692515184662350519034273510244222407505570929178897273048405431658365659592815446583970229985655015539079874797518564867199632672678818617933927005198847206019475149998468493858071672920824599672525667187482558622701227716212254925837398813278836428805193481064316937182435285668656233017810444672</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+<h4 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h4><p>​    part 1：</p>
+<p>​    p，q的生成过程有缺陷，具体为p和q大约相差1 &lt;&lt; int(nbits <em> beta)，那么可以爆破差值附近bit的值，来获得准确的q-p，利用（q-p）^ 2 + 4</em>pq开方来获得p+q（iroot有解的时候说明q-p正确）。拿到p+q以后可以联立pq = n解出p，q，我使用的z3。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 分解p、q的代码（非预期）</span></span><br><span class="line"><span class="keyword">import</span> gmpy2</span><br><span class="line"><span class="keyword">from</span> z3 <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">nbits = <span class="number">1024</span></span><br><span class="line">beta = <span class="number">0.44</span></span><br><span class="line">num = <span class="number">1</span> &lt;&lt; <span class="built_in">int</span>(nbits * beta)</span><br><span class="line"></span><br><span class="line">n = <span class="number">59969098213446598961510550233718258878862148298191323654672950330070587404726715299685997489142290693126366408044603303463518341243526241117556011994804902686998166238333549719269703453450958140262475942580009981324936992976252832887660977703209225426388975233018602730303262439218292062822981478737257836581</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(-<span class="number">2</span>**<span class="number">20</span>,<span class="number">2</span>**<span class="number">20</span>):</span><br><span class="line">    num1 = num+i</span><br><span class="line">    x = num1**<span class="number">2</span> + <span class="number">4</span>*n</span><br><span class="line">    <span class="keyword">if</span> gmpy2.iroot(x, <span class="number">2</span>)[<span class="number">1</span>]:</span><br><span class="line">        <span class="built_in">print</span>(gmpy2.iroot(x, <span class="number">2</span>))</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">sum_ = <span class="number">15487943467542306207164957522779915558232722677017868704346602824547506038541073770618393546150569709175993688022768031705225684075989372415124252944311482</span></span><br><span class="line">p = Int(<span class="string">&quot;p&quot;</span>)</span><br><span class="line">q = Int(<span class="string">&#x27;q&#x27;</span>)</span><br><span class="line">solve(p*q == n,p+q == sum_ )</span><br></pre></td></tr></table></figure>
+<p>​    part2：</p>
+<p>​    实际上是基于lucas序列的公钥密码体制LUC，原理详见“一种新的基于 Lucas 序列的公钥密码体制”这篇论文。最关键的部分是要理解lucas序列的元素递推组成一个群，其满足逆元的性质，比如递推e次得到的元素和递推d次得到的元素一样，将d记作e的逆元。de是在phi上互为逆元，phi的求法需利用勒让德符号，详见论文。</p>
+<p>​    所以part2的关键在于求出r，再将r带入lucas递推公式求出v。</p>
+<p>​    可利用的关系为：</p>
+<script type="math/tex; mode=display">
+v \equiv c mod  n</script><script type="math/tex; mode=display">
+r \equiv seq(v,d)(modn)</script><p>​    注意：1、d为e模phi的逆2、由于v和c同余n所以seq（v,d）也要建立在模n上计算3、r小于n所以modn^2和modn结果是一致的4、最后求出r以后再将r，e带入lucas序列函数seq中求出v。在带入seq计算的时候，为了迅速计算，需要用矩阵快速幂优化。但由于sage的矩阵乘法已经优化为快速幂了，所以不需要自己实现。找矩阵系数的方法可以这样：</p>
+<img src="/2022/03/27/%E8%99%8E%E7%AC%A6CTF2022/1.png" class>
+<p>​    同时，sage也有lucas序列函数，sage.rings.finite_rings.integer_mod import lucas</p>
+<p>​    part3：类同态解密</p>
+<p>​    </p>
+<script type="math/tex; mode=display">
+uv\equiv1modn^{2}</script><script type="math/tex; mode=display">
+(cu-1)//n\equiv m(mod)n^{2}</script><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> inverse, long_to_bytes</span><br><span class="line"><span class="keyword">from</span> sage.<span class="built_in">all</span> <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">p = <span class="number">7743971733771153102128801312798743998017713722732925283466018690899116898707556486947918196848489007935614742583856884731087798825462330340492923214926391</span></span><br><span class="line">q = <span class="number">7743971733771153105036156209981171560215008954284943420880584133648389139833517283670475349302080701240378945438911146974137885250527042074631329729385091</span></span><br><span class="line">n = p * q</span><br><span class="line">MOD = n * n</span><br><span class="line">phi = (p**<span class="number">2</span> - <span class="number">1</span>) * (q**<span class="number">2</span> - <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">seq</span>(<span class="params">r, k</span>):</span></span><br><span class="line">    A = matrix(Zmod(MOD), [[r, -<span class="number">1</span>], [<span class="number">1</span>, <span class="number">0</span>]])</span><br><span class="line">    x = matrix(Zmod(MOD), [[<span class="number">2</span>], [r]])</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">int</span>((A**k * x)[<span class="number">0</span>, <span class="number">0</span>])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">L</span>(<span class="params">x</span>):</span></span><br><span class="line">    <span class="keyword">return</span> (x % MOD - <span class="number">1</span>) // n</span><br><span class="line"></span><br><span class="line">e = <span class="number">970698965238639683403205181589498135440069660016843488485401994654202837058754446853559143754852628922125327583411039117445415303888796067576548626904070971514824878024057391507617988385537930417136322298476467215300995795105008488692961624917433064070351961856959734368784774555385603000155569897078026670993484466622344106374637350023474339105113172687604783395923403613555236693496567851779400707953027457705617050061193750124237055690801725151098972239120476113241310088089420901051617493693842562637896252448161948655455277146925913049354086353328749354876619287042077221173795354616472050669799421983520421287</span></span><br><span class="line">c = <span class="number">2757297249371055260112176788534868300821961060153993508569437878576838431569949051806118959108641317578931985550844206475198216543139472405873345269094341570473142756599117266569746703013099627523306340748466413993624965897996985230542275127290795414763432332819334757831671028121489964563214463689614865416498886490980692515184662350519034273510244222407505570929178897273048405431658365659592815446583970229985655015539079874797518564867199632672678818617933927005198847206019475149998468493858071672920824599672525667187482558622701227716212254925837398813278836428805193481064316937182435285668656233017810444672</span></span><br><span class="line"></span><br><span class="line">d = inverse(e, phi)</span><br><span class="line">r = seq(c, d) % n</span><br><span class="line">v = seq(r, e)</span><br><span class="line"><span class="built_in">print</span>(long_to_bytes(L(c * inverse(v, MOD))))</span><br><span class="line"><span class="comment">#HFCTF&#123;5eb34942-bd0d-4efd-b0e1-a73225d92678&#125;</span></span><br></pre></td></tr></table></figure>
 
       
 
@@ -265,7 +225,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">docker</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">crypto</a>
         		</li>
       		
 		</ul>
@@ -277,7 +237,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/Docker学习//" class="article-tag-list-link color4">Docker学习</a>
+        			<a href="/categories/赛事//" class="article-tag-list-link color3">赛事</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/赛事/虎符CTF2022//" class="article-tag-list-link color5">虎符CTF2022</a>
         		</li>
       		
 		</ul>
@@ -332,7 +296,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2022/02/10/Docker%E5%AD%A6%E4%B9%A0/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2022/03/27/%E8%99%8E%E7%AC%A6CTF2022/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -346,18 +310,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2022/02/12/VNCTF2022/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          VNCTF2022
-        
-      </div>
-    </a>
   
-  
-    <a href="/2022/02/09/%E5%8C%BA%E5%9D%97%E9%93%BE%E2%80%94%E7%AC%AC%E4%B8%80%E8%AF%BE%E2%80%94%E8%AE%A4%E8%AF%86%E5%8C%BA%E5%9D%97%E9%93%BE/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">区块链—第一课—认识区块链</div>
+    <a href="/2022/03/23/%E5%AF%B9%E7%A7%B0%E5%AF%86%E7%A0%81/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">对称密码</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -384,7 +339,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80-%E8%AE%A4%E8%AF%86Docker"><span class="toc-number">1.</span> <span class="toc-text">一.认识Docker</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C-Docker%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4%E5%8F%8A%E4%BD%9C%E7%94%A8"><span class="toc-number">2.</span> <span class="toc-text">二.Docker基本命令及作用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-Docker%E5%AE%B9%E5%99%A8%E4%BD%BF%E7%94%A8"><span class="toc-number">2.1.</span> <span class="toc-text">1.Docker容器使用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-Docker%E9%95%9C%E5%83%8F%E4%BD%BF%E7%94%A8"><span class="toc-number">2.2.</span> <span class="toc-text">2.Docker镜像使用</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#RRSSAA"><span class="toc-number">1.</span> <span class="toc-text">RRSSAA</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%EF%BC%9A"><span class="toc-number">1.1.</span> <span class="toc-text">题目：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF"><span class="toc-number">1.2.</span> <span class="toc-text">解题思路</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -401,8 +356,8 @@
   <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
 <script>
   var cloudTieConfig = {
-    url: "http://example.com/2022/02/10/Docker%E5%AD%A6%E4%B9%A0/", 
-    sourceId: "Docker学习",
+    url: "http://example.com/2022/03/27/%E8%99%8E%E7%AC%A6CTF2022/", 
+    sourceId: "虎符CTF2022",
     productKey: "true",
     target: "cloud-tie-wrapper"
   };
