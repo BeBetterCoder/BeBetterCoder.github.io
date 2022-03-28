@@ -6,14 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Archives | ZimaBlue&#39;s Blog</title>
+  <title>NISACTF2022 | ZimaBlue&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="ZimaBlue&#39;s Blog">
-<meta property="og:url" content="http://example.com/archives/page/3/index.html">
+  <meta name="description" content="​    貌似是个新生赛，但是题出的挺好的，做的几道题只有几个解。 xor​    题目： 123456789101112131415161718192021222324252627282930313233343536import osimport base64from Crypto.Util import number, strxor#from flag import flagflag&#x3D;&amp;#x2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NISACTF2022">
+<meta property="og:url" content="http://example.com/2022/03/28/NISACTF2022/index.html">
 <meta property="og:site_name" content="ZimaBlue&#39;s Blog">
+<meta property="og:description" content="​    貌似是个新生赛，但是题出的挺好的，做的几道题只有几个解。 xor​    题目： 123456789101112131415161718192021222324252627282930313233343536import osimport base64from Crypto.Util import number, strxor#from flag import flagflag&#x3D;&amp;#x2">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-03-28T03:47:02.000Z">
+<meta property="article:modified_time" content="2022-03-28T04:33:14.099Z">
 <meta property="article:author" content="ZimaBlue">
+<meta property="article:tag" content="crypto">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="ZimaBlue&#39;s Blog" type="application/atom+xml">
@@ -164,36 +169,58 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-NISACTF2022" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2022" class="archive-year">2022</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/01/19/CTFshow-%E6%9C%88%E9%A5%BC%E6%9D%AF/" class="archive-article-date">
-  	<time datetime="2022-01-19T11:09:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-19</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/01/19/CTFshow-%E6%9C%88%E9%A5%BC%E6%9D%AF/">CTFshow-月饼杯</a>
+    <h1 class="article-title" itemprop="name">
+      NISACTF2022
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2022/03/28/NISACTF2022/" class="archive-article-date">
+  	<time datetime="2022-03-28T03:47:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-28</time>
+</a>
+        
+		
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>​    貌似是个新生赛，但是题出的挺好的，做的几道题只有几个解。</p>
+<h3 id="xor"><a href="#xor" class="headerlink" title="xor"></a>xor</h3><p>​    题目：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"><span class="keyword">from</span> Crypto.Util <span class="keyword">import</span> number, strxor</span><br><span class="line"><span class="comment">#from flag import flag</span></span><br><span class="line"></span><br><span class="line">flag=<span class="string">&#x27;xxxxxxxxxxxxxxxxxx&#x27;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">gen_key</span>():</span></span><br><span class="line">    <span class="keyword">return</span> [os.urandom(<span class="number">16</span>) <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">8</span>)]</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">rnd</span>(<span class="params">b: <span class="built_in">bytes</span>, k: <span class="built_in">bytes</span></span>):</span></span><br><span class="line">    l = b[:<span class="number">16</span>]</span><br><span class="line">    r = b[<span class="number">16</span>:]</span><br><span class="line">    _r = l</span><br><span class="line">    _l = strxor.strxor(strxor.strxor(r, k), l)</span><br><span class="line">    <span class="keyword">return</span> _l + _r</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">enc</span>(<span class="params">b: <span class="built_in">bytes</span>, ks</span>):</span></span><br><span class="line">    c = b</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">8</span>):</span><br><span class="line">        c = rnd(c, ks[i])</span><br><span class="line">    <span class="keyword">return</span> c</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    a = os.urandom(<span class="number">32</span>)</span><br><span class="line">    ks = gen_key()</span><br><span class="line">    enc_a = enc(a, ks)</span><br><span class="line">    enc_flag = enc(flag.encode(), ks)</span><br><span class="line">    <span class="built_in">print</span>(base64.b64encode(a).decode())</span><br><span class="line">    <span class="built_in">print</span>(base64.b64encode(enc_a).decode())</span><br><span class="line">    <span class="built_in">print</span>(base64.b64encode(enc_flag).decode())</span><br><span class="line"></span><br><span class="line"><span class="comment">#i03yXzXWe4QTiwJHlUZo6iqEdDkwJVviSOQ7CM3vJmM=</span></span><br><span class="line"><span class="comment">#4EnYOhbivTMP5r4VYLA8cwJBFTXIeeKAoNf/3ctgLLA=</span></span><br><span class="line"><span class="comment">#+qyVMEei1eN3YbV/z2kjcaCKngWc2pW2/e7HwpXKaj0=</span></span><br></pre></td></tr></table></figure>
+<p>​    加密算法为rn = Ln-1 ，Ln = kn ^ Ln ^ rn；并且会以不同的key连续加密八轮。第一想法是要一轮一轮推导，分别求出八轮密钥。但在推导的过程中发现最后的密钥可以看作一个整体：</p>
+<p>​    r9 = L1 ^ r1 ^ K1</p>
+<p>​    L9 = r1 ^ K2</p>
+<p>​    这里K1，K2都是某几轮密钥的异或值。</p>
+<p>​    那么整个八轮加密就可以看作是第一轮到第九轮结果的一次加密。恢复出K1和K2再对密文求解即可。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"><span class="keyword">from</span> Crypto.Util <span class="keyword">import</span> strxor</span><br><span class="line"></span><br><span class="line">a = <span class="string">&quot;i03yXzXWe4QTiwJHlUZo6iqEdDkwJVviSOQ7CM3vJmM=&quot;</span></span><br><span class="line">enc_a = <span class="string">&#x27;4EnYOhbivTMP5r4VYLA8cwJBFTXIeeKAoNf/3ctgLLA=&#x27;</span></span><br><span class="line">a_ = base64.b64decode(a)</span><br><span class="line">enc_a_ = base64.b64decode(enc_a)</span><br><span class="line">c = base64.b64decode(<span class="string">&#x27;+qyVMEei1eN3YbV/z2kjcaCKngWc2pW2/e7HwpXKaj0=&#x27;</span>)</span><br><span class="line"></span><br><span class="line">r9 = enc_a_[<span class="number">16</span>:]</span><br><span class="line">l9 = enc_a_[:<span class="number">16</span>]</span><br><span class="line">l1 = a_[:<span class="number">16</span>]</span><br><span class="line">r1 = a_[<span class="number">16</span>:]</span><br><span class="line"></span><br><span class="line">k1 =strxor.strxor(strxor.strxor(r9,l1),r1)</span><br><span class="line">k2 = strxor.strxor(l9,r1)</span><br><span class="line"></span><br><span class="line">r = strxor.strxor(k2,c[:<span class="number">16</span>])</span><br><span class="line">l =strxor.strxor(strxor.strxor(k1,c[<span class="number">16</span>:]),r)</span><br><span class="line"><span class="built_in">print</span>(l+r)</span><br><span class="line"><span class="comment">#3c4e05db6512d51e0a93ae320c0bb69a</span></span><br></pre></td></tr></table></figure>
+<h3 id="rrssaa2"><a href="#rrssaa2" class="headerlink" title="rrssaa2"></a>rrssaa2</h3><p>​    题目：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">import</span> libnum</span><br><span class="line"><span class="keyword">import</span> gmpy2</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">gen</span>():</span></span><br><span class="line">    p = <span class="number">1801</span> * random.getrandbits(<span class="number">1012</span>) + <span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> <span class="keyword">not</span> isPrime(p):</span><br><span class="line">        p = <span class="number">1801</span> * random.getrandbits(<span class="number">1012</span>) + <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> p</span><br><span class="line">p=gen()</span><br><span class="line">q=gen()</span><br><span class="line">e=<span class="number">1801</span></span><br><span class="line">n=p*q</span><br><span class="line">flag=<span class="string">&#x27;NSSCTF&#123;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&#125;&#x27;</span></span><br><span class="line">flag=flag+<span class="string">&#x27;yhe92871899hihiohh97709ujojl;lhdiwoqu903YE98Y299HDY8W9EYRW8!$$%!$!$FSR@#$@%FSEGDRYERYHRWER@$%^$^DGTW%$^&amp;GRWR@$%@FASFSFQFSTGW#TWGARWQ$@%WGVDSGADQR@%TGVDSFASDATWEGHWE%@$GSDVSFQATY$^#^%@$!RAFSDGDRTW&#x27;</span></span><br><span class="line"></span><br><span class="line">c = <span class="built_in">pow</span>(m, e, n)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;e=&#x27;</span>,e)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;p=&#x27;</span>,p)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;q=&#x27;</span>,q)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;c=&#x27;</span>,c)</span><br><span class="line"></span><br><span class="line"><span class="comment">#e= 1801</span></span><br><span class="line"><span class="comment">#p= 49610229352589717245227429186510630298995334563536199979797365135356894947505595171590737127611751124743823204969291853243936699113293137172961540731655194113111189561603261168928406442577570919901769348742992633428864861175880441682752947688509869668929473479230018031647980097396415380123118521799468844841</span></span><br><span class="line"><span class="comment">#q= 21081926656979729045764441706195868361643779935106260715219328461497406780587336009385210898093496090213306812904410650499587043699660339207567766840318127296396962037273317168795761421233687815992929975284592353117739413561939283754964442896468496199833988666060155459156116345763999855126020972915904618043</span></span><br><span class="line"><span class="comment">#c= 601596145172542477058917394071994325109856881057412872218601643742101914635753765731910337249806643258952637146341530783703613931109366648847232809553067941206928974141651198815184695746636818122414926015513095322872645068410957200062317958684872682628646759817233433643987003499153702624673493727886566639667597997520471371146056861227114668317633291934130573158877960548655006208725827943739971068608175370661619328559766977175575896437656636083179668805135271793023165492681941002853661303072959879197775224449456951125268328000206540965011249895216257583247180682482954741912101069920760903900864428405997751199</span></span><br></pre></td></tr></table></figure>
+<p>​    直接给了p，q，e，肯定没有那么简单，发现e和phi不互素，准确来说e是p-1和q-1的因子。这就需要用到amm算法：<a target="_blank" rel="noopener" href="https://www.anquanke.com/post/id/262634">https://www.anquanke.com/post/id/262634</a></p>
+<p>​    exp：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#sage脚本</span></span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">from</span> sage.<span class="built_in">all</span> <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="comment"># About 3 seconds to run</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">AMM</span>(<span class="params">o, r, q</span>):</span></span><br><span class="line">    start = time.time()</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;\n----------------------------------------------------------------------------------&#x27;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;Start to run Adleman-Manders-Miller Root Extraction Method&#x27;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;Try to find one &#123;:#x&#125;th root of &#123;&#125; modulo &#123;&#125;&#x27;</span>.<span class="built_in">format</span>(r, o, q))</span><br><span class="line">    g = GF(q)</span><br><span class="line">    o = g(o)</span><br><span class="line">    p = g(randint(<span class="number">1</span>, q))</span><br><span class="line">    <span class="keyword">while</span> p ^ ((q - <span class="number">1</span>) // r) == <span class="number">1</span>:</span><br><span class="line">        p = g(randint(<span class="number">1</span>, q))</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;[+] Find p:&#123;&#125;&#x27;</span>.<span class="built_in">format</span>(p))</span><br><span class="line">    t = <span class="number">0</span></span><br><span class="line">    s = q - <span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> s % r == <span class="number">0</span>:</span><br><span class="line">        t += <span class="number">1</span></span><br><span class="line">        s = s // r</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;[+] Find s:&#123;&#125;, t:&#123;&#125;&#x27;</span>.<span class="built_in">format</span>(s, t))</span><br><span class="line">    k = <span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> (k * s + <span class="number">1</span>) % r != <span class="number">0</span>:</span><br><span class="line">        k += <span class="number">1</span></span><br><span class="line">    alp = (k * s + <span class="number">1</span>) // r</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;[+] Find alp:&#123;&#125;&#x27;</span>.<span class="built_in">format</span>(alp))</span><br><span class="line">    a = p ^ (r ** (t - <span class="number">1</span>) * s)</span><br><span class="line">    b = o ^ (r * alp - <span class="number">1</span>)</span><br><span class="line">    c = p ^ s</span><br><span class="line">    h = <span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, t):</span><br><span class="line">        d = b ^ (r ^ (t - <span class="number">1</span> - i))</span><br><span class="line">        <span class="keyword">if</span> d == <span class="number">1</span>:</span><br><span class="line">            j = <span class="number">0</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&#x27;[+] Calculating DLP...&#x27;</span>)</span><br><span class="line">            j = - discrete_log(a, d)</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&#x27;[+] Finish DLP...&#x27;</span>)</span><br><span class="line">        b = b * (c ^ r) ^ j</span><br><span class="line">        h = h * c ^ j</span><br><span class="line">        c = c ^ r</span><br><span class="line">    result = o ^ alp * h</span><br><span class="line">    end = time.time()</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Finished in &#123;&#125; seconds.&quot;</span>.<span class="built_in">format</span>(end - start))</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;Find one solution: &#123;&#125;&#x27;</span>.<span class="built_in">format</span>(result))</span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">findAllPRoot</span>(<span class="params">p, e</span>):</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Start to find all the Primitive &#123;:#x&#125;th root of 1 modulo &#123;&#125;.&quot;</span>.<span class="built_in">format</span>(e, p))</span><br><span class="line">    start = time.time()</span><br><span class="line">    proot = <span class="built_in">set</span>()</span><br><span class="line">    <span class="keyword">while</span> <span class="built_in">len</span>(proot) &lt; e:</span><br><span class="line">        proot.add(<span class="built_in">pow</span>(randint(<span class="number">2</span>, p - <span class="number">1</span>), (p - <span class="number">1</span>) // e, p))</span><br><span class="line">    end = time.time()</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Finished in &#123;&#125; seconds.&quot;</span>.<span class="built_in">format</span>(end - start))</span><br><span class="line">    <span class="keyword">return</span> proot</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">findAllSolutions</span>(<span class="params">mp, proot, cp, p</span>):</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Start to find all the &#123;:#x&#125;th root of &#123;&#125; modulo &#123;&#125;.&quot;</span>.<span class="built_in">format</span>(e, cp, p))</span><br><span class="line">    start = time.time()</span><br><span class="line">    all_mp = <span class="built_in">set</span>()</span><br><span class="line">    <span class="keyword">for</span> root <span class="keyword">in</span> proot:</span><br><span class="line">        mp2 = mp * root % p</span><br><span class="line">        <span class="keyword">assert</span> (<span class="built_in">pow</span>(mp2, e, p) == cp)</span><br><span class="line">        all_mp.add(mp2)</span><br><span class="line">    end = time.time()</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Finished in &#123;&#125; seconds.&quot;</span>.<span class="built_in">format</span>(end - start))</span><br><span class="line">    <span class="keyword">return</span> all_mp</span><br><span class="line"></span><br><span class="line">e= <span class="number">1801</span></span><br><span class="line">p= <span class="number">49610229352589717245227429186510630298995334563536199979797365135356894947505595171590737127611751124743823204969291853243936699113293137172961540731655194113111189561603261168928406442577570919901769348742992633428864861175880441682752947688509869668929473479230018031647980097396415380123118521799468844841</span></span><br><span class="line">q= <span class="number">21081926656979729045764441706195868361643779935106260715219328461497406780587336009385210898093496090213306812904410650499587043699660339207567766840318127296396962037273317168795761421233687815992929975284592353117739413561939283754964442896468496199833988666060155459156116345763999855126020972915904618043</span></span><br><span class="line">c= <span class="number">601596145172542477058917394071994325109856881057412872218601643742101914635753765731910337249806643258952637146341530783703613931109366648847232809553067941206928974141651198815184695746636818122414926015513095322872645068410957200062317958684872682628646759817233433643987003499153702624673493727886566639667597997520471371146056861227114668317633291934130573158877960548655006208725827943739971068608175370661619328559766977175575896437656636083179668805135271793023165492681941002853661303072959879197775224449456951125268328000206540965011249895216257583247180682482954741912101069920760903900864428405997751199</span></span><br><span class="line"></span><br><span class="line">cp = c % p</span><br><span class="line">cq = c % q</span><br><span class="line">mp = AMM(cp, e, p)</span><br><span class="line">mq = AMM(cq, e, q)</span><br><span class="line">p_proot = findAllPRoot(p, e)</span><br><span class="line">q_proot = findAllPRoot(q, e)</span><br><span class="line">mps = findAllSolutions(mp, p_proot, cp, p)</span><br><span class="line">mqs = findAllSolutions(mq, q_proot, cq, q)</span><br><span class="line"><span class="built_in">print</span>(mps, mqs)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">check</span>(<span class="params">m</span>):</span></span><br><span class="line">    h = m.<span class="built_in">hex</span>()</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(h) &amp; <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">bytes</span>.fromhex(h).startswith(<span class="string">b&#x27;NSSCTF&#x27;</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="built_in">bytes</span>.fromhex(h))</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line"></span><br><span class="line">start = time.time()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;Start CRT...&#x27;</span>)</span><br><span class="line"><span class="keyword">for</span> mpp <span class="keyword">in</span> mps:</span><br><span class="line">    <span class="keyword">for</span> mqq <span class="keyword">in</span> mqs:</span><br><span class="line">        solution = CRT_list([<span class="built_in">int</span>(mpp), <span class="built_in">int</span>(mqq)], [p, q])</span><br><span class="line">        <span class="keyword">if</span> check(solution):</span><br><span class="line">            <span class="built_in">print</span>(solution)</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;\n&quot;</span>)</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;\n&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(time.time() - start)</span><br><span class="line"></span><br><span class="line">end = time.time()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Finished in &#123;&#125; seconds.&quot;</span>.<span class="built_in">format</span>(end - start))</span><br><span class="line"><span class="comment">#NSSCTF&#123;2he_amm_13_r12lly_hard_f0r_me&#125;</span></span><br></pre></td></tr></table></figure>
+<p>​    大概需要跑2min得到NSSCTF{2he_amm_13_r12lly_hard_f0r_me}</p>
+<h3 id="public"><a href="#public" class="headerlink" title="public"></a>public</h3><p>​    题目：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line">flag=<span class="string">b&quot;NSSCTF&#123;xxxxxxxxxxxxxxxxxxx&#125;&quot;</span></span><br><span class="line">p = getPrime(<span class="number">2048</span>)</span><br><span class="line">q = getPrime(<span class="number">2048</span>)</span><br><span class="line">n = p*q</span><br><span class="line">g = n+<span class="number">1</span></span><br><span class="line">flag = flag + os.urandom(<span class="number">256</span>)</span><br><span class="line">m = bytes_to_long(flag)</span><br><span class="line"><span class="keyword">assert</span> m &lt; n</span><br><span class="line">c=(<span class="built_in">pow</span>(g,p,n*n)*<span class="built_in">pow</span>(m,n,n*n))%(n*n)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;c=<span class="subst">&#123;<span class="built_in">str</span>(c)&#125;</span>&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;n=<span class="subst">&#123;<span class="built_in">str</span>(n)&#125;</span>&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;hint=<span class="subst">&#123;<span class="built_in">str</span>(<span class="built_in">pow</span>(m,n,n*n))&#125;</span>&quot;</span>)</span><br><span class="line"><span class="comment"># c=218076151021560547051903316719541222512040541728274127251955864973204319200312422995983092104505370830336341646283643290975865810979693431665790610118752578450560322701464606111124759353729454729357651736630354926734261137232304018105525402480409214739463624926019853406667257471858400554068936984966255122726345392299611192889869061539625603262461395069803838256649227551122691722958477064737646079234633593322257264277828874899605785719884582898801922036376706945214557655573105936069927519342707813584133447394527727777145289236041783964596526172298751923527410923728437653793368452092818162677292173126395038239746952564824349029187021070624008127312777783389153721156471730690460245726539173442219919067086198412985379251064006364545842890512676104195964096685904104471607447579133813262242889948684214615216415152003486684332654021763372875688811108164167029372542655680239691864011325001804416649090546652965592245015233937378914902555020997254559783431091213187054225512285704706127222748135840936979571164239968858574619878355623067035562073147836429462588372618500946665592533980646179287203705864082701267348885216165672773119373427706470575290690902668785242467233967870570261108990892859880739698792351646244754952340844420919259404502699266393058426943569348443212550646905609608670176752388829848639990144513783071090027192962534454341704209113094332822171724354423757760205937173503650126923081671379294681026909824698111163520911268295889474804858820122835834292711776643387277793548733641809948674628119693459864760337483163877679917119388740268787073315582536101385769332216844206772200893152057186765390268976281904057200764887141067277637744939424349347335952574178492737111320884889894593413406720620482887249419382551684677812936351975305964980443771310389160311391859989139144435489943187361252326617436405569045786172471146825826484820533463066934499480104433398977611810330276369147938097117995654985458513989302241106332776904067311803420489090552556891879767682415265560743407340298578130798877648570926192953127574474259716781135801273211777116319348356510073635809816358623224620898024473581877733194648312939500788032519396047197931401057492369464362250728505049498537131676040902419082386902837490490020207391112191256297932073021141841637862479797419191517126847743253818063471644376196087415026020405982443713386674133996026381008967344619818015476575693412862275373303754013892689230528546297224836909468991043799205998787941893011</span></span><br><span class="line"><span class="comment"># n=508649864931677614732467390772427961758931524996950943172348989353779413500135745017318030372818346445171787306774776609051270954621980771071637593801560166625137373096310055034937710873339570248386417692379532713565448110999149898224125057983565314582568870217037082321220190178702247284057805478222196862321877126877541221804916630403210745798454726695767965708773814502024042373335280648703042654755304969849832318086242798067639199224298659205981289856966590499810461072473369452077687615913217546268362501813809748922922532657782215807173319693469430751556310985767810712372068465527832726893651833030643914873945580271625080157996808574695857605733101549978621472016493582602814890278818563043847095493265778824174731054566468708287724290549925230267719117266452407869862605078436659020887227224470196270187491398217001451889275579626459491632506953638949085966203707446055610214983015428316166700670710716910016807567113694397559364621848368518820842900845963635710936101678917277407976769668789284143702572735353391307624460327339616496606065042109014043456540221432729574605562610831787594345569772727113605355252600129915926507232161710531913156415953128254338208741867773085355435238760994755555830964013004019492562245961</span></span><br><span class="line"><span class="comment"># hint=218453179086923289943807203202770838925178689627774745147232020515098516891161432630028304346664762962142685215503546042472463188085210756898964960254583869432945520650866749585786670220495127010275938757711518963512690357966318771229029024139860779906436335668507703089169058834533472932888386221671186182247869434699020350251916212956639268455849140594527951127570312231046210122761381292092058171708887595484453711631828228850043342993869671675498781490707220852504338423236844200845629493885003815571053367960570828719514793961666314203716137708394529735950110878173175859966298104855781891314256393660478947857997049309347664916363312769426872393903240797057291513182057786294193463281179876929436423970304992964378978343703058273610599094670858299390115880959442514513002687898361714995376183382702580310860520166550246905769724461107221385567718477106980293610194354260662299313387637029454859051754049141731708862005007657254777005078937290648653252057172789665484106225904252249322285164277069353595858401391763857781471982430400812430485462777863701578165740021651239264400111602346875691919587562776319002092593590043298682899772829734368041057265219520645505796166918571599787733464916168997021422429642875880015201743138557239246816614645961943942384226721696842364578221142494114967457346538723563534281835490913459152865031135512888020156712332950698315471031328945767161582387501768383019764191345069522790270253976284543970378444427727423121536104008553289510510497088596599741651012409020454471902200942494893254608355219933431097693790764370965829619433976045850073467615077879096698409574487772631069225578624386542659818683559823001358916184145187794138636007200677181455572920942709512649217555102476437241677652845050079961562071604521307752725300453167225947534296744839161286409625003203181858982730609149419917332043428767843293277924022007390853988328511663307394805322715579362345649842431371200748639996476587970393904239732072852670279076966635546790856059886353247283187091483814130965265452117641315707359747672993447721009270939662160468115475733881984431822454194850017395548046798675473636140217840418467588166347095543815767317284635513061287105795015042775738353765062476084211922890124244419037796630154403434882572164730631883001098922170198642065216541425903144234820480236095640278292837060194123091442480170728800340689332104613912950234195039809087610879082689821270573215009809335626725761798981628604037461376378712686098</span></span><br></pre></td></tr></table></figure>
+<p>​    因为给了hint，所以c乘hint模n方的逆求出：</p>
+<script type="math/tex; mode=display">
+g^p（modn^2)</script><p>​    关键就在这里，g = n+1，那么g的p次方二项展开很多项mod n 都为0了，只剩下p*n+1。那么我们可以求出p，利用p分解n；这里用hint解m的时候发现运算是在modn^2下，但是题目说明了m&lt;n，这样的话解m在modn下计算即可（和n方同余一定和n同余，并且m&lt;n，那么在modn条件下与modn^2等价）。</p>
+<script type="math/tex; mode=display">
+即当m<n时c\equiv m^e (mod)n^2与c\equiv m^e (mod)n的解m相同</script><p>​    exp：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> gmpy2 <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">hint = <span class="number">218453179086923289943807203202770838925178689627774745147232020515098516891161432630028304346664762962142685215503546042472463188085210756898964960254583869432945520650866749585786670220495127010275938757711518963512690357966318771229029024139860779906436335668507703089169058834533472932888386221671186182247869434699020350251916212956639268455849140594527951127570312231046210122761381292092058171708887595484453711631828228850043342993869671675498781490707220852504338423236844200845629493885003815571053367960570828719514793961666314203716137708394529735950110878173175859966298104855781891314256393660478947857997049309347664916363312769426872393903240797057291513182057786294193463281179876929436423970304992964378978343703058273610599094670858299390115880959442514513002687898361714995376183382702580310860520166550246905769724461107221385567718477106980293610194354260662299313387637029454859051754049141731708862005007657254777005078937290648653252057172789665484106225904252249322285164277069353595858401391763857781471982430400812430485462777863701578165740021651239264400111602346875691919587562776319002092593590043298682899772829734368041057265219520645505796166918571599787733464916168997021422429642875880015201743138557239246816614645961943942384226721696842364578221142494114967457346538723563534281835490913459152865031135512888020156712332950698315471031328945767161582387501768383019764191345069522790270253976284543970378444427727423121536104008553289510510497088596599741651012409020454471902200942494893254608355219933431097693790764370965829619433976045850073467615077879096698409574487772631069225578624386542659818683559823001358916184145187794138636007200677181455572920942709512649217555102476437241677652845050079961562071604521307752725300453167225947534296744839161286409625003203181858982730609149419917332043428767843293277924022007390853988328511663307394805322715579362345649842431371200748639996476587970393904239732072852670279076966635546790856059886353247283187091483814130965265452117641315707359747672993447721009270939662160468115475733881984431822454194850017395548046798675473636140217840418467588166347095543815767317284635513061287105795015042775738353765062476084211922890124244419037796630154403434882572164730631883001098922170198642065216541425903144234820480236095640278292837060194123091442480170728800340689332104613912950234195039809087610879082689821270573215009809335626725761798981628604037461376378712686098</span></span><br><span class="line">n = <span class="number">508649864931677614732467390772427961758931524996950943172348989353779413500135745017318030372818346445171787306774776609051270954621980771071637593801560166625137373096310055034937710873339570248386417692379532713565448110999149898224125057983565314582568870217037082321220190178702247284057805478222196862321877126877541221804916630403210745798454726695767965708773814502024042373335280648703042654755304969849832318086242798067639199224298659205981289856966590499810461072473369452077687615913217546268362501813809748922922532657782215807173319693469430751556310985767810712372068465527832726893651833030643914873945580271625080157996808574695857605733101549978621472016493582602814890278818563043847095493265778824174731054566468708287724290549925230267719117266452407869862605078436659020887227224470196270187491398217001451889275579626459491632506953638949085966203707446055610214983015428316166700670710716910016807567113694397559364621848368518820842900845963635710936101678917277407976769668789284143702572735353391307624460327339616496606065042109014043456540221432729574605562610831787594345569772727113605355252600129915926507232161710531913156415953128254338208741867773085355435238760994755555830964013004019492562245961</span></span><br><span class="line">c = <span class="number">218076151021560547051903316719541222512040541728274127251955864973204319200312422995983092104505370830336341646283643290975865810979693431665790610118752578450560322701464606111124759353729454729357651736630354926734261137232304018105525402480409214739463624926019853406667257471858400554068936984966255122726345392299611192889869061539625603262461395069803838256649227551122691722958477064737646079234633593322257264277828874899605785719884582898801922036376706945214557655573105936069927519342707813584133447394527727777145289236041783964596526172298751923527410923728437653793368452092818162677292173126395038239746952564824349029187021070624008127312777783389153721156471730690460245726539173442219919067086198412985379251064006364545842890512676104195964096685904104471607447579133813262242889948684214615216415152003486684332654021763372875688811108164167029372542655680239691864011325001804416649090546652965592245015233937378914902555020997254559783431091213187054225512285704706127222748135840936979571164239968858574619878355623067035562073147836429462588372618500946665592533980646179287203705864082701267348885216165672773119373427706470575290690902668785242467233967870570261108990892859880739698792351646244754952340844420919259404502699266393058426943569348443212550646905609608670176752388829848639990144513783071090027192962534454341704209113094332822171724354423757760205937173503650126923081671379294681026909824698111163520911268295889474804858820122835834292711776643387277793548733641809948674628119693459864760337483163877679917119388740268787073315582536101385769332216844206772200893152057186765390268976281904057200764887141067277637744939424349347335952574178492737111320884889894593413406720620482887249419382551684677812936351975305964980443771310389160311391859989139144435489943187361252326617436405569045786172471146825826484820533463066934499480104433398977611810330276369147938097117995654985458513989302241106332776904067311803420489090552556891879767682415265560743407340298578130798877648570926192953127574474259716781135801273211777116319348356510073635809816358623224620898024473581877733194648312939500788032519396047197931401057492369464362250728505049498537131676040902419082386902837490490020207391112191256297932073021141841637862479797419191517126847743253818063471644376196087415026020405982443713386674133996026381008967344619818015476575693412862275373303754013892689230528546297224836909468991043799205998787941893011</span></span><br><span class="line">c1 = invert(hint,n**<span class="number">2</span>) * c % n**<span class="number">2</span></span><br><span class="line"><span class="built_in">print</span>(c1)</span><br><span class="line"><span class="built_in">print</span>(hint&lt;c)</span><br><span class="line">p = (c1-<span class="number">1</span>)//n</span><br><span class="line">q = n//p</span><br><span class="line">phi = (p-<span class="number">1</span>)*(q-<span class="number">1</span>)</span><br><span class="line">d = invert(n,phi)</span><br><span class="line"><span class="built_in">print</span>(long_to_bytes(<span class="built_in">pow</span>(hint,d,n)))</span><br><span class="line"><span class="comment">#NSSCTF&#123;937dc8be-8348-4925-ad7e-06b91aed8171&#125;</span></span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -201,19 +228,11 @@
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">crypto</a>
         		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ctfshow</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">赛事</a>
-        		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -223,557 +242,141 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="/categories/赛事/CTFshow-月饼杯//" class="article-tag-list-link color2">CTFshow-月饼杯</a>
+        			<a href="/categories/赛事/NISACTF//" class="article-tag-list-link color3">NISACTF</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/01/18/CTFshow-ROARCTF-Reverse/" class="archive-article-date">
-  	<time datetime="2022-01-18T03:06:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-18</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/01/18/CTFshow-ROARCTF-Reverse/">CTFshow-ROARCTF-Reverse</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">crypto</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ctfshow</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/ctfshow//" class="article-tag-list-link color3">ctfshow</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/01/13/TEA%E3%80%81XTEA%E3%80%81XXTEA%E5%8A%A0%E8%A7%A3%E5%AF%86/" class="archive-article-date">
-  	<time datetime="2022-01-13T02:55:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-13</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/01/13/TEA%E3%80%81XTEA%E3%80%81XXTEA%E5%8A%A0%E8%A7%A3%E5%AF%86/">TEA、XTEA、XXTEA加解密</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">crypto</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/其它加密算法//" class="article-tag-list-link color2">其它加密算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/01/09/%E8%A5%BF%E5%AE%89%E6%88%98%E7%96%AB%E5%AE%89%E5%85%A8%E7%AB%9E%E8%B5%9B/" class="archive-article-date">
-  	<time datetime="2022-01-09T05:21:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/01/09/%E8%A5%BF%E5%AE%89%E6%88%98%E7%96%AB%E5%AE%89%E5%85%A8%E7%AB%9E%E8%B5%9B/">长安战疫安全竞赛</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">crypto</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">赛事</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">misc</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/赛事//" class="article-tag-list-link color3">赛事</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/赛事/长安战疫//" class="article-tag-list-link color5">长安战疫</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/01/06/Python%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E2%80%94%E5%8F%8C%E7%AB%AF%E9%98%9F%E5%88%97/" class="archive-article-date">
-  	<time datetime="2022-01-06T05:17:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/01/06/Python%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E2%80%94%E5%8F%8C%E7%AB%AF%E9%98%9F%E5%88%97/">Python数据结构—双端队列</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">python数据结构</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">队列</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/python数据结构与算法//" class="article-tag-list-link color4">python数据结构与算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/01/05/RSA%E2%80%94DP%E6%B3%84%E9%9C%B2/" class="archive-article-date">
-  	<time datetime="2022-01-05T11:39:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-05</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/01/05/RSA%E2%80%94DP%E6%B3%84%E9%9C%B2/">RSA—DP泄露（一）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">RSA</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">crypto</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数论</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/比赛//" class="article-tag-list-link color3">比赛</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/比赛/RSA//" class="article-tag-list-link color4">RSA</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/比赛/RSA/数论或其它//" class="article-tag-list-link color1">数论或其它</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/01/05/UNCTF2021-baby-rsa/" class="archive-article-date">
-  	<time datetime="2022-01-05T07:38:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-05</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/01/05/UNCTF2021-baby-rsa/">UNCTF2021-baby_rsa</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">RSA</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">crypto</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数论</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/比赛//" class="article-tag-list-link color3">比赛</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/比赛/RSA//" class="article-tag-list-link color4">RSA</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/比赛/RSA/数论或其它//" class="article-tag-list-link color1">数论或其它</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/01/04/Python%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E2%80%94%E9%98%9F%E5%88%97/" class="archive-article-date">
-  	<time datetime="2022-01-04T10:30:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/01/04/Python%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E2%80%94%E9%98%9F%E5%88%97/">Python数据结构—队列</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">python数据结构</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">队列</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/python数据结构与算法//" class="article-tag-list-link color4">python数据结构与算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/01/03/CTFshow-%E5%A4%A7%E5%90%89%E5%A4%A7%E5%88%A9%E6%9D%AF-easysignin/" class="archive-article-date">
-  	<time datetime="2022-01-03T07:06:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/01/03/CTFshow-%E5%A4%A7%E5%90%89%E5%A4%A7%E5%88%A9%E6%9D%AF-easysignin/">CTFshow-大吉大利杯-easysignin</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">crypto</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ctfshow</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/ctfshow//" class="article-tag-list-link color3">ctfshow</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
       
-        </div></section>
+
       
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2022/03/28/NISACTF2022/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/12/30/%E7%BA%BF%E6%80%A7%E5%90%8C%E4%BD%99%E7%94%9F%E6%88%90%E5%99%A8%EF%BC%88LCG%EF%BC%89-%E5%8E%9F%E7%90%86%E5%8F%8A%E6%94%BB%E5%87%BB%E6%96%B9%E5%BC%8F%EF%BC%88%E4%B8%80%EF%BC%89/" class="archive-article-date">
-  	<time datetime="2021-12-30T10:04:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-30</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/12/30/%E7%BA%BF%E6%80%A7%E5%90%8C%E4%BD%99%E7%94%9F%E6%88%90%E5%99%A8%EF%BC%88LCG%EF%BC%89-%E5%8E%9F%E7%90%86%E5%8F%8A%E6%94%BB%E5%87%BB%E6%96%B9%E5%BC%8F%EF%BC%88%E4%B8%80%EF%BC%89/">线性同余生成器（LCG）-原理及攻击方式（一）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">crypto</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">PRNG</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">LCG</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/比赛//" class="article-tag-list-link color3">比赛</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/比赛/伪随机数生成器//" class="article-tag-list-link color3">伪随机数生成器</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/比赛/伪随机数生成器/LCG//" class="article-tag-list-link color4">LCG</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2022/03/27/%E8%99%8E%E7%AC%A6CTF2022/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">虎符CTF2022</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#xor"><span class="toc-number">1.</span> <span class="toc-text">xor</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#rrssaa2"><span class="toc-number">2.</span> <span class="toc-text">rrssaa2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#public"><span class="toc-number">3.</span> <span class="toc-text">public</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
+  
+  
+  
+  <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+<script>
+  var cloudTieConfig = {
+    url: "http://example.com/2022/03/28/NISACTF2022/", 
+    sourceId: "NISACTF2022",
+    productKey: "true",
+    target: "cloud-tie-wrapper"
+  };
+</script>
+<script src="//img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
   
 
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/archives/">1</a><a class="page-number" href="/archives/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/archives/page/4/">4</a><a class="page-number" href="/archives/page/5/">5</a><a class="extend next" rel="next" href="/archives/page/4/">Next &amp;raquo;</a>
-    </nav>
+  
+
+  
+
   
 
 
+
+
+<!--增加不蒜子统计-->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
           </div>
         </div>
       </div>
@@ -832,8 +435,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
