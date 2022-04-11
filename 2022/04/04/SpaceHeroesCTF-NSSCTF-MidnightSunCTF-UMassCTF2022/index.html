@@ -8,12 +8,12 @@
   <link rel="dns-prefetch" href="http://example.com">
   <title>SpaceHeroesCTF NSSCTF MidnightSunCTF UMassCTF2022 | ZimaBlue&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="​    4月初有很多比赛，每个比赛都做了一些题，做一些总结。">
+  <meta name="description" content="​    4月初有很多比赛，每个比赛都做了一些题，难题大多是hash师傅教的。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SpaceHeroesCTF NSSCTF MidnightSunCTF UMassCTF2022">
 <meta property="og:url" content="http://example.com/2022/04/04/SpaceHeroesCTF-NSSCTF-MidnightSunCTF-UMassCTF2022/index.html">
 <meta property="og:site_name" content="ZimaBlue&#39;s Blog">
-<meta property="og:description" content="​    4月初有很多比赛，每个比赛都做了一些题，做一些总结。">
+<meta property="og:description" content="​    4月初有很多比赛，每个比赛都做了一些题，难题大多是hash师傅教的。">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/2022/04/04/SpaceHeroesCTF-NSSCTF-MidnightSunCTF-UMassCTF2022/1.png">
 <meta property="og:image" content="http://example.com/2022/04/04/SpaceHeroesCTF-NSSCTF-MidnightSunCTF-UMassCTF2022/2.png">
@@ -22,7 +22,7 @@
 <meta property="og:image" content="http://example.com/2022/04/04/SpaceHeroesCTF-NSSCTF-MidnightSunCTF-UMassCTF2022/5.png">
 <meta property="og:image" content="http://example.com/2022/04/04/SpaceHeroesCTF-NSSCTF-MidnightSunCTF-UMassCTF2022/6.png">
 <meta property="article:published_time" content="2022-04-04T06:26:36.000Z">
-<meta property="article:modified_time" content="2022-04-04T07:08:17.141Z">
+<meta property="article:modified_time" content="2022-04-11T15:26:24.390Z">
 <meta property="article:author" content="ZimaBlue">
 <meta property="article:tag" content="crypto">
 <meta property="article:tag" content="web">
@@ -199,7 +199,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>​    4月初有很多比赛，每个比赛都做了一些题，做一些总结。</p>
+        <p>​    4月初有很多比赛，每个比赛都做了一些题，难题大多是hash师傅教的。</p>
 <span id="more"></span>
 <h3 id="SpaceHeroesCTF"><a href="#SpaceHeroesCTF" class="headerlink" title="SpaceHeroesCTF"></a>SpaceHeroesCTF</h3><h4 id="Easy-Crypto-Challenge"><a href="#Easy-Crypto-Challenge" class="headerlink" title="Easy Crypto Challenge"></a>Easy Crypto Challenge</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">y^2 = x^3 + ax + b</span><br><span class="line">a = 3820149076078175358</span><br><span class="line">b = 1296618846080155687</span><br><span class="line">modulus = 11648516937377897327</span><br><span class="line">G = (4612592634107804164, 6359529245154327104)</span><br><span class="line">PubKey = (9140537108692473465, 10130615023776320406)</span><br><span class="line">k*G = (7657281011886994152, 10408646581210897023)</span><br><span class="line">C = (5414448462522866853, 5822639685215517063)</span><br><span class="line">What&#x27;s the message?</span><br></pre></td></tr></table></figure>
 <p>用hellman算法可以解出私钥na，明文为C - na*KG：</p>
