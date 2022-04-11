@@ -166,6 +166,122 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Vigenere-break" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/04/11/Vigenere-break/">Vigenere break</a>
+    </h1>
+  
+
+        
+        <a href="/2022/04/11/Vigenere-break/" class="archive-article-date">
+  	<time datetime="2022-04-11T01:31:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-04-11</time>
+</a>
+        
+		
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>​    替换密码当中，Vigenere是一种安全性较高运用范围广的密码算法，比赛中也经常出相关的题。本篇通过两道例题系统学习Vigenere及其推广的破解方法。</p>
+<h3 id="一-Vigenere原理"><a href="#一-Vigenere原理" class="headerlink" title="一.Vigenere原理"></a>一.Vigenere原理</h3><p>​    实际上是移位密码的推广，每一个明文字符对应的增量不同：</p>
+<img src="/2022/04/11/Vigenere-break/1.png" class>
+<h3 id="二-基本类型及其破解思路"><a href="#二-基本类型及其破解思路" class="headerlink" title="二.基本类型及其破解思路"></a>二.基本类型及其破解思路</h3><p>​    task.py：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> string <span class="keyword">import</span> ascii_letters</span><br><span class="line"><span class="keyword">from</span> flag <span class="keyword">import</span> flag</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">ctoi = <span class="keyword">lambda</span> x: ascii_letters.index(x)</span><br><span class="line">itoc = <span class="keyword">lambda</span> x: ascii_letters[x]</span><br><span class="line"></span><br><span class="line">key = flag.strip(<span class="string">&#x27;NCTF&#123;&#125;&#x27;</span>)</span><br><span class="line">len_key = <span class="built_in">len</span>(key)</span><br><span class="line"></span><br><span class="line">plaintext = <span class="built_in">open</span>(<span class="string">&#x27;plaintext.txt&#x27;</span>, <span class="string">&#x27;r&#x27;</span>).read()</span><br><span class="line"></span><br><span class="line">plain = <span class="string">&#x27;&#x27;</span>.join(p <span class="keyword">for</span> p <span class="keyword">in</span> plaintext <span class="keyword">if</span> p <span class="keyword">in</span> ascii_letters)</span><br><span class="line">cipher = <span class="string">&#x27;&#x27;</span>.join( itoc( ( ctoi(p) + ctoi( key[i % len_key] ) ) % <span class="number">52</span> )  <span class="keyword">for</span> i,p <span class="keyword">in</span> <span class="built_in">enumerate</span>(plain) )</span><br><span class="line"></span><br><span class="line"><span class="built_in">open</span>(<span class="string">&#x27;ciphertext.txt&#x27;</span>, <span class="string">&#x27;w&#x27;</span>).write(cipher)</span><br></pre></td></tr></table></figure>
+<p>​    密文：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nsfAIHFrMuLynuCApeEstxJOzniQuyBVfAChDEznppfAiEIDcyNFBsCjsLvGlDtqztuaHvHbCmuyGNsIMhGlDtbotCoDzDjhyBzHGfHGfoHsuhlssIMvwlixBHHGfDRjoCKrapNIwqNyuxIBACQhtMwCmMCfEBpsrzEuiLGBoMipTkxrznoHfAkqwzvxuzCzDbLyApCGvjpqxkuwpgsLrqsVfCRwzlFmtlyrhuyEiivruFRpCRjkEDrqEqthyGwgsLnQvHmtzwDEznopBpsDOxvgBGIKzurFQxwQxkptutxzmfeLFQoRpJRvrpHxilwqeqMeiiIGBsQpCCvrptAlHsDnuRltmHuCGFpsBcwnsEblsswEPwerNpIADpJRCvwQxrntJltNpfAuFBwRstytoyvcepwtwqNlmmNGFsJjsQvkyvrkrstxJOzniQvNvzdDUdyJzjqzsErqxEjguyFMNwtPjsDwjoDfCdxzvftNGyzKjCEjsDxjqsjGMqFpimGpIADpJRFkovHJlpthyHnpqyBOHhmDMmoosClwiehEzmffOGMvDxDSnnyLuXFlwYEPvosQxCrRxwCpDswHopxDruvEzsOgBsXxDLvvlMpezwpnOOsjrANzHDsLCnoqLCepgtaHNHfpysNHGfOMqkyvlozxHetJGfvNuCGKjIRnoDLAbpyxnJCpqeLxuBCuwCpGpOnkEywrEPrisHrItSiDQgvtLCipyJnDzwtxBnNoKxpWuCxwuiqwDmIJxffIqSGSbzGpqlDnXvNIwqNzoxBrQoXuDRjonsAozzHeBjweTBBypDtIGnvHGDiosItqGvusGrIFzoNRjsyykrExweMvDtsLGItVbAIkxrFnuEyDmuIzxMNBIyziDJfyqLqbmjAtqOEiivnwyNgwCtmzsCgFxIfEMEiiBrFzNgxRdEEKqbHtJltIEmiNzygGfHyknVwnmJtJrxvyewNBSCTsHCnptxHlFiDnJHtohmuyKztHRkvwKxopfImuWFurIGuGRpGCcCDzntlxqevJCfEHLQoXxtIgzEynqEnCgsGztiLnHrBmDQgBEGCephprHJFtiFnHrXpJAqEwvBqlwItECpbvNuuHMvIRAwFKrZtyplMvJttFnSGhuLyuzwsHfyldhcvCjicGJzzztBvrlLBXxjHoDBlcsOGzwEuNWgkCKjdzBweDdHbwuyCHSmtIknezjqDtCeDDnfxBvHuzcDSvmlJAlFxtlIOsfCuyQoXtEJcIEznplrtsEIrtMNuIIFiIRjonsAozzHeBRltgFBMsCjCRjoHAwqpwIiCzzmhjuIsAfHyknTLFXDywevDCtxNvGsRitNtknLrZlqAyIvteeHLNvHovqjoAJxYlgAyvJChsNFBsVbHQwzAGBboyDbuNzsiuGGslbNzglpujrDjxtIvCpyHqWvQjHRokDaBXtihhuyterNFuMzoNRjsyyFepsXsqDouluGmvDqGMdkmDHoprtmrzCfhMuyKztHSrzzKnaEtqeIJCfeNzyRNzDSykyLClrtuoHvCjhyBHwSJHyknTCwbHxweFMzcevySrHelFgxDzntlxptyIJmmNGFsJjsypnLDufpfCdTWlohcHMsCuDEqDzLqbAfGkMDEilyEMvDxpQokosklFyIhuxlsvIHMsKZDSeyFDmkElttxzCpjzGBsFpsBcwEzrkrNBtEJmjkMuyGzjsgvrzMpeExweMvDoxABCBFuDypCHwAjpgJtICpemxaIMNvGCpyEYxlyNAlMvtujIESofpDLKClAmTpBtruMthlNGBsQfIFgxeznopBtruvqfAEvxGQjsGpqzFrqxtHtBTGfvSyCHSmtIknDswalktwFvCfrNFQsQfLykDtFpXCtJntJFuwCqyGHuIGpqzFCepgtnsCpteHquzKXwyvSoAmtlxXwuIEvtNBNvDxxLfyHOqbCjIhuTDfpFGBsSjrIgDDswamtJgxOzmhjuIsAfpRkmvwCQsjCIwvGfmNGIvDshFgGlKBqlssiDBCjkBGHsWuIMooSwAbTxpitrljxuFyqNosRcupLqbCjHtEAJpyLqIIFiIMqSDLjoEjsgyQtokBrLHGfGCuDzxCepiDuwCDiixyyBSntwqEvwnmtyZeuKtujIEGsRitQcsolqbyxweIvtevCtBHzgICtGlJmMwjpsuosbxMqyDQfHQkxrOqbyxDmuwzeCMnSGOmtyuoEGHlFNBeqItgmNFjvNfqCqBDGvbmtsyjCluhyCLsRttBvrpzniwtJtEAxfFOGcDTuIFgnzMpemfrkyIxztIpEsSBGCpDJGDdzsCaHDofxIBMvDbHIgnxwbepBpsBJzlmHtuHLfHMtDzxorysNYEPnpyFqNsKmHFgGlKwqEtDsEMpbxGruBXnDPgWlQkbTBxlBOsfryKNHHntgnvHsCZsDpIIvteKIGSCTsIGeupLhbDLDaxzlexBrHWKmqCqxEzrpmjCcxMthlNBPsQitPgSwDFXEhwyqdHfrNBPsQbCBukEvxtytCtxDDciHpBoMeHFgGpFCXyivoJJyulypuFQpJQgvdzntlqzetvwmeLBOBCjIgoolFBepBplAzoprwruzKuwCykJsAlFssiJosfrMuyGzusMyxzFCetxqiwwCpAHoyoSvEJqyvAwdzqshEMDfXBrHHGfrytBzMBbwxIaHOpeeHqcKzurFgnswAdzfGoKIobrxnLCTosrjoCwFbCjDnBTlcsOGzwUfDPusIGCepwzitNzoxBrLwCfpLfDswBlylIhuxlsvIHMsKxpQrvlQrkrBpsiHzliarNGHonMwBPQnpTyLaIKwbCCAAwSwtPAtlRIvlssfKIyzEFyNvDlxBuupHCqCDxnwOzhvuozCQuwCiywvAfylpntNzxeMBFroiDCdolFmFHfHsEMEpjusLoHeHFgnqsuizkutxzrphxnGvNsHCdEEamfosIsqTloCNuCBFpGBqkyQCetsvTxzEimHtQwSizGfCtKrcEmtyMvyuxItLoAuwCiywvAfylNoKClwiNBFsSuwConzACXyiCoJNlzeHLNvHovghDswHclqAovAEiiSsuzKpuDdEEACpmfsivTzvwuLuBXuwGpqEGCeprlhuIEiiLvxsVbHMxoCKqbrtIovAsfvBBLGDbCBekxwxspwIoCzjpyLvxsNorCvyzLqfDyxmuNsfwuvxbNJAJlEDLFXEhwyqdEimHxczKkJQvGlLleTxpitdrbzyuyFRpBCoyCwxcsjGdEPriLyEyUDuHMooxGAbEnrkuODTlyGICJuwCfyFyqlqkBeYHypxGnxoSzDScxJExopxweIvteMEAIKgvGPAEALqbEmxnwNrprHnMHzsIyiktFcepsplBJqbwOqxsMtwCikGwvblpxsIosfrMuyvDmsFgBsswazzIaDyDbmxVNGQbxLkxraCpDyprJDyhxIEuwMJzLqGeznkHmptICpemxvNrznCLgkCCriwjsmuNsfvynwvDexLoInGjqAtrkuOlohNBIyNvIKABpvqryyxnwClueHqJISjIMpwJznXoIDnJTzvAuANwSJHyknjGDZlsLeqMtueQuCzDPzyARFJAvFuIhEPrirIJsCTstEqxysvfDxNoKMCjhylIIVpCRioEQxrCtLnxJCtiIEuBXuwGpqdznhpuIhqIrjrAnLCTosRjyFyqAtiNoKHpbrCGQvzuNMwClAmVzzGeqGwzeLrHHFpxLikHsHXyDLhuMpBvyLIIQfpJnIrGrkrmDmuvquiLJuFCtHFgkDCnaxjneqCTteCqcADbCRkDEGxFHfHnJGJjrAGIvDsXPgkwDHativoxJxfezGyFVbGBuRFJAvFuCoMdDbmxgBsSixLiCDLjoEnCgiCpseHnHrApJEjDswAqthzeJvyekIGvoBlDLvrpyxaofBcqMCpyMrFxTtIGpDtEnQsjCsxzHbpErxoKmIFgGlQjozzCdyOEjpFFBsFpIFgBzOwezwHervnlXBrHGGfvMvyyACPsjLaLzousGruBCJLyxootjZvGDyyOmfkuANCQbxLnsvwjYlxIaHyTofOpEsStXQyolJClRtsABGEiiJnLsMuHypnxGCepwHaDypwiLLvCCzLCpDzNnolsssJJzevCtBHTosCtDswAlzkDfJCpdeLEIIRfAQqDswHtzzAdDOrfxMBuyDeIMvrpKtfytGaDTEimHtvISJHRwmvsAlFssoDOsffyAwvEpGOwsEwjtsnAeYBzutLrNHXtDymsyyFbEjHpuxtbpFLGMMfrIcxoEHmlsIscTsvrNvHuGbIPgkwDHdlAtmuLFjxynFCSpuNtyEwlqttCiDvHbCvHNWFpIQqkvwmXyDLaOdojhHGwoQfIFqErzRcpqIsEylnrBnJDXbAJqpDMmapsIhuRlzsFqjvNfqCmoALpltsvaHJFohuAxoQpJLfSHsBalrCnuvCceQyCBFJuCnDDGmXxswaFKJjjSBOKzoIRquyGFqsjIrKOsJhIANyMpLUjITLFXDoJsJOsbxMuyzNpzCfCzvjjysxcuOsfAuLMvDltNvqzAwdlwDuDylohuEIIMexLjoCturphDaJvyeeFyaCCJLGurJGDZzzAdLzmfiHGBsQfiFcDDsuiTrvoyIrusNrFzzcDSvSnGDiouGorvmmCNrFzXpJUjkEamfofutuMTxiHGBCLfpLfrzORdzyHisFlohuyFoMeLFcDDuqlzqXmIPAqsMrxHNhDRqxpPCclqAavOpsMArNCTuDDjoCwkrENsoDOqfiFyCyDjIgtolDuvotCtjCluwNHztCptQpDtFCbCjHtCzEpsGHwvQjvFvxzOJizyDfFzzqpyrMDDdxynvJLqfDtCeFNJdlInHoKzHRiEJLqbJmpvuCpsiEryDRbHIkxrEnfqNBgEDyheJCFMLzHCnpHznkTlDbqxvusMpBCNmCCzDdwyqprqeHdEtwOpBoRuJNknBMnpEnDnyIxzsJvHwNoXKgkyzxtotNoKFypAQuuHXpJPgqzAwdEtsoJDwmCIHxCHuiFgkyKFbCnHyEPoprNVNvHozgcwmMCezBsoYFypAcFQszsxRukDLDmtiFuuNEjsHQVwRoIyullvjpEmtruNEpjNuyAAvIFgupwyplxziDBxfeFBNCErJCuDtGwpEtDHuyCpzyBPsQmpQvclLDoofNwyOsulCFYBFmxQjlltnqsfIsyIEimMAyKOjrRwBpznpHwxtyIrTlyJuGOstRvIlxobnytdrPEwiLLACNeAMqutFpxyDLaOJyfxCzyKGfCQjoHwwqEtIhuGlemyFLCNnLyADswqbwqsoMItoxBrIHGfGUkxrVKXDptdCzHieNVNvNvvFvkmGDqlqAtxDDtxOszWIvHRhsyABepiIeBGtokSBOoApJRKntvwqvsDwMCluxBrBsKmIMukJaovzzLaDOEpoHBQHGfIPwDsamlyyznERHieNVNvHozydyFLrqTrHoHMJJxIyxGNnpLAzpGyipfqoKOtuEvBOHzmAgmxzOrpTxDrJJqnmMFyJDsNzqnJaClwipbEPEFzyAIzCTIPcnwsCbCfCdQxvmiSsIFHoHRcxnwRqsnCkYzGfrGvMGSipRiyovjjXfJryxpJxMsOBMzSMpDpNnoEjAlqIJcsxLuBXuwGpqTxHlFiDyEPDueLGGwRtxLioGwAvmtsy</span><br></pre></td></tr></table></figure>
+<h4 id="1-Kasiski实验，Ci实验分析key的长度"><a href="#1-Kasiski实验，Ci实验分析key的长度" class="headerlink" title="1.Kasiski实验，Ci实验分析key的长度"></a>1.Kasiski实验，Ci实验分析key的长度</h4><p>​    Kasiski实验通过查找相同的子串(3个字符以上)来猜测可能的key的长度。比如两个相同的子串的距离相差8位,那么key的长度应该为8的因子,这样当我们有足够多的数据时就可以基本确定key的长度了。代码来自于<a target="_blank" rel="noopener" href="https://github.com/ichantzaras/creamcrackerz。">https://github.com/ichantzaras/creamcrackerz。</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> math <span class="keyword">import</span> sqrt</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">_repeated_seq_pos</span>(<span class="params">text, seq_len</span>):</span></span><br><span class="line">    seq_pos = &#123;&#125;  <span class="comment"># entries of sequence : [positions]</span></span><br><span class="line">    <span class="keyword">for</span> i, char <span class="keyword">in</span> <span class="built_in">enumerate</span>(text):</span><br><span class="line">        next_seq = text[i:i+seq_len]</span><br><span class="line">        <span class="keyword">if</span> next_seq <span class="keyword">in</span> seq_pos.keys():</span><br><span class="line">            seq_pos[next_seq].append(i)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            seq_pos[next_seq] = [i]</span><br><span class="line">    repeated = <span class="built_in">list</span>(<span class="built_in">filter</span>(<span class="keyword">lambda</span> x: <span class="built_in">len</span>(seq_pos[x]) &gt;= <span class="number">2</span>, seq_pos))</span><br><span class="line">    rep_seq_pos = [(seq, seq_pos[seq]) <span class="keyword">for</span> seq <span class="keyword">in</span> repeated]</span><br><span class="line">    <span class="keyword">return</span> rep_seq_pos</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">_get_spacings</span>(<span class="params">positions</span>):</span></span><br><span class="line">    <span class="keyword">return</span> [positions[i+<span class="number">1</span>] - positions[i] <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(positions)-<span class="number">1</span>)]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">_get_factors</span>(<span class="params">number</span>):</span></span><br><span class="line">    factors = <span class="built_in">set</span>()</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="built_in">int</span>(sqrt(number))+<span class="number">1</span>):</span><br><span class="line">        <span class="keyword">if</span> number % i == <span class="number">0</span>:</span><br><span class="line">            factors.add(i)</span><br><span class="line">            factors.add(number//i)</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">sorted</span>(factors)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">_candidate_key_lengths</span>(<span class="params">factor_lists, max_key_len</span>):</span></span><br><span class="line">    all_factors = [factor_lists[lst][fac] <span class="keyword">for</span> lst <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(factor_lists)) <span class="keyword">for</span> fac <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(factor_lists[lst]))]</span><br><span class="line">    <span class="comment"># exclude factors larger than suspected max key length</span></span><br><span class="line">    candidate_lengths = <span class="built_in">list</span>(<span class="built_in">filter</span>(<span class="keyword">lambda</span> x:  x &lt;= max_key_len, all_factors))</span><br><span class="line">    <span class="comment"># sort by probability (descending)</span></span><br><span class="line">    sorted_candidates = <span class="built_in">sorted</span>(<span class="built_in">set</span>(candidate_lengths), key=<span class="keyword">lambda</span> x: all_factors.count(x), reverse=<span class="literal">True</span>)</span><br><span class="line">    <span class="keyword">return</span> sorted_candidates</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">find_key_length</span>(<span class="params">cyphertext, seq_len, max_key_len</span>):</span></span><br><span class="line">    <span class="comment"># find repeated sequences and their positions</span></span><br><span class="line">    rsp = _repeated_seq_pos(text=cyphertext, seq_len=seq_len)</span><br><span class="line">    seq_spc = &#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> seq, positions <span class="keyword">in</span> rsp:</span><br><span class="line">        seq_spc[seq] = _get_spacings(positions)</span><br><span class="line">    <span class="comment"># calculate spacings between positions of each repeated</span></span><br><span class="line">    <span class="comment"># sequence and factor out spacings</span></span><br><span class="line">    factor_lists = []</span><br><span class="line">    <span class="keyword">for</span> spacings <span class="keyword">in</span> seq_spc.values():</span><br><span class="line">        <span class="keyword">for</span> space <span class="keyword">in</span> spacings:</span><br><span class="line">            factor_lists.append(_get_factors(number=space))</span><br><span class="line">    <span class="comment"># get common factors by descending frequency,</span></span><br><span class="line">    <span class="comment"># which constitute candidate key lengths</span></span><br><span class="line">    ckl = _candidate_key_lengths(factor_lists=factor_lists, max_key_len=max_key_len)</span><br><span class="line">    key_len = ckl[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">return</span> key_len</span><br></pre></td></tr></table></figure>
+<p>​    Ci实验：</p>
+<p>​    重合指数：设一门语言由n个字母组成，每个字母出现的概率为 Pi ，则重合指数是指两个元素随机相同的概率之和，记作 CI =∑ Pi2 (1&lt;= i &lt;= n)；</p>
+<p>​    经分析，英文中，一段文字是随机的话，CI =0.0385 ；如果这段文字是有意义的，那么 CI=0.065 （约等）。</p>
+<p>​    所以在获得key的长度之后可以通过分组计算CI再取平均值与0.065比较进一步确定key长度。</p>
+<p>​    公式：</p>
+<script type="math/tex; mode=display">
+\sum_{i=1}^{n} \frac{fi(fi-1)}{L(L-1)}</script><p>​    L 是指长度,f是指相应字符出现的次数。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> string</span><br><span class="line"><span class="keyword">import</span> processing</span><br><span class="line"><span class="keyword">import</span> freq_analysis <span class="keyword">as</span> fa</span><br><span class="line"><span class="keyword">from</span> sys <span class="keyword">import</span> maxsize</span><br><span class="line"><span class="keyword">from</span> const <span class="keyword">import</span> EN_IC</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">_ic</span>(<span class="params">letter_counts</span>):</span></span><br><span class="line">    numerator = <span class="built_in">sum</span>([letter_counts[l]*(letter_counts[l]-<span class="number">1</span>) <span class="keyword">for</span> l <span class="keyword">in</span> string.ascii_uppercase])</span><br><span class="line">    text_size = <span class="built_in">sum</span>(occurrences <span class="keyword">for</span> occurrences <span class="keyword">in</span> letter_counts.values())</span><br><span class="line">    denominator = text_size*(text_size-<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">return</span> numerator/denominator</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">find_key_length</span>(<span class="params">cyphertext, max_key_len</span>):</span></span><br><span class="line">    min_diff = maxsize</span><br><span class="line">    key_len = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> candidate_length <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, max_key_len + <span class="number">1</span>):</span><br><span class="line">        groups = processing.get_blocks(text=cyphertext, size=candidate_length)</span><br><span class="line">        columns = processing.get_columns(groups)</span><br><span class="line">        ics = [_ic(letter_counts=fa.get_letter_counts(text=column)) <span class="keyword">for</span> column <span class="keyword">in</span> columns]</span><br><span class="line">        delta_bar_ic = <span class="built_in">sum</span>(ics) / <span class="built_in">len</span>(ics)</span><br><span class="line">        <span class="keyword">if</span> EN_IC-delta_bar_ic &lt; min_diff:</span><br><span class="line">            min_diff = EN_IC-delta_bar_ic</span><br><span class="line">            key_len = candidate_length</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;KEY_LENGTH: &#x27;</span> + <span class="built_in">str</span>(candidate_length) + <span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;IC by column: &#x27;</span>+<span class="built_in">str</span>(ics))</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;delta bar IC: &#x27;</span>+<span class="built_in">str</span>(delta_bar_ic)+<span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line">    <span class="keyword">return</span> key_len</span><br></pre></td></tr></table></figure>
+<h4 id="2-频率分析"><a href="#2-频率分析" class="headerlink" title="2.频率分析"></a>2.频率分析</h4><p>​    通过密钥长度进行分组,如len(key)=8,则可以分成8组,每一组对应的密钥字母是一样的,这样我们就可以通过字母遍历来算出最符合字母频率的情况,这样单个密钥字母就基本确定下来了。即计算明文中的各字母的频率与英文字母中的频率的吻合程度。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> processing</span><br><span class="line"><span class="keyword">import</span> string</span><br><span class="line"><span class="keyword">from</span> const <span class="keyword">import</span> EN_REL_FREQ</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_letter_counts</span>(<span class="params">text</span>):</span></span><br><span class="line">    text_upper = text.upper()</span><br><span class="line">    letter_counts = &#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> index, letter <span class="keyword">in</span> <span class="built_in">enumerate</span>(string.ascii_uppercase):</span><br><span class="line">        letter_counts[letter] = text_upper.count(letter)</span><br><span class="line">    <span class="keyword">return</span> letter_counts</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">_get_letter_frequencies</span>(<span class="params">text</span>):</span></span><br><span class="line">    letter_counts = get_letter_counts(text)</span><br><span class="line">    frequencies = &#123;letter: count/<span class="built_in">len</span>(text) <span class="keyword">for</span> letter, count <span class="keyword">in</span> letter_counts.items()&#125;</span><br><span class="line">    <span class="keyword">return</span> frequencies</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">shift</span>(<span class="params">text, amount</span>):</span></span><br><span class="line">    shifted = <span class="string">&#x27;&#x27;</span></span><br><span class="line">    letters = string.ascii_uppercase</span><br><span class="line">    <span class="keyword">for</span> letter <span class="keyword">in</span> text:</span><br><span class="line">        shifted += letters[(letters.index(letter)-amount) % <span class="built_in">len</span>(letters)]</span><br><span class="line">    <span class="keyword">return</span> shifted</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">_corr</span>(<span class="params">text, lf</span>):</span></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">sum</span>([(lf[letter]*EN_REL_FREQ[letter]) <span class="keyword">for</span> letter <span class="keyword">in</span> text])<span class="comment"># 当解密出的明文取到最符合英文字符分布的组合的时候，sum值是最大的</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">_find_key_letter</span>(<span class="params">text, lf</span>):</span></span><br><span class="line">    key_letter = <span class="string">&#x27;&#x27;</span></span><br><span class="line">    max_corr = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> count, letter <span class="keyword">in</span> <span class="built_in">enumerate</span>(string.ascii_uppercase):</span><br><span class="line">        shifted = shift(text=text, amount=count)</span><br><span class="line">        corr = _corr(text=shifted, lf=lf)</span><br><span class="line">        <span class="keyword">if</span> corr &gt; max_corr:</span><br><span class="line">            max_corr = corr</span><br><span class="line">            key_letter = letter</span><br><span class="line">    <span class="keyword">return</span> key_letter</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">restore_key</span>(<span class="params">cyphertext, key_len</span>):</span></span><br><span class="line">    key = <span class="string">&#x27;&#x27;</span></span><br><span class="line">    blocks = processing.get_blocks(text=cyphertext, size=key_len)</span><br><span class="line">    columns = processing.get_columns(blocks)</span><br><span class="line">    frequencies = _get_letter_frequencies(text=cyphertext)</span><br><span class="line">    <span class="keyword">for</span> column <span class="keyword">in</span> columns:</span><br><span class="line">        key += _find_key_letter(text=column, lf=frequencies)</span><br><span class="line">    <span class="keyword">return</span> key</span><br></pre></td></tr></table></figure>
+<h4 id="3-读取密文，getkey-len-getkey-解密"><a href="#3-读取密文，getkey-len-getkey-解密" class="headerlink" title="3.读取密文，getkey_len,getkey,解密"></a>3.读取密文，getkey_len,getkey,解密</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> kasiski</span><br><span class="line"><span class="keyword">import</span> ic</span><br><span class="line"><span class="keyword">import</span> processing</span><br><span class="line"><span class="keyword">import</span> freq_analysis <span class="keyword">as</span> fa</span><br><span class="line"><span class="keyword">from</span> const <span class="keyword">import</span> (SEQ_LEN, MAX_KEY_LEN)</span><br><span class="line"><span class="keyword">import</span> string</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">_decypher</span>(<span class="params">cyphertext, key</span>):</span></span><br><span class="line">    letters = string.ascii_uppercase</span><br><span class="line">    shifts = [letters.index(letter) <span class="keyword">for</span> letter <span class="keyword">in</span> key]</span><br><span class="line">    blocks = processing.get_blocks(text=cyphertext,size=<span class="built_in">len</span>(key))</span><br><span class="line">    cols = processing.get_columns(blocks)</span><br><span class="line">    decyphered_blocks = processing.to_blocks([fa.shift(col, shift) <span class="keyword">for</span> col, shift <span class="keyword">in</span> <span class="built_in">zip</span>(cols, shifts)])</span><br><span class="line">    decyphered = <span class="string">&#x27;&#x27;</span>.join(decyphered_blocks)</span><br><span class="line">    <span class="keyword">return</span> decyphered</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">attack</span>(<span class="params">file, method</span>):</span></span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(file) <span class="keyword">as</span> f:</span><br><span class="line">        cyphertext = f.readlines()</span><br><span class="line">        key_len = <span class="number">0</span></span><br><span class="line">        <span class="keyword">if</span> method == <span class="string">&#x27;kasiski&#x27;</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&#x27;Applying kasiski examination\n&#x27;</span>)</span><br><span class="line">            key_len = kasiski.find_key_length(cyphertext=cyphertext[<span class="number">0</span>], seq_len=SEQ_LEN, max_key_len=MAX_KEY_LEN)</span><br><span class="line">        <span class="keyword">elif</span> method == <span class="string">&#x27;ic&#x27;</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&#x27;Applying index of coincidence examination\n&#x27;</span>)</span><br><span class="line">            key_len = ic.find_key_length(cyphertext=cyphertext[<span class="number">0</span>], max_key_len=MAX_KEY_LEN)</span><br><span class="line">        key = fa.restore_key(cyphertext[<span class="number">0</span>], key_len)</span><br><span class="line">        decyphered = _decypher(cyphertext[<span class="number">0</span>], key)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;Chosen key length: &#x27;</span>+<span class="built_in">str</span>(key_len))</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;Restored key: &#x27;</span>+<span class="built_in">str</span>(key))</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;Plaintext: &#x27;</span>+<span class="built_in">str</span>(decyphered))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">attack(<span class="string">&#x27;encrypted/hostiletext.txt&#x27;</span>, <span class="string">&#x27;kasiski&#x27;</span>)</span><br><span class="line"><span class="comment">#attack(&#x27;encrypted/hostiletext.txt&#x27;, &#x27;ic&#x27;)</span></span><br></pre></td></tr></table></figure>
+<p>​    实际上，普通的维吉尼亚密码（基于26个数字—字母对or基于ascii字符表）可以直接用集成好的网站直接破解：<a target="_blank" rel="noopener" href="https://www.guballa.de/vigenere-solver">https://www.guballa.de/vigenere-solver</a> 所以上述题目可以直接用网站梭。</p>
+<h3 id="三-维吉尼亚变种类型"><a href="#三-维吉尼亚变种类型" class="headerlink" title="三.维吉尼亚变种类型"></a>三.维吉尼亚变种类型</h3>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">crypto</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Vigenere</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/比赛//" class="article-tag-list-link color3">比赛</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/比赛/Vigenere//" class="article-tag-list-link color4">Vigenere</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/04/11/Vigenere-break/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+<!--增加不蒜子统计-->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
     <article id="post-NCTF2019-Reverse" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1075,108 +1191,6 @@
 <!--增加不蒜子统计-->
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
   
-    <article id="post-2022红明谷-easy-ya" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/03/22/2022%E7%BA%A2%E6%98%8E%E8%B0%B7-easy-ya/">2022红明谷-easy_ya</a>
-    </h1>
-  
-
-        
-        <a href="/2022/03/22/2022%E7%BA%A2%E6%98%8E%E8%B0%B7-easy-ya/" class="archive-article-date">
-  	<time datetime="2022-03-22T10:49:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-22</time>
-</a>
-        
-		
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>​    红明谷一共就八个题，和小老弟组队，做了四个题 RANK50。密码学有两道，一题是copper，另一题是sm2，不会做。这里简单记录一下第一题。</p>
-        
-          <a class="article-more-a" href="/2022/03/22/2022%E7%BA%A2%E6%98%8E%E8%B0%B7-easy-ya/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">RSA</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Copper</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/比赛//" class="article-tag-list-link color3">比赛</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/比赛/RSA//" class="article-tag-list-link color4">RSA</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/比赛/RSA/Copper//" class="article-tag-list-link color2">Copper</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/03/22/2022%E7%BA%A2%E6%98%8E%E8%B0%B7-easy-ya/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-<!--增加不蒜子统计-->
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -1474,6 +1488,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">轮密钥算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Vigenere</a>
               </li>
             
             <div class="clearfix"></div>
