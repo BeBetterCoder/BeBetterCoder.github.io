@@ -8,14 +8,17 @@
   <link rel="dns-prefetch" href="http://example.com">
   <title>nullcon2022 | ZimaBlue&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="article">
+  <meta name="description" content="cookielover">
+<meta property="og:type" content="article">
 <meta property="og:title" content="nullcon2022">
 <meta property="og:url" content="http://example.com/2022/04/09/nullcon2022/index.html">
 <meta property="og:site_name" content="ZimaBlue&#39;s Blog">
+<meta property="og:description" content="cookielover">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-04-09T08:44:15.000Z">
-<meta property="article:modified_time" content="2022-04-09T08:44:15.789Z">
+<meta property="article:modified_time" content="2022-04-11T01:00:23.099Z">
 <meta property="article:author" content="ZimaBlue">
+<meta property="article:tag" content="crypto">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="ZimaBlue&#39;s Blog" type="application/atom+xml">
@@ -187,7 +190,15 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h3 id="cookielover"><a href="#cookielover" class="headerlink" title="cookielover"></a>cookielover</h3><span id="more"></span>
+<p>sign.py:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env sage</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> bytes_to_long, long_to_bytes</span><br><span class="line"><span class="keyword">from</span> Crypto.PublicKey <span class="keyword">import</span> RSA</span><br><span class="line"><span class="keyword">from</span> secret <span class="keyword">import</span> flag</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line">msg = <span class="string">&#x27;I love cookies.&#x27;</span></span><br><span class="line">key = RSA.importKey(<span class="built_in">open</span>(<span class="string">&#x27;privkey.pem&#x27;</span>,<span class="string">&#x27;r&#x27;</span>).read())</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">int_to_str</span>(<span class="params">n</span>):</span></span><br><span class="line">	<span class="keyword">if</span> n == <span class="number">0</span>:</span><br><span class="line">		<span class="keyword">return</span> <span class="string">&#x27;&#x27;</span></span><br><span class="line">	<span class="keyword">return</span> int_to_str(n // <span class="number">256</span>) + <span class="built_in">chr</span>(n % <span class="number">256</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">str_to_int</span>(<span class="params">s</span>):</span></span><br><span class="line">	res = <span class="number">0</span></span><br><span class="line">	<span class="keyword">for</span> char <span class="keyword">in</span> s:</span><br><span class="line">		res *= <span class="number">256</span></span><br><span class="line">		res += <span class="built_in">ord</span>(char)</span><br><span class="line">	<span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sign</span>(<span class="params">msg : <span class="built_in">bytes</span></span>):</span></span><br><span class="line">	<span class="comment">#I will not talk about cookies.</span></span><br><span class="line">	<span class="keyword">if</span> <span class="string">b&#x27;cookie&#x27;</span> <span class="keyword">in</span> msg:</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">	<span class="comment">#no control characters allowed in message</span></span><br><span class="line">	<span class="keyword">if</span> <span class="built_in">any</span>([c &lt; <span class="number">32</span> <span class="keyword">for</span> c <span class="keyword">in</span> msg]):</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">pow</span>(bytes_to_long(msg), key.d, key.n)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">verify</span>(<span class="params">number : <span class="built_in">int</span></span>):</span></span><br><span class="line">	<span class="keyword">if</span> str_to_int(msg) == <span class="built_in">pow</span>(number, key.e, key.n):</span><br><span class="line">		<span class="keyword">return</span> flag</span><br><span class="line">	<span class="keyword">else</span>:</span><br><span class="line">		<span class="keyword">return</span> <span class="string">&#x27;wrong signature&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">loop</span>():</span></span><br><span class="line">	<span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">		<span class="built_in">print</span>(<span class="string">&#x27;Choose an option:\n1:[text to sign]\n2:[number - signature to check]\n&#x27;</span>)</span><br><span class="line">		sys.stdout.flush()</span><br><span class="line">		cmd = sys.stdin.buffer.readline().strip()</span><br><span class="line">		<span class="keyword">if</span> cmd[:<span class="number">2</span>] == <span class="string">b&#x27;1:&#x27;</span>:</span><br><span class="line">			<span class="built_in">print</span>(sign(cmd[<span class="number">2</span>:]))</span><br><span class="line">		<span class="keyword">elif</span> cmd[:<span class="number">2</span>] == <span class="string">b&#x27;2:&#x27;</span>:</span><br><span class="line">			<span class="built_in">print</span>(verify(<span class="built_in">int</span>(cmd[<span class="number">2</span>:].decode())))</span><br><span class="line">		<span class="keyword">else</span>:</span><br><span class="line">			<span class="built_in">print</span>(<span class="string">&#x27;Wrong input format&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">	<span class="keyword">try</span>:</span><br><span class="line">		loop()</span><br><span class="line">	<span class="keyword">except</span> Exception <span class="keyword">as</span> err:</span><br><span class="line">		<span class="built_in">print</span>(<span class="built_in">repr</span>(err))</span><br></pre></td></tr></table></figure>
+<p>pubkey.pem:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">-----BEGIN PUBLIC KEY-----</span><br><span class="line">MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAmekPySQOJ6diE8G7gseg</span><br><span class="line">Amb0zB9MetstsnGhELcsXRY2JL2HRNrfxMtUiyTu8Ep2Cb5hbyUTQB+q+Cc1JBlv</span><br><span class="line">xXViqXt1hlUQzXKMf0KZXti55brfvGVBOYGVTd+I7T8NHE5c9SuE+H5bMC9UnTcO</span><br><span class="line">Y26znTed+LmnEOT6OYUimx/sqPlzmQ0rTrx0P6UaN+td1VBxZFOaCB/3Q69BtwtC</span><br><span class="line">2Yw1oSeYG+ZXAOYuuPauRCOaeWH8V47ZTzN4IJjEaym12veS9QXahO3QgGbw6+It</span><br><span class="line">bxCByTiF49NM+ifzMd7GnExMdOF7zxvFhb9BoHhkeOxzmOGPQT1UYFD+XXoceFeF</span><br><span class="line">Be/rKlz0U5dngETNbykG0yO6lIe2ju0sbMZyInVBoDLglDPsY3E9G0nXhGJkDesM</span><br><span class="line">wQRp/1JI/DWMrS1bX7jRfZXwohYR0lD43NZvyQesf/QKjWC+OXFfqQbc4dj/k/O3</span><br><span class="line">FIIJJ7uVm8HVtnpWMoH05+TFlc27zpS6J6nZghDlLBXJAHDVwu7w2Sn3fnI6IuMw</span><br><span class="line">wNgBcMmmSGtAKkuv8NS0CYm13qi8IPFi5UdlAeQR1I1tzPPMiH8DOxIi2IB7kib7</span><br><span class="line">oHGx1lyP3iaMME8/ruqfJMT+eDkpI/3Xa2ovI+jYxzzXaKl3lhJCleaoDigZCULo</span><br><span class="line">asTxe4pfUc9nkgDYg2JSxFsCAwEAAQ==</span><br><span class="line">-----END PUBLIC KEY-----</span><br></pre></td></tr></table></figure>
+<p>​    题目实现了一个交互系统，即RSA的签名和验证。要获得flag，需要把’I love cookies.’对应的签名值发送给服务器验证，但后端有限制，包含’cookie’字段的信息不能给予签名。那么解决方案就是把I love cookies对应的long分拆为几段相乘，分几次签名，最后把得到的签名相乘模n即可。当我们把对应的long分解后发现，无论如何组合，至少会有一个部分转字节以后包含控制字符，而控制字符会引发return 0，签名中止。所以这里的解决方案是将能组合转为非控制字符的因子先组合，最后还剩下一个2，只需要找一个字符（比如,  对应的ascii码为44）和2相乘，相乘以后值为88，满足大于32，可以通过验证。但是这样三部分返回的签名值的乘积实际上是I love cookies 和,相乘的值的签名。要得到目的签名，还需要单独提交一次,去签名，返回的签名值的逆乘上前三部分的积就是我们要找的签名值。最后将这个签名值提交获得flag。</p>
+<p>​    脚本来自于hash小可爱：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">p = remote(<span class="string">&#x27;52.59.124.14&#x27;</span>, <span class="number">10301</span>)</span><br><span class="line">n = <span class="number">627899638620348165952388990522362943219167647703242555126529002762314824033856763779600883952817660826446193366180558404001743645736309588454828883085902718305151841122152492702789177388248278843151899277145366368497644816958932681194310493530735472278784913119515955737461424614381265051048363121603834763504324915645740970410151356775466957231658895331944477355558254745407352049029866844585699779615276876659171453548611760317083667131480857534167022256190387128240235942362100638580848234239994626580879318259554019293030331932909851115390444612931324590544216595532828392984535075519617908613735309535581818936579393182356672567588204231940696703902104442372182127756608305971949766096755370359256602310166623759046402739891910186296934546060117757733337481788717663789292120669952863240116069789409662118797757976324875166693470960188730286439673715780705054208551961776647376233377578685773466781298871624832223010430897754327042048709909951786009950779126218407497861049677284100165082818633096819398841034676325246453744426596960679469392024438909063059041031005468380750983790438412987580747308496905480963722915339379525187096258241609862382136863831836079727256351264365036343487660547253741547621662792064883655640794203</span></span><br><span class="line">s1 = <span class="number">6673</span> * <span class="number">5</span></span><br><span class="line">s2 = <span class="number">189344417922901</span></span><br><span class="line">s3 = <span class="number">30051184098398543</span> * <span class="number">2</span> * <span class="number">44</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">int_to_str</span>(<span class="params">n</span>):</span></span><br><span class="line">    <span class="keyword">if</span> n == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">return</span> int_to_str(n // <span class="number">256</span>) + <span class="built_in">chr</span>(n % <span class="number">256</span>)</span><br><span class="line"></span><br><span class="line">pay1 = <span class="string">&#x27;1:&#x27;</span> + int_to_str(s1)</span><br><span class="line">p.recv()</span><br><span class="line">p.sendline(pay1)</span><br><span class="line">m1 = <span class="built_in">int</span>(p.recvline()[:-<span class="number">1</span>])</span><br><span class="line">pay2 = <span class="string">&#x27;1:&#x27;</span> + int_to_str(s2)</span><br><span class="line">p.recv()</span><br><span class="line">p.sendline(pay2)</span><br><span class="line">m2 = <span class="built_in">int</span>(p.recvline()[:-<span class="number">1</span>])</span><br><span class="line">pay3 = <span class="string">&#x27;1:&#x27;</span> + int_to_str(s3)</span><br><span class="line">p.recv()</span><br><span class="line">p.sendline(pay3)</span><br><span class="line">m3 = <span class="built_in">int</span>(p.recvline()[:-<span class="number">1</span>])</span><br><span class="line">pay4 = <span class="string">&#x27;1:,&#x27;</span></span><br><span class="line">p.recv()</span><br><span class="line">p.sendline(pay4)</span><br><span class="line">m4 = <span class="built_in">int</span>(p.recvline()[:-<span class="number">1</span>])</span><br><span class="line"></span><br><span class="line">msign = m1 * m2 * m3 * inverse(m4, n) % n</span><br><span class="line">pay5 = <span class="string">&#x27;2:&#x27;</span> + <span class="built_in">str</span>(msign)</span><br><span class="line">p.sendline(pay5)</span><br><span class="line">p.interactive()</span><br><span class="line"></span><br><span class="line"><span class="comment"># ENO&#123;F4ct0r_and_Conqu3r!&#125;</span></span><br></pre></td></tr></table></figure>
+
       
 
       
@@ -195,7 +206,33 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">crypto</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/赛事//" class="article-tag-list-link color3">赛事</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/赛事/nullcon2022//" class="article-tag-list-link color2">nullcon2022</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
       
 
@@ -289,6 +326,19 @@
             </div>
         </div>
         
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#cookielover"><span class="toc-number">1.</span> <span class="toc-text">cookielover</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
         
     </div>
 </aside>
@@ -650,6 +700,14 @@ MathJax.Hub.Queue(function() {
           
             <li class="search-li">
               <a href="http://h3geeker.top/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>H3h3QAQ@Web</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="https://www.cnblogs.com/oyrd/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>Hash@Crypto</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="https://team-su.github.io/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>SU-team</a>
             </li>
           
         </ul>
