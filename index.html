@@ -190,6 +190,7 @@
         <p>​    威尔逊定理：</p>
 <script type="math/tex; mode=display">
 (p-1)!\equiv -1(modp)</script><p>​    有时候可以用这个结论来化简一些式子达到简化运算的目的。之前遇到过很多次，总结一下。</p>
+<p>​    比如<strong>[长安杯 2021]checkin</strong>。</p>
 <p>​</p>
         
           <a class="article-more-a" href="/2022/04/15/%E5%A8%81%E5%B0%94%E9%80%8A%E5%AE%9A%E7%90%86/#more">more >></a>
@@ -1612,5 +1613,22 @@ MathJax.Hub.Queue(function() {
 
 </div>
   </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!-- <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
 </body>
 </html>

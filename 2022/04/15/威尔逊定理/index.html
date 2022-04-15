@@ -8,15 +8,15 @@
   <link rel="dns-prefetch" href="http://example.com">
   <title>威尔逊定理 | ZimaBlue&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="​    威尔逊定理：  (p-1)!\equiv -1(modp)​    有时候可以用这个结论来化简一些式子达到简化运算的目的。之前遇到过很多次，总结一下。 ​">
+  <meta name="description" content="​    威尔逊定理：  (p-1)!\equiv -1(modp)​    有时候可以用这个结论来化简一些式子达到简化运算的目的。之前遇到过很多次，总结一下。 ​    比如[长安杯 2021]checkin。 ​">
 <meta property="og:type" content="article">
 <meta property="og:title" content="威尔逊定理">
 <meta property="og:url" content="http://example.com/2022/04/15/%E5%A8%81%E5%B0%94%E9%80%8A%E5%AE%9A%E7%90%86/index.html">
 <meta property="og:site_name" content="ZimaBlue&#39;s Blog">
-<meta property="og:description" content="​    威尔逊定理：  (p-1)!\equiv -1(modp)​    有时候可以用这个结论来化简一些式子达到简化运算的目的。之前遇到过很多次，总结一下。 ​">
+<meta property="og:description" content="​    威尔逊定理：  (p-1)!\equiv -1(modp)​    有时候可以用这个结论来化简一些式子达到简化运算的目的。之前遇到过很多次，总结一下。 ​    比如[长安杯 2021]checkin。 ​">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-04-15T01:06:53.000Z">
-<meta property="article:modified_time" content="2022-04-15T01:37:43.590Z">
+<meta property="article:modified_time" content="2022-04-15T01:45:06.316Z">
 <meta property="article:author" content="ZimaBlue">
 <meta property="article:tag" content="RSA">
 <meta property="article:tag" content="crypto">
@@ -195,8 +195,8 @@
         <p>​    威尔逊定理：</p>
 <script type="math/tex; mode=display">
 (p-1)!\equiv -1(modp)</script><p>​    有时候可以用这个结论来化简一些式子达到简化运算的目的。之前遇到过很多次，总结一下。</p>
-<p>​    <span id="more"></span></p>
 <p>​    比如<strong>[长安杯 2021]checkin</strong>。</p>
+<p>​    <span id="more"></span></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> secret <span class="keyword">import</span> flag</span><br><span class="line">p = getPrime(<span class="number">1024</span>)</span><br><span class="line">q = getPrime(<span class="number">16</span>)</span><br><span class="line">n = p*q</span><br><span class="line">m = bytes_to_long(flag)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,p-q):</span><br><span class="line">    m = m*i%n</span><br><span class="line">e = <span class="number">1049</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">pow</span>(<span class="number">2</span>,e,n))</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">pow</span>(m,e,n))</span><br><span class="line"><span class="comment">#4513855932190587780512692251070948513905472536079140708186519998265613363916408288602023081671609336332823271976169443708346965729874135535872958782973382975364993581165018591335971709648749814573285241290480406050308656233944927823668976933579733318618949138978777831374262042028072274386196484449175052332019377</span></span><br><span class="line"><span class="comment">#3303523331971096467930886326777599963627226774247658707743111351666869650815726173155008595010291772118253071226982001526457616278548388482820628617705073304972902604395335278436888382882457685710065067829657299760804647364231959804889954665450340608878490911738748836150745677968305248021749608323124958372559270</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>​    1.由c1 = pow(2,e,n)得2^e-c1=kn，又由于q是一个16位的素数，所以可以直接枚举q进行分解。得到q以后，可以算出kp=kn//q。</p>
 <p>​    2.分解kp（factor或者简单遍历）</p>
@@ -812,5 +812,22 @@ MathJax.Hub.Queue(function() {
 
 </div>
   </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!-- <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
 </body>
 </html>
