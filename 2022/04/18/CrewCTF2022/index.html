@@ -6,15 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Tag: crypto | ZimaBlue&#39;s Blog</title>
+  <title>CrewCTF2022 | ZimaBlue&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="ZimaBlue&#39;s Blog">
-<meta property="og:url" content="http://example.com/tags/crypto/page/2/index.html">
+  <meta name="description" content="​    前天在忙着参加*CTF的个人考核，这个比赛只有昨天一天看看题，这个队伍貌似是国际强队(ctftime前五),题目出的较好,还有三题没做希望赛后能够复现.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CrewCTF2022">
+<meta property="og:url" content="http://example.com/2022/04/18/CrewCTF2022/index.html">
 <meta property="og:site_name" content="ZimaBlue&#39;s Blog">
+<meta property="og:description" content="​    前天在忙着参加*CTF的个人考核，这个比赛只有昨天一天看看题，这个队伍貌似是国际强队(ctftime前五),题目出的较好,还有三题没做希望赛后能够复现.">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2022/04/18/CrewCTF2022/1.png">
+<meta property="og:image" content="http://example.com/2022/04/18/CrewCTF2022/2.png">
+<meta property="article:published_time" content="2022-04-18T01:57:01.000Z">
+<meta property="article:modified_time" content="2022-04-18T03:33:37.186Z">
 <meta property="article:author" content="ZimaBlue">
+<meta property="article:tag" content="crypto">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2022/04/18/CrewCTF2022/1.png">
   
     <link rel="alternative" href="/atom.xml" title="ZimaBlue&#39;s Blog" type="application/atom+xml">
   
@@ -164,36 +172,63 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-CrewCTF2022" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      CrewCTF2022
+    </h1>
+  
+
+        
+        <a href="/2022/04/18/CrewCTF2022/" class="archive-article-date">
+  	<time datetime="2022-04-18T01:57:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-04-18</time>
+</a>
+        
+		
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>​    前天在忙着参加*CTF的个人考核，这个比赛只有昨天一天看看题，这个队伍貌似是国际强队(ctftime前五),题目出的较好,还有三题没做希望赛后能够复现.</p>
+<span id="more"></span>
+<img src="/2022/04/18/CrewCTF2022/1.png" class> 
+<h3 id="ez-x0r"><a href="#ez-x0r" class="headerlink" title="ez-x0r"></a>ez-x0r</h3><p>​    附件：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BRQDER1VHDkeVhQ5BRQfFhIJGw==</span><br></pre></td></tr></table></figure>
+<p>​    附件是一串base64，解密出来是包含控制字符的字节:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">b&#x27;\x05\x14\x03\x11\x1dU\x1c9\x1eV\x149\x05\x14\x1f\x16\x12\t\x1b&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>​    题目是异或操作，那么猜测flag就是上边的字节和key异或得到的，但不知道key，可以用flag的起始格式”crew{“来和字节异或得到key：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># getkey</span></span><br><span class="line">c1 = b64decode(c)</span><br><span class="line"><span class="built_in">print</span>(c1)</span><br><span class="line">m = <span class="string">&#x27;crew&#123;&#x27;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> m:</span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">chr</span>(<span class="built_in">ord</span>(i)^c1[m.index(i)]))</span><br></pre></td></tr></table></figure>
+<p>​    发现key的每一位都是字符f。遂用脚本解密，完整脚本为：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> base64 <span class="keyword">import</span> b64decode</span><br><span class="line"></span><br><span class="line">t = <span class="string">&#x27;f&#x27;</span>*<span class="number">30</span></span><br><span class="line">c = <span class="string">&#x27;BRQDER1VHDkeVhQ5BRQfFhIJGw==&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># getkey</span></span><br><span class="line">c1 = b64decode(c)</span><br><span class="line"><span class="built_in">print</span>(c1)</span><br><span class="line">m = <span class="string">&#x27;crew&#123;&#x27;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> m:</span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">chr</span>(<span class="built_in">ord</span>(i)^c1[m.index(i)]))</span><br><span class="line"></span><br><span class="line"><span class="comment"># getflag</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> c1:</span><br><span class="line">    j = i^<span class="built_in">ord</span>(t[c1.index(i)])</span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">chr</span>(j),end=<span class="string">&#x27;&#x27;</span>)</span><br><span class="line"><span class="comment"># crew&#123;3z_x0r_crypto&#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="Malleable-Metal"><a href="#Malleable-Metal" class="headerlink" title="Malleable Metal"></a>Malleable Metal</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.PublicKey <span class="keyword">import</span> RSA</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> bytes_to_long</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">import</span> binascii</span><br><span class="line"><span class="keyword">from</span> secret <span class="keyword">import</span> flag</span><br><span class="line"></span><br><span class="line">e = <span class="number">3</span></span><br><span class="line">BITSIZE =  <span class="number">8192</span></span><br><span class="line">key = RSA.generate(BITSIZE)</span><br><span class="line">n = key.n</span><br><span class="line">flag = bytes_to_long(flag)</span><br><span class="line">m = floor(BITSIZE/(e*e)) - <span class="number">400</span></span><br><span class="line"><span class="keyword">assert</span> (m &lt; BITSIZE - <span class="built_in">len</span>(<span class="built_in">bin</span>(flag)[<span class="number">2</span>:]))</span><br><span class="line">r1 = random.randint(<span class="number">1</span>,<span class="built_in">pow</span>(<span class="number">2</span>,m))</span><br><span class="line">r2 = random.randint(r1,<span class="built_in">pow</span>(<span class="number">2</span>,m))</span><br><span class="line">msg1 = <span class="built_in">pow</span>(<span class="number">2</span>,m)*flag + r1</span><br><span class="line">msg2 = <span class="built_in">pow</span>(<span class="number">2</span>,m)*flag + r2</span><br><span class="line">C1 = Integer(<span class="built_in">pow</span>(msg1,e,n))</span><br><span class="line">C2 = Integer(<span class="built_in">pow</span>(msg2,e,n))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&#x27;<span class="subst">&#123;n = &#125;</span>\n<span class="subst">&#123;C1 = &#125;</span>\n<span class="subst">&#123;C2 = &#125;</span>&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p>​    题目本身考查的是copper，但因为位数没调好，直接非预期就出了.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> gmpy2 <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line">BITSIZE =  <span class="number">8192</span></span><br><span class="line">n = <span class="number">823652328526060931201375649241006048943627312591742662481083103378002522077877852124731191042617160616707714556599692967069663667698601996983528940331840856212083763983210643933408040552418340463683380557808507002495230815546453104038740886365473259236836768987811419579308089803722619415774848441151249684528573808701348303730672001325400435253430057941264536553439343549378798471521843765967413899839467956313753964739101523564712402586172009670872793597148015854112713073516537134244622001863136944934492241145306737850771111625635504275979597201321615004183224138178242850606020061860874365891414739635021953470569531263648279914661978749409495850032838932287660547294983608500552408270453150111004704982673000064474229357303826290412232101668643442191345117752836713723186345029858940323602239828980619674790421554523298312252632246856653570861376722546483845572057592874642653507921669598604980999675710944351125800581153679737947035951167396427406664211538456926422574733908468243848301080202616710219948021550303624199272309262465841979895988543037749409344273271528685813232663250051559875409936374630801262025889212026998068310718442102601557388789291924368011403387710015947533663816312246609754580679612583443687679604653697210741383870120265666560114312552082718765229857906075466911647146394186461224534740685587572846934610230530077015354170886197688407248753878297395666994564903309464938353409270895657559261894379593177576322878056778321362020242262629594237747578073010697822390042229221755183530894661801846645578606229378188194698297341498164221255458973569036112042793665638020083355322818801649079577206155596664351547761867936241825962264402061264130743855926770190009644935373522637016531313612905118696369479379392748765790270985780979092810127202612369788297683386941277137962371308477169065442960974519121200614968578299255908217109555425373639991249942561881066593925137769635916819686179968920303847549317832449280869569173490086055713440659573036379376871313591502012736961740953226823792006776306025493582816361497869257717651668075570919074032100188984609089237083774415809378590512597855039607625398955711313352280354581208986236739705133090250836743923077744209886105632205516098409509945870967048379575392597005574605671295696290105152505109115729545462303929321064678575733744453013844396847747874774560936394947704938716022268449263762808882912779863563062087323815155503567025604594567944510834845389179609006394130719657363087</span></span><br><span class="line">C1 = <span class="number">138604270237134534112743212644616449187692378939637896055320936677529897960835117799077267347298678107031857708834234867949004008866584408288272718174944005247281182704110071985982762860316789278723189738430436690943806868878982562799129736576593875631850056775539229239799682738700710216806174002449616599477466210310386600736499714740361747969973718347095697189605303148613119104798603461313289164107162759182110107568729898709265252329895862170091572165860623096748730108315029720395180483240857815537765987240293780559413621634616731611457999105645890254616180108684484111551400204145466579713376335168837095473428132610657311922576659063964864816927637794472255883920363962994040086056352213615355155336047742875321877777043584327913192448537029767660816802421871457551873100279391823455263903450304034557919732645143487533538943198997776987742643929566403463889152262047049873409325737357390275038091407938919150758822963329761264354005399142689352595527066743969291045496548965996410916410974600827179080229802502026992567559903302198282019316525974045236753071662259094177004561587843521123352176047829889922474932560434065169177898287264496750729243672</span></span><br><span class="line">C2 = <span class="number">138604270237134534112743212644616449187692378939637896055320936677529897960835117799077267347298678107031857708834234867949004008866584408288272718174944005247281182704110071985982762860316789278723189738430436690943806868878982562801315565156426103645734001592666235894224346424366448014174339619953344112868374944069699668659552171905796026764359565068714399719527680623357405851675409955573477228301886561411896147227291350808930951282598922176120977605666135963906053158934308125639347521515926780372069545707019601637468577493997742590807146827349865640857651027809446746299962731018358206171079317925725680542147150070051957133849278906576405074966481232057919403951090124732230438431203080079109828298282999845576767904877434936923847105040157703725014937676457110907557409863930279230474134789746314617582331031090955073528453085567165286271224442421785911327002274933133905582320854345262688022854226418394665705506630780960278867388105443056536999414456768050350078505683642885335398895190922264436040594316438930099159076822113725497974332635130516805301785291427363314598707750026963533325470071715793252887081074252099626695293515248472454824781000</span></span><br><span class="line">e = <span class="number">3</span></span><br><span class="line">msg1 = iroot(C1,<span class="number">3</span>)[<span class="number">0</span>]</span><br><span class="line">msg2 = iroot(C2,<span class="number">3</span>)[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># floor是舍掉小数位</span></span><br><span class="line">m = floor(BITSIZE/(e*e)) - <span class="number">400</span></span><br><span class="line"><span class="comment"># print(m) 510</span></span><br><span class="line">m = <span class="built_in">int</span>(m)</span><br><span class="line"><span class="comment"># r1为509位长</span></span><br><span class="line">r1 = random.randint(<span class="number">1</span>,<span class="built_in">pow</span>(<span class="number">2</span>,m))</span><br><span class="line"><span class="comment"># 2^510 * flag + r1 =msg1 直接等式两端同时除以2^510 就能解出flag 属于非预期了</span></span><br><span class="line">flag = <span class="built_in">int</span>(msg1//<span class="built_in">pow</span>(<span class="number">2</span>,m))</span><br><span class="line"><span class="built_in">print</span>(flag)</span><br><span class="line"><span class="built_in">print</span>(long_to_bytes(flag))</span><br><span class="line"><span class="comment"># crew&#123;l00ks_l1k3_y0u_h4v3_you_He4rd_0f_c0pp3rsm1th_sh0r+_p4d_4tt4ck_th4t_w45n&#x27;t_d1ff1cult_w4s_it?&#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="The-HUGE-e"><a href="#The-HUGE-e" class="headerlink" title="The HUGE e"></a>The HUGE e</h3><h4 id="chall-py"><a href="#chall-py" class="headerlink" title="chall.py:"></a>chall.py:</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> getPrime, bytes_to_long, inverse, isPrime</span><br><span class="line"><span class="keyword">from</span> secret <span class="keyword">import</span> flag</span><br><span class="line"></span><br><span class="line">m = bytes_to_long(flag)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getSpecialPrime</span>():</span></span><br><span class="line">    a = <span class="number">2</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">40</span>):</span><br><span class="line">        a*=getPrime(<span class="number">20</span>)</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        b = getPrime(<span class="number">20</span>)</span><br><span class="line">        <span class="keyword">if</span> isPrime(a*b+<span class="number">1</span>):</span><br><span class="line">            <span class="keyword">return</span> a*b+<span class="number">1</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">p = getSpecialPrime() <span class="comment">#等于a*b+1</span></span><br><span class="line">e1 = getPrime(<span class="number">128</span>)</span><br><span class="line">e2 = getPrime(<span class="number">128</span>)</span><br><span class="line">e3 = getPrime(<span class="number">128</span>)</span><br><span class="line"></span><br><span class="line">e = <span class="built_in">pow</span>(e1,<span class="built_in">pow</span>(e2,e3))</span><br><span class="line">c = <span class="built_in">pow</span>(m,e,p)</span><br><span class="line"></span><br><span class="line"><span class="keyword">assert</span> <span class="built_in">pow</span>(c,inverse(e,p-<span class="number">1</span>),p) == m</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&#x27;p = <span class="subst">&#123;p&#125;</span>&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&#x27;e1 = <span class="subst">&#123;e1&#125;</span>&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&#x27;e2 = <span class="subst">&#123;e2&#125;</span>&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&#x27;e3 = <span class="subst">&#123;e3&#125;</span>&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&#x27;c = <span class="subst">&#123;c&#125;</span>&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="out-txt"><a href="#out-txt" class="headerlink" title="out.txt:"></a>out.txt:</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">p = <span class="number">127557933868274766492781168166651795645253551106939814103375361345423596703884421796150924794852741931334746816404778765897684777811408386179315837751682393250322682273488477810275794941270780027115435485813413822503016999058941190903932883823</span></span><br><span class="line">e1 = <span class="number">219560036291700924162367491740680392841</span></span><br><span class="line">e2 = <span class="number">325829142086458078752836113369745585569</span></span><br><span class="line">e3 = <span class="number">237262361171684477270779152881433264701</span></span><br><span class="line">c = <span class="number">962976093858853504877937799237367527464560456536071770645193845048591657714868645727169308285896910567283470660044952959089092802768837038911347652160892917850466319249036343642773207046774240176141525105555149800395040339351956120433647613</span></span><br></pre></td></tr></table></figure>
+<p>​    由assert pow(c,inverse(e,p-1),p) == m可知,解密的d就等于inverse(e,p-1),但是e又等于pow(e1,pow(e2,e3)),是非常大的数,不做mod无法计算出,但是求e对p-1的逆可以先让e模p-1再计算逆,e的求模过程如下:</p>
+<script type="math/tex; mode=display">
+e'= e\mod (p-1)</script><script type="math/tex; mode=display">
+e = e1^x</script><script type="math/tex; mode=display">
+x = e_{2} ^ e3</script><p>​    这里可以用一次费马小定理,让x模一个phi(p-1),然后计算,而p-1是由小素数乘积得到的,直接用factor就能分解,分解以后计算phi即可.exp:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> gmpy2 <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">p = <span class="number">127557933868274766492781168166651795645253551106939814103375361345423596703884421796150924794852741931334746816404778765897684777811408386179315837751682393250322682273488477810275794941270780027115435485813413822503016999058941190903932883823</span></span><br><span class="line">e1 = <span class="number">219560036291700924162367491740680392841</span></span><br><span class="line">e2 = <span class="number">325829142086458078752836113369745585569</span></span><br><span class="line">e3 = <span class="number">237262361171684477270779152881433264701</span></span><br><span class="line">c = <span class="number">962976093858853504877937799237367527464560456536071770645193845048591657714868645727169308285896910567283470660044952959089092802768837038911347652160892917850466319249036343642773207046774240176141525105555149800395040339351956120433647613</span></span><br><span class="line"></span><br><span class="line">s = <span class="string">&#x27;2 · 525923 · 527179 · 561343 · 589289 · 593111 · 641167 · 642049 · 650911 · 659999 · 683273 · 716783 · 722333 · 723529 · 735997 · 743657 · 744959 · 745201 · 765229 · 768727 · 769781 · 791309 · 811729 · 815809 · 836609 · 845771 · 850807 · 862369 · 887233 · 912337 · 915479 · 931487 · 953399 · 961817 · 968761 · 993103 · 1002109 · 1023163 · 1024277 · 1025741 · 1025839 · 1028263&#x27;</span>.split(<span class="string">&#x27; · &#x27;</span>)</span><br><span class="line">fac = []</span><br><span class="line">phi0 = <span class="number">1</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> s:</span><br><span class="line">    phi0 = phi0*(<span class="built_in">int</span>(i)-<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">d = invert(<span class="built_in">pow</span>(e1,<span class="built_in">pow</span>(e2,e3,phi0),p-<span class="number">1</span>),p-<span class="number">1</span>)</span><br><span class="line"><span class="built_in">print</span>(d)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(long_to_bytes(<span class="built_in">pow</span>(c,d,p)))</span><br><span class="line"><span class="comment"># crew&#123;7hi5_1s_4_5ma11er_numb3r_7han_7h3_Gr4ham_numb3r&#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="toydl"><a href="#toydl" class="headerlink" title="toydl"></a>toydl</h3><p>​    交互给了公钥,和一堆和特殊的小明文,小密文:</p>
+<img src="/2022/04/18/CrewCTF2022/2.png" class>
+<p>​    观察发现有些x有这样的关系:pow(a,x1,n) = b  pow(b,x2,n) = a 这说明:</p>
+<script type="math/tex; mode=display">
+x1*x2 \equiv ed \equiv1 \mod n</script><p>​    那么只需要找几组这样的x1 x2计算x1x2-1,再求gcd,gcd即为phi的k倍,运气好的话,可能就是phi,如果不是phi的话可以除以k(遍历) exp:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> gmpy2 <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">x1 = <span class="number">134708117198344874261125314974182727568088134053281049354376709747988579384600912131211450480045782430715324382771422260007313006900701806793092647235108324716788897983475072198815299403824599364700003540857062620416656719289451522128979786496642869963380933115749533816080182781455452633022349349201815382032599917</span></span><br><span class="line">x2 = <span class="number">202062175797517311391687972461274091352132201079921574031565064621982869076901368196817175720068673646072986574157133390010969510351052710189638970852662487075183346975212608298222949105736899047050005311285593930624985078934177283193469679744964304945071399673624300724120274172183178949533524023802723073048899876</span></span><br><span class="line"></span><br><span class="line">x3 = <span class="number">171260728235050785156132730076149119670208819070115598198719296433813625501105636445924430987712300243633043858027259611952611765654480081780358809764360185710044676819615876561047630591442074360621967667473477342695141890520740349131024835812602860040039145891906920866345974923058145749304855309406692793407741583</span></span><br><span class="line">x4 = <span class="number">200032521404587246567254200600711760826389875379165150397013059631648205786415014618166499321854165766261234252173880424025112297275963958059290100235018881995397594378373796852172203545163507734401209109286838292556818973523889478416685241928680782369919404784828097287294095207805828704282026887374224477699365749</span></span><br><span class="line"></span><br><span class="line">kphi1 = x1*x2-<span class="number">1</span></span><br><span class="line">kphi2 = x3*x4-<span class="number">1</span></span><br><span class="line"></span><br><span class="line">e = <span class="number">65537</span></span><br><span class="line"></span><br><span class="line">n = <span class="number">1616497406380138491133503779690192730817057608639372592252520516975862952615210945574537405760549389168583892593257067120087756082808421681517111766821299898406140165578044670375631111376738910879062957482159564936855771411852877194121566364820768099990998260313903643849753803317252919830952992383066880828005875017</span></span><br><span class="line">c = <span class="number">1130532517825519479130381004085268339474035118115829225696514522310776730318147700377221603337245401091452518784299726171598333570292109329806114629724566207717052670629170022638782995856892709748078107193105711596936798857638476662400307716137670955272389571708458372033883275664790451293457040269142716857976313491</span></span><br><span class="line"></span><br><span class="line">phi = gcd(kphi2,kphi1)</span><br><span class="line">d = invert(e,phi)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(long_to_bytes(<span class="built_in">pow</span>(c,d,n)))</span><br><span class="line"><span class="comment"># crew&#123;l00ks_l1k3_y0u_h4v3_you_He4rd_0f_c0pp3rsm1th_sh0r+_p4d_4tt4ck_th4t_w45n&#x27;t_d1ff1cult_w4s_it?&#125;</span></span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2022" class="archive-year">2022</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/03/23/Meet%20me%20in%20the%20middle/" class="archive-article-date">
-  	<time datetime="2022-03-23T05:33:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-23</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/03/23/Meet%20me%20in%20the%20middle/">Meet me in the middle</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -201,527 +236,11 @@
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">crypto</a>
         		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">AES</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">中间相遇攻击</a>
-        		</li>
       		
 		</ul>
 	</div>
 
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/比赛//" class="article-tag-list-link color3">比赛</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/比赛/对称密码//" class="article-tag-list-link color5">对称密码</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/比赛/对称密码/中间相遇攻击//" class="article-tag-list-link color2">中间相遇攻击</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/03/17/pollard-s-p-1/" class="archive-article-date">
-  	<time datetime="2022-03-17T14:28:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-17</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/03/17/pollard-s-p-1/">pollard&#39;s p-1</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">RSA</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">crypto</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">光滑数攻击</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/比赛//" class="article-tag-list-link color3">比赛</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/比赛/RSA//" class="article-tag-list-link color4">RSA</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/比赛/RSA/pollard-s-p-1//" class="article-tag-list-link color4">pollard's p-1</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/03/11/Paillier%E5%8A%A0%E5%AF%86%E6%96%B9%E6%A1%88/" class="archive-article-date">
-  	<time datetime="2022-03-11T07:32:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-11</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/03/11/Paillier%E5%8A%A0%E5%AF%86%E6%96%B9%E6%A1%88/">Paillier加密方案</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">crypto</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">同态加密</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/比赛//" class="article-tag-list-link color3">比赛</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/比赛/同态加密//" class="article-tag-list-link color5">同态加密</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/比赛/同态加密/Paillier//" class="article-tag-list-link color4">Paillier</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/03/10/%E9%95%BF%E4%BA%AD-PWNHUB%E7%B3%BB%E5%88%97/" class="archive-article-date">
-  	<time datetime="2022-03-10T15:12:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/03/10/%E9%95%BF%E4%BA%AD-PWNHUB%E7%B3%BB%E5%88%97/">长亭-PWNHUB系列</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">RSA</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">crypto</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">pwnhub</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/PWNHUB//" class="article-tag-list-link color2">PWNHUB</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/PWNHUB/公开赛//" class="article-tag-list-link color4">公开赛</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/03/10/d3ctf-LFSR/" class="archive-article-date">
-  	<time datetime="2022-03-10T14:27:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/03/10/d3ctf-LFSR/">d3ctf-LFSR</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">crypto</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">LFSR</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/比赛//" class="article-tag-list-link color3">比赛</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/比赛/LFSR//" class="article-tag-list-link color5">LFSR</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/比赛/LFSR/矩阵方程求解法//" class="article-tag-list-link color3">矩阵方程求解法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/03/05/%E5%B0%8F%E6%8C%87%E6%95%B0%E5%8A%A0%E5%AF%86/" class="archive-article-date">
-  	<time datetime="2022-03-05T02:57:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-05</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/03/05/%E5%B0%8F%E6%8C%87%E6%95%B0%E5%8A%A0%E5%AF%86/">小指数加密</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">RSA</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">crypto</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">小指数加密</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">中国剩余定理</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/比赛//" class="article-tag-list-link color3">比赛</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/比赛/RSA//" class="article-tag-list-link color4">RSA</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/比赛/RSA/小指数加密//" class="article-tag-list-link color1">小指数加密</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/03/05/%E7%A7%98%E5%AF%86%E5%88%86%E5%89%B2/" class="archive-article-date">
-  	<time datetime="2022-03-05T02:17:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-05</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/03/05/%E7%A7%98%E5%AF%86%E5%88%86%E5%89%B2/">秘密分割</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">crypto</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Secret Sharing</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/比赛//" class="article-tag-list-link color3">比赛</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/比赛/Secret-Sharing//" class="article-tag-list-link color5">Secret Sharing</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/比赛/Secret-Sharing/Shamir-Asmuth-Bloom//" class="article-tag-list-link color5">Shamir&Asmuth-Bloom</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/02/23/BUU%E5%88%B7%E9%A2%98%E6%80%BB%E7%BB%93%EF%BC%88%E4%B8%80%EF%BC%89/" class="archive-article-date">
-  	<time datetime="2022-02-23T01:53:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-23</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/02/23/BUU%E5%88%B7%E9%A2%98%E6%80%BB%E7%BB%93%EF%BC%88%E4%B8%80%EF%BC%89/">BUU刷题总结（基础）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">crypto</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">buu</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/buu//" class="article-tag-list-link color4">buu</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/buu/刷题总结//" class="article-tag-list-link color5">刷题总结</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/02/21/HSC-1th-2022/" class="archive-article-date">
-  	<time datetime="2022-02-21T02:35:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-21</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/02/21/HSC-1th-2022/">HSC-1th 2022</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">crypto</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">赛事</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">web</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">misc</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">re</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -731,95 +250,141 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="/categories/赛事/HSC-1th-2022//" class="article-tag-list-link color3">HSC-1th 2022</a>
+        			<a href="/categories/赛事/CrewCTF2022//" class="article-tag-list-link color2">CrewCTF2022</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2022/04/18/CrewCTF2022/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/02/17/RSA-DP%E6%B3%84%E9%9C%B2%EF%BC%88%E4%BA%8C%EF%BC%89/" class="archive-article-date">
-  	<time datetime="2022-02-17T02:37:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-17</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2022/04/15/%E5%A8%81%E5%B0%94%E9%80%8A%E5%AE%9A%E7%90%86/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">威尔逊定理</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/02/17/RSA-DP%E6%B3%84%E9%9C%B2%EF%BC%88%E4%BA%8C%EF%BC%89/">RSA-DP泄露（二）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">RSA</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">crypto</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数论</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/比赛//" class="article-tag-list-link color3">比赛</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/比赛/RSA//" class="article-tag-list-link color4">RSA</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/比赛/RSA/数论或其它//" class="article-tag-list-link color1">数论或其它</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#ez-x0r"><span class="toc-number">1.</span> <span class="toc-text">ez-x0r</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Malleable-Metal"><span class="toc-number">2.</span> <span class="toc-text">Malleable Metal</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#The-HUGE-e"><span class="toc-number">3.</span> <span class="toc-text">The HUGE e</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#chall-py"><span class="toc-number">3.1.</span> <span class="toc-text">chall.py:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#out-txt"><span class="toc-number">3.2.</span> <span class="toc-text">out.txt:</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#toydl"><span class="toc-number">4.</span> <span class="toc-text">toydl</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/tags/crypto/">&amp;laquo; Prev</a><a class="page-number" href="/tags/crypto/">1</a><span class="page-number current">2</span><a class="page-number" href="/tags/crypto/page/3/">3</a><a class="page-number" href="/tags/crypto/page/4/">4</a><a class="page-number" href="/tags/crypto/page/5/">5</a><a class="extend next" rel="next" href="/tags/crypto/page/3/">Next &amp;raquo;</a>
-    </nav>
-  
+        
+    </div>
+</aside>
 
 
+
+  
+  
+  
+  <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+<script>
+  var cloudTieConfig = {
+    url: "http://example.com/2022/04/18/CrewCTF2022/", 
+    sourceId: "CrewCTF2022",
+    productKey: "true",
+    target: "cloud-tie-wrapper"
+  };
+</script>
+<script src="//img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+  
+
+  
+
+  
+
+
+
+
+<!--增加不蒜子统计-->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
           </div>
         </div>
       </div>
@@ -878,9 +443,9 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
