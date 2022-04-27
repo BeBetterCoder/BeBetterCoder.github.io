@@ -17,9 +17,9 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/2022/04/27/2022DASCTFXFATE/1.png">
 <meta property="og:image" content="http://example.com/2022/04/27/2022DASCTFXFATE/0.png">
-<meta property="og:image" content="http://example.com/2022/04/27/2022DASCTFXFATE/0.png">
+<meta property="og:image" content="http://example.com/2022/04/27/2022DASCTFXFATE/2.png">
 <meta property="article:published_time" content="2022-04-27T01:47:25.000Z">
-<meta property="article:modified_time" content="2022-04-27T14:55:14.124Z">
+<meta property="article:modified_time" content="2022-04-27T14:57:57.802Z">
 <meta property="article:author" content="ZimaBlue">
 <meta property="article:tag" content="crypto">
 <meta property="article:tag" content="misc">
@@ -221,7 +221,7 @@
 <p>​    经过观察发现需要把每个txt中的01序列补成16位。用脚本批量处理（套宝的）：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line">flag = <span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="built_in">next</span> = <span class="string">&#x27;zip/BinDunDun/start.txt&#x27;</span></span><br><span class="line">i = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="built_in">len</span>(<span class="built_in">next</span>) != <span class="number">0</span>:</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="comment"># 正则过滤</span></span><br><span class="line">        f = <span class="built_in">open</span>(<span class="built_in">next</span>).read()</span><br><span class="line">        tmp = re.search(<span class="string">&#x27;(.*) =&gt;&#x27;</span>,f).group(<span class="number">0</span>)</span><br><span class="line">        flag += tmp[:-<span class="number">3</span>].zfill(<span class="number">16</span>)</span><br><span class="line">        tmp = re.search(<span class="string">&#x27;is (.*)&#x27;</span>,f).group(<span class="number">0</span>)</span><br><span class="line">        <span class="built_in">next</span> = <span class="string">&#x27;zip/BinDunDun/&#x27;</span>+ tmp[<span class="number">3</span>:]</span><br><span class="line">        i += <span class="number">1</span></span><br><span class="line">        <span class="built_in">print</span>(f,i,<span class="built_in">next</span>)</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        f2 = <span class="built_in">open</span>(<span class="string">&#x27;out.txt&#x27;</span>,<span class="string">&#x27;w&#x27;</span>)</span><br><span class="line">        f2.write(flag)</span><br><span class="line">        exit(<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
 <p>​    二进制序列转hex，发现是zip文件：</p>
-<img src="/2022/04/27/2022DASCTFXFATE/0.png" class>
+<img src="/2022/04/27/2022DASCTFXFATE/2.png" class>
 <p>​    存一下，解压得到pyc和jpg，pyc隐写得到payload：$BingD@nD@n_in_BeiJing_Winter_Olympics$</p>
 <p>​    最后利用这个作为密码进行jphs05隐写seek得到base64：$REFTQ1RGe0dvb2RfSm9kX0dpdmVfVGhlX0ZGRkZMQGdfVG9fWW91IX0=$</p>
 <p>​    解码得：$DASCTF{Good_Jod_Give_The_FFFFL@g_To_You!}$</p>
