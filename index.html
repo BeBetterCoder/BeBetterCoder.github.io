@@ -189,6 +189,7 @@
       
         <p>​    攻击场景：对称密码采用<a target="_blank" rel="noopener" href="https://blog.csdn.net/come_sky/article/details/82500476">PKCS5</a>或PKCS7 padding，存在接口可以为攻击者提供多次解密。</p>
 <p>​    攻击原理：由于PKCS5和PKCS7的填充规则，每次解密以后通过检验填充部分的内容来确定解密是否正确，即key是否正确。遍历可能的key进行解密和验证，确定正确的key。</p>
+<p>​    危害程度：出现过相关的CVE，高危。</p>
         
           <a class="article-more-a" href="/2022/05/19/CBC-Padding-Oracle/#more">more >></a>
         
