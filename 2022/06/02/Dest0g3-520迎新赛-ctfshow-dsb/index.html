@@ -6,14 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Archives | ZimaBlue&#39;s Blog</title>
+  <title>Dest0g3 520迎新赛&amp;ctfshow dsb | ZimaBlue&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="ZimaBlue&#39;s Blog">
-<meta property="og:url" content="http://example.com/archives/page/7/index.html">
+  <meta name="description" content="​    自己的编程能力确实偏弱，CTF暂歇一段时间，趁着实训学学golang和算法。这是之前做的题。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Dest0g3 520迎新赛&amp;ctfshow dsb">
+<meta property="og:url" content="http://example.com/2022/06/02/Dest0g3-520%E8%BF%8E%E6%96%B0%E8%B5%9B-ctfshow-dsb/index.html">
 <meta property="og:site_name" content="ZimaBlue&#39;s Blog">
+<meta property="og:description" content="​    自己的编程能力确实偏弱，CTF暂歇一段时间，趁着实训学学golang和算法。这是之前做的题。">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-06-02T13:07:23.000Z">
+<meta property="article:modified_time" content="2022-06-02T13:36:51.719Z">
 <meta property="article:author" content="ZimaBlue">
+<meta property="article:tag" content="crypto">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="ZimaBlue&#39;s Blog" type="application/atom+xml">
@@ -164,219 +169,53 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Dest0g3-520迎新赛-ctfshow-dsb" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Dest0g3 520迎新赛&amp;ctfshow dsb
+    </h1>
+  
+
+        
+        <a href="/2022/06/02/Dest0g3-520%E8%BF%8E%E6%96%B0%E8%B5%9B-ctfshow-dsb/" class="archive-article-date">
+  	<time datetime="2022-06-02T13:07:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-06-02</time>
+</a>
+        
+		
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>​    自己的编程能力确实偏弱，CTF暂歇一段时间，趁着实训学学golang和算法。这是之前做的题。</p>
+<span id="more"></span>
+<h3 id="ezStream"><a href="#ezStream" class="headerlink" title="ezStream"></a>ezStream</h3><p>在普通LCG上变异，在获得nextnumber的时候进行移位操作。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> gmpy2 <span class="keyword">import</span> invert</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">a = <span class="number">3939333498</span></span><br><span class="line">b = <span class="number">3662432446</span></span><br><span class="line">m = <span class="number">2271373817</span></span><br><span class="line">state1 = <span class="number">17362</span></span><br><span class="line">state2 = <span class="number">20624</span></span><br><span class="line">c = <span class="number">600017039001091357643174067454938198067935635401496485588306838343558125283178792619821966678282131419050878</span></span><br><span class="line">state1_ = state1 &lt;&lt; <span class="number">16</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">next</span>(<span class="params">seed</span>):</span></span><br><span class="line">    seed_new = (a * seed + b) % m</span><br><span class="line">    <span class="keyword">return</span> seed_new &gt;&gt; <span class="number">16</span>,seed_new</span><br><span class="line"></span><br><span class="line"><span class="comment"># 爆破低16位得到可能的state1的真实值</span></span><br><span class="line"><span class="comment"># for i in range(2**16):</span></span><br><span class="line"><span class="comment">#     t = state1_ + i</span></span><br><span class="line"><span class="comment">#     if (a * t + b) % m &gt;&gt; 16 == state2:</span></span><br><span class="line"><span class="comment">#         print(t)</span></span><br><span class="line">t_list = [<span class="number">1137839988</span>,<span class="number">1137855425</span>,<span class="number">1137870862</span>]</span><br><span class="line"><span class="comment"># 求出可能的seed</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> t_list:</span><br><span class="line">    seed = (i - b) * invert(a,m)%m</span><br><span class="line">    <span class="built_in">print</span>(seed)</span><br><span class="line">seed_list = [<span class="number">1315807869</span>,<span class="number">710396196</span>,<span class="number">104984523</span>]</span><br><span class="line"></span><br><span class="line">c_bytes = long_to_bytes(c)</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">len</span>(c_bytes))</span><br><span class="line"></span><br><span class="line">key_list = []</span><br><span class="line">seed = <span class="number">104984523</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">47</span>):</span><br><span class="line">    key,seed = <span class="built_in">next</span>(seed)</span><br><span class="line">    key_list.append(key%<span class="number">10</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">45</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">chr</span>(key_list[i+<span class="number">2</span>]^c_bytes[i]),end=<span class="string">&#x27;&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 这道题并不需要求seed，拿到t_list之后递推就可以了</span></span><br></pre></td></tr></table></figure>
+<h3 id="Mr-Doctor"><a href="#Mr-Doctor" class="headerlink" title="Mr.Doctor"></a>Mr.Doctor</h3><p>看到别的师傅解法用了copper，我这里是直接解同余方程求seed。后边爆破hash时间复杂度太高，所以先把hash值求出来存在字典里再进行遍历9次计算。这是用空间换时间的做法。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> binascii <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> string</span><br><span class="line"><span class="keyword">from</span> hashlib <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">table = string.ascii_lowercase+string.digits+string.ascii_uppercase +<span class="string">&#x27;_@^&amp;!?+-*&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(table)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">a = <span class="number">956366446278</span></span><br><span class="line">r = <span class="number">1061992537343</span></span><br><span class="line">b = <span class="number">636205571590</span></span><br><span class="line">d = <span class="number">18068433704538283397</span></span><br><span class="line">c = <span class="number">1920358673646340365826516899186299898354902389402251443712585240681673718967552394250439615271108958695077816395789102908554482423707690040360881719002797624203057223577713119411615697309430781610828105111854807558984242631896605944487456402584672441464316236703857236007195673926937583757881853655505218912262929700452404084</span></span><br><span class="line">Ash = <span class="number">1097363493609113</span></span><br><span class="line">SliverAsh = <span class="number">2051431344160327</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>**<span class="number">12</span>):</span><br><span class="line">    <span class="comment"># 注意移加法优先于移位操作...</span></span><br><span class="line">    t = (Ash &lt;&lt; <span class="number">12</span>) + i</span><br><span class="line">    <span class="keyword">if</span> (a * t**<span class="number">2</span> + r * t + b) % d &gt;&gt; <span class="number">12</span> == SliverAsh:</span><br><span class="line">        <span class="built_in">print</span>(t)</span><br><span class="line"></span><br><span class="line">next1 = <span class="number">4494800869822930172</span></span><br><span class="line"><span class="comment"># sage</span></span><br><span class="line"><span class="comment"># m = 18068433704538283397</span></span><br><span class="line"><span class="comment"># R.&lt;p&gt; = Zmod(m)[]</span></span><br><span class="line"><span class="comment"># a = 956366446278</span></span><br><span class="line"><span class="comment"># r = 1061992537343</span></span><br><span class="line"><span class="comment"># b = 636205571590</span></span><br><span class="line"><span class="comment"># next1 = 4494800869822930172</span></span><br><span class="line"><span class="comment"># f = a*p^2 + r*p + b - Ash</span></span><br><span class="line"><span class="comment"># f.roots()</span></span><br><span class="line"></span><br><span class="line">seed = <span class="number">626844643882</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">next</span>(<span class="params">s</span>):</span></span><br><span class="line">    s_new = (a*s**<span class="number">2</span> + r*s + b)%d</span><br><span class="line">    <span class="keyword">return</span> s_new &gt;&gt; <span class="number">12</span> , s_new</span><br><span class="line"></span><br><span class="line">c_bytes = long_to_bytes(c)</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">len</span>(c_bytes))</span><br><span class="line"></span><br><span class="line">key_list = []</span><br><span class="line">s = seed</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">11</span>):</span><br><span class="line">    key,s = <span class="built_in">next</span>(s)</span><br><span class="line">    key_list.append(key%<span class="number">100</span>)</span><br><span class="line"></span><br><span class="line">sha_list = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">9</span>):</span><br><span class="line">    j = long_to_bytes(key_list[i + <span class="number">2</span>] ^ (seed**<span class="number">3</span>))</span><br><span class="line">    <span class="built_in">print</span>(j)</span><br><span class="line">    jj = b2a_hex(j).decode(<span class="string">&#x27;ascii&#x27;</span>)</span><br><span class="line">    <span class="built_in">print</span>(jj)</span><br><span class="line"></span><br><span class="line">tmp = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">9</span>):</span><br><span class="line">    tmp.append(bytes_to_long(c_bytes[<span class="number">15</span>*i:<span class="number">15</span>*i+<span class="number">15</span>])^key_list[i+<span class="number">2</span>])</span><br><span class="line"></span><br><span class="line">hash_list = &#123;&#125;</span><br><span class="line">seeds = seed**<span class="number">3</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> table:</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> table:</span><br><span class="line">        <span class="keyword">for</span> m <span class="keyword">in</span> table:</span><br><span class="line">            <span class="keyword">for</span> n <span class="keyword">in</span> table:</span><br><span class="line">                hash_list.update(&#123;bytes_to_long(sha256((i + j + m + n).encode()).hexdigest().encode()) % seeds : i+j+m+n&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> p <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">9</span>):</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> hash_list:</span><br><span class="line">        <span class="keyword">if</span> i == tmp[p]:</span><br><span class="line">            <span class="built_in">print</span>(hash_list[i],end=<span class="string">&#x27;&#x27;</span>)</span><br><span class="line">            <span class="comment"># Dest0g3&#123;d2a4d1af-8a80-8794-99ac-635f89494cac&#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="Bag"><a href="#Bag" class="headerlink" title="Bag"></a>Bag</h3><p><a target="_blank" rel="noopener" href="https://www.ruanx.net/lattice-2/">背包加密</a>，这里做了一些变异，思路就是先用模运算求出真实的S序列，再用普通背包解密算法。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> gmpy2 <span class="keyword">import</span> invert</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">decode</span>(<span class="params">n,S,r</span>):</span></span><br><span class="line">    l = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">286</span>):</span><br><span class="line">        l.append(<span class="string">&#x27;0&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n, <span class="number">0</span>, -<span class="number">1</span>):</span><br><span class="line">        <span class="keyword">if</span> S &gt;= r[i]:</span><br><span class="line">            S -= r[i]</span><br><span class="line">            l[i-<span class="number">1</span>] = <span class="string">&#x27;1&#x27;</span></span><br><span class="line">            <span class="comment">#print(l)</span></span><br><span class="line">            <span class="built_in">print</span>(r[i])</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;&#x27;</span>.join(l)</span><br><span class="line"></span><br><span class="line">m=<span class="number">372992427307339981616536686110115630075342113098010788080347982669869622759400031649792</span></span><br><span class="line">w=<span class="number">274062421102700155372289583695782343443</span></span><br><span class="line"></span><br><span class="line">h=m.bit_length()</span><br><span class="line">j=<span class="built_in">int</span>(h//<span class="number">2</span>)</span><br><span class="line"><span class="built_in">print</span>(j)</span><br><span class="line"></span><br><span class="line">Bag=[...]</span><br><span class="line">e = sk[<span class="number">2</span>]</span><br><span class="line">f = sk[<span class="number">3</span>]</span><br><span class="line">d = invert(w,m)</span><br><span class="line"></span><br><span class="line"><span class="comment"># e=gmpy2.next_prime(sum(V))+2</span></span><br><span class="line"><span class="comment"># f=gmpy2.next_prime(sum(U))</span></span><br><span class="line"><span class="comment"># Vi的和是小于e的，Ui的和是小于f的</span></span><br><span class="line"></span><br><span class="line">S_low = (c * invert(f,e)) % e</span><br><span class="line">S = (S_low + (c * invert(e,f)) %f * <span class="number">2</span>**j) * d % m</span><br><span class="line"></span><br><span class="line">flag = decode(<span class="number">286</span>,S,Bag)[::-<span class="number">1</span>] <span class="comment"># 注意要倒序</span></span><br><span class="line"><span class="built_in">print</span>(flag)</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">len</span>(flag))</span><br><span class="line"><span class="built_in">print</span>(long_to_bytes(<span class="built_in">int</span>(flag,<span class="number">2</span>)))</span><br><span class="line"></span><br><span class="line"><span class="comment"># Dest0g3&#123;5090ea29-8cb6-4ad8-ab43-1e6f65cc8eeb&#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="ctfshowdsb-TooYoungRSA"><a href="#ctfshowdsb-TooYoungRSA" class="headerlink" title="ctfshowdsb-TooYoungRSA"></a>ctfshowdsb-TooYoungRSA</h3><p>春哥的题质量确实不戳。首先是求n的方法：</p>
+<script type="math/tex; mode=display">
+第一次提交m,得c1=m^e\mod n</script><script type="math/tex; mode=display">
+第二次提交m^2,得c2=m^e\mod n</script><p>利用c2-c1，就能得到一个关于n的多项式。</p>
+<p>同理再对不同的m做一次这样的操作，得到另一个多项式；然后gcd求出n。n比较小可分解为pq。</p>
+<p>求e：</p>
+<script type="math/tex; mode=display">
+cp = 3660902843315450019，通过cp和p在群上求离散对数e</script><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">G =GF(<span class="number">14129883229625683549</span>)</span><br><span class="line">g = G(<span class="number">9</span>)</span><br><span class="line">h = G(<span class="number">3660902843315450019</span>)</span><br><span class="line"><span class="built_in">print</span>(discrete_log(h,g))</span><br></pre></td></tr></table></figure>
+<p>完整exp：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> hashlib <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> gmpy2 <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span>  Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> Crypto.Cipher <span class="keyword">import</span> AES</span><br><span class="line"></span><br><span class="line">c1 = [<span class="number">218317653878226290959562768676110488122</span>,<span class="number">217554978178747863351384784206111663308</span>]</span><br><span class="line">c2 = [<span class="number">175923870763460273019767769376686022660</span>,<span class="number">45459644707418729830733907632443475707</span>]</span><br><span class="line"></span><br><span class="line">n = gcd(c1[<span class="number">0</span>]**<span class="number">2</span> - c2[<span class="number">0</span>],c1[<span class="number">1</span>]**<span class="number">2</span> - c2[<span class="number">1</span>])</span><br><span class="line"><span class="built_in">print</span>(n)</span><br><span class="line"></span><br><span class="line">p = <span class="number">14129883229625683549</span></span><br><span class="line">q = n // p</span><br><span class="line">phi = (p-<span class="number">1</span>)*(q-<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">cp = c1[<span class="number">0</span>] % p</span><br><span class="line"><span class="comment"># cp = 3660902843315450019</span></span><br><span class="line"><span class="comment"># 通过cp和p在群上求离散对数e</span></span><br><span class="line">e = <span class="number">1043311</span></span><br><span class="line">ck = <span class="number">57106634108800010078279971407683538766</span></span><br><span class="line">d = invert(e,phi)</span><br><span class="line">k = <span class="built_in">pow</span>(ck,d,n)</span><br><span class="line">key = sha256(<span class="built_in">str</span>(k).encode()).digest()</span><br><span class="line"></span><br><span class="line">cipher = AES.new(key, AES.MODE_ECB)</span><br><span class="line">flag = cipher.decrypt(long_to_bytes(<span class="number">0x499d097315136877de8010dbda1e2da14b1079e79bd783f0ebbc48bcf7eedc0599deb16c455e71d82a02b7db52e748ab</span>))</span><br><span class="line"><span class="built_in">print</span>(flag)</span><br><span class="line"><span class="comment"># ctfshow&#123;70004b8b-ee57-418e-ab44-69c69a1fa347&#125;</span></span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/11/24/RSA-Wiener-Attack%E5%AE%9E%E7%8E%B0/" class="archive-article-date">
-  	<time datetime="2021-11-24T11:56:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-11-24</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/11/24/RSA-Wiener-Attack%E5%AE%9E%E7%8E%B0/">RSA-Wiener-Attack实现</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">RSA</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">crypto</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">维纳攻击</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/比赛//" class="article-tag-list-link color3">比赛</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/比赛/RSA//" class="article-tag-list-link color4">RSA</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/比赛/RSA/维纳攻击//" class="article-tag-list-link color5">维纳攻击</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/11/23/RSA-Wiener-Attack%E5%8E%9F%E7%90%86/" class="archive-article-date">
-  	<time datetime="2021-11-23T12:44:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-11-23</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/11/23/RSA-Wiener-Attack%E5%8E%9F%E7%90%86/">RSA_Wiener_Attack原理</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">RSA</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">crypto</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">维纳攻击</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/比赛//" class="article-tag-list-link color3">比赛</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/比赛/RSA//" class="article-tag-list-link color4">RSA</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/比赛/RSA/维纳攻击//" class="article-tag-list-link color5">维纳攻击</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/11/23/python-class1/" class="archive-article-date">
-  	<time datetime="2021-11-23T12:04:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-11-23</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/11/23/python-class1/">Python_basic_class1</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">python基础</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">面向对象</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/python数据结构与算法//" class="article-tag-list-link color4">python数据结构与算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/11/22/13/" class="archive-article-date">
-  	<time datetime="2021-11-22T01:49:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-11-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/11/22/13/">CTFshow—Crypto 13</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -384,82 +223,155 @@
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">crypto</a>
         		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ctfshow</a>
-        		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/ctfshow//" class="article-tag-list-link color3">ctfshow</a>
+        			<a href="/categories/赛事//" class="article-tag-list-link color3">赛事</a>
         		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/11/17/hello-world/" class="archive-article-date">
-  	<time datetime="2021-11-17T11:31:29.930Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-11-17</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/11/17/hello-world/">Hello World</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
+      		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Hello World</a>
+        			<a href="/categories/赛事/Dest0g3-520迎新赛-ctfshow-dsb//" class="article-tag-list-link color2">Dest0g3 520迎新赛&ctfshow dsb</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2022/06/02/Dest0g3-520%E8%BF%8E%E6%96%B0%E8%B5%9B-ctfshow-dsb/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2022/05/25/OPPO%E6%9D%AFSCUCTF2022/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">OPPO杯SCUCTF2022</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#ezStream"><span class="toc-number">1.</span> <span class="toc-text">ezStream</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Mr-Doctor"><span class="toc-number">2.</span> <span class="toc-text">Mr.Doctor</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Bag"><span class="toc-number">3.</span> <span class="toc-text">Bag</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ctfshowdsb-TooYoungRSA"><span class="toc-number">4.</span> <span class="toc-text">ctfshowdsb-TooYoungRSA</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
+  
+  
+  
+  <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+<script>
+  var cloudTieConfig = {
+    url: "http://example.com/2022/06/02/Dest0g3-520%E8%BF%8E%E6%96%B0%E8%B5%9B-ctfshow-dsb/", 
+    sourceId: "Dest0g3-520迎新赛-ctfshow-dsb",
+    productKey: "true",
+    target: "cloud-tie-wrapper"
+  };
+</script>
+<script src="//img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
   
 
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/page/6/">&amp;laquo; Prev</a><a class="page-number" href="/archives/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/5/">5</a><a class="page-number" href="/archives/page/6/">6</a><span class="page-number current">7</span>
-    </nav>
+  
+
+  
+
   
 
 
+
+
+<!--增加不蒜子统计-->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
           </div>
         </div>
       </div>
@@ -518,8 +430,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
