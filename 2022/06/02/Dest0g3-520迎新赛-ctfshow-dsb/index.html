@@ -8,15 +8,15 @@
   <link rel="dns-prefetch" href="http://example.com">
   <title>Dest0g3 520迎新赛&amp;ctfshow dsb | ZimaBlue&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="​    自己的编程能力确实偏弱，CTF暂歇一段时间，趁着实训学学golang和算法。这是之前做的题。">
+  <meta name="description" content="​    自己的编程能力确实偏弱，趁着实训学学golang和算法。这是之前做的题。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Dest0g3 520迎新赛&amp;ctfshow dsb">
 <meta property="og:url" content="http://example.com/2022/06/02/Dest0g3-520%E8%BF%8E%E6%96%B0%E8%B5%9B-ctfshow-dsb/index.html">
 <meta property="og:site_name" content="ZimaBlue&#39;s Blog">
-<meta property="og:description" content="​    自己的编程能力确实偏弱，CTF暂歇一段时间，趁着实训学学golang和算法。这是之前做的题。">
+<meta property="og:description" content="​    自己的编程能力确实偏弱，趁着实训学学golang和算法。这是之前做的题。">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-06-02T13:07:23.000Z">
-<meta property="article:modified_time" content="2022-06-02T13:36:51.719Z">
+<meta property="article:modified_time" content="2022-06-06T14:07:22.966Z">
 <meta property="article:author" content="ZimaBlue">
 <meta property="article:tag" content="crypto">
 <meta name="twitter:card" content="summary">
@@ -190,7 +190,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>​    自己的编程能力确实偏弱，CTF暂歇一段时间，趁着实训学学golang和算法。这是之前做的题。</p>
+        <p>​    自己的编程能力确实偏弱，趁着实训学学golang和算法。这是之前做的题。</p>
 <span id="more"></span>
 <h3 id="ezStream"><a href="#ezStream" class="headerlink" title="ezStream"></a>ezStream</h3><p>在普通LCG上变异，在获得nextnumber的时候进行移位操作。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> gmpy2 <span class="keyword">import</span> invert</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">a = <span class="number">3939333498</span></span><br><span class="line">b = <span class="number">3662432446</span></span><br><span class="line">m = <span class="number">2271373817</span></span><br><span class="line">state1 = <span class="number">17362</span></span><br><span class="line">state2 = <span class="number">20624</span></span><br><span class="line">c = <span class="number">600017039001091357643174067454938198067935635401496485588306838343558125283178792619821966678282131419050878</span></span><br><span class="line">state1_ = state1 &lt;&lt; <span class="number">16</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">next</span>(<span class="params">seed</span>):</span></span><br><span class="line">    seed_new = (a * seed + b) % m</span><br><span class="line">    <span class="keyword">return</span> seed_new &gt;&gt; <span class="number">16</span>,seed_new</span><br><span class="line"></span><br><span class="line"><span class="comment"># 爆破低16位得到可能的state1的真实值</span></span><br><span class="line"><span class="comment"># for i in range(2**16):</span></span><br><span class="line"><span class="comment">#     t = state1_ + i</span></span><br><span class="line"><span class="comment">#     if (a * t + b) % m &gt;&gt; 16 == state2:</span></span><br><span class="line"><span class="comment">#         print(t)</span></span><br><span class="line">t_list = [<span class="number">1137839988</span>,<span class="number">1137855425</span>,<span class="number">1137870862</span>]</span><br><span class="line"><span class="comment"># 求出可能的seed</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> t_list:</span><br><span class="line">    seed = (i - b) * invert(a,m)%m</span><br><span class="line">    <span class="built_in">print</span>(seed)</span><br><span class="line">seed_list = [<span class="number">1315807869</span>,<span class="number">710396196</span>,<span class="number">104984523</span>]</span><br><span class="line"></span><br><span class="line">c_bytes = long_to_bytes(c)</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">len</span>(c_bytes))</span><br><span class="line"></span><br><span class="line">key_list = []</span><br><span class="line">seed = <span class="number">104984523</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">47</span>):</span><br><span class="line">    key,seed = <span class="built_in">next</span>(seed)</span><br><span class="line">    key_list.append(key%<span class="number">10</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">45</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">chr</span>(key_list[i+<span class="number">2</span>]^c_bytes[i]),end=<span class="string">&#x27;&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 这道题并不需要求seed，拿到t_list之后递推就可以了</span></span><br></pre></td></tr></table></figure>
@@ -305,6 +305,15 @@ cp = 3660902843315450019，通过cp和p在群上求离散对数e</script><figure
 
   
 <nav id="article-nav">
+  
+    <a href="/2022/06/06/SEETF2022/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          SEETF2022
+        
+      </div>
+    </a>
   
   
     <a href="/2022/05/25/OPPO%E6%9D%AFSCUCTF2022/" id="article-nav-older" class="article-nav-link-wrap">
@@ -821,22 +830,5 @@ MathJax.Hub.Queue(function() {
 
 </div>
   </div>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<!-- <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-
 </body>
 </html>
