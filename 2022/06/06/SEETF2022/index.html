@@ -17,7 +17,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/2022/06/06/SEETF2022/1.png">
 <meta property="article:published_time" content="2022-06-06T14:04:08.000Z">
-<meta property="article:modified_time" content="2022-06-06T15:07:44.840Z">
+<meta property="article:modified_time" content="2022-06-06T15:15:31.757Z">
 <meta property="article:author" content="ZimaBlue">
 <meta property="article:tag" content="crypto">
 <meta property="article:tag" content="web">
@@ -196,20 +196,10 @@
       
         <p>​    题目质量很好，后边慢慢复现。</p>
 <span id="more"></span>
-<h3 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h3><h4 id="Sourceless-Guessy-Web-Baby-Flag"><a href="#Sourceless-Guessy-Web-Baby-Flag" class="headerlink" title="Sourceless Guessy Web (Baby Flag)"></a>Sourceless Guessy Web (Baby Flag)</h4><p>目录遍历，flag在根目录下的etc/passwd。payload：?page=../../../etc/passwd，这里如果不确定往回退几个目录可以多加几层../，最终会到根目录底下。</p>
-<p><code>SEE&#123;2nd_fl4g_n33ds_RCE_g00d_luck_h4x0r&#125;</code></p>
+<h3 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h3><h4 id="Sourceless-Guessy-Web-Baby-Flag"><a href="#Sourceless-Guessy-Web-Baby-Flag" class="headerlink" title="Sourceless Guessy Web (Baby Flag)"></a>Sourceless Guessy Web (Baby Flag)</h4><p>目录遍历，flag在根目录下的etc/passwd。payload：?page=../../../etc/passwd，这里如果不确定往回退几个目录可以多加几层../，最终会到根目录底下。<br><code>SEE&#123;2nd_fl4g_n33ds_RCE_g00d_luck_h4x0r&#125;</code></p>
 <h3 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a>Misc</h3><h4 id="Regex101"><a href="#Regex101" class="headerlink" title="Regex101"></a>Regex101</h4><p>有很多个txt文件，flag是其中一个txt的内容；给了flag格式，所以读出每个txt的内容然后正则过滤就行。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line">f = <span class="built_in">open</span>(<span class="string">&quot;flags.txt&quot;</span>,<span class="string">&#x27;r&#x27;</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3000</span>):</span><br><span class="line">    m = f.readline().strip()</span><br><span class="line">    <span class="keyword">if</span> re.search(<span class="string">r&quot;[A-Z]&#123;5&#125;[0-9]&#123;5&#125;[A-Z]&#123;6&#125;&quot;</span>,m):</span><br><span class="line">        <span class="built_in">print</span>(m)</span><br><span class="line"></span><br><span class="line"><span class="comment"># SEE&#123;RGSXG13841KLWIUO&#125;</span></span><br></pre></td></tr></table></figure>
-<h3 id="FORENSICS"><a href="#FORENSICS" class="headerlink" title="FORENSICS"></a>FORENSICS</h3><h4 id="Sniffed-Traffic"><a href="#Sniffed-Traffic" class="headerlink" title="Sniffed Traffic"></a>Sniffed Traffic</h4><p>首先分析http流量，可以看到传输了zip文件；导出http对象即可获取zip。</p>
-<img src="/2022/06/06/SEETF2022/1.png" class>
-<p>追踪tcp流，在32组发现zip密码：</p>
-<p>hey!</p>
-<p>what the? who is this</p>
-<p>someone who stole your thingamajig. now whats the password?</p>
-<p>im really not sure why i would willingly give you the password. but for the sake of story telling, here it is <code>49949ec89a41ed9bdd18c4ce74f37ae4</code></p>
-<p>please don’t break the fourth wall. thanks!`</p>
-<p>解开是stuff.stuff，winhex分析发现有压缩包的痕迹，所以binwalk再把最后一层zip分出来。需要密码而并非伪加密，于是爆破，得到解压密码john，解开就是flag。</p>
-<p><code>SEE&#123;w1r35haRk_d0dod0_4c87be4cd5e37eb1e9a676e110fe59e3&#125;</code></p>
+<h3 id="FORENSICS"><a href="#FORENSICS" class="headerlink" title="FORENSICS"></a>FORENSICS</h3><h4 id="Sniffed-Traffic"><a href="#Sniffed-Traffic" class="headerlink" title="Sniffed Traffic"></a>Sniffed Traffic</h4><p>首先分析http流量，可以看到传输了zip文件；导出http对象即可获取zip。<br><img src="/2022/06/06/SEETF2022/1.png" class><br>追踪tcp流，在32组发现zip密码：<br>hey!<br>what the? who is this<br>someone who stole your thingamajig. now whats the password?<br>im really not sure why i would willingly give you the password. but for the sake of story telling, here it is <code>49949ec89a41ed9bdd18c4ce74f37ae4</code><br>解开是stuff.stuff，winhex分析发现有压缩包的痕迹，所以binwalk再把最后一层zip分出来。需要密码而并非伪加密，于是爆破，得到解压密码john，解开就是flag。<code>SEE&#123;w1r35haRk_d0dod0_4c87be4cd5e37eb1e9a676e110fe59e3&#125;</code></p>
 <h3 id="CRYPTO"><a href="#CRYPTO" class="headerlink" title="CRYPTO"></a>CRYPTO</h3><h4 id="Close-Enough"><a href="#Close-Enough" class="headerlink" title="Close Enough"></a>Close Enough</h4><p>p,q取的太接近了，费马分解n就行。</p>
 <h4 id="Lost-Modulus"><a href="#Lost-Modulus" class="headerlink" title="Lost Modulus"></a>Lost Modulus</h4><p>服务端对提交的m1和m2有限制：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">assert</span> m1.bit_length() &gt;= <span class="number">1600</span> <span class="keyword">and</span> long_to_bytes(m1).startswith(<span class="string">b&quot;SEE&#123;&quot;</span>)</span><br><span class="line"><span class="keyword">assert</span> <span class="number">500</span> &lt;= m2.bit_length() &lt;= <span class="number">600</span></span><br></pre></td></tr></table></figure>
