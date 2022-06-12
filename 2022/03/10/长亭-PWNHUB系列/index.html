@@ -16,10 +16,10 @@
 <meta property="og:description" content="sign_in_rsa​    给了五个friends的公钥，其中N都一样，e1-e5不同，推导有： 1flag^(e1*e2*e3*e4*e5) mod N &#x3D; c">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-03-10T15:12:43.000Z">
-<meta property="article:modified_time" content="2022-03-24T15:24:24.071Z">
+<meta property="article:modified_time" content="2022-06-12T05:40:16.184Z">
 <meta property="article:author" content="ZimaBlue">
-<meta property="article:tag" content="RSA">
 <meta property="article:tag" content="crypto">
+<meta property="article:tag" content="misc">
 <meta property="article:tag" content="pwnhub">
 <meta name="twitter:card" content="summary">
   
@@ -215,11 +215,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">RSA</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">crypto</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">crypto</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">misc</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
@@ -840,5 +840,22 @@ MathJax.Hub.Queue(function() {
 
 </div>
   </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!-- <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
 </body>
 </html>
