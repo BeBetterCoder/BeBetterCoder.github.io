@@ -19,7 +19,7 @@
 <meta property="og:image" content="http://example.com/2022/06/27/ACTF2022/2.png">
 <meta property="og:image" content="http://example.com/2022/06/27/ACTF2022/3.jpg">
 <meta property="article:published_time" content="2022-06-26T23:53:19.000Z">
-<meta property="article:modified_time" content="2022-07-01T01:01:37.068Z">
+<meta property="article:modified_time" content="2022-07-01T01:09:14.519Z">
 <meta property="article:author" content="ZimaBlue">
 <meta property="article:tag" content="crypto">
 <meta property="article:tag" content="赛事">
@@ -219,7 +219,7 @@ r_{p}*qq+(pq-r_{p}*r_{q}-pp*qq)+r_{q}*pp = 0</script><p>等式两边同乘qq得�
 <img src="/2022/06/27/ACTF2022/2.png" class>
 <p>对js不太熟，读个大概意思就行。对bot发/login他会马上把uid变为<code>0_login_callback:&quot; + msg.chat.id + &quot;:&quot; + msg.message_id</code>，然后sleep一段随机时间，变为<code>authorizedUids[0].uid + &quot;_login_callback:&quot; + msg.chat.id + &quot;:&quot; + msg.message_id</code>，然后再马上变成<code>-1_login_callback:&quot; + msg.chat.id + &quot;:&quot; + msg.message_id</code>，去查了下js的random，发现它是以当前时间为种子进行随机的，不太好预测，但可以多次发/login，每次间隔不同或相同时间点开，可能会在某个时候恰好碰对时间出flag(我觉得完全不可控，凭运气)，预期解应该不是这样的。</p>
 <img src="/2022/06/27/ACTF2022/3.jpg" class>
-
+<h4 id="safer-telegram-bot-2"><a href="#safer-telegram-bot-2" class="headerlink" title="safer-telegram-bot-2"></a>safer-telegram-bot-2</h4>
       
 
       
@@ -358,7 +358,7 @@ r_{p}*qq+(pq-r_{p}*r_{q}-pp*qq)+r_{q}*pp = 0</script><p>等式两边同乘qq得�
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#MISC"><span class="toc-number">1.</span> <span class="toc-text">MISC</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Mahjoong"><span class="toc-number">1.1.</span> <span class="toc-text">Mahjoong</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#signin"><span class="toc-number">1.2.</span> <span class="toc-text">signin</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Crypto"><span class="toc-number">2.</span> <span class="toc-text">Crypto</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#impossible-RSA"><span class="toc-number">2.1.</span> <span class="toc-text">impossible RSA</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#RSA-LEAK"><span class="toc-number">2.2.</span> <span class="toc-text">RSA LEAK</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%8D%E7%8E%B0"><span class="toc-number">3.</span> <span class="toc-text">复现</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#safer-telegram-bot-1"><span class="toc-number">3.1.</span> <span class="toc-text">safer-telegram-bot-1</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#MISC"><span class="toc-number">1.</span> <span class="toc-text">MISC</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Mahjoong"><span class="toc-number">1.1.</span> <span class="toc-text">Mahjoong</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#signin"><span class="toc-number">1.2.</span> <span class="toc-text">signin</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Crypto"><span class="toc-number">2.</span> <span class="toc-text">Crypto</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#impossible-RSA"><span class="toc-number">2.1.</span> <span class="toc-text">impossible RSA</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#RSA-LEAK"><span class="toc-number">2.2.</span> <span class="toc-text">RSA LEAK</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%8D%E7%8E%B0"><span class="toc-number">3.</span> <span class="toc-text">复现</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#safer-telegram-bot-1"><span class="toc-number">3.1.</span> <span class="toc-text">safer-telegram-bot-1</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#safer-telegram-bot-2"><span class="toc-number">3.2.</span> <span class="toc-text">safer-telegram-bot-2</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -778,7 +778,7 @@ MathJax.Hub.Queue(function() {
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">欲买桂花同载酒，终不似，少年游。</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">梦想是成为全栈佬并养一只猫</div>
   	  	
     	</section>
     
