@@ -166,6 +166,118 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-CBC-Padding-Oracle" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/05/19/CBC-Padding-Oracle/">CBC Padding Oracle</a>
+    </h1>
+  
+
+        
+        <a href="/2022/05/19/CBC-Padding-Oracle/" class="archive-article-date">
+  	<time datetime="2022-05-19T02:52:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-05-19</time>
+</a>
+        
+		
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>​    攻击场景：对称密码采用<a target="_blank" rel="noopener" href="https://blog.csdn.net/come_sky/article/details/82500476">PKCS5</a>或PKCS7 padding，存在接口可以为攻击者提供多次解密。</p>
+<p>​    攻击原理：由于PKCS5和PKCS7的填充规则，每次解密以后通过检验填充部分的内容来确定解密是否正确，即key是否正确。遍历可能的key进行解密和验证，确定正确的key。</p>
+<p>​    危害程度：出现过相关的CVE，高危。</p>
+        
+          <a class="article-more-a" href="/2022/05/19/CBC-Padding-Oracle/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">crypto</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">AES</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CBC</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">padding</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/比赛//" class="article-tag-list-link color3">比赛</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/比赛/对称密码//" class="article-tag-list-link color5">对称密码</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/比赛/对称密码/CBC-Padding-Oracle//" class="article-tag-list-link color4">CBC Padding Oracle</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/05/19/CBC-Padding-Oracle/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+<!--增加不蒜子统计-->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
     <article id="post-TJCTF2022" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1017,108 +1129,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2022/04/29/d3factor-%E9%B9%A4%E5%9F%8E%E6%9D%AFbabyrsa/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-<!--增加不蒜子统计-->
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-  
-    <article id="post-2022DASCTFXFATE" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/04/27/2022DASCTFXFATE/">2022DASCTFXFATE</a>
-    </h1>
-  
-
-        
-        <a href="/2022/04/27/2022DASCTFXFATE/" class="archive-article-date">
-  	<time datetime="2022-04-27T01:47:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-04-27</time>
-</a>
-        
-		
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>​    本次月赛是和校队的师傅一起参加的，学到不少东西。进行记录和复现。</p>
-        
-          <a class="article-more-a" href="/2022/04/27/2022DASCTFXFATE/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">crypto</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">misc</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">buu</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/buu//" class="article-tag-list-link color4">buu</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/buu/2022DASCTFXFATE//" class="article-tag-list-link color1">2022DASCTFXFATE</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/04/27/2022DASCTFXFATE/">展开全文 >></a>
         </p>
       
 
