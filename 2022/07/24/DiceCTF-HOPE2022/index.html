@@ -6,14 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Archives: 2022 | ZimaBlue&#39;s Blog</title>
+  <title>DiceCTF@HOPE2022 | ZimaBlue&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="ZimaBlue&#39;s Blog">
-<meta property="og:url" content="http://example.com/archives/2022/page/4/index.html">
+  <meta name="description" content="​    qwq…不可以在沉迷于ctf了，求求你干正事。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DiceCTF@HOPE2022">
+<meta property="og:url" content="http://example.com/2022/07/24/DiceCTF-HOPE2022/index.html">
 <meta property="og:site_name" content="ZimaBlue&#39;s Blog">
+<meta property="og:description" content="​    qwq…不可以在沉迷于ctf了，求求你干正事。">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-07-24T01:13:01.000Z">
+<meta property="article:modified_time" content="2022-07-24T14:42:27.792Z">
 <meta property="article:author" content="ZimaBlue">
+<meta property="article:tag" content="crypto">
+<meta property="article:tag" content="web">
+<meta property="article:tag" content="misc">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="ZimaBlue&#39;s Blog" type="application/atom+xml">
@@ -164,36 +171,54 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-DiceCTF-HOPE2022" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2022" class="archive-year">2022</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/04/04/SpaceHeroesCTF-NSSCTF-MidnightSunCTF-UMassCTF2022/" class="archive-article-date">
-  	<time datetime="2022-04-04T06:26:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-04-04</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/04/04/SpaceHeroesCTF-NSSCTF-MidnightSunCTF-UMassCTF2022/">SpaceHeroesCTF NSSCTF MidnightSunCTF UMassCTF2022</a>
+    <h1 class="article-title" itemprop="name">
+      DiceCTF@HOPE2022
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2022/07/24/DiceCTF-HOPE2022/" class="archive-article-date">
+  	<time datetime="2022-07-24T01:13:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-07-24</time>
+</a>
+        
+		
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>​    qwq…不可以在沉迷于ctf了，求求你干正事。</p>
+<span id="more"></span>
+<h3 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h3><h4 id="secure-page"><a href="#secure-page" class="headerlink" title="secure-page"></a>secure-page</h4><p>抓包，把cookie改为admin。</p>
+<h4 id="reverser"><a href="#reverser" class="headerlink" title="reverser"></a>reverser</h4><p>模板注入，但是会把输入的字符串倒序排列再解析，所以我们传payload的倒序字符串即可：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&quot;&#123;&#123;lipsum.__globals__[&#x27;os&#x27;].popen(&#x27;ls&#x27;).read()&#125;&#125;&quot;</span>[::-<span class="number">1</span>])</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;&#123;&#123;lipsum.__globals__[&#x27;os&#x27;].popen(&#x27;cat f*&#x27;).read()&#125;&#125;&quot;</span>[::-<span class="number">1</span>])</span><br></pre></td></tr></table></figure>
+<h4 id="flag-viewer"><a href="#flag-viewer" class="headerlink" title="flag-viewer"></a>flag-viewer</h4><p>前端过滤了admin，所以随意输入一个其他用户名再抓包改为admin提交即可。</p>
+<h3 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a>Misc</h3><h4 id="orphan"><a href="#orphan" class="headerlink" title="orphan"></a>orphan</h4><p>给了.git文件，但是git log无法查看历史版本，直接去log文件夹里可以看到历史版本号，diff一下就出了flag。</p>
+<h3 id="Rev"><a href="#Rev" class="headerlink" title="Rev"></a>Rev</h3><p>签到，考察选手的逆向思维。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">s = <span class="string">&#x27;hope&#123;&#x27;</span>+ <span class="string">&#x27;*&#x27;</span>*<span class="number">26</span> + <span class="string">&#x27;&#125;&#x27;</span></span><br><span class="line">l = <span class="built_in">list</span>(s)</span><br><span class="line"></span><br><span class="line">s1 = <span class="string">&#x27;i0_tnl3a0&#x27;</span></span><br><span class="line">s2 = <span class="string">&#x27;&#123;0p0lsl&#x27;</span></span><br><span class="line">s3 = <span class="string">&#x27;e0y_3l&#x27;</span></span><br><span class="line">s4 = <span class="string">&#x27;_vph_is_t&#x27;</span></span><br><span class="line">s5 = <span class="string">&#x27;ley0sc_l&#125;&#x27;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">5</span>,<span class="number">32</span>,<span class="number">3</span>):</span><br><span class="line">    l[i] = s1[(i-<span class="number">5</span>)//<span class="number">3</span>]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">4</span>,<span class="number">32</span>,<span class="number">4</span>):</span><br><span class="line">    l[i] = s2[(i-<span class="number">4</span>)//<span class="number">4</span>]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>,<span class="number">32</span>,<span class="number">5</span>):</span><br><span class="line">    l[i] = s3[(i-<span class="number">3</span>)//<span class="number">5</span>]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">6</span>,<span class="number">32</span>,<span class="number">3</span>):</span><br><span class="line">    l[i] = s4[(i-<span class="number">6</span>)//<span class="number">3</span>]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">7</span>,<span class="number">32</span>,<span class="number">3</span>):</span><br><span class="line">    l[i] = s5[(i-<span class="number">7</span>)//<span class="number">3</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;&#x27;</span>.join(l))</span><br></pre></td></tr></table></figure>
+<h3 id="Crypto"><a href="#Crypto" class="headerlink" title="Crypto"></a>Crypto</h3><h4 id="obp"><a href="#obp" class="headerlink" title="obp"></a>obp</h4><p>用前几个字节异或求出key再还原明文：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> binascii</span><br><span class="line"></span><br><span class="line">c = <span class="string">&#x27;babda2b7a9bcbda68db38dbebda68dbdb48db9b7aba18dbfb6a2aaa7a3beb1a2bfb7b5a3a7afd8&#x27;</span></span><br><span class="line">cc = binascii.unhexlify(c)</span><br><span class="line">start = <span class="string">b&#x27;hope&#123;&#x27;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">5</span>):</span><br><span class="line">    <span class="built_in">print</span>(start[i]^cc[i],end=<span class="string">&#x27; &#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(cc)):</span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">chr</span>(<span class="number">210</span>^cc[i]),end=<span class="string">&#x27;&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="pem"><a href="#pem" class="headerlink" title="pem"></a>pem</h4><p>会用pem格式解密即可：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.PublicKey <span class="keyword">import</span> RSA</span><br><span class="line"><span class="keyword">from</span> Crypto.Cipher <span class="keyword">import</span> PKCS1_OAEP</span><br><span class="line"><span class="comment"># ssl格式加密则用ssl格式去解密</span></span><br><span class="line">cipher_text = <span class="built_in">open</span>(<span class="string">r&quot;encrypted.bin&quot;</span>, <span class="string">&quot;rb&quot;</span>).read()</span><br><span class="line">ciphertxt = cipher_text</span><br><span class="line">key = RSA.importKey(<span class="built_in">open</span>(<span class="string">r&quot;privatekey.pem&quot;</span>).read())</span><br><span class="line">cipher = PKCS1_OAEP.new(key)</span><br><span class="line">message = cipher.decrypt(ciphertxt)</span><br><span class="line"><span class="built_in">print</span>(message)</span><br></pre></td></tr></table></figure>
+<h4 id="kfb"><a href="#kfb" class="headerlink" title="kfb"></a>kfb</h4><p>密钥是用随机数加密得到的，但密钥和明文异或即是密文，所以可以向服务器发一个全为0的分组，这样加密的结果就是密钥；用密钥解密即可：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.strxor <span class="keyword">import</span> strxor</span><br><span class="line"></span><br><span class="line">c=<span class="built_in">bytes</span>.fromhex(<span class="string">&#x27;e9bef46282bef742e3ae31956add4d04f2a5ed64928ae54fe3ae2d8f79d77633e48eef6996a2e27fdeee6acf27d54b6ce4e9bc349cb1a414c1da5efd18b62e5c&#x27;</span>)</span><br><span class="line">key=<span class="built_in">bytes</span>.fromhex(<span class="string">&#x27;81d18407f9d59120bcdd59fa1fb1295b91c19417e9c58130accd49ea0fa1394b&#x27;</span>[:<span class="number">32</span>])</span><br><span class="line"><span class="built_in">print</span>(key)</span><br><span class="line">m=<span class="string">b&#x27;&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">len</span>(key))</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="built_in">len</span>(c),<span class="number">16</span>):</span><br><span class="line">    m+=strxor(c[i:i+<span class="number">16</span>],key)</span><br><span class="line"><span class="built_in">print</span>(m)</span><br></pre></td></tr></table></figure>
+<h4 id="DESpicable-you"><a href="#DESpicable-you" class="headerlink" title="DESpicable you"></a>DESpicable you</h4><p>先用flag格式还原key的前几个字节，再爆破：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tqdm <span class="keyword">import</span> tqdm</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">encipher</span>(<span class="params">a,b</span>):</span></span><br><span class="line">    c = <span class="string">&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">for</span> i, j <span class="keyword">in</span> <span class="built_in">zip</span>(a,b):</span><br><span class="line">        c+=<span class="built_in">chr</span>(i^j)</span><br><span class="line">    <span class="keyword">return</span> c</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">rekey</span>(<span class="params">key</span>):</span></span><br><span class="line">    k = []</span><br><span class="line">    <span class="keyword">for</span> i,c <span class="keyword">in</span> <span class="built_in">enumerate</span>(key):</span><br><span class="line">        <span class="keyword">if</span> i == <span class="built_in">len</span>(key)-<span class="number">1</span>:</span><br><span class="line">            k .append(c)</span><br><span class="line">            k.append(c^key[<span class="number">0</span>])</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            k.append(c)</span><br><span class="line">            k.append(c^key[i+<span class="number">1</span>])</span><br><span class="line">    key = k</span><br><span class="line"></span><br><span class="line">table=<span class="string">&#x27;0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!_&#125;&#x27;</span></span><br><span class="line">f=<span class="built_in">open</span>(<span class="string">&#x27;des_out.txt&#x27;</span>,<span class="string">&#x27;rb&#x27;</span>)</span><br><span class="line">c=f.read()</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">len</span>(c))</span><br><span class="line">t=<span class="string">b&#x27;hope&#123;&#x27;</span></span><br><span class="line"><span class="comment"># 部分key</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">5</span>):</span><br><span class="line">    <span class="built_in">print</span>(t[i]^c[i])</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> ii <span class="keyword">in</span> tqdm(<span class="built_in">range</span>(<span class="number">256</span>)):</span><br><span class="line">    <span class="keyword">for</span> jj <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">256</span>):</span><br><span class="line">        <span class="keyword">for</span> kk <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">256</span>):</span><br><span class="line">            key = [<span class="number">136</span>, <span class="number">21</span>, <span class="number">3</span>, <span class="number">141</span>, <span class="number">80</span>, ii, jj, kk]</span><br><span class="line">            i = <span class="number">0</span></span><br><span class="line">            ct = <span class="string">&#x27;&#x27;</span></span><br><span class="line">            <span class="keyword">while</span> i &lt; <span class="built_in">len</span>(c):</span><br><span class="line">                ct += encipher(c[i:i + <span class="built_in">len</span>(key)], key)</span><br><span class="line">                i += <span class="built_in">len</span>(key)</span><br><span class="line">                rekey(key)</span><br><span class="line">            sign=ct[<span class="number">5</span>:<span class="number">40</span>]</span><br><span class="line">            <span class="keyword">for</span> ll <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(sign)):</span><br><span class="line">                <span class="keyword">if</span> sign[ll] <span class="keyword">not</span> <span class="keyword">in</span> table:</span><br><span class="line">                    <span class="keyword">break</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="built_in">print</span>(ct)</span><br></pre></td></tr></table></figure>
+<h4 id="reverse-rsa"><a href="#reverse-rsa" class="headerlink" title="reverse-rsa"></a>reverse-rsa</h4><p>和seetf的有一道题差不多，这里是给了c，自己选择一个<strong>满足格式</strong>的明文m，以及光滑的p和q（p-h算法），来快速求解e（离散对数），提交给服务器即可通过验证。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="comment"># 注意给服务端是小端转字节</span></span><br><span class="line">flag = <span class="string">b&#x27;&#125;ghfedcba&#123;epoh&#x27;</span></span><br><span class="line">m = bytes_to_long(flag)</span><br><span class="line"></span><br><span class="line">c = <span class="number">7146993245951509380139759140890681816862856635262037632915667109712467317954902955151177421740994622238561522690931235839733579166121631742096762557444153806131985279962646477997889661633938981817306610901055296705982494607773446985300816341071922739788638126631520234249358834592814880445497817389957300553660499631838091201561728727996660871094966330045071879490277901216751327226984526095495604592577841120425249633624459211547984305731778854596177467026282357094690700361174790351699376317810120824316300666128090632100150965101285647544696152528364989155735157261219949095760495520390692941417167332814540685297</span></span><br><span class="line">p = <span class="number">314159265358979300000000000000000010539</span></span><br><span class="line">q = <span class="number">271828182845904500000000000000000000701</span></span><br><span class="line">n = p*q</span><br><span class="line"></span><br><span class="line">G =GF(p)</span><br><span class="line">g = G(c)</span><br><span class="line">h = G(m)</span><br><span class="line">k1 = discrete_log(g,h)</span><br><span class="line"><span class="built_in">print</span>(k1)</span><br><span class="line"></span><br><span class="line">G1 = GF(q)</span><br><span class="line">g1 = G1(c)</span><br><span class="line">h1 = G1(m)</span><br><span class="line">k2 = discrete_log(g1,h1)</span><br><span class="line"><span class="built_in">print</span>(k2)</span><br><span class="line"></span><br><span class="line">e = crt([k1,k2],[p-<span class="number">1</span>,q-<span class="number">1</span>])</span><br><span class="line"><span class="built_in">print</span>(e)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 本地测试</span></span><br><span class="line"><span class="comment"># c = 7146993245951509380139759140890681816862856635262037632915667109712467317954902955151177421740994622238561522690931235839733579166121631742096762557444153806131985279962646477997889661633938981817306610901055296705982494607773446985300816341071922739788638126631520234249358834592814880445497817389957300553660499631838091201561728727996660871094966330045071879490277901216751327226984526095495604592577841120425249633624459211547984305731778854596177467026282357094690700361174790351699376317810120824316300666128090632100150965101285647544696152528364989155735157261219949095760495520390692941417167332814540685297</span></span><br><span class="line"><span class="comment"># e = 6512502510386120305172284395400191873576185305514434873168303156181088575639</span></span><br><span class="line"><span class="comment"># p = 314159265358979300000000000000000010539</span></span><br><span class="line"><span class="comment"># q = 271828182845904500000000000000000000701</span></span><br><span class="line"><span class="comment"># n = p*q</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># phi = (p-1)*(q-1)</span></span><br><span class="line"><span class="comment"># d = invert(e,phi)</span></span><br><span class="line"><span class="comment"># mm = int(pow(c,d,n))</span></span><br><span class="line"><span class="comment"># print(int.to_bytes(mm, 256, &#x27;little&#x27;))</span></span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -213,7 +238,7 @@
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -223,575 +248,141 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="/categories/赛事/SpaceHeroesCTF-NSSCTF-MidnightSunCTF-UMassCTF2022//" class="article-tag-list-link color5">SpaceHeroesCTF NSSCTF MidnightSunCTF UMassCTF2022</a>
+        			<a href="/categories/赛事/DiceCTF-HOPE2022//" class="article-tag-list-link color2">DiceCTF@HOPE2022</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2022/07/24/DiceCTF-HOPE2022/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/04/01/NPUCTF2020-%E5%85%B1%E6%A8%A1%E6%94%BB%E5%87%BB/" class="archive-article-date">
-  	<time datetime="2022-04-01T03:29:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-04-01</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2022/07/20/NepCTF2022/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">NepCTF2022</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/04/01/NPUCTF2020-%E5%85%B1%E6%A8%A1%E6%94%BB%E5%87%BB/">NPUCTF2020-共模攻击</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">RSA</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Copper</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/比赛//" class="article-tag-list-link color3">比赛</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/比赛/RSA//" class="article-tag-list-link color4">RSA</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/比赛/RSA/Copper//" class="article-tag-list-link color2">Copper</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Web"><span class="toc-number">1.</span> <span class="toc-text">Web</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#secure-page"><span class="toc-number">1.1.</span> <span class="toc-text">secure-page</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#reverser"><span class="toc-number">1.2.</span> <span class="toc-text">reverser</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#flag-viewer"><span class="toc-number">1.3.</span> <span class="toc-text">flag-viewer</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Misc"><span class="toc-number">2.</span> <span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#orphan"><span class="toc-number">2.1.</span> <span class="toc-text">orphan</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Rev"><span class="toc-number">3.</span> <span class="toc-text">Rev</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Crypto"><span class="toc-number">4.</span> <span class="toc-text">Crypto</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#obp"><span class="toc-number">4.1.</span> <span class="toc-text">obp</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#pem"><span class="toc-number">4.2.</span> <span class="toc-text">pem</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#kfb"><span class="toc-number">4.3.</span> <span class="toc-text">kfb</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DESpicable-you"><span class="toc-number">4.4.</span> <span class="toc-text">DESpicable you</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#reverse-rsa"><span class="toc-number">4.5.</span> <span class="toc-text">reverse-rsa</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/03/31/GKCTF2021-RRRRsa/" class="archive-article-date">
-  	<time datetime="2022-03-31T13:40:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/03/31/GKCTF2021-RRRRsa/">GKCTF2021-RRRRsa</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">RSA</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">crypto</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数论</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/比赛//" class="article-tag-list-link color3">比赛</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/比赛/RSA//" class="article-tag-list-link color4">RSA</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/比赛/RSA/数论或其它//" class="article-tag-list-link color1">数论或其它</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        
+    </div>
+</aside>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/03/28/NISACTF2022/" class="archive-article-date">
-  	<time datetime="2022-03-28T03:47:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-28</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/03/28/NISACTF2022/">NISACTF2022</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">crypto</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/赛事//" class="article-tag-list-link color3">赛事</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/赛事/NISACTF2022//" class="article-tag-list-link color2">NISACTF2022</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/03/27/%E8%99%8E%E7%AC%A6CTF2022/" class="archive-article-date">
-  	<time datetime="2022-03-27T13:00:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-27</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/03/27/%E8%99%8E%E7%AC%A6CTF2022/">虎符CTF2022</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">crypto</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/赛事//" class="article-tag-list-link color3">赛事</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/赛事/虎符CTF2022//" class="article-tag-list-link color5">虎符CTF2022</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/03/23/Meet%20me%20in%20the%20middle/" class="archive-article-date">
-  	<time datetime="2022-03-23T05:33:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-23</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/03/23/Meet%20me%20in%20the%20middle/">Meet me in the middle</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">crypto</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">AES</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">中间相遇攻击</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/比赛//" class="article-tag-list-link color3">比赛</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/比赛/对称密码//" class="article-tag-list-link color5">对称密码</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/比赛/对称密码/中间相遇攻击//" class="article-tag-list-link color2">中间相遇攻击</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/03/22/2022%E7%BA%A2%E6%98%8E%E8%B0%B7-easy-ya/" class="archive-article-date">
-  	<time datetime="2022-03-22T10:49:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/03/22/2022%E7%BA%A2%E6%98%8E%E8%B0%B7-easy-ya/">2022红明谷-easy_ya</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">RSA</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Copper</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/比赛//" class="article-tag-list-link color3">比赛</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/比赛/RSA//" class="article-tag-list-link color4">RSA</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/比赛/RSA/Copper//" class="article-tag-list-link color2">Copper</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/03/17/pollard-s-p-1/" class="archive-article-date">
-  	<time datetime="2022-03-17T14:28:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-17</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/03/17/pollard-s-p-1/">pollard&#39;s p-1</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">RSA</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">crypto</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">光滑数攻击</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/比赛//" class="article-tag-list-link color3">比赛</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/比赛/RSA//" class="article-tag-list-link color4">RSA</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/比赛/RSA/pollard-s-p-1//" class="article-tag-list-link color4">pollard's p-1</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/03/11/Paillier%E5%8A%A0%E5%AF%86%E6%96%B9%E6%A1%88/" class="archive-article-date">
-  	<time datetime="2022-03-11T07:32:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-11</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/03/11/Paillier%E5%8A%A0%E5%AF%86%E6%96%B9%E6%A1%88/">Paillier加密方案</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">crypto</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">同态加密</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/比赛//" class="article-tag-list-link color3">比赛</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/比赛/同态加密//" class="article-tag-list-link color5">同态加密</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/比赛/同态加密/Paillier//" class="article-tag-list-link color4">Paillier</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/03/10/%E9%95%BF%E4%BA%AD-PWNHUB%E7%B3%BB%E5%88%97/" class="archive-article-date">
-  	<time datetime="2022-03-10T15:12:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/03/10/%E9%95%BF%E4%BA%AD-PWNHUB%E7%B3%BB%E5%88%97/">长亭-PWNHUB系列</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">crypto</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">misc</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">pwnhub</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/PWNHUB//" class="article-tag-list-link color2">PWNHUB</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/PWNHUB/公开赛//" class="article-tag-list-link color4">公开赛</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
   
-    </div></section>
+  
+  <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+<script>
+  var cloudTieConfig = {
+    url: "http://example.com/2022/07/24/DiceCTF-HOPE2022/", 
+    sourceId: "DiceCTF-HOPE2022",
+    productKey: "true",
+    target: "cloud-tie-wrapper"
+  };
+</script>
+<script src="//img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
   
 
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2022/page/3/">&amp;laquo; Prev</a><a class="page-number" href="/archives/2022/">1</a><a class="page-number" href="/archives/2022/page/2/">2</a><a class="page-number" href="/archives/2022/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/archives/2022/page/5/">5</a><a class="page-number" href="/archives/2022/page/6/">6</a><a class="page-number" href="/archives/2022/page/7/">7</a><a class="extend next" rel="next" href="/archives/2022/page/5/">Next &amp;raquo;</a>
-    </nav>
+  
+
+  
+
   
 
 
+
+
+<!--增加不蒜子统计-->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
           </div>
         </div>
       </div>
@@ -850,8 +441,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
