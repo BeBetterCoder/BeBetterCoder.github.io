@@ -15,12 +15,14 @@
 <meta property="og:site_name" content="ZimaBlue&#39;s Blog">
 <meta property="og:description" content="签到答对八道知识问答题，得到flag：">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2022/08/26/%E7%BD%91%E9%BC%8E%E6%9D%AF%E9%9D%92%E9%BE%99%E7%BB%842022/misc.png">
 <meta property="article:published_time" content="2022-08-26T13:54:51.000Z">
-<meta property="article:modified_time" content="2022-08-26T14:08:59.258Z">
+<meta property="article:modified_time" content="2022-08-26T14:11:45.954Z">
 <meta property="article:author" content="ZimaBlue">
 <meta property="article:tag" content="crypto">
 <meta property="article:tag" content="misc">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2022/08/26/%E7%BD%91%E9%BC%8E%E6%9D%AF%E9%9D%92%E9%BE%99%E7%BB%842022/misc.png">
   
     <link rel="alternative" href="/atom.xml" title="ZimaBlue&#39;s Blog" type="application/atom+xml">
   
@@ -192,7 +194,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h3 id="签到"><a href="#签到" class="headerlink" title="签到"></a>签到</h3><p>答对八道知识问答题，得到flag：</p>
-
+<img src="/2022/08/26/%E7%BD%91%E9%BC%8E%E6%9D%AF%E9%9D%92%E9%BE%99%E7%BB%842022/misc.png" class>
 <span id="more"></span>
 <h3 id="crypto091"><a href="#crypto091" class="headerlink" title="crypto091"></a>crypto091</h3><p>根据题目意思电话号码前几位为1709，因为通过百度可以查找到170号段首批放号的联通号是1709开头；又根据hash值长度64位hex猜测是sha256，于是带上地区码86爆破哈希，得到正确的电话号码：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> hashlib <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">table = <span class="string">&#x27;0123456789&#x27;</span></span><br><span class="line">m = <span class="string">&#x27;861709&#x27;</span></span><br><span class="line">c = <span class="string">&#x27;c22a563acc2a587afbfaaaa6d67bc6e628872b00bd7e998873881f7c6fdc62fc&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">len</span>(c))</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i1 <span class="keyword">in</span> table:</span><br><span class="line">    <span class="keyword">for</span> i2 <span class="keyword">in</span> table:</span><br><span class="line">        <span class="keyword">for</span> i3 <span class="keyword">in</span> table:</span><br><span class="line">            <span class="keyword">for</span> i4 <span class="keyword">in</span> table:</span><br><span class="line">                <span class="keyword">for</span> i5 <span class="keyword">in</span> table:</span><br><span class="line">                    <span class="keyword">for</span> i6 <span class="keyword">in</span> table:</span><br><span class="line">                        <span class="keyword">for</span> i7 <span class="keyword">in</span> table:</span><br><span class="line">                            f = m+i1+i2+i3+i4+i5+i6+i7</span><br><span class="line">                            <span class="keyword">if</span> sha256(f.encode()).hexdigest() == c:</span><br><span class="line">                                <span class="built_in">print</span>(f)</span><br><span class="line">                                <span class="keyword">break</span></span><br></pre></td></tr></table></figure>
