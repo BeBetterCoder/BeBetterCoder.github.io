@@ -6,14 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Archives | ZimaBlue&#39;s Blog</title>
+  <title>构造格题型 | ZimaBlue&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="ZimaBlue&#39;s Blog">
-<meta property="og:url" content="http://example.com/archives/page/7/index.html">
+  <meta name="description" content="此贴记录需要自己构造格的题型。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="构造格题型">
+<meta property="og:url" content="http://example.com/2022/09/29/%E6%9E%84%E9%80%A0%E6%A0%BC%E9%A2%98%E5%9E%8B/index.html">
 <meta property="og:site_name" content="ZimaBlue&#39;s Blog">
+<meta property="og:description" content="此贴记录需要自己构造格的题型。">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-09-29T00:47:01.000Z">
+<meta property="article:modified_time" content="2022-09-29T01:02:11.510Z">
 <meta property="article:author" content="ZimaBlue">
+<meta property="article:tag" content="Lattice">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="ZimaBlue&#39;s Blog" type="application/atom+xml">
@@ -164,597 +169,208 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-构造格题型" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      构造格题型
+    </h1>
+  
+
+        
+        <a href="/2022/09/29/%E6%9E%84%E9%80%A0%E6%A0%BC%E9%A2%98%E5%9E%8B/" class="archive-article-date">
+  	<time datetime="2022-09-29T00:47:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-09-29</time>
+</a>
+        
+		
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>此贴记录需要自己构造格的题型。</p>
+<span id="more"></span>
+<h3 id="天山护网杯-solve"><a href="#天山护网杯-solve" class="headerlink" title="天山护网杯 solve"></a>天山护网杯 solve</h3><p>附件：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> secert <span class="keyword">import</span> x</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"></span><br><span class="line">p = getPrime(<span class="number">512</span>)</span><br><span class="line">a = [random.randint(<span class="number">0</span>, p) <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="number">10</span>)]</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(a)</span><br><span class="line"></span><br><span class="line">n = <span class="built_in">len</span>(a)-<span class="number">1</span></span><br><span class="line">s = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, n):</span><br><span class="line">    s += a[i] * x[i]</span><br><span class="line"><span class="keyword">assert</span> s == a[n]</span><br><span class="line"><span class="keyword">assert</span> <span class="built_in">len</span>(x) == n</span><br><span class="line">num = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">len</span>(x)):</span><br><span class="line">    num += <span class="built_in">pow</span>(<span class="number">2</span>, i) * x[i]</span><br><span class="line">flag = <span class="string">&#x27;flag&#123;&#x27;</span> + hashlib.md5(long_to_bytes(num)).hexdigest() +<span class="string">&#x27;&#125;&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[3631130005834133354690743070426946990113357694214012046336182654202388226326420113738573892961105404162706112716090095130533909080259440180331982267990558, 1396082521347951727420714046487017510974515664724144855379658168399622493874871871112673527174126815341011192728947173474585192741650537086485950272086118, 8018509711598897249910585935817457934046223038318052897635334982657509726770787757831773177867057390436624815822956528862913597929026942069220990592575896, 236770096254387032769026130240358205002341287536302597452834936457364785587478864464291332853887816003726767966249926711456869017106063324722525634179102, 2573765397940838694832961502358868907773480801491050726446912726653073838406151660861586670975833407650180735194418438164104828972815552504739849458986882, 911336394537970315141975504611458163590539833702307917609319563507075897359808321710648849375704276897322901579929720142802887900179114603002337698850160, 1607906049079792607091422465687472988249913835157423921276680747957205619958176443447836108978676466513605632118662958137939548841575696653614869578427604, 1381369178572370262251887591324950819109812332350075397831632396829494168239412557934005300716798834290270373718948081068268571204776265938806005924974740, 7679378489021657036770924659488821470857609827854795179257106404446872175669638968957508341962637737874175816694308036213961021469678374980698692278030320, 431983940928119630204732836082938386897917171184046208809472924867226891907081765335273275882437546055024948998724134515448495865070690551813944745413380]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>本质上就是求序列x，由于输出s的元素的bit长度大致在510左右，可以判断x相当于a来说是比较小的数组；那么可以看作一个类似<strong>背包加密</strong>的问题，构造一个类似羊城杯线性代数的格：</p>
+<script type="math/tex; mode=display">
+L=\left[\begin{matrix}1&0&0&a_1\\0&1&0&a_2\\0&0&1&a_3\\0&0&0&s\end{matrix}\right]</script><p>解出来有好多组，一组组试吧。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">a = [<span class="number">3631130005834133354690743070426946990113357694214012046336182654202388226326420113738573892961105404162706112716090095130533909080259440180331982267990558</span>, <span class="number">1396082521347951727420714046487017510974515664724144855379658168399622493874871871112673527174126815341011192728947173474585192741650537086485950272086118</span>, <span class="number">8018509711598897249910585935817457934046223038318052897635334982657509726770787757831773177867057390436624815822956528862913597929026942069220990592575896</span>, <span class="number">236770096254387032769026130240358205002341287536302597452834936457364785587478864464291332853887816003726767966249926711456869017106063324722525634179102</span>, <span class="number">2573765397940838694832961502358868907773480801491050726446912726653073838406151660861586670975833407650180735194418438164104828972815552504739849458986882</span>, <span class="number">911336394537970315141975504611458163590539833702307917609319563507075897359808321710648849375704276897322901579929720142802887900179114603002337698850160</span>, <span class="number">1607906049079792607091422465687472988249913835157423921276680747957205619958176443447836108978676466513605632118662958137939548841575696653614869578427604</span>, <span class="number">1381369178572370262251887591324950819109812332350075397831632396829494168239412557934005300716798834290270373718948081068268571204776265938806005924974740</span>, <span class="number">7679378489021657036770924659488821470857609827854795179257106404446872175669638968957508341962637737874175816694308036213961021469678374980698692278030320</span>, <span class="number">431983940928119630204732836082938386897917171184046208809472924867226891907081765335273275882437546055024948998724134515448495865070690551813944745413380</span>]</span><br><span class="line">a_l = a[:-<span class="number">1</span>]</span><br><span class="line">M = matrix.zero(<span class="number">10</span>)</span><br><span class="line"><span class="keyword">for</span> i,j <span class="keyword">in</span> <span class="built_in">enumerate</span>(a_l):</span><br><span class="line">    M[i,i] = <span class="number">1</span></span><br><span class="line">    M[i,-<span class="number">1</span>] = j</span><br><span class="line">M[-<span class="number">1</span>,-<span class="number">1</span>] = a[-<span class="number">1</span>]</span><br><span class="line">L = M.LLL()</span><br><span class="line"><span class="built_in">print</span>(L)</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2022" class="archive-year">2022</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/01/18/CTFshow-ROARCTF-Reverse/" class="archive-article-date">
-  	<time datetime="2022-01-18T03:06:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-18</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/01/18/CTFshow-ROARCTF-Reverse/">CTFshow-ROARCTF-Reverse</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">crypto</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ctfshow</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Lattice</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/ctfshow//" class="article-tag-list-link color3">ctfshow</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/01/13/TEA%E3%80%81XTEA%E3%80%81XXTEA%E5%8A%A0%E8%A7%A3%E5%AF%86/" class="archive-article-date">
-  	<time datetime="2022-01-13T02:55:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-13</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/01/13/TEA%E3%80%81XTEA%E3%80%81XXTEA%E5%8A%A0%E8%A7%A3%E5%AF%86/">TEA、XTEA、XXTEA加解密</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">crypto</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/其它加密算法//" class="article-tag-list-link color2">其它加密算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/01/09/%E8%A5%BF%E5%AE%89%E6%88%98%E7%96%AB%E5%AE%89%E5%85%A8%E7%AB%9E%E8%B5%9B/" class="archive-article-date">
-  	<time datetime="2022-01-09T05:21:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/01/09/%E8%A5%BF%E5%AE%89%E6%88%98%E7%96%AB%E5%AE%89%E5%85%A8%E7%AB%9E%E8%B5%9B/">长安战疫安全竞赛</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">crypto</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">赛事</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">misc</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/赛事//" class="article-tag-list-link color3">赛事</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/赛事/长安战疫2022//" class="article-tag-list-link color4">长安战疫2022</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/01/06/Python%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E2%80%94%E5%8F%8C%E7%AB%AF%E9%98%9F%E5%88%97/" class="archive-article-date">
-  	<time datetime="2022-01-06T05:17:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/01/06/Python%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E2%80%94%E5%8F%8C%E7%AB%AF%E9%98%9F%E5%88%97/">Python数据结构—双端队列</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">python数据结构</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">队列</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/python数据结构与算法//" class="article-tag-list-link color4">python数据结构与算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/01/05/RSA%E2%80%94DP%E6%B3%84%E9%9C%B2/" class="archive-article-date">
-  	<time datetime="2022-01-05T11:39:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-05</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/01/05/RSA%E2%80%94DP%E6%B3%84%E9%9C%B2/">RSA—DP泄露（一）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">RSA</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">crypto</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数论</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/比赛//" class="article-tag-list-link color3">比赛</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/比赛/RSA//" class="article-tag-list-link color4">RSA</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/比赛/RSA/数论或其它//" class="article-tag-list-link color1">数论或其它</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/01/05/UNCTF2021-baby-rsa/" class="archive-article-date">
-  	<time datetime="2022-01-05T07:38:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-05</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/01/05/UNCTF2021-baby-rsa/">UNCTF2021-baby_rsa</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">RSA</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">crypto</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数论</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/比赛//" class="article-tag-list-link color3">比赛</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/比赛/RSA//" class="article-tag-list-link color4">RSA</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/比赛/RSA/数论或其它//" class="article-tag-list-link color1">数论或其它</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/01/04/Python%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E2%80%94%E9%98%9F%E5%88%97/" class="archive-article-date">
-  	<time datetime="2022-01-04T10:30:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/01/04/Python%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E2%80%94%E9%98%9F%E5%88%97/">Python数据结构—队列</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">python数据结构</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">队列</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/python数据结构与算法//" class="article-tag-list-link color4">python数据结构与算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/01/03/CTFshow-%E5%A4%A7%E5%90%89%E5%A4%A7%E5%88%A9%E6%9D%AF-easysignin/" class="archive-article-date">
-  	<time datetime="2022-01-03T07:06:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/01/03/CTFshow-%E5%A4%A7%E5%90%89%E5%A4%A7%E5%88%A9%E6%9D%AF-easysignin/">CTFshow-大吉大利杯-easysignin</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">crypto</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ctfshow</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/ctfshow//" class="article-tag-list-link color3">ctfshow</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
       
-        </div></section>
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/12/30/%E7%BA%BF%E6%80%A7%E5%90%8C%E4%BD%99%E7%94%9F%E6%88%90%E5%99%A8%EF%BC%88LCG%EF%BC%89-%E5%8E%9F%E7%90%86%E5%8F%8A%E6%94%BB%E5%87%BB%E6%96%B9%E5%BC%8F%EF%BC%88%E4%B8%80%EF%BC%89/" class="archive-article-date">
-  	<time datetime="2021-12-30T10:04:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-30</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/12/30/%E7%BA%BF%E6%80%A7%E5%90%8C%E4%BD%99%E7%94%9F%E6%88%90%E5%99%A8%EF%BC%88LCG%EF%BC%89-%E5%8E%9F%E7%90%86%E5%8F%8A%E6%94%BB%E5%87%BB%E6%96%B9%E5%BC%8F%EF%BC%88%E4%B8%80%EF%BC%89/">线性同余生成器（LCG）-原理及攻击方式（一）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">crypto</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">PRNG</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">LCG</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/比赛//" class="article-tag-list-link color3">比赛</a>
+        			<a href="/categories/Lattice//" class="article-tag-list-link color3">Lattice</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="/categories/比赛/伪随机数生成器//" class="article-tag-list-link color3">伪随机数生成器</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/比赛/伪随机数生成器/LCG//" class="article-tag-list-link color4">LCG</a>
+        			<a href="/categories/Lattice/Practice//" class="article-tag-list-link color4">Practice</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2022/09/29/%E6%9E%84%E9%80%A0%E6%A0%BC%E9%A2%98%E5%9E%8B/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/12/30/CTFshow-ROARCTF-EASYRSA/" class="archive-article-date">
-  	<time datetime="2021-12-30T04:49:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-30</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2022/09/29/%E6%9E%84%E9%80%A0%E6%A0%BC%E7%B1%BB%E9%A2%98%E7%9B%AE/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          构造格类题目
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/09/29/DASCTF%E4%B9%9D%E6%9C%88%E8%B5%9B2022/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">DASCTF九月赛2022</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/12/30/CTFshow-ROARCTF-EASYRSA/">CTFshow-ROARCTF-EASYRSA</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">crypto</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ctfshow</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%A9%E5%B1%B1%E6%8A%A4%E7%BD%91%E6%9D%AF-solve"><span class="toc-number">1.</span> <span class="toc-text">天山护网杯 solve</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/page/6/">&amp;laquo; Prev</a><a class="page-number" href="/archives/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/5/">5</a><a class="page-number" href="/archives/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/archives/page/8/">8</a><a class="extend next" rel="next" href="/archives/page/8/">Next &amp;raquo;</a>
-    </nav>
-  
+        
+    </div>
+</aside>
 
 
+
+  
+  
+  
+  <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+<script>
+  var cloudTieConfig = {
+    url: "http://example.com/2022/09/29/%E6%9E%84%E9%80%A0%E6%A0%BC%E9%A2%98%E5%9E%8B/", 
+    sourceId: "构造格题型",
+    productKey: "true",
+    target: "cloud-tie-wrapper"
+  };
+</script>
+<script src="//img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+  
+
+  
+
+  
+
+
+
+
+<!--增加不蒜子统计-->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
           </div>
         </div>
       </div>
@@ -813,8 +429,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
