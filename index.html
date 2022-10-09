@@ -166,6 +166,108 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-赣育杯2022" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/10/09/%E8%B5%A3%E8%82%B2%E6%9D%AF2022/">赣育杯2022</a>
+    </h1>
+  
+
+        
+        <a href="/2022/10/09/%E8%B5%A3%E8%82%B2%E6%9D%AF2022/" class="archive-article-date">
+  	<time datetime="2022-10-09T07:59:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-10-09</time>
+</a>
+        
+		
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Crypto"><a href="#Crypto" class="headerlink" title="Crypto"></a>Crypto</h2><h3 id="Wilson"><a href="#Wilson" class="headerlink" title="Wilson"></a>Wilson</h3><p>由于rsa的私钥p和q取的很近所以费马分解得到两因子，威尔逊定理为：</p>
+<script type="math/tex; mode=display">
+(p-1)!\equiv-1modp</script><p>其中p为素数。之前遇到的题目，通常把flag放在modp下求解即可，<a target="_blank" rel="noopener" href="https://www.zimablue.life/2022/04/15/%E5%A8%81%E5%B0%94%E9%80%8A%E5%AE%9A%E7%90%86/">示例</a>；这题经过pad 明文的比特数已经超过p了，所以我们在modp下求出来的其实是flag模p后的结果，也就是低位部分；因为copper没办法做所以考虑在modq下再求一次，用crt处理，具体一点：已知$m=flag\cdot(p-1)!modn$，如果给m依次乘上$p,p+1,…q-1$，有$m_1=flag\cdot(q-1)!modn$，这时把$m_1modq$得到$flag\cdot(-1)\equiv m_1modq$，所以这里求逆就行了，最后来个crt即可。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> gmpy2 <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> sympy.ntheory.modular <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fermat</span>(<span class="params">num</span>):</span></span><br><span class="line">    x = iroot(num, <span class="number">2</span>)[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">if</span> x * x &lt; num:</span><br><span class="line">        x += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># y^2 = x^2 - num</span></span><br><span class="line">    <span class="keyword">while</span> (<span class="literal">True</span>):</span><br><span class="line">        y2 = x * x - num</span><br><span class="line">        y = iroot(y2, <span class="number">2</span>)[<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">if</span> y * y == y2:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        x += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    result = [<span class="built_in">int</span>(x + y), <span class="built_in">int</span>(x - y)]</span><br><span class="line">    <span class="built_in">print</span>(result)</span><br><span class="line"></span><br><span class="line">a = <span class="number">156853895847604116708242664263151514811095704969640303272039451331791888050995073274981545693518063639560286348739938318495685137088495867703518198511200409009953879436648706837731243061114851474801565873584183542649886358523850682697732574913523360866915083642887238043256280849100274825940626065115676325169</span></span><br><span class="line">c = <span class="number">3459715117165130065996389169943285249501133832272446001239391765859259811270526185228996906338576254353123756173289118671028939933226544773197852424767051933844004667155191851195814295922794480300237399956789038592856532530692732011427288405114650955620859282144504446058845961744702163836107847961388150810</span></span><br><span class="line"></span><br><span class="line">fermat(a)</span><br><span class="line">l = [<span class="number">12524132538727147976454683542869473176723933298740764667643646868771435739017779964538584767004546975861773724104399289331497224456192089483187179727966173</span>, <span class="number">12524132538727147976454683542869473176723933298740764667643646868771435739017779964538584767004546975861773724104399289331497224456192089483187179727966053</span>]</span><br><span class="line"><span class="keyword">assert</span> l[<span class="number">0</span>] &gt; l[<span class="number">1</span>]</span><br><span class="line">p = l[<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line">e = <span class="number">65537</span></span><br><span class="line">q = a//p</span><br><span class="line"><span class="keyword">assert</span> p*q == a</span><br><span class="line"></span><br><span class="line">f = (p-<span class="number">1</span>)*(q-<span class="number">1</span>)</span><br><span class="line">d = invert(e,f)</span><br><span class="line">m = <span class="built_in">pow</span>(c,d,a)</span><br><span class="line"></span><br><span class="line">m1 = m*invert(-<span class="number">1</span>, p)%p <span class="comment"># 求出来的是flag mod p</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(p, q):</span><br><span class="line">    m = m*i%q</span><br><span class="line">m2 = m*invert(-<span class="number">1</span>, q) %q <span class="comment"># 同理 flag mod q</span></span><br><span class="line"></span><br><span class="line">sol = crt([p,q],[m1,m2])</span><br><span class="line"><span class="built_in">print</span>(sol[<span class="number">0</span>])</span><br><span class="line"><span class="built_in">print</span>(long_to_bytes(<span class="built_in">int</span>(sol[<span class="number">0</span>])))</span><br></pre></td></tr></table></figure>
+<h3 id="Lost-N"><a href="#Lost-N" class="headerlink" title="Lost_N"></a>Lost_N</h3><p>这题原本作为一道想要考查多个知识点的套题还是可以的，但题目脚本和output没对上，属于是很容易误导选手了…<br>首先是第二部分要去求last_n，根据欧拉定理把s对n求逆得到$(900\cdot p-218\cdot q) modn$，显而易见可以把模去掉，所以联立$p\cdot q=n$建立一元二次方程解出两因子；第一部分比较显然是共私钥指数攻击，用五组解出来的d并不满足题目要求的435比特，看了下output里有两组非常离谱的冗余的e和c，于是把last_n和这俩组合一下作为第六组数据造格，求解出的d刚好为435比特，解出了flag。这里为什么觉得离谱，是因为题目脚本写的是循环输出五次n e c，结果最后需要用六组去造格，也是逆天了。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> gmpy2 <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">c0 = </span><br><span class="line">n0 = </span><br><span class="line">e0 = </span><br><span class="line">c1 = </span><br><span class="line">n1 = </span><br><span class="line">e1 = </span><br><span class="line">c2 = </span><br><span class="line">n2 = </span><br><span class="line">e2 = </span><br><span class="line">c3 = </span><br><span class="line">n3 = </span><br><span class="line">e3 = </span><br><span class="line">c4 = </span><br><span class="line">n4 = </span><br><span class="line">e4 = </span><br><span class="line">c5 = </span><br><span class="line">n5 = </span><br><span class="line">e5 = </span><br><span class="line"></span><br><span class="line">n = <span class="built_in">max</span>(n0,n1,n2,n3,n4) <span class="comment"># 取最大者</span></span><br><span class="line">M=iroot(<span class="built_in">int</span>(n),<span class="built_in">int</span>(<span class="number">2</span>))[<span class="number">0</span>]</span><br><span class="line">a=[<span class="number">0</span>]*<span class="number">7</span></span><br><span class="line">a[<span class="number">0</span>]=[M,e0,e1,e2,e3,e4,e5]</span><br><span class="line">a[<span class="number">1</span>]=[<span class="number">0</span>,-n0,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>]</span><br><span class="line">a[<span class="number">2</span>]=[<span class="number">0</span>,<span class="number">0</span>,-n1,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>]</span><br><span class="line">a[<span class="number">3</span>]=[<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,-n2,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>]</span><br><span class="line">a[<span class="number">4</span>]=[<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,-n3,<span class="number">0</span>,<span class="number">0</span>]</span><br><span class="line">a[<span class="number">5</span>]=[<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,-n4,<span class="number">0</span>]</span><br><span class="line">a[<span class="number">6</span>]=[<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,-n5]</span><br><span class="line"></span><br><span class="line">Mat = matrix(ZZ,a)</span><br><span class="line">Mat_LLL=Mat.LLL()</span><br><span class="line"><span class="comment">#print(Mat_LLL[0][0])</span></span><br><span class="line">d = <span class="built_in">abs</span>(Mat_LLL[<span class="number">0</span>][<span class="number">0</span>])//M</span><br><span class="line"><span class="built_in">print</span>(d)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> gmpy2 <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">n = <span class="number">20955464633057600258987829727550073699845816289000240676927869818926752810905511184835302717855745473943671910742784074561535017974853574714483642916831791020944940633062963043482236587316552330558006573820423830770910893877191630012247591380869307656539553888318621170921800017818132160253923739647771452839191101104391894609403591447166963426444018303147924843072923713248135717578047687411974516038299879758561542241544862102935741869647633013298181782208467117482306148238724598730801037692668154263059348953587766571379262442743822007387408949824805991797355089583176028081305319076896384126383926193964322235633</span></span><br><span class="line">c = <span class="number">14815997295683082265558346455845370590765145583224067337292601455640475216349267044144296003388877395546880235511728120803143112914764263292087421926972160283428440959367872665892349776616002018624301524264223581314248857537034849571849747613963209414193510408342387107662655487869098045345428379025731617851483935711671021438908270746316921057871871545763798735895118697635903815383424855759281301248295597297869474539060531099443223045844791615425429748703429968627505406271675074549912664863784774239200764403372298995457799473112713379340870305136776932539188516395526955161359417473843082895317392495109895085666</span></span><br><span class="line">s = <span class="number">14728527428626630951705148488338433865446345521255631461200851513782412494843597938863837697938230856843797646287742397249258609197032095158567448934855031190354034543862057663422053672290704598313096289223478302733688501373756860855445632789922930577582465209872782549135254792729915747104521949095814028476908208917363509089190935273004331739978623136706041729628143765893264698948654175039064609891374587695812144855411176143224066975193255513405865992328257766815240718115442741846443490733767716842367336385132648983241895710001620533668392060358573295789752856876282590472528110546264872047138094995909454134250</span></span><br><span class="line"></span><br><span class="line">s_ = invert(s,n)</span><br><span class="line">delta = iroot(s_**<span class="number">2</span> - <span class="number">4</span>*<span class="number">900</span>*(-<span class="number">218</span>*n),<span class="number">2</span>)[<span class="number">0</span>]</span><br><span class="line">p = (s_ + delta)//(<span class="number">2</span>*<span class="number">900</span>)</span><br><span class="line"></span><br><span class="line">q = n//p</span><br><span class="line"><span class="keyword">assert</span> p*q == n</span><br><span class="line">e1 = <span class="number">0x10001</span></span><br><span class="line">f1 = (p-<span class="number">1</span>)*(q-<span class="number">1</span>)</span><br><span class="line">d1 = invert(e1,f1)</span><br><span class="line">last_n = <span class="built_in">pow</span>(c,d1,n)</span><br><span class="line"><span class="built_in">print</span>(last_n)</span><br><span class="line"></span><br><span class="line">dd = <span class="number">52771251618246422496055097735715651807711833222951670020329880144899822430509798260393871381119460882023717774862539491823372729841</span></span><br><span class="line"><span class="built_in">print</span>(dd.bit_length())</span><br><span class="line">cc = <span class="number">13007070082982086015048648249698272815655157209727275797297990841215796701955079738986996208838342773211678208282162295881823413924960399315068498509939876883297864092435101096694113071462267388158595518905101264654742860199638059278239359756219217345342001728599121265614144789005805619626458575126846199823</span></span><br><span class="line">nn = <span class="number">145575036089862184772968012014750816659166028840828357885024516131565102712346345625910708214596157522939248398359985832422106056149116726640753670919394145037581595172384392223713667048639158944450925280598688178812170253438103664700756173806183649477673497327790421063029596049211220930285435947389700047717</span></span><br><span class="line">m = <span class="built_in">pow</span>(cc,dd,nn)</span><br><span class="line"><span class="built_in">print</span>(long_to_bytes(m))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">crypto</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">misc</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/赛事//" class="article-tag-list-link color3">赛事</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/赛事/赣育杯2022//" class="article-tag-list-link color3">赣育杯2022</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/10/09/%E8%B5%A3%E8%82%B2%E6%9D%AF2022/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+<!--增加不蒜子统计-->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
     <article id="post-构造格题型" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1026,104 +1128,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2022/07/15/%E8%93%9D%E5%B8%BD%E6%9D%AF%E5%88%9D%E8%B5%9B2022/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-<!--增加不蒜子统计-->
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-  
-    <article id="post-鹏城杯2022" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/07/04/%E9%B9%8F%E5%9F%8E%E6%9D%AF2022/">鹏城杯2022</a>
-    </h1>
-  
-
-        
-        <a href="/2022/07/04/%E9%B9%8F%E5%9F%8E%E6%9D%AF2022/" class="archive-article-date">
-  	<time datetime="2022-07-03T16:00:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-07-04</time>
-</a>
-        
-		
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>​    深圳的市赛，题目一般，小卷了一天，进了线下准备去旅游。这里记录我负责的方向赛题。<br></p>
-        
-          <a class="article-more-a" href="/2022/07/04/%E9%B9%8F%E5%9F%8E%E6%9D%AF2022/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">crypto</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">misc</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/赛事//" class="article-tag-list-link color3">赛事</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/赛事/鹏城杯2022//" class="article-tag-list-link color3">鹏城杯2022</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/07/04/%E9%B9%8F%E5%9F%8E%E6%9D%AF2022/">展开全文 >></a>
         </p>
       
 
