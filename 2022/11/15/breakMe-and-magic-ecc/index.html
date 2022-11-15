@@ -6,14 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>ZimaBlue&#39;s Blog</title>
+  <title>breakMe and magic_ecc | ZimaBlue&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="ZimaBlue&#39;s Blog">
-<meta property="og:url" content="http://example.com/page/2/index.html">
+  <meta name="description" content="研究生国赛，听说两个题都是N1的密码师傅出的，就做了做，感谢等风师傅和coin哥哥的帮助。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="breakMe and magic_ecc">
+<meta property="og:url" content="http://example.com/2022/11/15/breakMe-and-magic-ecc/index.html">
 <meta property="og:site_name" content="ZimaBlue&#39;s Blog">
+<meta property="og:description" content="研究生国赛，听说两个题都是N1的密码师傅出的，就做了做，感谢等风师傅和coin哥哥的帮助。">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-11-15T02:43:33.000Z">
+<meta property="article:modified_time" content="2022-11-15T03:08:37.949Z">
 <meta property="article:author" content="ZimaBlue">
+<meta property="article:tag" content="RSA">
+<meta property="article:tag" content="Copper">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="ZimaBlue&#39;s Blog" type="application/atom+xml">
@@ -164,22 +170,20 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-羊城杯" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-breakMe-and-magic-ecc" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/09/02/%E7%BE%8A%E5%9F%8E%E6%9D%AF/">羊城杯</a>
+    <h1 class="article-title" itemprop="name">
+      breakMe and magic_ecc
     </h1>
   
 
         
-        <a href="/2022/09/02/%E7%BE%8A%E5%9F%8E%E6%9D%AF/" class="archive-article-date">
-  	<time datetime="2022-09-02T13:06:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-09-02</time>
+        <a href="/2022/11/15/breakMe-and-magic-ecc/" class="archive-article-date">
+  	<time datetime="2022-11-15T02:43:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-11-15</time>
 </a>
         
 		
@@ -187,10 +191,19 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="2021-Crypto"><a href="#2021-Crypto" class="headerlink" title="2021_Crypto"></a>2021_Crypto</h2><h3 id="Bigrsa"><a href="#Bigrsa" class="headerlink" title="Bigrsa"></a>Bigrsa</h3><p>签到，n1和n2不互素：</p>
-        
-          <a class="article-more-a" href="/2022/09/02/%E7%BE%8A%E5%9F%8E%E6%9D%AF/#more">more >></a>
-        
+        <p>研究生国赛，听说两个题都是N1的密码师傅出的，就做了做，感谢等风师傅和coin哥哥的帮助。</p>
+<span id="more"></span>
+<h3 id="breakMe"><a href="#breakMe" class="headerlink" title="breakMe"></a>breakMe</h3><p>题目：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">from</span> random <span class="keyword">import</span> randint</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> secret <span class="keyword">import</span> flag</span><br><span class="line"></span><br><span class="line">flag = flag + os.urandom(<span class="number">63</span>-<span class="built_in">len</span>(flag))</span><br><span class="line"><span class="keyword">assert</span> <span class="built_in">len</span>(flag) == <span class="number">63</span></span><br><span class="line">m = bytes_to_long(flag) </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">leak</span>():</span></span><br><span class="line">    p = getPrime(<span class="number">256</span>)</span><br><span class="line">    q = getPrime(<span class="number">256</span>)</span><br><span class="line">    n = p * q</span><br><span class="line">    Zn = Zmod(n)</span><br><span class="line">    r = randint(<span class="number">2</span>, n-<span class="number">1</span>)</span><br><span class="line">    enc = Zn(m)^<span class="number">4</span> + <span class="number">3</span>*Zn(m)^<span class="number">2</span> + r*Zn(m)</span><br><span class="line">    <span class="keyword">return</span> (n, r, enc)</span><br><span class="line"></span><br><span class="line">out = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">4</span>):</span><br><span class="line">    out.append(leak())</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(out)</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">out = [(10104838556837572425858698219763292763650577822827673166610165534445905790599515983298170585537299796651687586519310335005278459900442296258190069157011689, 7564828531806668305145314143078783846371361009728098013923139274278986668460078185780789906860320972246757193033127803017086784149355945294908935420078516, 4485282300120902750491340174759104149475684698869265622396467866957919693682690175170986883471126578030682174788280328493147605703476577928850956031397969), (9565548877530896106016727232483590558935243658719980153279803247495028412133813638614011877483865630231054031084370990573419237535803428480492680139453999, 6038408119341558448569646184012774768725225345959109849115178440273061081156678389998969575922258723126076562743356339971035685064411166619777569139016508, 8750745342976938305411200510628417969404035221738007736422965823102502205577159397824830272988223657169242542971101468532748569435454625452166610190128781), (7032132827543709857775159929155596851822367214393091928329402747976746664890617830698759196796244901655353689522245761374585849734855765538189679713755499, 537414417641982152632158507627084083552317654751808484984901390258392606135955264531766980767789787016920198980507584546004466948509548457976277102756022, 6922262573315623933995838201220725774224132378664014973566219095767042719198956812716498145319448424126056354168025846702083830628832406132772890238012895), (10867950060245850877527719152309028431430000864654153258281294463898174216443333061889067616907305797497470525064325706490087786413068565388484751510567929, 2817477928396391253997165521234258370798748353920680581012362899514855249356663733557730846938679462940826446464369055820695102402810943359431061366297287, 6437402158704542412615350656111816825238327397134975867813883010385929819022183388539677074062781989152267579279340992202100004308737301019250714974969949)]</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+<p>4个n乘起来是2046比特，而维数是4，flag比特位数为$63\cdot8=504$，那么$2046\cdot(1/4-0.02)=471$，可以看出这个卡界很恶心，crt增大n也不够。于是想到flag头<code>flag&#123;</code>有5个字节是已知的，那么这里可以把它拿掉，那么X大小变为$504-40=464$。这样就能出了，要把epsilon控为0.02。但是如果把X直接设为464，epsilon设为0.03也可以，dbt说是sage的epsilon和copper界的epsilon有点差异，咱也不太明白，就大概划个约等于符号吧。</p>
+<p>exp：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">out = [(<span class="number">10104838556837572425858698219763292763650577822827673166610165534445905790599515983298170585537299796651687586519310335005278459900442296258190069157011689</span>, <span class="number">7564828531806668305145314143078783846371361009728098013923139274278986668460078185780789906860320972246757193033127803017086784149355945294908935420078516</span>, <span class="number">4485282300120902750491340174759104149475684698869265622396467866957919693682690175170986883471126578030682174788280328493147605703476577928850956031397969</span>), (<span class="number">9565548877530896106016727232483590558935243658719980153279803247495028412133813638614011877483865630231054031084370990573419237535803428480492680139453999</span>, <span class="number">6038408119341558448569646184012774768725225345959109849115178440273061081156678389998969575922258723126076562743356339971035685064411166619777569139016508</span>, <span class="number">8750745342976938305411200510628417969404035221738007736422965823102502205577159397824830272988223657169242542971101468532748569435454625452166610190128781</span>), (<span class="number">7032132827543709857775159929155596851822367214393091928329402747976746664890617830698759196796244901655353689522245761374585849734855765538189679713755499</span>, <span class="number">537414417641982152632158507627084083552317654751808484984901390258392606135955264531766980767789787016920198980507584546004466948509548457976277102756022</span>, <span class="number">6922262573315623933995838201220725774224132378664014973566219095767042719198956812716498145319448424126056354168025846702083830628832406132772890238012895</span>), (<span class="number">10867950060245850877527719152309028431430000864654153258281294463898174216443333061889067616907305797497470525064325706490087786413068565388484751510567929</span>, <span class="number">2817477928396391253997165521234258370798748353920680581012362899514855249356663733557730846938679462940826446464369055820695102402810943359431061366297287</span>, <span class="number">6437402158704542412615350656111816825238327397134975867813883010385929819022183388539677074062781989152267579279340992202100004308737301019250714974969949</span>)]</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(long_to_bytes(<span class="number">9188843383765595152732717869563960735854186901243181659845493688642386675610699689062518689951817902641510893611339868537231465535961032531</span>))</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Function</span>(<span class="params">n,r,c</span>):</span></span><br><span class="line">    P.&lt;m&gt; = PolynomialRing(Zmod(n))</span><br><span class="line">    k = bytes_to_long(<span class="string">b&#x27;flag&#123;&#x27;</span>) * <span class="number">2</span>^(<span class="number">58</span> * <span class="number">8</span>) + m</span><br><span class="line">    f = k^<span class="number">4</span> + <span class="number">3</span>*k^<span class="number">2</span> + r*k - c</span><br><span class="line">    <span class="keyword">return</span> f</span><br><span class="line">fs = []</span><br><span class="line">ns = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> out:</span><br><span class="line">    ns.append(i[<span class="number">0</span>])</span><br><span class="line">    <span class="built_in">print</span>(i[<span class="number">0</span>].nbits())</span><br><span class="line">    ff = Function(i[<span class="number">0</span>],i[<span class="number">1</span>],i[<span class="number">2</span>]).monic().change_ring(ZZ)</span><br><span class="line">    fs.append(ff)</span><br><span class="line">F = crt(fs,ns)</span><br><span class="line"><span class="comment">#print(F)</span></span><br><span class="line">N = prod(ns)</span><br><span class="line"><span class="built_in">print</span>(N.nbits())</span><br><span class="line">FF = F.change_ring(Zmod(N))</span><br><span class="line">roots = FF.small_roots(X=<span class="number">2</span>^<span class="number">464</span>,epsilon = <span class="number">0.03</span>)</span><br><span class="line"><span class="built_in">print</span>(roots)</span><br><span class="line"><span class="comment">#print(long_to_bytes(int(roots[0])))</span></span><br></pre></td></tr></table></figure>
+<h3 id="magic-ecc"><a href="#magic-ecc" class="headerlink" title="magic_ecc"></a>magic_ecc</h3><p>也是在基本的crt上改了一下，就是需要去爆破一下x的偏移量，这个调参也不太好高，等风师傅说是这种一般先本地出一个调通了再去做题；然后一般在界里面的调beta就行，卡的很紧的再去调epsilon。关于copper的调参问题等我再细读论文出一个专栏学习吧。</p>
+<p>题目：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> random, os</span><br><span class="line"><span class="keyword">from</span> secret <span class="keyword">import</span> flag</span><br><span class="line"></span><br><span class="line">x = bytes_to_long(flag + os.urandom(<span class="number">128</span> - <span class="built_in">len</span>(flag)))</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">4</span>):</span><br><span class="line">    p = getPrime(<span class="number">512</span>)</span><br><span class="line">    q = getPrime(<span class="number">512</span>)</span><br><span class="line">    n = p*q</span><br><span class="line">    a = random.randint(<span class="number">0</span>,n-<span class="number">1</span>)</span><br><span class="line">    b = random.randint(<span class="number">0</span>,n-<span class="number">1</span>)</span><br><span class="line">    Ep = EllipticCurve(GF(p),[a,b])</span><br><span class="line">    Eq = EllipticCurve(GF(q),[a,b])</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            Gp = Ep.lift_x(x)</span><br><span class="line">            Gq = Eq.lift_x(x)</span><br><span class="line">            y = crt([<span class="built_in">int</span>(Gp[<span class="number">1</span>]),<span class="built_in">int</span>(Gq[<span class="number">1</span>])],[p,q])</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">except</span>:</span><br><span class="line">            x += <span class="number">1</span></span><br><span class="line">    <span class="built_in">print</span>(n,a,b,y)</span><br></pre></td></tr></table></figure>
+<p>exp：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">lines = <span class="built_in">open</span>(<span class="string">&quot;magic.txt&quot;</span>,<span class="string">&quot;r&quot;</span>).readlines()</span><br><span class="line">fs = []</span><br><span class="line">ns = []</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Function</span>(<span class="params">para,i</span>):</span></span><br><span class="line">    P.&lt;x&gt; = PolynomialRing(Zmod(para[<span class="number">0</span>]))</span><br><span class="line">    f = para[<span class="number">3</span>]^<span class="number">2</span> - (x+i)^<span class="number">3</span> -para[<span class="number">1</span>]*(x+i) - para[<span class="number">2</span>]</span><br><span class="line">    <span class="keyword">return</span> f</span><br><span class="line"></span><br><span class="line">paras = []</span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> lines:</span><br><span class="line">    n,a,b,y = [ZZ(i) <span class="keyword">for</span> i <span class="keyword">in</span> line.strip().split(<span class="string">&quot; &quot;</span>)]</span><br><span class="line">    paras.append((n,a,b,y))</span><br><span class="line">    ns.append(n)</span><br><span class="line">    </span><br><span class="line">N = prod(ns)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;brute force&#x27;</span>)</span><br><span class="line"><span class="keyword">for</span> i1 <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>^<span class="number">6</span>):</span><br><span class="line">    <span class="keyword">for</span> i2 <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>^<span class="number">6</span>):</span><br><span class="line">        <span class="keyword">for</span> i3 <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>^<span class="number">6</span>):</span><br><span class="line">            <span class="keyword">for</span> i4 <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>^<span class="number">6</span>):</span><br><span class="line">                <span class="keyword">try</span>:</span><br><span class="line">                    f1 = Function(paras[<span class="number">0</span>],i1).monic().change_ring(ZZ)</span><br><span class="line">                    f2 = Function(paras[<span class="number">1</span>],i2).monic().change_ring(ZZ)</span><br><span class="line">                    f3 = Function(paras[<span class="number">2</span>],i3).monic().change_ring(ZZ)</span><br><span class="line">                    f4 = Function(paras[<span class="number">3</span>],i4).monic().change_ring(ZZ)</span><br><span class="line">                    fs = [f1,f2,f3,f4]</span><br><span class="line">                    F = crt(fs,ns)                </span><br><span class="line">                    <span class="built_in">print</span>(<span class="string">&#x27;start&#x27;</span>)</span><br><span class="line">                    FF = F.change_ring(Zmod(N))</span><br><span class="line">                    roots = FF.small_roots(beta=<span class="number">0.5</span>,epsilon=<span class="number">0.02</span>)</span><br><span class="line">                    <span class="comment">#print(&#x27;done&#x27;)</span></span><br><span class="line">                    <span class="comment">#print(roots)</span></span><br><span class="line">                    <span class="keyword">if</span> <span class="string">b&#x27;flag&#x27;</span> <span class="keyword">in</span> long_to_bytes(roots[<span class="number">0</span>]):</span><br><span class="line">                        <span class="built_in">print</span>(long_to_bytes(<span class="built_in">int</span>(roots[<span class="number">0</span>])))</span><br><span class="line">                <span class="keyword">except</span>:</span><br><span class="line">                    <span class="keyword">continue</span></span><br></pre></td></tr></table></figure>
+
       
 
       
@@ -203,11 +216,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">crypto</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">RSA</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">misc</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Copper</a>
         		</li>
       		
 		</ul>
@@ -219,11 +232,15 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/赛事//" class="article-tag-list-link color3">赛事</a>
+        			<a href="/categories/比赛//" class="article-tag-list-link color3">比赛</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="/categories/赛事/羊城杯//" class="article-tag-list-link color4">羊城杯</a>
+        			<a href="/categories/比赛/RSA//" class="article-tag-list-link color4">RSA</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/比赛/RSA/Copper//" class="article-tag-list-link color2">Copper</a>
         		</li>
       		
 		</ul>
@@ -231,16 +248,75 @@
 
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/09/02/%E7%BE%8A%E5%9F%8E%E6%9D%AF/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2022/11/15/breakMe-and-magic-ecc/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2022/11/09/macos%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">macos经验总结</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -255,929 +331,50 @@
         </div>
         
         
-    </div>
-</aside>
-
-
-
-
-<!--增加不蒜子统计-->
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-  
-    <article id="post-网鼎杯青龙组2022" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/08/26/%E7%BD%91%E9%BC%8E%E6%9D%AF%E9%9D%92%E9%BE%99%E7%BB%842022/">网鼎杯2022</a>
-    </h1>
-  
-
-        
-        <a href="/2022/08/26/%E7%BD%91%E9%BC%8E%E6%9D%AF%E9%9D%92%E9%BE%99%E7%BB%842022/" class="archive-article-date">
-  	<time datetime="2022-08-26T13:54:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-26</time>
-</a>
-        
-		
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="青龙组"><a href="#青龙组" class="headerlink" title="青龙组"></a>青龙组</h3><h3 id="签到"><a href="#签到" class="headerlink" title="签到"></a>签到</h3><p>答对八道知识问答题，得到flag：</p>
-<img src="/2022/08/26/%E7%BD%91%E9%BC%8E%E6%9D%AF%E9%9D%92%E9%BE%99%E7%BB%842022/misc.png" class>
-        
-          <a class="article-more-a" href="/2022/08/26/%E7%BD%91%E9%BC%8E%E6%9D%AF%E9%9D%92%E9%BE%99%E7%BB%842022/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">crypto</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">misc</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">re</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/赛事//" class="article-tag-list-link color3">赛事</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/赛事/网鼎杯2022//" class="article-tag-list-link color3">网鼎杯2022</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/08/26/%E7%BD%91%E9%BC%8E%E6%9D%AF%E9%9D%92%E9%BE%99%E7%BB%842022/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#breakMe"><span class="toc-number">1.</span> <span class="toc-text">breakMe</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#magic-ecc"><span class="toc-number">2.</span> <span class="toc-text">magic_ecc</span></a></li></ol>
+                    </div>
+                </span>
             </div>
         </div>
         
-        
     </div>
 </aside>
+
+
+
+  
+  
+  
+  <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+<script>
+  var cloudTieConfig = {
+    url: "http://example.com/2022/11/15/breakMe-and-magic-ecc/", 
+    sourceId: "breakMe-and-magic-ecc",
+    productKey: "true",
+    target: "cloud-tie-wrapper"
+  };
+</script>
+<script src="//img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+  
+
+  
+
+  
 
 
 
 
 <!--增加不蒜子统计-->
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-  
-    <article id="post-DASCTF七月赋能赛2022" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/07/25/DASCTF%E4%B8%83%E6%9C%88%E8%B5%8B%E8%83%BD%E8%B5%9B2022/">DASCTF七月赋能赛2022</a>
-    </h1>
-  
-
-        
-        <a href="/2022/07/25/DASCTF%E4%B8%83%E6%9C%88%E8%B5%8B%E8%83%BD%E8%B5%9B2022/" class="archive-article-date">
-  	<time datetime="2022-07-25T00:47:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-07-25</time>
-</a>
-        
-		
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>​    AK了密码，写一写wp。</p>
-        
-          <a class="article-more-a" href="/2022/07/25/DASCTF%E4%B8%83%E6%9C%88%E8%B5%8B%E8%83%BD%E8%B5%9B2022/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">crypto</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">misc</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">buu</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/buu//" class="article-tag-list-link color4">buu</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/buu/DASCTF七月赋能赛2022//" class="article-tag-list-link color1">DASCTF七月赋能赛2022</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/07/25/DASCTF%E4%B8%83%E6%9C%88%E8%B5%8B%E8%83%BD%E8%B5%9B2022/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-<!--增加不蒜子统计-->
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-  
-    <article id="post-DiceCTF-HOPE2022" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/07/24/DiceCTF-HOPE2022/">DiceCTF@HOPE2022</a>
-    </h1>
-  
-
-        
-        <a href="/2022/07/24/DiceCTF-HOPE2022/" class="archive-article-date">
-  	<time datetime="2022-07-24T01:13:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-07-24</time>
-</a>
-        
-		
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>​    qwq…</p>
-        
-          <a class="article-more-a" href="/2022/07/24/DiceCTF-HOPE2022/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">crypto</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">web</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">misc</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/赛事//" class="article-tag-list-link color3">赛事</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/赛事/DiceCTF-HOPE2022//" class="article-tag-list-link color2">DiceCTF@HOPE2022</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/07/24/DiceCTF-HOPE2022/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-<!--增加不蒜子统计-->
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-  
-    <article id="post-NepCTF2022" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/07/20/NepCTF2022/">NepCTF2022</a>
-    </h1>
-  
-
-        
-        <a href="/2022/07/20/NepCTF2022/" class="archive-article-date">
-  	<time datetime="2022-07-20T08:14:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-07-20</time>
-</a>
-        
-		
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>​    nepnep战队的招新赛，题目出的很用心，师傅们也很可爱(nepnep打钱~)；由于是个人赛，各个方向都会点的我最后卷到了rank5，这大概就是全沾菜鸟的优势吧(笑)。<br>​    记录一下密码方向赛题和比赛中没有做出的misc题目。<br></p>
-        
-          <a class="article-more-a" href="/2022/07/20/NepCTF2022/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">crypto</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">misc</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/赛事//" class="article-tag-list-link color3">赛事</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/赛事/NepCTF2022//" class="article-tag-list-link color1">NepCTF2022</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/07/20/NepCTF2022/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-<!--增加不蒜子统计-->
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-  
-    <article id="post-ImaginaryCTF2022" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/07/19/ImaginaryCTF2022/">ImaginaryCTF2022</a>
-    </h1>
-  
-
-        
-        <a href="/2022/07/19/ImaginaryCTF2022/" class="archive-article-date">
-  	<time datetime="2022-07-19T03:06:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-07-19</time>
-</a>
-        
-		
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>​    刚好看到就做了下题，真的感叹国外赛事的高质量，每次都能学点东西。比赛地址：<a target="_blank" rel="noopener" href="https://2022.imaginaryctf.org/Challenges">https://2022.imaginaryctf.org/Challenges</a></p>
-        
-          <a class="article-more-a" href="/2022/07/19/ImaginaryCTF2022/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">crypto</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">web</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">misc</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/赛事//" class="article-tag-list-link color3">赛事</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/赛事/ImaginaryCTF2022//" class="article-tag-list-link color2">ImaginaryCTF2022</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/07/19/ImaginaryCTF2022/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-<!--增加不蒜子统计-->
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-  
-    <article id="post-蓝帽杯初赛2022" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/07/15/%E8%93%9D%E5%B8%BD%E6%9D%AF%E5%88%9D%E8%B5%9B2022/">蓝帽杯初赛2022</a>
-    </h1>
-  
-
-        
-        <a href="/2022/07/15/%E8%93%9D%E5%B8%BD%E6%9D%AF%E5%88%9D%E8%B5%9B2022/" class="archive-article-date">
-  	<time datetime="2022-07-15T00:10:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-07-15</time>
-</a>
-        
-		
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>​    misc和取证都是常规题目，仅仅复现一下密码题目。<br></p>
-        
-          <a class="article-more-a" href="/2022/07/15/%E8%93%9D%E5%B8%BD%E6%9D%AF%E5%88%9D%E8%B5%9B2022/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">crypto</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/赛事//" class="article-tag-list-link color3">赛事</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/赛事/蓝帽杯初赛2022//" class="article-tag-list-link color5">蓝帽杯初赛2022</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/07/15/%E8%93%9D%E5%B8%BD%E6%9D%AF%E5%88%9D%E8%B5%9B2022/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-<!--增加不蒜子统计-->
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-  
-    <article id="post-鹏城杯2022" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/07/04/%E9%B9%8F%E5%9F%8E%E6%9D%AF2022/">鹏城杯2022</a>
-    </h1>
-  
-
-        
-        <a href="/2022/07/04/%E9%B9%8F%E5%9F%8E%E6%9D%AF2022/" class="archive-article-date">
-  	<time datetime="2022-07-03T16:00:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-07-04</time>
-</a>
-        
-		
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>​    深圳的市赛，题目一般，小卷了一天，进了线下准备去旅游。这里记录我负责的方向赛题。<br></p>
-        
-          <a class="article-more-a" href="/2022/07/04/%E9%B9%8F%E5%9F%8E%E6%9D%AF2022/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">crypto</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">misc</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/赛事//" class="article-tag-list-link color3">赛事</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/赛事/鹏城杯2022//" class="article-tag-list-link color3">鹏城杯2022</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/07/04/%E9%B9%8F%E5%9F%8E%E6%9D%AF2022/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-<!--增加不蒜子统计-->
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-  
-    <article id="post-ACTF2022" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/06/27/ACTF2022/">ACTF2022</a>
-    </h1>
-  
-
-        
-        <a href="/2022/06/27/ACTF2022/" class="archive-article-date">
-  	<time datetime="2022-06-26T23:53:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-06-27</time>
-</a>
-        
-		
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>​    实训了一个月，一直没参加比赛，这次浅浅做了些题，又是被SU的各位哥哥带飞。</p>
-        
-          <a class="article-more-a" href="/2022/06/27/ACTF2022/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">crypto</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">赛事</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">misc</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/赛事//" class="article-tag-list-link color3">赛事</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/赛事/XCTF//" class="article-tag-list-link color5">XCTF</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/赛事/XCTF/ACTF2022//" class="article-tag-list-link color4">ACTF2022</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/06/27/ACTF2022/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-<!--增加不蒜子统计-->
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-  
-    <article id="post-长亭pwnhub内部赛" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/06/11/%E9%95%BF%E4%BA%ADpwnhub%E5%86%85%E9%83%A8%E8%B5%9B/">长亭pwnhub内部赛</a>
-    </h1>
-  
-
-        
-        <a href="/2022/06/11/%E9%95%BF%E4%BA%ADpwnhub%E5%86%85%E9%83%A8%E8%B5%9B/" class="archive-article-date">
-  	<time datetime="2022-06-11T15:33:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-06-11</time>
-</a>
-        
-		
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="2022-六月内部赛"><a href="#2022-六月内部赛" class="headerlink" title="2022 六月内部赛"></a>2022 六月内部赛</h3><h4 id="misc-伏羲八卦"><a href="#misc-伏羲八卦" class="headerlink" title="misc-伏羲八卦"></a>misc-伏羲八卦</h4>
-        
-          <a class="article-more-a" href="/2022/06/11/%E9%95%BF%E4%BA%ADpwnhub%E5%86%85%E9%83%A8%E8%B5%9B/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">crypto</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">misc</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">pwnhub</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/PWNHUB//" class="article-tag-list-link color2">PWNHUB</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/PWNHUB/内部赛//" class="article-tag-list-link color4">内部赛</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/06/11/%E9%95%BF%E4%BA%ADpwnhub%E5%86%85%E9%83%A8%E8%B5%9B/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-<!--增加不蒜子统计-->
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-  
-  
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/3/">Next &amp;raquo;</a>
-    </nav>
-  
-
-
           </div>
         </div>
       </div>
@@ -1235,8 +432,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: true,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
