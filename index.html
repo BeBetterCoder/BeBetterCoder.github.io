@@ -166,6 +166,118 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-pwnhub冬季赛2022" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/12/18/pwnhub%E5%86%AC%E5%AD%A3%E8%B5%9B2022/">pwnhub冬季赛2022</a>
+    </h1>
+  
+
+        
+        <a href="/2022/12/18/pwnhub%E5%86%AC%E5%AD%A3%E8%B5%9B2022/" class="archive-article-date">
+  	<time datetime="2022-12-18T01:20:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-12-18</time>
+</a>
+        
+		
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a>Misc</h2><h3 id="游戏来咯"><a href="#游戏来咯" class="headerlink" title="游戏来咯"></a>游戏来咯</h3><p>签到，注册游戏账号登录，在侧边栏看到flag1.</p>
+<h3 id="坐井观天"><a href="#坐井观天" class="headerlink" title="坐井观天"></a>坐井观天</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">io = remote(<span class="string">&#x27;47.97.127.1&#x27;</span>,<span class="number">21542</span>)</span><br><span class="line">io.interactive()</span><br><span class="line"></span><br><span class="line"><span class="comment"># $ eval(input())</span></span><br><span class="line"><span class="comment"># __import__(&#x27;os&#x27;).system(&#x27;cat flag&#x27;)</span></span><br><span class="line"><span class="comment"># flag&#123;5de8088410b719e42f82132163672a84&#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="证书里也有秘密"><a href="#证书里也有秘密" class="headerlink" title="证书里也有秘密"></a>证书里也有秘密</h3><p>长亭的漏扫工具xray的证书解析，自己写的话比较麻烦，找到个<a target="_blank" rel="noopener" href="https://github.com/Lz1y/xray-crack">项目</a>，go build然后解析即可。<br><img src="/2022/12/18/pwnhub%E5%86%AC%E5%AD%A3%E8%B5%9B2022/1.png" class></p>
+<h3 id="垃圾邮件分析"><a href="#垃圾邮件分析" class="headerlink" title="垃圾邮件分析"></a>垃圾邮件分析</h3><p>原本是个AI题，但是验证只需要10个数据，那么直接手动交互人工识别更简单。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> hashlib <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> string</span><br><span class="line"><span class="keyword">import</span> itertools</span><br><span class="line"></span><br><span class="line">table = string.ascii_uppercase + string.ascii_lowercase + string.digits</span><br><span class="line"></span><br><span class="line">io = remote(<span class="string">&#x27;47.97.127.1&#x27;</span>,<span class="number">28816</span>)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">proof</span>():</span></span><br><span class="line">    s1 = io.recvline()</span><br><span class="line">    <span class="built_in">print</span>(s1)</span><br><span class="line">    p1 = s1.find(<span class="string">b&#x27;(&#x27;</span>)</span><br><span class="line">    p2 = s1.find(<span class="string">b&#x27;)&#x27;</span>)</span><br><span class="line">    p3 = s1.find(<span class="string">b&#x27;= &#x27;</span>)</span><br><span class="line">    s = s1[p1+<span class="number">1</span>:p2-<span class="number">7</span>]</span><br><span class="line">    h = s1[p3+<span class="number">2</span>:-<span class="number">1</span>]</span><br><span class="line">    h = h.decode()</span><br><span class="line">    <span class="built_in">print</span>(h)</span><br><span class="line">    <span class="built_in">print</span>(s)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> itertools.product(table, repeat=<span class="number">4</span>):</span><br><span class="line">        d = <span class="string">&#x27;&#x27;</span>.join(i).encode()</span><br><span class="line">        dd = s + d</span><br><span class="line">        <span class="comment">#print(dd)</span></span><br><span class="line">        <span class="keyword">if</span> sha256(dd).hexdigest() == h:</span><br><span class="line">            <span class="built_in">print</span>(d)</span><br><span class="line">            io.sendline(d)</span><br><span class="line">            io.interactive()</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">proof()</span><br><span class="line"><span class="comment"># 10次判定太简单，手动判定即可</span></span><br><span class="line"><span class="comment"># Good job! Just take it:</span></span><br><span class="line"><span class="comment"># flag&#123;c2b776a605897dcfab302d7df7ca133a&#125;</span></span><br></pre></td></tr></table></figure>
+<h2 id="Crypto"><a href="#Crypto" class="headerlink" title="Crypto"></a>Crypto</h2><h3 id="ASR"><a href="#ASR" class="headerlink" title="ASR"></a>ASR</h3><p>m的加密没有padding，非预期可出：得到s之后，把s当作n用来解密，因为flag&lt;s。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">RSA1 = <span class="number">0x97be543979cb98c109103fa118c1c930ff13a6b2562166417021afd6e46cb0837a5cc5f4094fcea5fcc33efdfa495050e0fb8269922b3ee2d403210ed1ba339af2dc3d4e8952f0c784fcc655436cf255b98cdaf8080df47f6c28bc0bae68c713</span></span><br><span class="line">RSA2 = <span class="number">0xa887aa84f3a0bd8b79ed59a7bb98d8e58a85414f85cf2ddf53ff4bd9294bfdadf7d6d6adfe7fbed55fc71b5a6bfcfe79ced27e2f41e7546a8679daf5b63dda37</span></span><br><span class="line">c = <span class="number">0x2f62fb7e7e8e27823193119f8412050ade9084ade25261a5875da23a07d5d5145e72d460697984d8aa668a25822009a4fdc85df2b208941cd3219b312f21c3c7bc4ef7aa8c18b4f91a0e815fe1892fca0f72406e571fbd0fea2c4710c601165ccd7e8a5a828721a5e2c956b732223d683d1413ef393b5f80a431c52bf9099e22b8e27daafb9d3e055242b89b5419b8925744ccf348e1bea519225af8efe7dbcc202425251039cbfe6b892a7fcf7e9d72224ea9381e3fb32ab837139af4b4112a3c7a6571c88e7d6c5db4c3f91e25edd15eb5544ef2f29a9e1bb1062ec86f1902</span></span><br><span class="line">N = <span class="number">0x58a7ff25292651e1a8d82656d64fe3b458d6e688405e85aa6c02e0c33469ad3dbaef6c6eaf8faf22f2d15e80856ab7b90a40fd50c36f7b59932bc94e6fb4fabefa87b11bf4ef74df4ccf8d254f0c6812628df3c5b3786af35e3dde9c87b462d1a565af6f100750718ccb7235174947f00cec5836765150f1680d0c58a5f9ea2473a6033c218c75664dc53377dde9386f37e1a89d77e61a716129d290c5a41f81cd3490bab6fe51f232ab27cb1ac9c8eb88e908c12109a125b7439c25b6879283a17a3467823fbb089709eb836cfd03386cc4bf186eb45401472ab0bdec605fd7</span></span><br><span class="line">e = <span class="number">0x10001</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> gmpy2 <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">s = gcd(N,RSA1)</span><br><span class="line">RA = RSA1//s</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">bin</span>(RA))</span><br><span class="line">mul = N//s</span><br><span class="line"><span class="keyword">assert</span> mul * s == N</span><br><span class="line"></span><br><span class="line"><span class="comment"># 非预期</span></span><br><span class="line">phi = s - <span class="number">1</span></span><br><span class="line">d = invert(e,phi)</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="built_in">print</span>(long_to_bytes(<span class="built_in">pow</span>(c,d,s)))</span><br></pre></td></tr></table></figure>
+<p>预期解的话应该要用剪枝算法去分解$R\cdot A \cdot S$</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">RSA1 = <span class="number">0x97be543979cb98c109103fa118c1c930ff13a6b2562166417021afd6e46cb0837a5cc5f4094fcea5fcc33efdfa495050e0fb8269922b3ee2d403210ed1ba339af2dc3d4e8952f0c784fcc655436cf255b98cdaf8080df47f6c28bc0bae68c713</span></span><br><span class="line">RSA2 = <span class="number">0xa887aa84f3a0bd8b79ed59a7bb98d8e58a85414f85cf2ddf53ff4bd9294bfdadf7d6d6adfe7fbed55fc71b5a6bfcfe79ced27e2f41e7546a8679daf5b63dda37</span></span><br><span class="line">c = <span class="number">0x2f62fb7e7e8e27823193119f8412050ade9084ade25261a5875da23a07d5d5145e72d460697984d8aa668a25822009a4fdc85df2b208941cd3219b312f21c3c7bc4ef7aa8c18b4f91a0e815fe1892fca0f72406e571fbd0fea2c4710c601165ccd7e8a5a828721a5e2c956b732223d683d1413ef393b5f80a431c52bf9099e22b8e27daafb9d3e055242b89b5419b8925744ccf348e1bea519225af8efe7dbcc202425251039cbfe6b892a7fcf7e9d72224ea9381e3fb32ab837139af4b4112a3c7a6571c88e7d6c5db4c3f91e25edd15eb5544ef2f29a9e1bb1062ec86f1902</span></span><br><span class="line">N = <span class="number">0x58a7ff25292651e1a8d82656d64fe3b458d6e688405e85aa6c02e0c33469ad3dbaef6c6eaf8faf22f2d15e80856ab7b90a40fd50c36f7b59932bc94e6fb4fabefa87b11bf4ef74df4ccf8d254f0c6812628df3c5b3786af35e3dde9c87b462d1a565af6f100750718ccb7235174947f00cec5836765150f1680d0c58a5f9ea2473a6033c218c75664dc53377dde9386f37e1a89d77e61a716129d290c5a41f81cd3490bab6fe51f232ab27cb1ac9c8eb88e908c12109a125b7439c25b6879283a17a3467823fbb089709eb836cfd03386cc4bf186eb45401472ab0bdec605fd7</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">findp</span>(<span class="params">p,q</span>):</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(p)==<span class="number">256</span>:</span><br><span class="line">        pp=<span class="built_in">int</span>(p,<span class="number">2</span>)</span><br><span class="line">        <span class="keyword">if</span> RSA1%pp==<span class="number">0</span>:</span><br><span class="line">            <span class="built_in">print</span>(pp)</span><br><span class="line">            <span class="built_in">print</span>(RSA1//pp)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        l=<span class="built_in">len</span>(p)</span><br><span class="line">        pp=<span class="built_in">int</span>(p,<span class="number">2</span>)</span><br><span class="line">        qq=<span class="built_in">int</span>(q,<span class="number">2</span>)</span><br><span class="line">        <span class="keyword">if</span> (pp|qq)%(<span class="number">2</span>**l)==RSA2%(<span class="number">2</span>**l) <span class="keyword">and</span> pp*qq%(<span class="number">2</span>**l)==RSA1%(<span class="number">2</span>**l):</span><br><span class="line">            findp(<span class="string">&#x27;1&#x27;</span>+p,<span class="string">&#x27;1&#x27;</span>+q)</span><br><span class="line">            findp(<span class="string">&#x27;1&#x27;</span>+p,<span class="string">&#x27;0&#x27;</span>+q)</span><br><span class="line">            findp(<span class="string">&#x27;0&#x27;</span>+p,<span class="string">&#x27;1&#x27;</span>+q)</span><br><span class="line">            findp(<span class="string">&#x27;0&#x27;</span>+p,<span class="string">&#x27;0&#x27;</span>+q)</span><br><span class="line"></span><br><span class="line">findp(<span class="string">&#x27;1&#x27;</span>,<span class="string">&#x27;1&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="大杂烩"><a href="#大杂烩" class="headerlink" title="大杂烩"></a>大杂烩</h3><p>flag和p q有关，所以我们的最终目的是要分解n。首先e的低位就是a，求b可以把给的点带入椭圆曲线方程计算。求d需要造个<a target="_blank" rel="noopener" href="https://tover.xyz/p/wieners-lattices-equations/">维纳格</a>，这里需要做一点变形：$Sd_1=enc_1+k_1N \rightarrow d_1=(enc_1+k_1 N).t$</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">enc1 = <span class="number">98662590652068949920571979585725979127266112216583776160769090971169664292493813021843624362593669574513220457664819153878956311077379392531742253343961645534972639309537402874636739745717765969720117162780620981639015788423324884640935466801234207019510919768602974162878323777374364290185048275714332671356</span></span><br><span class="line">enc2 = <span class="number">58738699705013897273174837829098879580829898980458718341881900446701910685043213698485036350888862454440118347362218485065377354137391792039111639199258042591959084091242821874819864955504791788260187064338245516327147327866373690756260239728218244294166383516151782123688633986853602732137707507845681977204</span></span><br><span class="line">NN = <span class="number">149794788177729409820185150543033616327574456754306207341321223589733698623477041345453230785413920341465642754285280273761269552897080096162195035057667200692677841848045965505750839903359478511509753781737513122660495056746669041957643882516287304836822410136985711091802722010788615177574143908444311475347</span></span><br><span class="line"></span><br><span class="line">A = [[enc2,<span class="number">1</span>],[NN,<span class="number">0</span>]]</span><br><span class="line">L=Matrix(ZZ,A)</span><br><span class="line">tmp=L.LLL()</span><br><span class="line"><span class="built_in">print</span>(tmp)</span><br></pre></td></tr></table></figure>
+<p>求出d以后就可以用已知e d n的方法来分解n，最后做一个移位转字符即可。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> gmpy2</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"></span><br><span class="line">n = <span class="number">117749279680045360245987277946945707343578937283621512842997606104123872211782263906911929773756533011817679794905642225389185861207256322349591633257348367854563703050789889773031032949742664695416275919382068347995088593380486820784360816053546651916291080971628354468517506190756456913824397593128781030749</span></span><br><span class="line">a = <span class="number">1755716071599</span></span><br><span class="line">N = <span class="number">236038564943567983056828121309828109017</span></span><br><span class="line">enc1 = <span class="number">98662590652068949920571979585725979127266112216583776160769090971169664292493813021843624362593669574513220457664819153878956311077379392531742253343961645534972639309537402874636739745717765969720117162780620981639015788423324884640935466801234207019510919768602974162878323777374364290185048275714332671356</span></span><br><span class="line">enc2 = <span class="number">58738699705013897273174837829098879580829898980458718341881900446701910685043213698485036350888862454440118347362218485065377354137391792039111639199258042591959084091242821874819864955504791788260187064338245516327147327866373690756260239728218244294166383516151782123688633986853602732137707507845681977204</span></span><br><span class="line">NN = <span class="number">149794788177729409820185150543033616327574456754306207341321223589733698623477041345453230785413920341465642754285280273761269552897080096162195035057667200692677841848045965505750839903359478511509753781737513122660495056746669041957643882516287304836822410136985711091802722010788615177574143908444311475347</span></span><br><span class="line"></span><br><span class="line">mask = <span class="number">0x3ffffffffff</span></span><br><span class="line">e_low = a</span><br><span class="line"><span class="comment">#print(e&amp;mask)</span></span><br><span class="line"><span class="built_in">print</span>(e_low.bit_length())</span><br><span class="line">X = <span class="number">996</span></span><br><span class="line">Y = <span class="number">151729833458737979764886336489671975339</span></span><br><span class="line">b = (Y ** <span class="number">2</span> - X ** <span class="number">3</span> - a * X)%N</span><br><span class="line">e = a + b * <span class="number">2</span> ** <span class="number">42</span></span><br><span class="line"></span><br><span class="line">d1 = <span class="number">1118051836872760710925790177974923485721434630729839917104622531599012085778805696376125398218434332515040651866857417106717899073423532829576283671587324</span></span><br><span class="line"><span class="built_in">print</span>(d1.bit_length())</span><br><span class="line">d2 = <span class="number">1490307645430319095511255010328115542702206251159139554339698072781493976926650529688007738646519638596915659784020385914262312989530894410148472995625411</span></span><br><span class="line"><span class="built_in">print</span>(d2.bit_length())</span><br><span class="line"></span><br><span class="line">d = d1 * <span class="number">2</span>**<span class="number">512</span> + d2</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getpq</span>(<span class="params">n,e,d</span>):</span></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        k = e * d - <span class="number">1</span></span><br><span class="line">        g = random.randint(<span class="number">0</span>, n)</span><br><span class="line">        <span class="keyword">while</span> k%<span class="number">2</span>==<span class="number">0</span>:</span><br><span class="line">            k=k//<span class="number">2</span></span><br><span class="line">            temp=gmpy2.powmod(g,k,n)-<span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> gmpy2.gcd(temp,n)&gt;<span class="number">1</span> <span class="keyword">and</span> temp!=<span class="number">0</span>:</span><br><span class="line">                <span class="keyword">return</span> gmpy2.gcd(temp,n)</span><br><span class="line"></span><br><span class="line"><span class="comment"># https://blog.csdn.net/weixin_44110537/article/details/107869682</span></span><br><span class="line">p = getpq(n,e,d)</span><br><span class="line">q = n//p</span><br><span class="line"><span class="built_in">print</span>(p)</span><br><span class="line"><span class="built_in">print</span>(q)</span><br><span class="line"></span><br><span class="line">ph = p &gt;&gt; (<span class="number">512</span>-<span class="number">150</span>)</span><br><span class="line">qh = q &gt;&gt; (<span class="number">512</span>-<span class="number">151</span>)</span><br><span class="line"><span class="built_in">print</span>(long_to_bytes(qh))</span><br><span class="line"><span class="built_in">print</span>(long_to_bytes(ph))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">crypto</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">misc</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">pwnhub</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/PWNHUB//" class="article-tag-list-link color2">PWNHUB</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/PWNHUB/冬季赛//" class="article-tag-list-link color4">冬季赛</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/12/18/pwnhub%E5%86%AC%E5%AD%A3%E8%B5%9B2022/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+<!--增加不蒜子统计-->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
     <article id="post-VULNHUB-DC1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1037,100 +1149,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2022/10/09/%E8%B5%A3%E8%82%B2%E6%9D%AF2022/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-<!--增加不蒜子统计-->
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-  
-    <article id="post-构造格题型" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/09/29/%E6%9E%84%E9%80%A0%E6%A0%BC%E9%A2%98%E5%9E%8B/">构造格题型</a>
-    </h1>
-  
-
-        
-        <a href="/2022/09/29/%E6%9E%84%E9%80%A0%E6%A0%BC%E9%A2%98%E5%9E%8B/" class="archive-article-date">
-  	<time datetime="2022-09-29T00:47:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-09-29</time>
-</a>
-        
-		
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>此贴记录需要自己构造格的题型。</p>
-        
-          <a class="article-more-a" href="/2022/09/29/%E6%9E%84%E9%80%A0%E6%A0%BC%E9%A2%98%E5%9E%8B/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Lattice</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Lattice//" class="article-tag-list-link color3">Lattice</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Lattice/Practice//" class="article-tag-list-link color4">Practice</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/09/29/%E6%9E%84%E9%80%A0%E6%A0%BC%E9%A2%98%E5%9E%8B/">展开全文 >></a>
         </p>
       
 
