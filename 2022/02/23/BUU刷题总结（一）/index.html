@@ -15,14 +15,14 @@
 <meta property="og:site_name" content="ZimaBlue&#39;s Blog">
 <meta property="og:description" content="[WUSTCTF2020]B@se密文：MyLkTaP3FaA7KOWjTmKkVjWjVzKjdeNvTnAjoH9iZOIvTeHbvD&#x3D;&#x3D;JASGBWcQPRXEFLbCDIlmnHUVKTYZdMovwipatNOefghq56rs????kxyz012789+&#x2F; oh holy shit, something is missing…">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/2022/02/23/BUU%E5%88%B7%E9%A2%98%E6%80%BB%E7%BB%93%EF%BC%88%E4%B8%80%EF%BC%89/1.png">
+<meta property="og:image" content="http://example.com/.com//02/23/BUU%E5%88%B7%E9%A2%98%E6%80%BB%E7%BB%93%EF%BC%88%E4%B8%80%EF%BC%89/1.png">
 <meta property="article:published_time" content="2022-02-23T01:53:07.000Z">
-<meta property="article:modified_time" content="2022-04-01T03:01:01.226Z">
+<meta property="article:modified_time" content="2022-04-01T03:01:02.000Z">
 <meta property="article:author" content="ZimaBlue">
-<meta property="article:tag" content="crypto">
 <meta property="article:tag" content="buu">
+<meta property="article:tag" content="crypto">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2022/02/23/BUU%E5%88%B7%E9%A2%98%E6%80%BB%E7%BB%93%EF%BC%88%E4%B8%80%EF%BC%89/1.png">
+<meta name="twitter:image" content="http://example.com/.com//02/23/BUU%E5%88%B7%E9%A2%98%E6%80%BB%E7%BB%93%EF%BC%88%E4%B8%80%EF%BC%89/1.png">
   
     <link rel="alternative" href="/atom.xml" title="ZimaBlue&#39;s Blog" type="application/atom+xml">
   
@@ -206,7 +206,7 @@
 <p>题目给了c、d、e但没有n，因此需要想办法求出n，具体来说，可以通过ed和phi（n）的关系推导出p、q，再计算n。通过加密算法大体可以知道,p,q是1024位的,因此两者相乘不低于2048位,通过运算可知ed-1为2064位,因此k介于2^15到2^17之间，因此可以在小范围内对k进行遍历。最后，对phi（n）开方的结果比较接近于p、q，可以在这个值附近取质数。</p>
 <p>exp：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">e=<span class="number">0x10001</span></span><br><span class="line">d = <span class="number">19275778946037899718035455438175509175723911466127462154506916564101519923603308900331427601983476886255849200332374081996442976307058597390881168155862238533018621944733299208108185814179466844504468163200369996564265921022888670062554504758512453217434777820468049494313818291727050400752551716550403647148197148884408264686846693842118387217753516963449753809860354047619256787869400297858568139700396567519469825398575103885487624463424429913017729585620877168171603444111464692841379661112075123399343270610272287865200880398193573260848268633461983435015031227070217852728240847398084414687146397303110709214913</span></span><br><span class="line">c = <span class="number">5382723168073828110696168558294206681757991149022777821127563301413483223874527233300721180839298617076705685041174247415826157096583055069337393987892262764211225227035880754417457056723909135525244957935906902665679777101130111392780237502928656225705262431431953003520093932924375902111280077255205118217436744112064069429678632923259898627997145803892753989255615273140300021040654505901442787810653626524305706316663169341797205752938755590056568986738227803487467274114398257187962140796551136220532809687606867385639367743705527511680719955380746377631156468689844150878381460560990755652899449340045313521804</span></span><br><span class="line"><span class="keyword">import</span> sympy.crypto</span><br><span class="line"><span class="keyword">import</span> gmpy2</span><br><span class="line">e_d_1=e*d-<span class="number">1</span></span><br><span class="line">p=<span class="number">0</span></span><br><span class="line">q=<span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> k <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">pow</span>(<span class="number">2</span>,<span class="number">15</span>),<span class="built_in">pow</span>(<span class="number">2</span>,<span class="number">17</span>)):</span><br><span class="line">    <span class="keyword">if</span> e_d_1%k==<span class="number">0</span>:</span><br><span class="line">        p=sympy.prevprime(gmpy2.iroot(e_d_1//k,<span class="number">2</span>)[<span class="number">0</span>])</span><br><span class="line">        q=sympy.nextprime(p)</span><br><span class="line">        <span class="keyword">if</span> (p-<span class="number">1</span>)*(q-<span class="number">1</span>)*k==e_d_1:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">n=p*q</span><br><span class="line"><span class="built_in">print</span>(n)</span><br><span class="line">m=gmpy2.powmod(c,d,n)</span><br><span class="line"><span class="built_in">print</span>(m)</span><br><span class="line"><span class="keyword">import</span> binascii</span><br><span class="line"><span class="built_in">print</span>(binascii.unhexlify(<span class="built_in">hex</span>(m)[<span class="number">2</span>:]))</span><br><span class="line"><span class="comment">#NCTF&#123;70u2_nn47h_14_v3ry_gOO0000000d&#125;</span></span><br></pre></td></tr></table></figure>
-<h3 id="WUSTCTF2020-大数计算"><a href="#WUSTCTF2020-大数计算" class="headerlink" title="[WUSTCTF2020]大数计算"></a>[WUSTCTF2020]大数计算</h3><img src="/2022/02/23/BUU%E5%88%B7%E9%A2%98%E6%80%BB%E7%BB%93%EF%BC%88%E4%B8%80%EF%BC%89/1.png" class>
+<h3 id="WUSTCTF2020-大数计算"><a href="#WUSTCTF2020-大数计算" class="headerlink" title="[WUSTCTF2020]大数计算"></a>[WUSTCTF2020]大数计算</h3><img src="/.com//02/23/BUU%E5%88%B7%E9%A2%98%E6%80%BB%E7%BB%93%EF%BC%88%E4%B8%80%EF%BC%89/1.png" class>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sympy</span><br><span class="line"></span><br><span class="line">part1 = <span class="built_in">hex</span>(<span class="built_in">int</span>(<span class="built_in">str</span>(sympy.factorial(<span class="number">2020</span>))[:<span class="number">8</span>],<span class="number">10</span>))[<span class="number">2</span>:]</span><br><span class="line"><span class="built_in">print</span>(part1)</span><br><span class="line">part2 = <span class="built_in">hex</span>(<span class="built_in">int</span>(<span class="built_in">str</span>(<span class="built_in">pow</span>(<span class="number">520</span>,<span class="number">1314</span>)+<span class="built_in">pow</span>(<span class="number">2333</span>,<span class="number">666</span>))[:<span class="number">8</span>]))[<span class="number">2</span>:]</span><br><span class="line"><span class="built_in">print</span>(part2)</span><br><span class="line"><span class="comment">#宇宙终极问题的为 三个整数的立方根等于42，求三个数</span></span><br><span class="line"><span class="comment">#百度得 -80538738812075974，80435758145817515，12602123297335631</span></span><br><span class="line">part3 = <span class="built_in">hex</span>(<span class="built_in">int</span>(<span class="built_in">str</span>(<span class="number">80538738812075974</span>+<span class="number">80435758145817515</span>+<span class="number">12602123297335631</span>)[:<span class="number">8</span>]))[<span class="number">2</span>:]</span><br><span class="line"><span class="built_in">print</span>(part3)</span><br><span class="line">part4 = <span class="built_in">hex</span>((<span class="built_in">pow</span>(<span class="number">22</span>,<span class="number">2</span>)+<span class="number">36</span>)*<span class="number">1314</span>)[<span class="number">2</span>:]</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;wctf2020&#x27;</span>+<span class="string">&#x27;&#123;&#x27;</span>+part1+<span class="string">&#x27;-&#x27;</span>+part2+<span class="string">&#x27;-&#x27;</span>+part3+<span class="string">&quot;-&quot;</span>+part4+<span class="string">&#x27;&#125;&#x27;</span>)</span><br><span class="line"><span class="comment">#wctf2020&#123;24d231f-403cfd3-108db5e-a6d10&#125;</span></span><br></pre></td></tr></table></figure>
 <h3 id="网鼎杯-2020-青龙组-you-raise-me-up"><a href="#网鼎杯-2020-青龙组-you-raise-me-up" class="headerlink" title="[网鼎杯 2020 青龙组]you_raise_me_up"></a>[网鼎杯 2020 青龙组]you_raise_me_up</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"></span><br><span class="line">n = <span class="number">2</span> ** <span class="number">512</span></span><br><span class="line">m = random.randint(<span class="number">2</span>, n-<span class="number">1</span>) | <span class="number">1</span></span><br><span class="line">c = <span class="built_in">pow</span>(m, bytes_to_long(flag), n)</span><br><span class="line"><span class="built_in">print</span> <span class="string">&#x27;m = &#x27;</span> + <span class="built_in">str</span>(m)</span><br><span class="line"><span class="built_in">print</span> <span class="string">&#x27;c = &#x27;</span> + <span class="built_in">str</span>(c)</span><br><span class="line"></span><br><span class="line"><span class="comment"># m = 391190709124527428959489662565274039318305952172936859403855079581402770986890308469084735451207885386318986881041563704825943945069343345307381099559075</span></span><br><span class="line"><span class="comment"># c = 6665851394203214245856789450723658632520816791621796775909766895233000234023642878786025644953797995373211308485605397024123180085924117610802485972584499</span></span><br></pre></td></tr></table></figure>
 <p>离散对数求解问题：</p>
@@ -265,11 +265,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">crypto</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">buu</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">buu</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">crypto</a>
         		</li>
       		
 		</ul>
@@ -578,19 +578,19 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">crypto</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">ctfshow</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">buu</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">crypto</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">misc</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">ctfshow</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -634,15 +634,23 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">数论</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">re</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">NSS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">新生赛</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -666,7 +674,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">NSS</a>
+                <a href="javascript:void(0)" class="js-tag color1">python数据结构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">队列</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -682,14 +694,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">python数据结构</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">队列</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">栈</a>
               </li>
              
@@ -698,15 +702,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">新生赛</a>
+                <a href="javascript:void(0)" class="js-tag color4">Vigenere</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">内网渗透</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Vigenere</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -742,10 +742,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">威尔逊定理</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">小指数加密</a>
               </li>
              
@@ -763,6 +759,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">LCG</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">威尔逊定理</a>
               </li>
              
               <li class="article-tag-list-item">

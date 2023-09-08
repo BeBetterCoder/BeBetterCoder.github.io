@@ -16,7 +16,7 @@
 <meta property="og:description" content="​    学如逆水行舟，不进则退。开一个刷题专栏，持之以恒地练习。PS：难度大约是中等。">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-02-07T11:56:48.000Z">
-<meta property="article:modified_time" content="2023-03-18T05:01:27.692Z">
+<meta property="article:modified_time" content="2023-03-18T05:01:28.000Z">
 <meta property="article:author" content="ZimaBlue">
 <meta property="article:tag" content="crypto">
 <meta property="article:tag" content="刷题">
@@ -214,7 +214,7 @@
  s_1      & s_2      & \cdots & s_{n-1} & \small1 &0      \\
  s_2     &s_3 &\cdots  &s_n &0   &\small2^{340}
 \end{matrix}
-\right]</script><p>那么$(e_1,e_2\cdots e_{n-1},a,2^{340})$是该格上的短向量，a (flag)就可以规约得到。刚开始我没意识到这是个HNP，造的格少了两列，结果规约失败，与tsuppari师傅交流后发现加上两列构成方阵就很容易出了，感谢师傅。</p>
+\right]</script><p>那么$(e<em>1,e_2\cdots e</em>{n-1},a,2^{340})$是该格上的短向量，a (flag)就可以规约得到。刚开始我没意识到这是个HNP，造的格少了两列，结果规约失败，与tsuppari师傅交流后发现加上两列构成方阵就很容易出了，感谢师傅。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">n = next_prime(<span class="number">2</span>^<span class="number">360</span>)</span><br><span class="line">s = </span><br><span class="line">num = <span class="built_in">len</span>(s)</span><br><span class="line">mat = [[<span class="number">0</span> <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(num + <span class="number">1</span>)] <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(num + <span class="number">1</span>)]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(s) - <span class="number">1</span>):</span><br><span class="line">    mat[i][i] = n</span><br><span class="line">    mat[-<span class="number">2</span>][i] = s[i]</span><br><span class="line">    mat[-<span class="number">1</span>][i] = s[i + <span class="number">1</span>]</span><br><span class="line">mat[-<span class="number">2</span>][-<span class="number">2</span>] = <span class="number">1</span></span><br><span class="line">mat[-<span class="number">1</span>][-<span class="number">1</span>] = <span class="number">2</span> ^ <span class="number">340</span></span><br><span class="line">mat = matrix(ZZ,mat)</span><br><span class="line">solv = mat.LLL()[<span class="number">0</span>]</span><br><span class="line"><span class="built_in">print</span>(solv)</span><br><span class="line">flag = solv[-<span class="number">2</span>]</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="built_in">print</span>(long_to_bytes(<span class="built_in">int</span>(flag)))</span><br></pre></td></tr></table></figure>
 <h2 id="长城杯2022"><a href="#长城杯2022" class="headerlink" title="长城杯2022"></a>长城杯2022</h2><h3 id="xor"><a href="#xor" class="headerlink" title="xor"></a>xor</h3><p>利用异或的性质恢复即可。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">start = <span class="string">&#x27;flag&#123;&#x27;</span></span><br><span class="line">res = [[<span class="number">150</span>, <span class="number">194</span>, <span class="number">49</span>, <span class="number">195</span>, <span class="number">23</span>, <span class="number">79</span>, <span class="number">66</span>], [<span class="number">194</span>, <span class="number">136</span>, <span class="number">63</span>, <span class="number">147</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">81</span>], [<span class="number">132</span>, <span class="number">221</span>, <span class="number">57</span>, <span class="number">144</span>, <span class="number">83</span>, <span class="number">83</span>, <span class="number">93</span>], [<span class="number">208</span>, <span class="number">223</span>, <span class="number">37</span>, <span class="number">193</span>, <span class="number">28</span>, <span class="number">0</span>, <span class="number">70</span>], [<span class="number">154</span>, <span class="number">203</span>, <span class="number">108</span>, <span class="number">156</span>, <span class="number">28</span>, <span class="number">78</span>, <span class="number">68</span>], [<span class="number">159</span>, <span class="number">221</span>, <span class="number">62</span>, <span class="number">146</span>, <span class="number">86</span>, <span class="number">82</span>, <span class="number">88</span>], [<span class="number">197</span>, <span class="number">141</span>, <span class="number">117</span>, <span class="number">192</span>, <span class="number">31</span>, <span class="number">90</span>, <span class="number">85</span>]]</span><br><span class="line">start_c = res[<span class="number">0</span>]</span><br><span class="line">pad0 = start_c[<span class="number">0</span>] ^ <span class="built_in">ord</span>(start[<span class="number">0</span>]) ^ <span class="built_in">ord</span>(start[<span class="number">1</span>]) ^ <span class="built_in">ord</span>(start[<span class="number">2</span>])</span><br><span class="line">pad1 = start_c[<span class="number">5</span>] ^ <span class="built_in">ord</span>(start[<span class="number">2</span>]) ^ <span class="built_in">ord</span>(start[<span class="number">4</span>]) ^ pad0</span><br><span class="line">pad4 = start_c[<span class="number">6</span>] ^ <span class="built_in">ord</span>(start[<span class="number">0</span>]) ^ <span class="built_in">ord</span>(start[<span class="number">2</span>]) ^ <span class="built_in">ord</span>(start[<span class="number">4</span>])</span><br><span class="line">pad2 = start_c[<span class="number">1</span>] ^ <span class="built_in">ord</span>(start[<span class="number">3</span>]) ^ <span class="built_in">ord</span>(start[<span class="number">4</span>]) ^ pad1</span><br><span class="line">pad3 = start_c[<span class="number">3</span>] ^ <span class="built_in">ord</span>(start[<span class="number">3</span>]) ^ pad1 ^ pad4</span><br><span class="line">i5 = start_c[<span class="number">4</span>] ^  <span class="built_in">ord</span>(start[<span class="number">4</span>]) ^ pad0 ^ pad1</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">chr</span>(i5))</span><br><span class="line">pad5 = start_c[<span class="number">2</span>] ^ i5 ^ pad1 ^ pad3</span><br><span class="line">pad = [pad0,pad1,pad2,pad3,pad4,pad5]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">check</span>(<span class="params">out</span>):</span></span><br><span class="line">    i = <span class="string">b&#x27;flag&#123;9&#x27;</span></span><br><span class="line">    tmp = []</span><br><span class="line">    tmp.append(i[<span class="number">0</span>] ^ i[<span class="number">1</span>] ^ i[<span class="number">2</span>] ^ pad[<span class="number">0</span>])</span><br><span class="line">    tmp.append(i[<span class="number">3</span>] ^ i[<span class="number">4</span>] ^ pad[<span class="number">1</span>] ^ pad[<span class="number">2</span>])</span><br><span class="line">    tmp.append(pad[<span class="number">5</span>] ^ i[<span class="number">5</span>] ^ pad[<span class="number">1</span>] ^ pad[<span class="number">3</span>])</span><br><span class="line">    tmp.append(i[<span class="number">3</span>] ^ pad[<span class="number">3</span>] ^ pad[<span class="number">4</span>] ^ pad[<span class="number">1</span>])</span><br><span class="line">    tmp.append(i[<span class="number">5</span>] ^ pad[<span class="number">0</span>] ^ i[<span class="number">4</span>] ^ pad[<span class="number">1</span>])</span><br><span class="line">    tmp.append(i[<span class="number">2</span>] ^ i[<span class="number">4</span>] ^ pad[<span class="number">0</span>] ^ pad[<span class="number">1</span>])</span><br><span class="line">    tmp.append(i[<span class="number">2</span>] ^ i[<span class="number">0</span>] ^ i[<span class="number">4</span>] ^ pad[<span class="number">4</span>])</span><br><span class="line">    <span class="keyword">if</span> out == tmp:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;验证通过&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">decrypt</span>(<span class="params">c</span>):</span></span><br><span class="line">    i3 = c[<span class="number">3</span>] ^ pad1 ^ pad3 ^ pad4</span><br><span class="line">    i4 = c[<span class="number">1</span>] ^ i3 ^ pad1 ^ pad2</span><br><span class="line">    i2 = c[<span class="number">5</span>] ^ i4  ^ pad0 ^ pad1</span><br><span class="line">    i0 = c[<span class="number">6</span>] ^ i2 ^ i4 ^ pad4</span><br><span class="line">    i1 = c[<span class="number">0</span>] ^ i0 ^ i2 ^ pad0</span><br><span class="line">    i5 = c[<span class="number">2</span>] ^ pad1 ^ pad3 ^ pad5</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">chr</span>(i0) + <span class="built_in">chr</span>(i1) + <span class="built_in">chr</span>(i2) + <span class="built_in">chr</span>(i3) + <span class="built_in">chr</span>(i4) + <span class="built_in">chr</span>(i5)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line"></span><br><span class="line">    check(res[<span class="number">0</span>])</span><br><span class="line">    flag = <span class="string">&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> res:</span><br><span class="line">        flag = flag + decrypt(i)</span><br><span class="line">    <span class="built_in">print</span>(flag)</span><br></pre></td></tr></table></figure>
@@ -566,19 +566,19 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">crypto</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">ctfshow</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">buu</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">crypto</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">misc</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">ctfshow</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -622,15 +622,23 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">数论</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">re</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">NSS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">新生赛</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -654,7 +662,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">NSS</a>
+                <a href="javascript:void(0)" class="js-tag color1">python数据结构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">队列</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -670,14 +682,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">python数据结构</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">队列</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">栈</a>
               </li>
              
@@ -686,15 +690,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">新生赛</a>
+                <a href="javascript:void(0)" class="js-tag color4">Vigenere</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">内网渗透</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Vigenere</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -730,10 +730,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">威尔逊定理</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">小指数加密</a>
               </li>
              
@@ -751,6 +747,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">LCG</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">威尔逊定理</a>
               </li>
              
               <li class="article-tag-list-item">

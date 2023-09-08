@@ -15,15 +15,15 @@
 <meta property="og:site_name" content="ZimaBlue&#39;s Blog">
 <meta property="og:description" content="Misc游戏来咯签到，注册游戏账号登录，在侧边栏看到flag1.">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/2022/12/18/pwnhub%E5%86%AC%E5%AD%A3%E8%B5%9B2022/1.png">
+<meta property="og:image" content="http://example.com/.com//12/18/pwnhub%E5%86%AC%E5%AD%A3%E8%B5%9B2022/1.png">
 <meta property="article:published_time" content="2022-12-18T01:20:47.000Z">
-<meta property="article:modified_time" content="2022-12-20T11:12:38.551Z">
+<meta property="article:modified_time" content="2022-12-20T11:12:40.000Z">
 <meta property="article:author" content="ZimaBlue">
 <meta property="article:tag" content="crypto">
 <meta property="article:tag" content="misc">
 <meta property="article:tag" content="pwnhub">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2022/12/18/pwnhub%E5%86%AC%E5%AD%A3%E8%B5%9B2022/1.png">
+<meta name="twitter:image" content="http://example.com/.com//12/18/pwnhub%E5%86%AC%E5%AD%A3%E8%B5%9B2022/1.png">
   
     <link rel="alternative" href="/atom.xml" title="ZimaBlue&#39;s Blog" type="application/atom+xml">
   
@@ -197,7 +197,7 @@
         <h2 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a>Misc</h2><h3 id="游戏来咯"><a href="#游戏来咯" class="headerlink" title="游戏来咯"></a>游戏来咯</h3><p>签到，注册游戏账号登录，在侧边栏看到flag1.</p>
 <span id="more"></span>
 <h3 id="坐井观天"><a href="#坐井观天" class="headerlink" title="坐井观天"></a>坐井观天</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">io = remote(<span class="string">&#x27;47.97.127.1&#x27;</span>,<span class="number">21542</span>)</span><br><span class="line">io.interactive()</span><br><span class="line"></span><br><span class="line"><span class="comment"># $ eval(input())</span></span><br><span class="line"><span class="comment"># __import__(&#x27;os&#x27;).system(&#x27;cat flag&#x27;)</span></span><br><span class="line"><span class="comment"># flag&#123;5de8088410b719e42f82132163672a84&#125;</span></span><br></pre></td></tr></table></figure>
-<h3 id="证书里也有秘密"><a href="#证书里也有秘密" class="headerlink" title="证书里也有秘密"></a>证书里也有秘密</h3><p>长亭的漏扫工具xray的证书解析，自己写的话比较麻烦，找到个<a target="_blank" rel="noopener" href="https://github.com/Lz1y/xray-crack">项目</a>，go build然后解析即可。<br><img src="/2022/12/18/pwnhub%E5%86%AC%E5%AD%A3%E8%B5%9B2022/1.png" class></p>
+<h3 id="证书里也有秘密"><a href="#证书里也有秘密" class="headerlink" title="证书里也有秘密"></a>证书里也有秘密</h3><p>长亭的漏扫工具xray的证书解析，自己写的话比较麻烦，找到个<a target="_blank" rel="noopener" href="https://github.com/Lz1y/xray-crack">项目</a>，go build然后解析即可。<br><img src="/.com//12/18/pwnhub%E5%86%AC%E5%AD%A3%E8%B5%9B2022/1.png" class></p>
 <h3 id="垃圾邮件分析"><a href="#垃圾邮件分析" class="headerlink" title="垃圾邮件分析"></a>垃圾邮件分析</h3><p>原本是个AI题，但是验证只需要10个数据，那么直接手动交互人工识别更简单。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> hashlib <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> string</span><br><span class="line"><span class="keyword">import</span> itertools</span><br><span class="line"></span><br><span class="line">table = string.ascii_uppercase + string.ascii_lowercase + string.digits</span><br><span class="line"></span><br><span class="line">io = remote(<span class="string">&#x27;47.97.127.1&#x27;</span>,<span class="number">28816</span>)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">proof</span>():</span></span><br><span class="line">    s1 = io.recvline()</span><br><span class="line">    <span class="built_in">print</span>(s1)</span><br><span class="line">    p1 = s1.find(<span class="string">b&#x27;(&#x27;</span>)</span><br><span class="line">    p2 = s1.find(<span class="string">b&#x27;)&#x27;</span>)</span><br><span class="line">    p3 = s1.find(<span class="string">b&#x27;= &#x27;</span>)</span><br><span class="line">    s = s1[p1+<span class="number">1</span>:p2-<span class="number">7</span>]</span><br><span class="line">    h = s1[p3+<span class="number">2</span>:-<span class="number">1</span>]</span><br><span class="line">    h = h.decode()</span><br><span class="line">    <span class="built_in">print</span>(h)</span><br><span class="line">    <span class="built_in">print</span>(s)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> itertools.product(table, repeat=<span class="number">4</span>):</span><br><span class="line">        d = <span class="string">&#x27;&#x27;</span>.join(i).encode()</span><br><span class="line">        dd = s + d</span><br><span class="line">        <span class="comment">#print(dd)</span></span><br><span class="line">        <span class="keyword">if</span> sha256(dd).hexdigest() == h:</span><br><span class="line">            <span class="built_in">print</span>(d)</span><br><span class="line">            io.sendline(d)</span><br><span class="line">            io.interactive()</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">proof()</span><br><span class="line"><span class="comment"># 10次判定太简单，手动判定即可</span></span><br><span class="line"><span class="comment"># Good job! Just take it:</span></span><br><span class="line"><span class="comment"># flag&#123;c2b776a605897dcfab302d7df7ca133a&#125;</span></span><br></pre></td></tr></table></figure>
 <h2 id="Crypto"><a href="#Crypto" class="headerlink" title="Crypto"></a>Crypto</h2><h3 id="ASR"><a href="#ASR" class="headerlink" title="ASR"></a>ASR</h3><p>m的加密没有padding，非预期可出：得到s之后，把s当作n用来解密，因为flag&lt;s。</p>
@@ -540,19 +540,19 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">crypto</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">ctfshow</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">buu</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">crypto</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">misc</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">ctfshow</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -596,15 +596,23 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">数论</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">re</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">NSS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">新生赛</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -628,7 +636,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">NSS</a>
+                <a href="javascript:void(0)" class="js-tag color1">python数据结构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">队列</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -644,14 +656,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">python数据结构</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">队列</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">栈</a>
               </li>
              
@@ -660,15 +664,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">新生赛</a>
+                <a href="javascript:void(0)" class="js-tag color4">Vigenere</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">内网渗透</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Vigenere</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -704,10 +704,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">威尔逊定理</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">小指数加密</a>
               </li>
              
@@ -725,6 +721,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">LCG</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">威尔逊定理</a>
               </li>
              
               <li class="article-tag-list-item">

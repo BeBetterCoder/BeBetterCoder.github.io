@@ -15,15 +15,15 @@
 <meta property="og:site_name" content="ZimaBlue&#39;s Blog">
 <meta property="og:description" content="​    OPPO赞助的校赛，遗憾没拿到第一名，第一名貌似是研究生学长，tql膜了。">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/2022/05/25/OPPO%E6%9D%AFSCUCTF2022/1.png">
-<meta property="og:image" content="http://example.com/2022/05/25/OPPO%E6%9D%AFSCUCTF2022/2.png">
+<meta property="og:image" content="http://example.com/.com//05/25/OPPO%E6%9D%AFSCUCTF2022/1.png">
+<meta property="og:image" content="http://example.com/.com//05/25/OPPO%E6%9D%AFSCUCTF2022/2.png">
 <meta property="article:published_time" content="2022-05-25T06:09:15.000Z">
-<meta property="article:modified_time" content="2022-05-25T06:13:12.307Z">
+<meta property="article:modified_time" content="2022-05-25T06:13:14.000Z">
 <meta property="article:author" content="ZimaBlue">
 <meta property="article:tag" content="crypto">
 <meta property="article:tag" content="misc">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2022/05/25/OPPO%E6%9D%AFSCUCTF2022/1.png">
+<meta name="twitter:image" content="http://example.com/.com//05/25/OPPO%E6%9D%AFSCUCTF2022/1.png">
   
     <link rel="alternative" href="/atom.xml" title="ZimaBlue&#39;s Blog" type="application/atom+xml">
   
@@ -197,7 +197,7 @@
         <p>​    OPPO赞助的校赛，遗憾没拿到第一名，第一名貌似是研究生学长，tql膜了。</p>
 <span id="more"></span>
 <h3 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a>Misc</h3><h4 id="窗外的山"><a href="#窗外的山" class="headerlink" title="窗外的山"></a>窗外的山</h4><p>image.jpg看起来像是手机拍的照片，所以尝试用EXIF查看相关信息：</p>
-<img src="/2022/05/25/OPPO%E6%9D%AFSCUCTF2022/1.png" class>
+<img src="/.com//05/25/OPPO%E6%9D%AFSCUCTF2022/1.png" class>
 <p>拿经纬度到google地图上去定位，发现就在彭州周围。根据‘绵延’的特征筛选了一下，猜测是九峰山脉。遂百度：<a target="_blank" rel="noopener" href="https://chengdu.cncn.com/jingdian/jiufengshan/profile">https://chengdu.cncn.com/jingdian/jiufengshan/profile</a></p>
 <p>再根据实景地图排除了几个，剩下天牙峰，长年峰，龙峰。一个个尝试直到正确提交flag。</p>
 <h4 id="Never-Gonna-Give-Misc-Up"><a href="#Never-Gonna-Give-Misc-Up" class="headerlink" title="Never Gonna Give Misc Up"></a>Never Gonna Give Misc Up</h4><p>又是这首歌QWQ。题目用歌词把类似于伪代码的描述混淆起来，刚开始以为是非常复杂的加密操作，还一句句分析。后来仔细想想貌似也就给了个key，给了个异或，解base64之后明文长度是44。key长度是23，于是直接把key*2和base64明文进行一波异或，就出了。</p>
@@ -205,7 +205,7 @@
 <h4 id="Unbroken-RSA"><a href="#Unbroken-RSA" class="headerlink" title="Unbroken RSA"></a>Unbroken RSA</h4><p>这题确实是misc，和crypto没啥关系。这里的RSA没啥毛病，无法攻击。看到hint说task.py就是服务端的运行的文件，那么关键点就在于task.py是python2，而python2存在一个input rce，可参考：</p>
 <p><a target="_blank" rel="noopener" href="https://www.heetian.com/info/912">https://www.heetian.com/info/912</a><br><a target="_blank" rel="noopener" href="https://hxp.io/blog/72/DEFCON-CTF-Quals-2020-notbefoooled/">https://hxp.io/blog/72/DEFCON-CTF-Quals-2020-notbefoooled/</a></p>
 <p>所以这里我们尝试连接之后getshell，再cat flag：</p>
-<img src="/2022/05/25/OPPO%E6%9D%AFSCUCTF2022/2.png" class>
+<img src="/.com//05/25/OPPO%E6%9D%AFSCUCTF2022/2.png" class>
 <h3 id="Crypto"><a href="#Crypto" class="headerlink" title="Crypto"></a>Crypto</h3><h4 id="RingSA"><a href="#RingSA" class="headerlink" title="RingSA"></a>RingSA</h4><p>把n转换到2^32下的多项式形式就能分解，可参考：<a target="_blank" rel="noopener" href="https://ctftime.org/writeup/22977">https://ctftime.org/writeup/22977</a></p>
 <p>exp：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sage.<span class="built_in">all</span> <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> long_to_bytes, bytes_to_long</span><br><span class="line"></span><br><span class="line">flag = <span class="number">87999482691830361247379297209239721526607759448870428543627708497225133998703525964882194413117149312447160453725061579823628178880528029445</span></span><br><span class="line">n = <span class="number">1626425208406583241292049076444714722533257035525114741592324091711725209911065562839042915374809556761672902667823144189049661717920928907519</span></span><br><span class="line">e = <span class="number">65537</span></span><br><span class="line">c = <span class="number">87999482691830361247379297209239721526607759448870428543627708497225133998703525964882194413117149312447160453725061579823628178880528029445</span></span><br><span class="line"></span><br><span class="line">poly = <span class="built_in">sum</span>(j * x^i <span class="keyword">for</span> i,j <span class="keyword">in</span> <span class="built_in">enumerate</span>(Integer(n).digits(<span class="number">2</span>^<span class="number">32</span>)))</span><br><span class="line">(p, _), (q, _) = poly.factor_list()</span><br><span class="line">p, q = p(x=<span class="number">2</span>^<span class="number">32</span>), q(x=<span class="number">2</span>^<span class="number">32</span>)</span><br><span class="line"><span class="keyword">assert</span> p*q == n</span><br><span class="line"></span><br><span class="line">d = inverse_mod(e, (p-<span class="number">1</span>)*(q-<span class="number">1</span>))</span><br><span class="line"><span class="built_in">print</span>(d)</span><br><span class="line"><span class="built_in">print</span>(long_to_bytes(<span class="built_in">int</span>(<span class="built_in">pow</span>(<span class="built_in">int</span>(flag), <span class="built_in">int</span>(d), <span class="built_in">int</span>(n)))))</span><br><span class="line"><span class="comment">#flag&#123;a2d3nf68de69-f1a33h6i25ka2s-d75a4skj54cz-1pz215cz7je&#125;</span></span><br></pre></td></tr></table></figure>
@@ -555,19 +555,19 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">crypto</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">ctfshow</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">buu</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">crypto</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">misc</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">ctfshow</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -611,15 +611,23 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">数论</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">re</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">NSS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">新生赛</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -643,7 +651,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">NSS</a>
+                <a href="javascript:void(0)" class="js-tag color1">python数据结构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">队列</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -659,14 +671,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">python数据结构</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">队列</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">栈</a>
               </li>
              
@@ -675,15 +679,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">新生赛</a>
+                <a href="javascript:void(0)" class="js-tag color4">Vigenere</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">内网渗透</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Vigenere</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -719,10 +719,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">威尔逊定理</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">小指数加密</a>
               </li>
              
@@ -740,6 +736,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">LCG</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">威尔逊定理</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -15,16 +15,16 @@
 <meta property="og:site_name" content="ZimaBlue&#39;s Blog">
 <meta property="og:description" content="easy-peasy​    签到题：">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/2022/01/24/CTFshow-%E6%91%86%E7%83%82%E6%9D%AF/1.png">
-<meta property="og:image" content="http://example.com/2022/01/24/CTFshow-%E6%91%86%E7%83%82%E6%9D%AF/2.png">
+<meta property="og:image" content="http://example.com/.com//01/24/CTFshow-%E6%91%86%E7%83%82%E6%9D%AF/1.png">
+<meta property="og:image" content="http://example.com/.com//01/24/CTFshow-%E6%91%86%E7%83%82%E6%9D%AF/2.png">
 <meta property="article:published_time" content="2022-01-24T02:36:06.000Z">
-<meta property="article:modified_time" content="2022-01-25T23:57:05.720Z">
+<meta property="article:modified_time" content="2022-01-25T23:57:06.000Z">
 <meta property="article:author" content="ZimaBlue">
 <meta property="article:tag" content="crypto">
 <meta property="article:tag" content="ctfshow">
 <meta property="article:tag" content="赛事">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2022/01/24/CTFshow-%E6%91%86%E7%83%82%E6%9D%AF/1.png">
+<meta name="twitter:image" content="http://example.com/.com//01/24/CTFshow-%E6%91%86%E7%83%82%E6%9D%AF/1.png">
   
     <link rel="alternative" href="/atom.xml" title="ZimaBlue&#39;s Blog" type="application/atom+xml">
   
@@ -202,13 +202,13 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> gmpy2</span><br><span class="line"><span class="comment"># a = b&#x27;\x00\01\x00\x00&#x27;</span></span><br><span class="line"><span class="comment"># print(bytes_to_long(a))</span></span><br><span class="line"></span><br><span class="line">c = <span class="number">7802816471025387606454709075933309958303134972861203739854774032383575355964299097074709350633475519273512630813578801152996777689686451397201513854823239337669091889776200179028891111154423623765139235199507280104544068425347533121731521700106757148551520759776111224072064131087547685154285120156917449926992033491342535410929828988598182819897435365878832122138552492908774845437576910276499625679469289655841639181182040186931130789588869657335253479416209378458303531995734157105918063227453396477282662136225029972745246845372963076381252679409317314514131852117346576265346926741908194011319430767975281696400</span></span><br><span class="line">n = <span class="number">23570098360097260908266914080954003513706885568390448463720576188146956287111601604870247233822682630020002051748117520481402155749832096007629686239669192722978473890311246293580246256300691145653885805730865515297134808702766299205253761028235483781919393575836334910012714628455073300114978717047912395404034141622115001451888302617428376998024080880564792294546406688814397757714979980790018933407614160131827023349206138480523080173634617167828920519758917549492886733519381497665596997617399404664611446202014908853898043742964782757859701755202188366852773164911994663079171498909577012208742001609095258401847</span></span><br><span class="line"></span><br><span class="line">k = <span class="built_in">pow</span>(<span class="number">16</span>,<span class="number">504</span>)</span><br><span class="line"></span><br><span class="line">o = gmpy2.invert(k,n)</span><br><span class="line">o1 = o*c</span><br><span class="line">o1 = o1 % n</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1000000</span>):</span><br><span class="line">    m = gmpy2.iroot(o1+i*n,<span class="number">3</span>)[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">if</span>(long_to_bytes(m))[:<span class="number">3</span>] == <span class="string">b&quot;ctf&quot;</span>:</span><br><span class="line">        <span class="built_in">print</span>(long_to_bytes(m))</span><br><span class="line"><span class="comment">#ctfshow&#123;345Y_p345Y_4_p13C3_OF_R54_1f_you_533_7H15_yOU_W1ll_KnoW_hoW_7o_5oLV3_17_R1gh7&#125;</span></span><br></pre></td></tr></table></figure>
 <h2 id="你不知道的事"><a href="#你不知道的事" class="headerlink" title="你不知道的事"></a>你不知道的事</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python3</span></span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span>*</span><br><span class="line"><span class="keyword">from</span> secret <span class="keyword">import</span> p, q, r, m_list</span><br><span class="line"></span><br><span class="line">e = <span class="number">0x10001</span></span><br><span class="line">n = p*q</span><br><span class="line">nn = <span class="built_in">pow</span>(p + q, <span class="number">2</span>)</span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;output.txt&quot;</span>, <span class="string">&quot;w&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    <span class="built_in">tuple</span>(<span class="built_in">map</span>(<span class="keyword">lambda</span> x: f.write(<span class="string">f&#x27;<span class="subst">&#123;x&#125;</span>\n&#x27;</span>), (n, (nn - q * (<span class="number">2</span>*p + q)) * r, [<span class="built_in">pow</span>(r*bytes_to_long(msg), e, n) <span class="keyword">for</span> msg <span class="keyword">in</span> m_list])))</span><br></pre></td></tr></table></figure>
 <p>​    先破解msg的内容，分析过程：</p>
-<img src="/2022/01/24/CTFshow-%E6%91%86%E7%83%82%E6%9D%AF/1.png" class>
+<img src="/.com//01/24/CTFshow-%E6%91%86%E7%83%82%E6%9D%AF/1.png" class>
 <p>​    exp1：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">msg = []</span><br><span class="line">e = <span class="number">0x10001</span></span><br><span class="line">n = ...</span><br><span class="line">n0 = ...</span><br><span class="line"><span class="comment">#化简得p**2 * r = n0</span></span><br><span class="line">p = gmpy2.gcd(n,n0)</span><br><span class="line">r = n0//p**<span class="number">2</span></span><br><span class="line">q = n//p</span><br><span class="line">phi = (p-<span class="number">1</span>)*(q-<span class="number">1</span>)</span><br><span class="line">d = gmpy2.invert(e,phi)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> msg:</span><br><span class="line">    m = <span class="built_in">pow</span>(i,d,n)//r</span><br><span class="line">    <span class="built_in">print</span>(long_to_bytes(m))</span><br><span class="line">    </span><br><span class="line"><span class="comment"># F:\python3.9\python.exe C:/Users/CTF/PycharmProjects/摆烂杯—你不知道的事/main.py</span></span><br><span class="line"><span class="string">b&quot;# We&#x27;re no strangers to love,\n&quot;</span></span><br><span class="line"><span class="string">b&#x27;# You know the rules and so do I.\n&#x27;</span></span><br><span class="line"><span class="string">b&quot;# A full commitment&#x27;s what I&#x27;m thinking of,\n&quot;</span></span><br><span class="line"><span class="string">b&quot;# You wouldn&#x27;t get this from any other guy.\n&quot;</span></span><br><span class="line"><span class="string">b&#x27;from Crypto.Util.number import *\n&#x27;</span></span><br><span class="line"><span class="string">b&#x27;from sympy import nextprime\n&#x27;</span></span><br><span class="line"><span class="string">b&#x27;flag = we_know_each_other_for_so_long\n&#x27;</span></span><br><span class="line"><span class="string">b&quot;flag1 = flag[:len(flag) // 2] + __import__(&#x27;os&#x27;).urandom(88)\n&quot;</span></span><br><span class="line"><span class="string">b&quot;flag2 = flag[len(flag) // 2:] + __import__(&#x27;os&#x27;).urandom(88)\n&quot;</span></span><br><span class="line"><span class="string">b&#x27;p = nextprime(bytes_to_long(flag1))\n&#x27;</span></span><br><span class="line"><span class="string">b&#x27;q = nextprime(bytes_to_long(flag2))\n&#x27;</span></span><br></pre></td></tr></table></figure>
 <p>​    根据输出的msg内容我们知道flag为flag1和flag2两部分组成，并且p和q就是flag1，2的整数的下一个素数。由于下一个素数大小与本数的差距并不大，只影响低位，于是可以直接将p和q转化成字节，可以看到高位部分就是flag：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">b&quot;ctfshow&#123;086c67cb-a132-4\x88\x0b\n:r\xfc\x01)\xe6&#x27;\xccI\x1e@_\xf1\x80\x9c\xa8\xb5\xdc\x0fr\xeb\x8c\x11\xd8UWr\x82\xb7\xdd\xbe\xd6&#123;V&#x27;\xcf\xbc\xeb\x85\xdcCh\xfcT\xbdK\x16\xb6\xa1\xf7\x06t1j\x95)\x00\xa3\xc6MKk@\xcc\xe2\xe03\xe1\xee\x8e\xf1\xa0\xcf\xef\xca\xa1\xac@\x1d\xb2n\nI\xc8a&quot; b&#x27;509-8b6b-6c46386487dc&#125;\n\xf3\x15\x99J\xa4\n&#125;\x1f_ J\xcdMu\xb6\x1d0\x06\x18\xe5\x8b&amp;yJ\xee\xe7\x94L\x96\x119\xa5`~\x9a&lt;\xfdl\x88q\xf8Y&quot;\xe8\x83\x970\xa9\&#x27;3hP\x1d\xc3\x16C\x016Y\xcf\xebQe\x99\x9b&amp;\xf6\xf0\xdd\x81\x19\xbb9\xba\xbf\x1d\x07l\x16\xbb\xe8\xf4\xe0`ot\xa9\x8d&#x27;</span><br></pre></td></tr></table></figure>
 <h2 id="春哥VS曾哥"><a href="#春哥VS曾哥" class="headerlink" title="春哥VS曾哥"></a>春哥VS曾哥</h2><p>​    关于模运算的问题，需要根据服务端给出的数值对进行分类讨论：</p>
-<img src="/2022/01/24/CTFshow-%E6%91%86%E7%83%82%E6%9D%AF/2.png" class>
+<img src="/.com//01/24/CTFshow-%E6%91%86%E7%83%82%E6%9D%AF/2.png" class>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">p=remote(<span class="string">&#x27;pwn.challenge.ctf.show&#x27;</span>,<span class="number">28020</span>)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">pwn</span>():</span></span><br><span class="line"></span><br><span class="line">    a=<span class="built_in">str</span>(p.recvline())</span><br><span class="line">    b=a.find(<span class="string">&#x27;= (&#x27;</span>)</span><br><span class="line">    c=a.find(<span class="string">&#x27;,&#x27;</span>,<span class="number">9</span>)</span><br><span class="line">    d=<span class="built_in">int</span>(a[b+<span class="number">3</span>:c])<span class="comment">#x</span></span><br><span class="line">    e=<span class="built_in">int</span>(a[c+<span class="number">2</span>:-<span class="number">4</span>])<span class="comment">#y</span></span><br><span class="line">    <span class="keyword">if</span>(d&gt;=e):</span><br><span class="line">        p.sendline(<span class="built_in">str</span>(d+e))</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        f=e%d</span><br><span class="line">        g=(e-f)//d</span><br><span class="line">        h=g*d+f//<span class="number">2</span></span><br><span class="line">        p.sendline(<span class="built_in">str</span>(h))</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">233</span>):</span><br><span class="line">    pwn()</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;进行了&#x27;</span>,i,<span class="string">&#x27;轮验证&#x27;</span>)</span><br><span class="line">p.interactive()</span><br><span class="line"><span class="comment">#flag: ctfshow&#123;f28a4698-124e-4625-9a46-a92ff3c13756&#125;</span></span><br></pre></td></tr></table></figure>
 
       
@@ -540,19 +540,19 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">crypto</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">ctfshow</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">buu</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">crypto</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">misc</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">ctfshow</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -596,15 +596,23 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">数论</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">re</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">NSS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">新生赛</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -628,7 +636,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">NSS</a>
+                <a href="javascript:void(0)" class="js-tag color1">python数据结构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">队列</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -644,14 +656,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">python数据结构</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">队列</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">栈</a>
               </li>
              
@@ -660,15 +664,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">新生赛</a>
+                <a href="javascript:void(0)" class="js-tag color4">Vigenere</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">内网渗透</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Vigenere</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -704,10 +704,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">威尔逊定理</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">小指数加密</a>
               </li>
              
@@ -725,6 +721,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">LCG</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">威尔逊定理</a>
               </li>
              
               <li class="article-tag-list-item">

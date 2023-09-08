@@ -15,13 +15,13 @@
 <meta property="og:site_name" content="ZimaBlue&#39;s Blog">
 <meta property="og:description" content="​    misc和取证都是常规题目，仅仅复现一下密码题目。">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/2022/07/15/%E8%93%9D%E5%B8%BD%E6%9D%AF%E5%88%9D%E8%B5%9B2022/1.png">
+<meta property="og:image" content="http://example.com/.com//07/15/%E8%93%9D%E5%B8%BD%E6%9D%AF%E5%88%9D%E8%B5%9B2022/1.png">
 <meta property="article:published_time" content="2022-07-15T00:10:11.000Z">
-<meta property="article:modified_time" content="2022-07-17T16:59:05.120Z">
+<meta property="article:modified_time" content="2022-07-17T16:59:06.000Z">
 <meta property="article:author" content="ZimaBlue">
 <meta property="article:tag" content="crypto">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2022/07/15/%E8%93%9D%E5%B8%BD%E6%9D%AF%E5%88%9D%E8%B5%9B2022/1.png">
+<meta name="twitter:image" content="http://example.com/.com//07/15/%E8%93%9D%E5%B8%BD%E6%9D%AF%E5%88%9D%E8%B5%9B2022/1.png">
   
     <link rel="alternative" href="/atom.xml" title="ZimaBlue&#39;s Blog" type="application/atom+xml">
   
@@ -195,7 +195,7 @@
         <p>​    misc和取证都是常规题目，仅仅复现一下密码题目。<br><span id="more"></span></p>
 <p>​    这道题考察了openssl私钥格式解析和copper构造；比赛时没出主要还是因为对私钥结构不熟悉，觉得难度大就放弃了。<br>​    题目给了私钥的首尾两段，我们需要对照格式去解析已知信息，参考<a target="_blank" rel="noopener" href="http://t.zoukankan.com/jukan-p-5527922.html">这里</a>；弄清楚私钥的格式以后，直接解析已知部分：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">b = <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">MIICXgIBAAKBgQDXFSUGqpzsBeUzXWtG9UkUB8MZn9UQkfH2Aw03YrngP0nJ3NwH</span></span><br><span class="line"><span class="string">UFTgzBSLl0tBhUvZO07haiqHbuYgBegO+Aa3qjtksb+bH6dz41PQzbn/l4Pd1fXm</span></span><br><span class="line"><span class="string">dJmtEPNh6TjQC4KmpMQqBTXF52cheY6GtFzUuNA7DX51wr6HZqHoQ73GQQIDAQAB</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line">b = base64.b64decode(b)</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">len</span>(b))</span><br><span class="line"><span class="built_in">print</span>(b)</span><br><span class="line">c = <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">yQvOzxy6szWFheigQdGxAkEA4wFss2CcHWQ8FnQ5w7k4uIH0I38khg07HLhaYm1c</span></span><br><span class="line"><span class="string">zUcmlk4PgnDWxN+ev+vMU45O5eGntzaO3lHsaukX9461mA==</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line">c = base64.b64decode(c)</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">len</span>(c))</span><br><span class="line"><span class="built_in">print</span>(c)</span><br><span class="line"></span><br><span class="line"><span class="comment"># n是0x028181后129位16进制</span></span><br><span class="line">n = bytes_to_long(<span class="string">b&#x27;\00\xd7\x15%\x06\xaa\x9c\xec\x05\xe53]kF\xf5I\x14\x07\xc3\x19\x9f\xd5\x10\x91\xf1\xf6\x03\r7b\xb9\xe0?I\xc9\xdc\xdc\x07PT\xe0\xcc\x14\x8b\x97KA\x85K\xd9;N\xe1j*\x87n\xe6 \x05\xe8\x0e\xf8\x06\xb7\xaa;d\xb1\xbf\x9b\x1f\xa7s\xe3S\xd0\xcd\xb9\xff\x97\x83\xdd\xd5\xf5\xe6t\x99\xad\x10\xf3a\xe98\xd0\x0b\x82\xa6\xa4\xc4*\x055\xc5\xe7g!y\x8e\x86\xb4\\\xd4\xb8\xd0;\r~u\xc2\xbe\x87f\xa1\xe8C\xbd\xc6A&#x27;</span>)</span><br><span class="line"><span class="comment"># print(n.bit_length())  1024</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">len</span>(<span class="string">b&#x27;\00\xd7\x15%\x06\xaa\x9c\xec\x05\xe53]kF\xf5I\x14\x07\xc3\x19\x9f\xd5\x10\x91\xf1\xf6\x03\r7b\xb9\xe0?I\xc9\xdc\xdc\x07PT\xe0\xcc\x14\x8b\x97KA\x85K\xd9;N\xe1j*\x87n\xe6 \x05\xe8\x0e\xf8\x06\xb7\xaa;d\xb1\xbf\x9b\x1f\xa7s\xe3S\xd0\xcd\xb9\xff\x97\x83\xdd\xd5\xf5\xe6t\x99\xad\x10\xf3a\xe98\xd0\x0b\x82\xa6\xa4\xc4*\x055\xc5\xe7g!y\x8e\x86\xb4\\\xd4\xb8\xd0;\r~u\xc2\xbe\x87f\xa1\xe8C\xbd\xc6A&#x27;</span>))</span><br><span class="line"><span class="comment"># e在n后，注意标志位</span></span><br><span class="line">e = (bytes_to_long(b[<span class="number">141</span>:<span class="number">144</span>]))</span><br><span class="line"><span class="built_in">print</span>(e)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">len</span>(<span class="string">b&#x27;\00\xe3\x01l\xb3`\x9c\x1dd&lt;\x16t9\xc3\xb98\xb8\x81\xf4#\x7f$\x86\r;\x1c\xb8Zbm\\\xcdG&amp;\x96N\x0f\x82p\xd6\xc4\xdf\x9e\xbf\xeb\xccS\x8eN\xe5\xe1\xa7\xb76\x8e\xdeQ\xecj\xe9\x17\xf7\x8e\xb5\x98&#x27;</span>))</span><br><span class="line">t = bytes_to_long(<span class="string">b&#x27;\00\xe3\x01l\xb3`\x9c\x1dd&lt;\x16t9\xc3\xb98\xb8\x81\xf4#\x7f$\x86\r;\x1c\xb8Zbm\\\xcdG&amp;\x96N\x0f\x82p\xd6\xc4\xdf\x9e\xbf\xeb\xccS\x8eN\xe5\xe1\xa7\xb76\x8e\xdeQ\xecj\xe9\x17\xf7\x8e\xb5\x98&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(t)</span><br><span class="line">dq_l = bytes_to_long(<span class="string">b&#x27;\xc9\x0b\xce\xcf\x1c\xba\xb35\x85\x85\xe8\xa0A\xd1\xb1&#x27;</span>) <span class="comment"># 这里是d mod q-1的低位</span></span><br><span class="line"><span class="built_in">print</span>(dq_l)</span><br></pre></td></tr></table></figure>
-<p>​    已知信息有n，e，q模p的逆，d mod q-1的部分(低位)。根据这些信息，可以构造copper：<br><img src="/2022/07/15/%E8%93%9D%E5%B8%BD%E6%9D%AF%E5%88%9D%E8%B5%9B2022/1.png" class><br>​    这里注意需要控制k的范围，由ed’ - 1 = k*(q-1)可知，k小于e，这个范围足够了，但是sage会跑的比较慢，可以尝试多进程分段：</p>
+<p>​    已知信息有n，e，q模p的逆，d mod q-1的部分(低位)。根据这些信息，可以构造copper：<br><img src="/.com//07/15/%E8%93%9D%E5%B8%BD%E6%9D%AF%E5%88%9D%E8%B5%9B2022/1.png" class><br>​    这里注意需要控制k的范围，由ed’ - 1 = k*(q-1)可知，k小于e，这个范围足够了，但是sage会跑的比较慢，可以尝试多进程分段：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">n = <span class="number">151036135413139226687867011199700639084856588533884431118047808395603993635242690166659649156476428533386350427603713487259266502837260466348398817558768025404903682189934563578605367223796247470920497617904900418615352839562681665973088711089128789315193951623751145385357347144960284983398745189236464272961</span></span><br><span class="line">t = <span class="number">11889246144866782519155392157369478059715977597114885585873502852127888907191116911762955888968046505980125449346852147369649024143226438553109462231463320</span></span><br><span class="line">e = <span class="number">0x10001</span></span><br><span class="line">dq_l = <span class="number">1043891160170747082120115133012365745</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> k <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">65537</span>):</span><br><span class="line">    F.&lt;x&gt; = PolynomialRing(Zmod(n))</span><br><span class="line">    <span class="keyword">if</span> k%<span class="number">100</span> == <span class="number">0</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;%d times&quot;</span>%k)</span><br><span class="line">    q = (x * <span class="number">2</span>**<span class="number">120</span> + dq_l)</span><br><span class="line">    f = q * e - <span class="number">1</span>   + k  <span class="comment"># 在一元copper下 变成模p爆破k</span></span><br><span class="line"><span class="comment">#    f = k * q  </span></span><br><span class="line">    TT= t*f*f-k*f</span><br><span class="line">    <span class="comment"># small_roots(TT,[2**(512-120),e],m=3,d=6)</span></span><br><span class="line">    TT=TT.monic()</span><br><span class="line">    sss = TT.small_roots(X = <span class="number">2</span>**(<span class="number">512</span>-<span class="number">120</span>),beta=<span class="number">0.4</span>)</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">len</span>(sss)) != <span class="number">0</span> :</span><br><span class="line">        <span class="built_in">print</span>(k)</span><br><span class="line">        <span class="built_in">print</span>(t)</span><br><span class="line">        <span class="built_in">print</span>(sss)</span><br></pre></td></tr></table></figure>
 <p>​    最后得到d解rsa需要用他加密这个库，略微麻烦：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">n = <span class="number">151036135413139226687867011199700639084856588533884431118047808395603993635242690166659649156476428533386350427603713487259266502837260466348398817558768025404903682189934563578605367223796247470920497617904900418615352839562681665973088711089128789315193951623751145385357347144960284983398745189236464272961</span></span><br><span class="line">t = <span class="number">11889246144866782519155392157369478059715977597114885585873502852127888907191116911762955888968046505980125449346852147369649024143226438553109462231463320</span></span><br><span class="line">e = <span class="number">65537</span></span><br><span class="line">dq_l = <span class="number">1043891160170747082120115133012365745</span></span><br><span class="line"></span><br><span class="line">k = <span class="number">59199</span></span><br><span class="line">dq_h = <span class="number">8473541887500515583954330543610580482352988466308294038598683460069270949695742839059962985745363324600134512811492604</span></span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">dq = (dq_h * <span class="number">2</span> ** <span class="number">120</span> + dq_l)</span><br><span class="line">q = (dq*e-<span class="number">1</span>)//k + <span class="number">1</span></span><br><span class="line"><span class="built_in">print</span>(q)</span><br><span class="line"></span><br><span class="line">p = n // q</span><br><span class="line">d = inverse(e, (p - <span class="number">1</span>) * (q - <span class="number">1</span>))</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> Crypto.PublicKey <span class="keyword">import</span> RSA</span><br><span class="line"></span><br><span class="line">e = <span class="number">65537</span></span><br><span class="line">n = p * q</span><br><span class="line">d = d</span><br><span class="line"><span class="comment"># 注意这里要用RSA.construct重新构建私钥结构</span></span><br><span class="line">privkey = RSA.construct((<span class="built_in">int</span>(n), e, <span class="built_in">int</span>(d)))</span><br><span class="line">f = <span class="built_in">open</span>(<span class="string">&#x27;privkey2.pem&#x27;</span>, <span class="string">&#x27;wb&#x27;</span>)</span><br><span class="line"><span class="comment"># 导出pem格式</span></span><br><span class="line">f.write(privkey.export_key(<span class="string">&#x27;PEM&#x27;</span>))</span><br><span class="line">f.close()</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> Crypto.PublicKey <span class="keyword">import</span> RSA</span><br><span class="line"><span class="keyword">from</span> Crypto.Cipher <span class="keyword">import</span> PKCS1_OAEP</span><br><span class="line"><span class="comment"># ssl格式加密则用ssl格式去解密</span></span><br><span class="line">cipher_text = <span class="built_in">open</span>(<span class="string">r&quot;flag.enc&quot;</span>, <span class="string">&quot;rb&quot;</span>).read()</span><br><span class="line">ciphertxt = cipher_text</span><br><span class="line">key = RSA.importKey(<span class="built_in">open</span>(<span class="string">r&quot;privkey2.pem&quot;</span>).read())</span><br><span class="line">cipher = PKCS1_OAEP.new(key)</span><br><span class="line">message = cipher.decrypt(ciphertxt)</span><br><span class="line"><span class="built_in">print</span>(message)</span><br><span class="line"><span class="comment"># b&#x27;flag&#123;f1bf5c44-e2b4-424f-baff-b38b73a82e72&#125;&#x27;</span></span><br></pre></td></tr></table></figure>
@@ -524,19 +524,19 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">crypto</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">ctfshow</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">buu</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">crypto</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">misc</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">ctfshow</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -580,15 +580,23 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">数论</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">re</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">NSS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">新生赛</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -612,7 +620,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">NSS</a>
+                <a href="javascript:void(0)" class="js-tag color1">python数据结构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">队列</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -628,14 +640,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">python数据结构</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">队列</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">栈</a>
               </li>
              
@@ -644,15 +648,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">新生赛</a>
+                <a href="javascript:void(0)" class="js-tag color4">Vigenere</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">内网渗透</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Vigenere</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -688,10 +688,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">威尔逊定理</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">小指数加密</a>
               </li>
              
@@ -709,6 +705,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">LCG</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">威尔逊定理</a>
               </li>
              
               <li class="article-tag-list-item">

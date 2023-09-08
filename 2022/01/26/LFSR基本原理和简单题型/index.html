@@ -15,17 +15,17 @@
 <meta property="og:site_name" content="ZimaBlue&#39;s Blog">
 <meta property="og:description" content="​    序列密码最重要的就是以某种规律产生大量密钥，而产生密钥流最重要的部件之一是反馈移位寄存器。其中反馈移位寄存器又分为线性反馈移位寄存器和非线性反馈移位寄存器，本篇主要介绍线性反馈移位寄存器（LFSR）的原理和基本题型。">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/2022/01/26/LFSR%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86%E5%92%8C%E7%AE%80%E5%8D%95%E9%A2%98%E5%9E%8B/1.png">
-<meta property="og:image" content="http://example.com/2022/01/26/LFSR%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86%E5%92%8C%E7%AE%80%E5%8D%95%E9%A2%98%E5%9E%8B/2.png">
-<meta property="og:image" content="http://example.com/2022/01/26/LFSR%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86%E5%92%8C%E7%AE%80%E5%8D%95%E9%A2%98%E5%9E%8B/3.png">
-<meta property="og:image" content="http://example.com/2022/01/26/LFSR%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86%E5%92%8C%E7%AE%80%E5%8D%95%E9%A2%98%E5%9E%8B/4.png">
+<meta property="og:image" content="http://example.com/.com//01/26/LFSR%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86%E5%92%8C%E7%AE%80%E5%8D%95%E9%A2%98%E5%9E%8B/1.png">
+<meta property="og:image" content="http://example.com/.com//01/26/LFSR%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86%E5%92%8C%E7%AE%80%E5%8D%95%E9%A2%98%E5%9E%8B/2.png">
+<meta property="og:image" content="http://example.com/.com//01/26/LFSR%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86%E5%92%8C%E7%AE%80%E5%8D%95%E9%A2%98%E5%9E%8B/3.png">
+<meta property="og:image" content="http://example.com/.com//01/26/LFSR%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86%E5%92%8C%E7%AE%80%E5%8D%95%E9%A2%98%E5%9E%8B/4.png">
 <meta property="article:published_time" content="2022-01-26T10:01:32.000Z">
-<meta property="article:modified_time" content="2022-01-27T07:18:33.974Z">
+<meta property="article:modified_time" content="2022-01-27T07:18:34.000Z">
 <meta property="article:author" content="ZimaBlue">
 <meta property="article:tag" content="crypto">
 <meta property="article:tag" content="LFSR">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2022/01/26/LFSR%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86%E5%92%8C%E7%AE%80%E5%8D%95%E9%A2%98%E5%9E%8B/1.png">
+<meta name="twitter:image" content="http://example.com/.com//01/26/LFSR%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86%E5%92%8C%E7%AE%80%E5%8D%95%E9%A2%98%E5%9E%8B/1.png">
   
     <link rel="alternative" href="/atom.xml" title="ZimaBlue&#39;s Blog" type="application/atom+xml">
   
@@ -204,14 +204,14 @@
 <p>4.它们的结构能够应用代数方法进行分析</p>
 <p>二.n级反馈移位寄存器的结构和原理</p>
 <p>​    LFSR的结构如图所示：</p>
-<img src="/2022/01/26/LFSR%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86%E5%92%8C%E7%AE%80%E5%8D%95%E9%A2%98%E5%9E%8B/1.png" class>
+<img src="/.com//01/26/LFSR%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86%E5%92%8C%E7%AE%80%E5%8D%95%E9%A2%98%E5%9E%8B/1.png" class>
 <p>​    其工作原理比较简单，移位寄存器用来存储数据，并受到系统时钟脉冲驱动。每一存储器称为移位存储器的一级，移位存储器中的个数称为移位存储器的级数。在某一时刻，所有寄存器的内容构成该反馈移位寄存器的一个状态，共有2^n种可能的状态，每一个状态对应于域GF（2）上的一个n维向量，用（a1，a2，…，an-1，an）表示，其中ai是当前时刻第i级存储器的内容。</p>
 <p>​    在一个时间单位内，第i级寄存器ai的内容被传递给第i-1级寄存器ai-1（i=2，3，…），并根据寄存器当前的状态计算f(a1，a2，…，an)作为寄存器an下一个时刻的内容，其中f称为反馈函数，该函数是个n元布尔函数。</p>
 <p>​    若f（a1，a2，…，an）是a1，a2等的线性函数，则这样的移位寄存器称为线性反馈移位寄存器，否则位非线性反馈移位寄存器。</p>
 <p>​    若f为线性移位寄存器，则可以表示为：</p>
 <p>f（a1，a2，…，an）=Cn .a1+Cn-1 .a2+…+C1 .an</p>
 <p>其中，Ci为0或者1，+为模2加法（异或运算），并且要满足Ci不全为0。举个例子如下：</p>
-<img src="/2022/01/26/LFSR%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86%E5%92%8C%E7%AE%80%E5%8D%95%E9%A2%98%E5%9E%8B/2.png" class>
+<img src="/.com//01/26/LFSR%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86%E5%92%8C%E7%AE%80%E5%8D%95%E9%A2%98%E5%9E%8B/2.png" class>
 <h4 id="三-基本题型举例"><a href="#三-基本题型举例" class="headerlink" title="三.基本题型举例"></a>三.基本题型举例</h4><p>[CISCN2018]oldstreamgame</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">flag = <span class="string">&quot;flag&#123;xxxxxxxxxxxxxxxx&#125;&quot;</span></span><br><span class="line"><span class="keyword">assert</span> flag.startswith(<span class="string">&quot;flag&#123;&quot;</span>)</span><br><span class="line"><span class="keyword">assert</span> flag.endswith(<span class="string">&quot;&#125;&quot;</span>)</span><br><span class="line"><span class="keyword">assert</span> <span class="built_in">len</span>(flag)==<span class="number">14</span> </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">lfsr</span>(<span class="params">R,mask</span>):</span></span><br><span class="line">    output = (R &lt;&lt; <span class="number">1</span>) &amp; <span class="number">0xffffffff</span> <span class="comment">#R进行左移，说明R即为初始状态</span></span><br><span class="line">    i=(R&amp;mask)&amp;<span class="number">0xffffffff</span></span><br><span class="line">    lastbit=<span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> i!=<span class="number">0</span>:</span><br><span class="line">        lastbit^=(i&amp;<span class="number">1</span>)</span><br><span class="line">        i=i&gt;&gt;<span class="number">1</span></span><br><span class="line">    output^=lastbit</span><br><span class="line">    <span class="keyword">return</span> (output,lastbit)</span><br><span class="line"></span><br><span class="line">R=<span class="built_in">int</span>(flag[<span class="number">5</span>:-<span class="number">1</span>],<span class="number">16</span>)</span><br><span class="line">mask = <span class="number">0b10100100000010000000100010010100</span></span><br><span class="line"></span><br><span class="line">f=<span class="built_in">open</span>(<span class="string">&quot;key&quot;</span>,<span class="string">&quot;w&quot;</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">100</span>):</span><br><span class="line">    tmp=<span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">8</span>):</span><br><span class="line">        (R,out)=lfsr(R,mask)</span><br><span class="line">        tmp=(tmp &lt;&lt; <span class="number">1</span>)^out</span><br><span class="line">    f.write(<span class="built_in">chr</span>(tmp))</span><br><span class="line">f.close()</span><br><span class="line"></span><br><span class="line"><span class="comment">#输出（16进制序列）#20FDEEF8A4C9F4083F331DA8238AE5ED083DF0CB0E7A83355696345DF44D7C186C1F459BCE135F1DB6C76775D5DCBAB7A783E48A203C19CA25C22F60AE62B37DE8E40578E3A7787EB429730D95C9E1944288EB3E2E747D8216A4785507A137B413CD690C</span></span><br></pre></td></tr></table></figure>
 <p>​    LFSR类型的题目首先要确定移位周期，其实也就是寄存器的个数。题目中的R = int(flag[5:-1],16)，其长度为14-6 = 8 （个16进制数），说明寄存器的个数为8*4 = 32。</p>
@@ -219,12 +219,12 @@
 <p>output = (R &lt;&lt; 1) &amp; 0xffffffff：R（32位）循环左移一位</p>
 <p>i=(R&amp;mask)&amp;0xffffffff：i为R与mask与运算的结果，由于mask大部分为0，所以i可能为1的位数只能为mask非0的位数，即mask从右向左第3、5、8、12、20、27、30、32位</p>
 <p>lastbit^=(i&amp;1)：lastbit实际上等于i的每一位相异或，由于与0异或值不变，所以只考虑i中的1的数量，若1的数量为偶数，lastbit为0，若为奇数，则为1。又由于i可能为1的位数为以上几位，所以lastbit = 3^5^8^12^20^27^30^32（线性表达式）。</p>
-<img src="/2022/01/26/LFSR%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86%E5%92%8C%E7%AE%80%E5%8D%95%E9%A2%98%E5%9E%8B/3.png" class>
+<img src="/.com//01/26/LFSR%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86%E5%92%8C%E7%AE%80%E5%8D%95%E9%A2%98%E5%9E%8B/3.png" class>
 <p>​    再分析输出流：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">	f=<span class="built_in">open</span>(<span class="string">&quot;key&quot;</span>,<span class="string">&quot;w&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">100</span>):</span><br><span class="line">    tmp=<span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">8</span>):</span><br><span class="line">        (R,out)=lfsr(R,mask)</span><br><span class="line">        tmp=(tmp &lt;&lt; <span class="number">1</span>)^out</span><br><span class="line">    f.write(<span class="built_in">chr</span>(tmp))</span><br><span class="line">f.close()</span><br></pre></td></tr></table></figure>
 <p>​    每8位lastbit组成一个字节，即一个字符，循环一百次，获得100个字符。</p>
 <p>​    解题：综合以上分析，可以发现欲获得初始R的序列，需要找到R左移31次以后的状态，此时R的最低位在反馈寄存器的最高位，其他位都是由f连续生成的31位lastbit，那么可以通过异或的可逆性，获得R的最低位，依次可以获得R的倒数第二位…直到获得R的完整序列。</p>
-<img src="/2022/01/26/LFSR%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86%E5%92%8C%E7%AE%80%E5%8D%95%E9%A2%98%E5%9E%8B/4.png" class>
+<img src="/.com//01/26/LFSR%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86%E5%92%8C%E7%AE%80%E5%8D%95%E9%A2%98%E5%9E%8B/4.png" class>
 <p>​    exp：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">c = <span class="string">&quot;00100000111111011110111011111000&quot;</span></span><br><span class="line">s = <span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">32</span>):</span><br><span class="line"></span><br><span class="line">    m = <span class="built_in">str</span>(<span class="built_in">int</span>(c[-<span class="number">4</span>])^<span class="built_in">int</span>(c[-<span class="number">6</span>])^<span class="built_in">int</span>(c[-<span class="number">9</span>])^<span class="built_in">int</span>(c[-<span class="number">13</span>])^<span class="built_in">int</span>(c[-<span class="number">21</span>])^<span class="built_in">int</span>(c[-<span class="number">28</span>])^<span class="built_in">int</span>(c[-<span class="number">31</span>])^<span class="built_in">int</span>(c[-<span class="number">1</span>])) <span class="comment">#这里需要仔细思考</span></span><br><span class="line">    s = s + m</span><br><span class="line">    l = s[::-<span class="number">1</span>]</span><br><span class="line">    c = l + <span class="string">&#x27;00100000111111011110111011111000&#x27;</span>[<span class="number">0</span>:<span class="number">31</span>-i]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s = s[::-<span class="number">1</span>]</span><br><span class="line"><span class="built_in">print</span>(s)</span><br><span class="line">d = <span class="built_in">int</span>(s,<span class="number">2</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;flag&#123;&#x27;</span>+<span class="built_in">str</span>(<span class="built_in">hex</span>(d))[<span class="number">2</span>:]+<span class="string">&#x27;&#125;&#x27;</span>)</span><br><span class="line"><span class="comment">#flag&#123;926201d7&#125;</span></span><br></pre></td></tr></table></figure>
 
@@ -557,19 +557,19 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">crypto</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">ctfshow</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">buu</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">crypto</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">misc</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">ctfshow</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -613,15 +613,23 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">数论</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">re</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">NSS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">新生赛</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -645,7 +653,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">NSS</a>
+                <a href="javascript:void(0)" class="js-tag color1">python数据结构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">队列</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -661,14 +673,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">python数据结构</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">队列</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">栈</a>
               </li>
              
@@ -677,15 +681,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">新生赛</a>
+                <a href="javascript:void(0)" class="js-tag color4">Vigenere</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">内网渗透</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Vigenere</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -721,10 +721,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">威尔逊定理</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">小指数加密</a>
               </li>
              
@@ -742,6 +738,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">LCG</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">威尔逊定理</a>
               </li>
              
               <li class="article-tag-list-item">

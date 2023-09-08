@@ -15,15 +15,15 @@
 <meta property="og:site_name" content="ZimaBlue&#39;s Blog">
 <meta property="og:description" content="​    dp就是私钥dmod（p-1)，即dp &#x3D; d mod（p-1）。dp泄露的原理如下：">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/2022/01/05/RSA%E2%80%94DP%E6%B3%84%E9%9C%B2/1.png">
+<meta property="og:image" content="http://example.com/.com//01/05/RSA%E2%80%94DP%E6%B3%84%E9%9C%B2/1.png">
 <meta property="article:published_time" content="2022-01-05T11:39:11.000Z">
-<meta property="article:modified_time" content="2022-02-17T02:35:45.488Z">
+<meta property="article:modified_time" content="2022-02-17T02:35:46.000Z">
 <meta property="article:author" content="ZimaBlue">
 <meta property="article:tag" content="crypto">
 <meta property="article:tag" content="RSA">
 <meta property="article:tag" content="数论">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2022/01/05/RSA%E2%80%94DP%E6%B3%84%E9%9C%B2/1.png">
+<meta name="twitter:image" content="http://example.com/.com//01/05/RSA%E2%80%94DP%E6%B3%84%E9%9C%B2/1.png">
   
     <link rel="alternative" href="/atom.xml" title="ZimaBlue&#39;s Blog" type="application/atom+xml">
   
@@ -196,7 +196,7 @@
       
         <p>​    dp就是私钥dmod（p-1)，即dp = d mod（p-1）。dp泄露的原理如下：</p>
 <span id="more"></span>
-<img src="/2022/01/05/RSA%E2%80%94DP%E6%B3%84%E9%9C%B2/1.png" class>
+<img src="/.com//01/05/RSA%E2%80%94DP%E6%B3%84%E9%9C%B2/1.png" class>
 <p>​    由于得到了X的范围，可以遍历X （65537种可能），利用（p-1）为整数这一限制条件求出( p − 1 )，此时的p不一定正确，还需要验证是否为n的因数，如果是，则说明p无误。得到正确的p以后，可还原明文。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">65538</span>):</span><br><span class="line">    <span class="keyword">if</span> (dp*e-<span class="number">1</span>)%i == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">if</span> n%(((dp*e-<span class="number">1</span>)/i)+<span class="number">1</span>)==<span class="number">0</span>:</span><br><span class="line">            p=((dp*e-<span class="number">1</span>)/i)+<span class="number">1</span></span><br><span class="line">            q=n/(((dp*e-<span class="number">1</span>)/i)+<span class="number">1</span>)</span><br><span class="line">            phi = (p-<span class="number">1</span>)*(q-<span class="number">1</span>)</span><br><span class="line">            d = gmpy2.invert(e,phi)%phi</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>​    示例：</p>
@@ -538,19 +538,19 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">crypto</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">ctfshow</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">buu</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">crypto</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">misc</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">ctfshow</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -594,15 +594,23 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">数论</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">re</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">NSS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">新生赛</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -626,7 +634,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">NSS</a>
+                <a href="javascript:void(0)" class="js-tag color1">python数据结构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">队列</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -642,14 +654,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">python数据结构</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">队列</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">栈</a>
               </li>
              
@@ -658,15 +662,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">新生赛</a>
+                <a href="javascript:void(0)" class="js-tag color4">Vigenere</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">内网渗透</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Vigenere</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -702,10 +702,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">威尔逊定理</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">小指数加密</a>
               </li>
              
@@ -723,6 +719,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">LCG</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">威尔逊定理</a>
               </li>
              
               <li class="article-tag-list-item">

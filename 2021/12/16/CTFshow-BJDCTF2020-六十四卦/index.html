@@ -15,17 +15,17 @@
 <meta property="og:site_name" content="ZimaBlue&#39;s Blog">
 <meta property="og:description" content="附件就两个，一个txt和一个py：">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/2021/12/16/CTFshow-BJDCTF2020-%E5%85%AD%E5%8D%81%E5%9B%9B%E5%8D%A6/1.png">
-<meta property="og:image" content="http://example.com/2021/12/16/CTFshow-BJDCTF2020-%E5%85%AD%E5%8D%81%E5%9B%9B%E5%8D%A6/2.png">
-<meta property="og:image" content="http://example.com/2021/12/16/CTFshow-BJDCTF2020-%E5%85%AD%E5%8D%81%E5%9B%9B%E5%8D%A6/3.png">
-<meta property="og:image" content="http://example.com/2021/12/16/CTFshow-BJDCTF2020-%E5%85%AD%E5%8D%81%E5%9B%9B%E5%8D%A6/4.png">
+<meta property="og:image" content="http://example.com/.com//12/16/CTFshow-BJDCTF2020-%E5%85%AD%E5%8D%81%E5%9B%9B%E5%8D%A6/1.png">
+<meta property="og:image" content="http://example.com/.com//12/16/CTFshow-BJDCTF2020-%E5%85%AD%E5%8D%81%E5%9B%9B%E5%8D%A6/2.png">
+<meta property="og:image" content="http://example.com/.com//12/16/CTFshow-BJDCTF2020-%E5%85%AD%E5%8D%81%E5%9B%9B%E5%8D%A6/3.png">
+<meta property="og:image" content="http://example.com/.com//12/16/CTFshow-BJDCTF2020-%E5%85%AD%E5%8D%81%E5%9B%9B%E5%8D%A6/4.png">
 <meta property="article:published_time" content="2021-12-16T11:59:19.000Z">
-<meta property="article:modified_time" content="2021-12-16T12:38:38.171Z">
+<meta property="article:modified_time" content="2021-12-16T12:38:40.000Z">
 <meta property="article:author" content="ZimaBlue">
 <meta property="article:tag" content="crypto">
 <meta property="article:tag" content="ctfshow">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2021/12/16/CTFshow-BJDCTF2020-%E5%85%AD%E5%8D%81%E5%9B%9B%E5%8D%A6/1.png">
+<meta name="twitter:image" content="http://example.com/.com//12/16/CTFshow-BJDCTF2020-%E5%85%AD%E5%8D%81%E5%9B%9B%E5%8D%A6/1.png">
   
     <link rel="alternative" href="/atom.xml" title="ZimaBlue&#39;s Blog" type="application/atom+xml">
   
@@ -198,10 +198,10 @@
       
         <p>附件就两个，一个txt和一个py：</p>
 <span id="more"></span>
-<img src="/2021/12/16/CTFshow-BJDCTF2020-%E5%85%AD%E5%8D%81%E5%9B%9B%E5%8D%A6/1.png" class>
-<img src="/2021/12/16/CTFshow-BJDCTF2020-%E5%85%AD%E5%8D%81%E5%9B%9B%E5%8D%A6/2.png" class>
+<img src="/.com//12/16/CTFshow-BJDCTF2020-%E5%85%AD%E5%8D%81%E5%9B%9B%E5%8D%A6/1.png" class>
+<img src="/.com//12/16/CTFshow-BJDCTF2020-%E5%85%AD%E5%8D%81%E5%9B%9B%E5%8D%A6/2.png" class>
 <p>根据题目和附件一的64卦，猜测和base64有关（不确定，无所谓），百度了一下64卦，感觉和卦象歌序关系不大，但是找到这张图，这他喵怎么越看越像01序列：</p>
-<img src="/2021/12/16/CTFshow-BJDCTF2020-%E5%85%AD%E5%8D%81%E5%9B%9B%E5%8D%A6/3.png" class>
+<img src="/.com//12/16/CTFshow-BJDCTF2020-%E5%85%AD%E5%8D%81%E5%9B%9B%E5%8D%A6/3.png" class>
 <p>64卦，刚好6位01序列，先转化为01再转化为字符：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">s=<span class="string">&#x27;升随临损巽睽颐萃小过讼艮颐小过震蛊屯未济中孚艮困恒晋升损蛊萃蛊未济巽解艮贲未济观豫损蛊晋噬嗑晋旅解大畜困未济随蒙升解睽未济井困未济旅萃未济震蒙未济师涣归妹大有&#x27;</span></span><br><span class="line">dic=&#123;<span class="string">&#x27;坤&#x27;</span>: <span class="string">&#x27;000000&#x27;</span>, <span class="string">&#x27;剥&#x27;</span>: <span class="string">&#x27;000001&#x27;</span>, <span class="string">&#x27;比&#x27;</span>: <span class="string">&#x27;000010&#x27;</span>, <span class="string">&#x27;观&#x27;</span>: <span class="string">&#x27;000011&#x27;</span>, <span class="string">&#x27;豫&#x27;</span>: <span class="string">&#x27;000100&#x27;</span>, <span class="string">&#x27;晋&#x27;</span>: <span class="string">&#x27;000101&#x27;</span>, <span class="string">&#x27;萃&#x27;</span>: <span class="string">&#x27;000110&#x27;</span>, <span class="string">&#x27;否&#x27;</span>: <span class="string">&#x27;000111&#x27;</span>, <span class="string">&#x27;谦&#x27;</span>: <span class="string">&#x27;001000&#x27;</span>, <span class="string">&#x27;艮&#x27;</span>: <span class="string">&#x27;001001&#x27;</span>, <span class="string">&#x27;蹇&#x27;</span>: <span class="string">&#x27;001010&#x27;</span>, <span class="string">&#x27;渐&#x27;</span>: <span class="string">&#x27;001011&#x27;</span>, <span class="string">&#x27;小过&#x27;</span>: <span class="string">&#x27;001100&#x27;</span>, <span class="string">&#x27;旅&#x27;</span>: <span class="string">&#x27;001101&#x27;</span>, <span class="string">&#x27;咸&#x27;</span>: <span class="string">&#x27;001110&#x27;</span>, <span class="string">&#x27;遁&#x27;</span>: <span class="string">&#x27;001111&#x27;</span>, <span class="string">&#x27;师&#x27;</span>: <span class="string">&#x27;010000&#x27;</span>, <span class="string">&#x27;蒙&#x27;</span>: <span class="string">&#x27;010001&#x27;</span>, <span class="string">&#x27;坎&#x27;</span>: <span class="string">&#x27;010010&#x27;</span>, <span class="string">&#x27;涣&#x27;</span>: <span class="string">&#x27;010011&#x27;</span>, <span class="string">&#x27;解&#x27;</span>: <span class="string">&#x27;010100&#x27;</span>, <span class="string">&#x27;未济&#x27;</span>: <span class="string">&#x27;010101&#x27;</span>, <span class="string">&#x27;困&#x27;</span>: <span class="string">&#x27;010110&#x27;</span>, <span class="string">&#x27;讼&#x27;</span>: <span class="string">&#x27;010111&#x27;</span>, <span class="string">&#x27;升&#x27;</span>: <span class="string">&#x27;011000&#x27;</span>, <span class="string">&#x27;蛊&#x27;</span>: <span class="string">&#x27;011001&#x27;</span>, <span class="string">&#x27;井&#x27;</span>: <span class="string">&#x27;011010&#x27;</span>, <span class="string">&#x27;巽&#x27;</span>: <span class="string">&#x27;011011&#x27;</span>, <span class="string">&#x27;恒&#x27;</span>: <span class="string">&#x27;011100&#x27;</span>, <span class="string">&#x27;鼎&#x27;</span>: <span class="string">&#x27;011101&#x27;</span>, <span class="string">&#x27;大过&#x27;</span>: <span class="string">&#x27;011110&#x27;</span>, <span class="string">&#x27;姤&#x27;</span>: <span class="string">&#x27;011111&#x27;</span>, <span class="string">&#x27;复&#x27;</span>: <span class="string">&#x27;100000&#x27;</span>, <span class="string">&#x27;颐&#x27;</span>: <span class="string">&#x27;100001&#x27;</span>, <span class="string">&#x27;屯&#x27;</span>: <span class="string">&#x27;100010&#x27;</span>, <span class="string">&#x27;益&#x27;</span>: <span class="string">&#x27;100011&#x27;</span>, <span class="string">&#x27;震&#x27;</span>: <span class="string">&#x27;100100&#x27;</span>, <span class="string">&#x27;噬嗑&#x27;</span>: <span class="string">&#x27;100101&#x27;</span>, <span class="string">&#x27;随&#x27;</span>: <span class="string">&#x27;100110&#x27;</span>, <span class="string">&#x27;无妄&#x27;</span>: <span class="string">&#x27;100111&#x27;</span>, <span class="string">&#x27;明夷&#x27;</span>: <span class="string">&#x27;101000&#x27;</span>, <span class="string">&#x27;贲&#x27;</span>: <span class="string">&#x27;101001&#x27;</span>, <span class="string">&#x27;既济&#x27;</span>: <span class="string">&#x27;101010&#x27;</span>, <span class="string">&#x27;家人&#x27;</span>: <span class="string">&#x27;101011&#x27;</span>, <span class="string">&#x27;丰&#x27;</span>: <span class="string">&#x27;101100&#x27;</span>, <span class="string">&#x27;离&#x27;</span>: <span class="string">&#x27;101101&#x27;</span>, <span class="string">&#x27;革&#x27;</span>: <span class="string">&#x27;101110&#x27;</span>, <span class="string">&#x27;同人&#x27;</span>: <span class="string">&#x27;101111&#x27;</span>, <span class="string">&#x27;临&#x27;</span>: <span class="string">&#x27;110000&#x27;</span>, <span class="string">&#x27;损&#x27;</span>: <span class="string">&#x27;110001&#x27;</span>, <span class="string">&#x27;节&#x27;</span>: <span class="string">&#x27;110010&#x27;</span>, <span class="string">&#x27;中孚&#x27;</span>: <span class="string">&#x27;110011&#x27;</span>, <span class="string">&#x27;归妹&#x27;</span>: <span class="string">&#x27;110100&#x27;</span>, <span class="string">&#x27;睽&#x27;</span>: <span class="string">&#x27;110101&#x27;</span>, <span class="string">&#x27;兑&#x27;</span>: <span class="string">&#x27;110110&#x27;</span>, <span class="string">&#x27;履&#x27;</span>: <span class="string">&#x27;110111&#x27;</span>, <span class="string">&#x27;泰&#x27;</span>: <span class="string">&#x27;111000&#x27;</span>, <span class="string">&#x27;大畜&#x27;</span>: <span class="string">&#x27;111001&#x27;</span>, <span class="string">&#x27;需&#x27;</span>: <span class="string">&#x27;111010&#x27;</span>, <span class="string">&#x27;小畜&#x27;</span>: <span class="string">&#x27;111011&#x27;</span>, <span class="string">&#x27;大壮&#x27;</span>: <span class="string">&#x27;111100&#x27;</span>, <span class="string">&#x27;大有&#x27;</span>: <span class="string">&#x27;111101&#x27;</span>, <span class="string">&#x27;夬&#x27;</span>: <span class="string">&#x27;111110&#x27;</span>, <span class="string">&#x27;乾&#x27;</span>: <span class="string">&#x27;111111&#x27;</span>&#125;</span><br><span class="line">li=[]</span><br><span class="line">k=<span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(s)):</span><br><span class="line">    <span class="keyword">if</span> k ==<span class="number">1</span>:</span><br><span class="line">        k=<span class="number">0</span></span><br><span class="line">        <span class="keyword">continue</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        li.append(dic[s[i]])</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        t=<span class="string">&#x27;&#x27;</span></span><br><span class="line">        t=t+s[i]+s[i+<span class="number">1</span>]</span><br><span class="line">        li.append(dic[t])</span><br><span class="line">        k=<span class="number">1</span></span><br><span class="line">ss=<span class="string">&#x27;&#x27;</span>.join(li)</span><br><span class="line"><span class="built_in">print</span>(ss)</span><br><span class="line">enc=<span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="built_in">len</span>(ss),<span class="number">8</span>):</span><br><span class="line">    enc+=<span class="built_in">chr</span>(<span class="built_in">eval</span>(<span class="string">&#x27;0b&#x27;</span>+ss[i:i+<span class="number">8</span>]))</span><br><span class="line"><span class="built_in">print</span>(enc)</span><br></pre></td></tr></table></figure>
 <p>输出 bl1oXF1ra2FbW2VpV1dfUmBiT11dYE5NVVdXSUZYSFVDUA== ；显然的base64，解密转成字节流：</p>
@@ -211,7 +211,7 @@
 <p>encrypt4很简单：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">decrypt4</span>(<span class="params">enc</span>):</span></span><br><span class="line">    temp=<span class="string">&#x27;&#x27;</span></span><br><span class="line">    offset=<span class="number">5</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(enc)):</span><br><span class="line">        temp+=<span class="built_in">chr</span>(<span class="built_in">ord</span>(enc[i])+offset+i)</span><br><span class="line">    <span class="keyword">return</span> temp</span><br></pre></td></tr></table></figure>
 <p>encrypt5有一丢丢的数论模运算：</p>
-<img src="/2021/12/16/CTFshow-BJDCTF2020-%E5%85%AD%E5%8D%81%E5%9B%9B%E5%8D%A6/4.png" class>
+<img src="/.com//12/16/CTFshow-BJDCTF2020-%E5%85%AD%E5%8D%81%E5%9B%9B%E5%8D%A6/4.png" class>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">decrypt4</span>(<span class="params">enc</span>):</span></span><br><span class="line">    temp=<span class="string">&#x27;&#x27;</span></span><br><span class="line">    offset=<span class="number">5</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(enc)):</span><br><span class="line">        temp+=<span class="built_in">chr</span>(<span class="built_in">ord</span>(enc[i])+offset+i)</span><br><span class="line">    <span class="keyword">return</span> temp</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">decrypt5</span>(<span class="params">flag</span>):</span></span><br><span class="line">    <span class="keyword">for</span> a <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">100</span>):</span><br><span class="line">        enc = <span class="string">&#x27;&#x27;</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> flag:</span><br><span class="line">            <span class="keyword">for</span> k <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">200</span>):</span><br><span class="line">                 <span class="keyword">if</span> (<span class="built_in">ord</span>(i) - <span class="number">97</span> - <span class="number">7</span>+<span class="number">26</span>*k)%a==<span class="number">0</span>:</span><br><span class="line">                    enc+= <span class="built_in">chr</span>((<span class="built_in">ord</span>(i) - <span class="number">97</span> - <span class="number">7</span> + <span class="number">26</span> * k) // a + <span class="number">97</span>)</span><br><span class="line">                    <span class="keyword">break</span></span><br><span class="line">        <span class="built_in">print</span>(enc)</span><br></pre></td></tr></table></figure>
 <p>最后得到的flag：</p>
 <p>bjdcongratulationsongettingtheflag</p>
@@ -538,19 +538,19 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">crypto</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">ctfshow</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">buu</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">crypto</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">misc</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">ctfshow</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -594,15 +594,23 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">数论</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">re</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">NSS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">新生赛</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -626,7 +634,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">NSS</a>
+                <a href="javascript:void(0)" class="js-tag color1">python数据结构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">队列</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -642,14 +654,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">python数据结构</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">队列</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">栈</a>
               </li>
              
@@ -658,15 +662,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">新生赛</a>
+                <a href="javascript:void(0)" class="js-tag color4">Vigenere</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">内网渗透</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Vigenere</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -702,10 +702,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">威尔逊定理</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">小指数加密</a>
               </li>
              
@@ -723,6 +719,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">LCG</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">威尔逊定理</a>
               </li>
              
               <li class="article-tag-list-item">

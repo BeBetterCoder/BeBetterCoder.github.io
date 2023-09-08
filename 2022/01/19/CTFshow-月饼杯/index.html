@@ -15,17 +15,17 @@
 <meta property="og:site_name" content="ZimaBlue&#39;s Blog">
 <meta property="og:description" content="crypto1_中秋月">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/2022/01/19/CTFshow-%E6%9C%88%E9%A5%BC%E6%9D%AF/3.png">
-<meta property="og:image" content="http://example.com/2022/01/19/CTFshow-%E6%9C%88%E9%A5%BC%E6%9D%AF/1.png">
-<meta property="og:image" content="http://example.com/2022/01/19/CTFshow-%E6%9C%88%E9%A5%BC%E6%9D%AF/2.png">
+<meta property="og:image" content="http://example.com/.com//01/19/CTFshow-%E6%9C%88%E9%A5%BC%E6%9D%AF/3.png">
+<meta property="og:image" content="http://example.com/.com//01/19/CTFshow-%E6%9C%88%E9%A5%BC%E6%9D%AF/1.png">
+<meta property="og:image" content="http://example.com/.com//01/19/CTFshow-%E6%9C%88%E9%A5%BC%E6%9D%AF/2.png">
 <meta property="article:published_time" content="2022-01-19T11:09:31.000Z">
-<meta property="article:modified_time" content="2022-01-19T12:30:54.133Z">
+<meta property="article:modified_time" content="2022-01-19T12:30:56.000Z">
 <meta property="article:author" content="ZimaBlue">
 <meta property="article:tag" content="crypto">
 <meta property="article:tag" content="ctfshow">
 <meta property="article:tag" content="赛事">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2022/01/19/CTFshow-%E6%9C%88%E9%A5%BC%E6%9D%AF/3.png">
+<meta name="twitter:image" content="http://example.com/.com//01/19/CTFshow-%E6%9C%88%E9%A5%BC%E6%9D%AF/3.png">
   
     <link rel="alternative" href="/atom.xml" title="ZimaBlue&#39;s Blog" type="application/atom+xml">
   
@@ -199,13 +199,13 @@
         <h3 id="crypto1-中秋月"><a href="#crypto1-中秋月" class="headerlink" title="crypto1_中秋月"></a>crypto1_中秋月</h3><span id="more"></span>
 <p>​    题目以及hint：</p>
 <p>密文：</p>
-<img src="/2022/01/19/CTFshow-%E6%9C%88%E9%A5%BC%E6%9D%AF/3.png" class>
+<img src="/.com//01/19/CTFshow-%E6%9C%88%E9%A5%BC%E6%9D%AF/3.png" class>
 <p>hint：某古典密码；经此古典密码加密后，密文还是大写；keyword+plaintext (+plaintext…+plaintext)；自动钥匙⊕；明文全大写，得到后转小写，并以_连接单词</p>
 <p>​    ⊕符号通常就是异或的表示，根据题意应该是明文经过加密以后（大写字母）还经过了异或才得到当前的密文，所以可以先尝试还原异或之前的大写字母：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">s=<span class="string">&#x27;fsskryenvkm~jl&#123;ejs&#125;jwflzsnpgmifq&#123;&#123;j&#123;|suhzrjppnx|qvixt~whu&#x27;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">255</span>):</span><br><span class="line">	res=<span class="string">&#x27;&#x27;</span></span><br><span class="line">	<span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="built_in">len</span>(s)):</span><br><span class="line">		temp = <span class="built_in">ord</span>(s[j])^i</span><br><span class="line">		<span class="keyword">if</span> <span class="number">65</span>&lt;=temp&lt;=<span class="number">90</span> :	<span class="comment">#由大小写字母构成</span></span><br><span class="line">			res += (<span class="built_in">chr</span>(temp))</span><br><span class="line">	<span class="keyword">if</span> <span class="built_in">len</span>(res)==<span class="built_in">len</span>(s):</span><br><span class="line">		<span class="built_in">print</span>(res)</span><br></pre></td></tr></table></figure>
 <p>​    得到：YLLTMFZQITRAUSDZULBUHYSELQOXRVYNDDUDCLJWEMUOOQGCNIVGKAHWJ</p>
 <p>​    根据keyword+plaintext (+plaintext…+plaintext)可知该加密算法为autokey密码，是一种多表替换密码，与维吉尼亚密码密码类似。对于替换类密码的破解github上有一个项目：python_cryptanalysis</p>
-<img src="/2022/01/19/CTFshow-%E6%9C%88%E9%A5%BC%E6%9D%AF/1.png" class>
+<img src="/.com//01/19/CTFshow-%E6%9C%88%E9%A5%BC%E6%9D%AF/1.png" class>
 <p>​    由于该项目仅支持python2，于是适当修改源码运行得到flag</p>
 <p>​    解密完整代码：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#main.py</span></span><br><span class="line"><span class="keyword">from</span> ngram_score <span class="keyword">import</span> ngram_score</span><br><span class="line"><span class="keyword">from</span> pycipher <span class="keyword">import</span> Autokey</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">from</span> itertools <span class="keyword">import</span> permutations</span><br><span class="line"></span><br><span class="line">s=<span class="string">&#x27;fsskryenvkm~jl&#123;ejs&#125;jwflzsnpgmifq&#123;&#123;j&#123;|suhzrjppnx|qvixt~whu&#x27;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">255</span>):</span><br><span class="line">   res=<span class="string">&#x27;&#x27;</span></span><br><span class="line">   <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="built_in">len</span>(s)):</span><br><span class="line">      temp = <span class="built_in">ord</span>(s[j])^i</span><br><span class="line">      <span class="keyword">if</span> <span class="number">65</span>&lt;=temp&lt;=<span class="number">90</span> :  <span class="comment">#由大小写字母构成</span></span><br><span class="line">         res += (<span class="built_in">chr</span>(temp))</span><br><span class="line">   <span class="keyword">if</span> <span class="built_in">len</span>(res)==<span class="built_in">len</span>(s):</span><br><span class="line">      <span class="built_in">print</span>(res)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">qgram = ngram_score(<span class="string">&#x27;quadgrams.txt&#x27;</span>)</span><br><span class="line">trigram = ngram_score(<span class="string">&#x27;trigrams.txt&#x27;</span>)</span><br><span class="line">ctext = <span class="string">&#x27;YLLTMFZQITRAUSDZULBUHYSELQOXRVYNDDUDCLJWEMUOOQGCNIVGKAHWJ&#x27;</span></span><br><span class="line">ctext = re.sub(<span class="string">r&#x27;[^A-Z]&#x27;</span>, <span class="string">&#x27;&#x27;</span>, ctext.upper())</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">nbest</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">   <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, N=<span class="number">1000</span></span>):</span></span><br><span class="line">      self.store = []</span><br><span class="line">      self.N = N</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">def</span> <span class="title">add</span>(<span class="params">self, item</span>):</span></span><br><span class="line">      self.store.append(item)</span><br><span class="line">      self.store.sort(reverse=<span class="literal">True</span>)</span><br><span class="line">      self.store = self.store[:self.N]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">def</span> <span class="title">__getitem__</span>(<span class="params">self, k</span>):</span></span><br><span class="line">      <span class="keyword">return</span> self.store[k]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">def</span> <span class="title">__len__</span>(<span class="params">self</span>):</span></span><br><span class="line">      <span class="keyword">return</span> <span class="built_in">len</span>(self.store)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># init</span></span><br><span class="line">N=<span class="number">100</span></span><br><span class="line"><span class="keyword">for</span> KLEN <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>,<span class="number">20</span>):</span><br><span class="line">    rec = nbest(N)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> permutations(<span class="string">&#x27;ABCDEFGHIJKLMNOPQRSTUVWXYZ&#x27;</span>,<span class="number">3</span>):</span><br><span class="line">        key = <span class="string">&#x27;&#x27;</span>.join(i) + <span class="string">&#x27;A&#x27;</span>*(KLEN-<span class="built_in">len</span>(i))</span><br><span class="line">        pt = Autokey(key).decipher(ctext)</span><br><span class="line">        score = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="built_in">len</span>(ctext),KLEN):</span><br><span class="line">            score += trigram.score(pt[j:j+<span class="number">3</span>])</span><br><span class="line">        rec.add((score,<span class="string">&#x27;&#x27;</span>.join(i),pt[:<span class="number">30</span>]))</span><br><span class="line"></span><br><span class="line">    next_rec = nbest(N)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,KLEN-<span class="number">3</span>):</span><br><span class="line">        <span class="keyword">for</span> k <span class="keyword">in</span> <span class="built_in">range</span>(N):</span><br><span class="line">            <span class="keyword">for</span> c <span class="keyword">in</span> <span class="string">&#x27;ABCDEFGHIJKLMNOPQRSTUVWXYZ&#x27;</span>:</span><br><span class="line">                key = rec[k][<span class="number">1</span>] + c</span><br><span class="line">                fullkey = key + <span class="string">&#x27;A&#x27;</span>*(KLEN-<span class="built_in">len</span>(key))</span><br><span class="line">                pt = Autokey(fullkey).decipher(ctext)</span><br><span class="line">                score = <span class="number">0</span></span><br><span class="line">                <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="built_in">len</span>(ctext),KLEN):</span><br><span class="line">                    score += qgram.score(pt[j:j+<span class="built_in">len</span>(key)])</span><br><span class="line">                next_rec.add((score,key,pt[:<span class="number">30</span>]))</span><br><span class="line">        rec = next_rec</span><br><span class="line">        next_rec = nbest(N)</span><br><span class="line">    bestkey = rec[<span class="number">0</span>][<span class="number">1</span>]</span><br><span class="line">    pt = Autokey(bestkey).decipher(ctext)</span><br><span class="line">    bestscore = qgram.score(pt)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(N):</span><br><span class="line">        pt = Autokey(rec[i][<span class="number">1</span>]).decipher(ctext)</span><br><span class="line">        score = qgram.score(pt)</span><br><span class="line">        <span class="keyword">if</span> score &gt; bestscore:</span><br><span class="line">            bestkey = rec[i][<span class="number">1</span>]</span><br><span class="line">            bestscore = score</span><br><span class="line">    <span class="built_in">print</span> (bestscore,<span class="string">&#x27;autokey, klen&#x27;</span>,KLEN,<span class="string">&#x27;:&quot;&#x27;</span>+bestkey+<span class="string">&#x27;&quot;,&#x27;</span>,Autokey(bestkey).decipher(ctext).lower())</span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"><span class="comment">#ngram_score.py</span></span><br><span class="line"><span class="keyword">from</span> math <span class="keyword">import</span> log10</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ngram_score</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self,ngramfile,sep=<span class="string">&#x27; &#x27;</span></span>):</span></span><br><span class="line">        <span class="string">&#x27;&#x27;&#x27; load a file containing ngrams and counts, calculate log probabilities &#x27;&#x27;&#x27;</span></span><br><span class="line">        self.ngrams = &#123;&#125;</span><br><span class="line">        <span class="keyword">for</span> line <span class="keyword">in</span> <span class="built_in">open</span>(ngramfile):</span><br><span class="line">            key,count = line.split(sep)</span><br><span class="line">            self.ngrams[key] = <span class="built_in">int</span>(count)</span><br><span class="line">        self.L = <span class="built_in">len</span>(key)</span><br><span class="line">        <span class="comment">#print(self.ngrams.items())</span></span><br><span class="line">        self.N = <span class="built_in">sum</span>(self.ngrams.values())</span><br><span class="line">        <span class="comment">#calculate log probabilities</span></span><br><span class="line">        <span class="keyword">for</span> key <span class="keyword">in</span> self.ngrams.keys():</span><br><span class="line">            self.ngrams[key] = log10(<span class="built_in">float</span>(self.ngrams[key])/self.N)</span><br><span class="line">        self.floor = log10(<span class="number">0.01</span>/self.N)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">score</span>(<span class="params">self,text</span>):</span></span><br><span class="line">        <span class="string">&#x27;&#x27;&#x27; compute the score of text &#x27;&#x27;&#x27;</span></span><br><span class="line">        score = <span class="number">0</span></span><br><span class="line">        ngrams = self.ngrams.__getitem__</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(text)-self.L+<span class="number">1</span>):</span><br><span class="line">            <span class="keyword">if</span> text[i:i+self.L] <span class="keyword">in</span> self.ngrams: score += ngrams(text[i:i+self.L])</span><br><span class="line">            <span class="keyword">else</span>: score += self.floor</span><br><span class="line">        <span class="keyword">return</span> score</span><br></pre></td></tr></table></figure>
@@ -231,7 +231,7 @@
 <p>​    hint给了要用到威尔逊定理，于是复习了一下：</p>
 <p>在初等数论中，威尔逊定理给出了判定一个自然数是否素数的充分必要条件。即：当且仅当p为素数时：( p -1 )! ≡ -1 ( mod p )</p>
 <p>​    推导过程：</p>
-<img src="/2022/01/19/CTFshow-%E6%9C%88%E9%A5%BC%E6%9D%AF/2.png" class>
+<img src="/.com//01/19/CTFshow-%E6%9C%88%E9%A5%BC%E6%9D%AF/2.png" class>
 <p>​    exp：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> math <span class="keyword">import</span> gamma</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">import</span> gmpy2</span><br><span class="line"><span class="keyword">import</span> binascii</span><br><span class="line"><span class="keyword">from</span> Cryptodome.Util.number <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">nextPrime</span>(<span class="params">n</span>):</span></span><br><span class="line">    n += <span class="number">2</span> <span class="keyword">if</span> n &amp; <span class="number">1</span> <span class="keyword">else</span> <span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> <span class="keyword">not</span> isPrime(n):</span><br><span class="line">        n += <span class="number">2</span></span><br><span class="line">    <span class="keyword">return</span> n</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getNewPrime</span>():</span></span><br><span class="line">    A = getPrime(<span class="number">512</span>)</span><br><span class="line">    B = nextPrime(A - random.randint(<span class="number">1e4</span>,<span class="number">1e5</span>))</span><br><span class="line">    <span class="keyword">return</span> nextPrime(gamma(B+<span class="number">2</span>)%A)</span><br><span class="line"></span><br><span class="line">pA=<span class="number">6814157460586876042804041951834304833424062437744287469257313954502540797027261340622077218188033865281590529907571701131297782609357118357982463723982789</span></span><br><span class="line">pB=<span class="number">6814157460586876042804041951834304833424062437744287469257313954502540797027261340622077218188033865281590529907571701131297782609357118357982463723922147</span></span><br><span class="line">qA=<span class="number">7145646366857234331692232566211321498245533826533958883943688415057871253511271731661019642050252046201115975396366275083424623329930477623781348477881291</span></span><br><span class="line">qB=<span class="number">7145646366857234331692232566211321498245533826533958883943688415057871253511271731661019642050252046201115975396366275083424623329930477623781348477807457</span></span><br><span class="line"></span><br><span class="line">e = <span class="number">0x10001</span></span><br><span class="line">n=<span class="number">4451906216583258787166698210560165433649728830889954633721198623488802305844782492171757604711145165920462286487680020347239300947225371917344589502941576734875830871998499135120227347066586066943289430156378296665669974728569678779668142712266780949126509440672273927433367293606776081254094682033167575930701870261219046464773708974194213798032346187463443317770758989273370488582862531630356263732232300508706676725203199729764016766683870925164232508407363688370458877688991733322055785233669885166225464068579486683574954699370175267031949720967812902215635630884502987094547523361027411501285252862476410213277925430392164226297316310465146003494714018456407793759170649913180823814850170639706664167149612984905056804131124522209409607977589884632999710708045656852149371030046919242039957767777840304466948549383597755811307383659188216421501912831203089570725388153416013596114462069777713822433178099904907224119</span></span><br><span class="line">c=<span class="number">1996198968748552041728429851810599627895157160099076033250854211280074825148767841655949210593646824507865483166496070951130337321360509148527292165245205219296211294789087358959553387392928560150390604911087085313000622842025416521494799132969818997182731021267942464323979261593380113740152841984062184326431879167516288834455296913822921806893572566867611541664848820247889274979245086440402996661226884320574824077910315143756471444347386795428338020162169391827182914043434253974549636668126789355991920452920806351939782281969098470635517019120996509180703896707990501216102290302162705699788457579330150149320348175742131887213742989509004374645723471497302400169849858253644606818874098604333865973357374444445825761600866472906771935670261641342221394488068630591190697667016958881530367047928341661857241378511420562236766886349565409774340321441504290366223243635878057759623855735794209219474650425139791831374</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#求 ((pA-2)!/(pB+1)!)%pA 的逆元，等于((pB+1)!)%pA ，等于gamma(pB+2)%pA</span></span><br><span class="line">p = <span class="number">1</span></span><br><span class="line"><span class="built_in">max</span> = (pA-<span class="number">2</span>) - (pB+<span class="number">1</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="built_in">max</span>):</span><br><span class="line">    p = p * gmpy2.invert((pA-i-<span class="number">2</span>),pA) % pA</span><br><span class="line">p = nextPrime(p)</span><br><span class="line"><span class="comment">#求 ((qA-2)!/(qB+1)!)%qA 的逆元，等于((qB+1)!)%qA ，等于gamma(qB+2)%qA</span></span><br><span class="line">q = <span class="number">1</span></span><br><span class="line"><span class="built_in">max</span> = (qA-<span class="number">2</span>) - (qB+<span class="number">1</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="built_in">max</span>):</span><br><span class="line">    q = q * gmpy2.invert((qA-i-<span class="number">2</span>),qA) % qA</span><br><span class="line">q = nextPrime(q)</span><br><span class="line"></span><br><span class="line">r = gmpy2.iroot(gmpy2.mpz(n//(p*q**<span class="number">2</span>)),<span class="number">3</span>)</span><br><span class="line"><span class="built_in">print</span>(r)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;p =&#x27;</span>,p)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;q =&#x27;</span>,q)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;r =&#x27;</span>,r[<span class="number">0</span>])</span><br><span class="line">phi = (p-<span class="number">1</span>)*(q**<span class="number">2</span>-q)*(r[<span class="number">0</span>]**<span class="number">3</span>-r[<span class="number">0</span>]**<span class="number">2</span>)</span><br><span class="line">d = gmpy2.invert(e,phi)</span><br><span class="line">m = <span class="built_in">pow</span>(c, d, n)</span><br><span class="line"><span class="built_in">print</span>(long_to_bytes(m))</span><br></pre></td></tr></table></figure>
 
@@ -564,19 +564,19 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">crypto</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">ctfshow</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">buu</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">crypto</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">misc</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">ctfshow</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -620,15 +620,23 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">数论</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">re</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">NSS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">新生赛</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -652,7 +660,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">NSS</a>
+                <a href="javascript:void(0)" class="js-tag color1">python数据结构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">队列</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -668,14 +680,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">python数据结构</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">队列</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">栈</a>
               </li>
              
@@ -684,15 +688,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">新生赛</a>
+                <a href="javascript:void(0)" class="js-tag color4">Vigenere</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">内网渗透</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Vigenere</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -728,10 +728,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">威尔逊定理</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">小指数加密</a>
               </li>
              
@@ -749,6 +745,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">LCG</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">威尔逊定理</a>
               </li>
              
               <li class="article-tag-list-item">

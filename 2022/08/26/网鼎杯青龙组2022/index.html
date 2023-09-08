@@ -15,16 +15,16 @@
 <meta property="og:site_name" content="ZimaBlue&#39;s Blog">
 <meta property="og:description" content="青龙组签到答对八道知识问答题，得到flag：">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/2022/08/26/%E7%BD%91%E9%BC%8E%E6%9D%AF%E9%9D%92%E9%BE%99%E7%BB%842022/misc.png">
-<meta property="og:image" content="http://example.com/2022/08/26/%E7%BD%91%E9%BC%8E%E6%9D%AF%E9%9D%92%E9%BE%99%E7%BB%842022/2.png">
+<meta property="og:image" content="http://example.com/.com//08/26/%E7%BD%91%E9%BC%8E%E6%9D%AF%E9%9D%92%E9%BE%99%E7%BB%842022/misc.png">
+<meta property="og:image" content="http://example.com/.com//08/26/%E7%BD%91%E9%BC%8E%E6%9D%AF%E9%9D%92%E9%BE%99%E7%BB%842022/2.png">
 <meta property="article:published_time" content="2022-08-26T13:54:51.000Z">
-<meta property="article:modified_time" content="2022-09-05T01:08:27.882Z">
+<meta property="article:modified_time" content="2022-09-05T01:08:28.000Z">
 <meta property="article:author" content="ZimaBlue">
 <meta property="article:tag" content="crypto">
 <meta property="article:tag" content="misc">
 <meta property="article:tag" content="re">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2022/08/26/%E7%BD%91%E9%BC%8E%E6%9D%AF%E9%9D%92%E9%BE%99%E7%BB%842022/misc.png">
+<meta name="twitter:image" content="http://example.com/.com//08/26/%E7%BD%91%E9%BC%8E%E6%9D%AF%E9%9D%92%E9%BE%99%E7%BB%842022/misc.png">
   
     <link rel="alternative" href="/atom.xml" title="ZimaBlue&#39;s Blog" type="application/atom+xml">
   
@@ -196,19 +196,19 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h3 id="青龙组"><a href="#青龙组" class="headerlink" title="青龙组"></a>青龙组</h3><h3 id="签到"><a href="#签到" class="headerlink" title="签到"></a>签到</h3><p>答对八道知识问答题，得到flag：</p>
-<img src="/2022/08/26/%E7%BD%91%E9%BC%8E%E6%9D%AF%E9%9D%92%E9%BE%99%E7%BB%842022/misc.png" class>
+<img src="/.com//08/26/%E7%BD%91%E9%BC%8E%E6%9D%AF%E9%9D%92%E9%BE%99%E7%BB%842022/misc.png" class>
 <span id="more"></span>
 <h3 id="crypto091"><a href="#crypto091" class="headerlink" title="crypto091"></a>crypto091</h3><p>根据题目意思电话号码前几位为1709，因为通过百度可以查找到170号段首批放号的联通号是1709开头；又根据hash值长度64位hex猜测是sha256，于是带上地区码86爆破哈希，得到正确的电话号码：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> hashlib <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">table = <span class="string">&#x27;0123456789&#x27;</span></span><br><span class="line">m = <span class="string">&#x27;861709&#x27;</span></span><br><span class="line">c = <span class="string">&#x27;c22a563acc2a587afbfaaaa6d67bc6e628872b00bd7e998873881f7c6fdc62fc&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">len</span>(c))</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i1 <span class="keyword">in</span> table:</span><br><span class="line">    <span class="keyword">for</span> i2 <span class="keyword">in</span> table:</span><br><span class="line">        <span class="keyword">for</span> i3 <span class="keyword">in</span> table:</span><br><span class="line">            <span class="keyword">for</span> i4 <span class="keyword">in</span> table:</span><br><span class="line">                <span class="keyword">for</span> i5 <span class="keyword">in</span> table:</span><br><span class="line">                    <span class="keyword">for</span> i6 <span class="keyword">in</span> table:</span><br><span class="line">                        <span class="keyword">for</span> i7 <span class="keyword">in</span> table:</span><br><span class="line">                            f = m+i1+i2+i3+i4+i5+i6+i7</span><br><span class="line">                            <span class="keyword">if</span> sha256(f.encode()).hexdigest() == c:</span><br><span class="line">                                <span class="built_in">print</span>(f)</span><br><span class="line">                                <span class="keyword">break</span></span><br></pre></td></tr></table></figure>
 <p>带上flag格式提交即可。</p>
 <p>补一个美观一点的exp:</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">x = <span class="string">&#x27;c22a563acc2a587afbfaaaa6d67bc6e628872b00bd7e998873881f7c6fdc62fc&#x27;</span></span><br><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line">n = <span class="string">b&#x27;861709&#x27;</span></span><br><span class="line">s = <span class="built_in">list</span>(<span class="string">&#x27;0123456789&#x27;</span>.strip())</span><br><span class="line"><span class="keyword">import</span> itertools</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> itertools.product(s,repeat = <span class="number">7</span>):</span><br><span class="line">    d = <span class="string">&#x27;&#x27;</span>.join(i).encode()</span><br><span class="line">    g = n+d</span><br><span class="line">    <span class="keyword">if</span> hashlib.sha256(g).hexdigest() == x:</span><br><span class="line">        <span class="built_in">print</span>(g)</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line"><span class="comment"># b&#x27;8617091733716&#x27;</span></span><br></pre></td></tr></table></figure>
-<h3 id="crypto162"><a href="#crypto162" class="headerlink" title="crypto162"></a>crypto162</h3><p>$\left[\begin{matrix}a_n\\a_{n-1}\\a_{n-2}\end{matrix}\right]=\left[\begin{matrix}t_0&amp;t_1&amp;t_2\\1&amp;0&amp;0\\0&amp;1&amp;0\end{matrix}\right]*\left[\begin{matrix}a_{n-1}\\a_{n-2}\\a_{n-3}\end{matrix}\right]$</p>
+<h3 id="crypto162"><a href="#crypto162" class="headerlink" title="crypto162"></a>crypto162</h3><p>$\left[\begin{matrix}a<em>n\a</em>{n-1}\a<em>{n-2}\end{matrix}\right]=\left[\begin{matrix}t_0&amp;t_1&amp;t_2\1&amp;0&amp;0\0&amp;1&amp;0\end{matrix}\right]*\left[\begin{matrix}a</em>{n-1}\a<em>{n-2}\a</em>{n-3}\end{matrix}\right]$</p>
 <p>sage矩阵快速幂运算即可：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> hashlib <span class="keyword">import</span> md5,sha256</span><br><span class="line"><span class="keyword">from</span> Crypto.Cipher <span class="keyword">import</span> AES</span><br><span class="line"></span><br><span class="line">cof_t = [[<span class="number">353</span>, -<span class="number">1162</span>, <span class="number">32767</span>], [<span class="number">206</span>, -<span class="number">8021</span>, <span class="number">42110</span>], [<span class="number">262</span>, -<span class="number">7088</span>, <span class="number">31882</span>], [<span class="number">388</span>, -<span class="number">6394</span>, <span class="number">21225</span>], [<span class="number">295</span>, -<span class="number">9469</span>, <span class="number">44468</span>], [<span class="number">749</span>, -<span class="number">3501</span>, <span class="number">40559</span>], [<span class="number">528</span>, -<span class="number">2690</span>, <span class="number">10210</span>], [<span class="number">354</span>, -<span class="number">5383</span>, <span class="number">18437</span>], [<span class="number">491</span>, -<span class="number">8467</span>, <span class="number">26892</span>], [<span class="number">932</span>, -<span class="number">6984</span>, <span class="number">20447</span>], [<span class="number">731</span>, -<span class="number">6281</span>, <span class="number">11340</span>], [<span class="number">420</span>, -<span class="number">5392</span>, <span class="number">44071</span>], [<span class="number">685</span>, -<span class="number">6555</span>, <span class="number">40938</span>], [<span class="number">408</span>, -<span class="number">8070</span>, <span class="number">47959</span>], [<span class="number">182</span>, -<span class="number">9857</span>, <span class="number">49477</span>], [<span class="number">593</span>, -<span class="number">3584</span>, <span class="number">49243</span>], [<span class="number">929</span>, -<span class="number">7410</span>, <span class="number">31929</span>], [<span class="number">970</span>, -<span class="number">4549</span>, <span class="number">17160</span>], [<span class="number">141</span>, -<span class="number">2435</span>, <span class="number">36408</span>], [<span class="number">344</span>, -<span class="number">3814</span>, <span class="number">18949</span>], [<span class="number">291</span>, -<span class="number">7457</span>, <span class="number">40587</span>], [<span class="number">765</span>, -<span class="number">7011</span>, <span class="number">32097</span>], [<span class="number">700</span>, -<span class="number">8534</span>, <span class="number">18013</span>], [<span class="number">267</span>, -<span class="number">2541</span>, <span class="number">33488</span>], [<span class="number">249</span>, -<span class="number">8934</span>, <span class="number">12321</span>], [<span class="number">589</span>, -<span class="number">9617</span>, <span class="number">41998</span>], [<span class="number">840</span>, -<span class="number">1166</span>, <span class="number">22814</span>], [<span class="number">947</span>, -<span class="number">5660</span>, <span class="number">41003</span>], [<span class="number">206</span>, -<span class="number">7195</span>, <span class="number">46261</span>], [<span class="number">784</span>, -<span class="number">9270</span>, <span class="number">28410</span>], [<span class="number">338</span>, -<span class="number">3690</span>, <span class="number">19608</span>], [<span class="number">559</span>, -<span class="number">2078</span>, <span class="number">44397</span>], [<span class="number">534</span>, -<span class="number">3438</span>, <span class="number">47830</span>], [<span class="number">515</span>, -<span class="number">2139</span>, <span class="number">39546</span>], [<span class="number">603</span>, -<span class="number">6460</span>, <span class="number">49953</span>], [<span class="number">234</span>, -<span class="number">6824</span>, <span class="number">12579</span>], [<span class="number">805</span>, -<span class="number">8793</span>, <span class="number">36465</span>], [<span class="number">245</span>, -<span class="number">5886</span>, <span class="number">21077</span>], [<span class="number">190</span>, -<span class="number">7658</span>, <span class="number">20396</span>], [<span class="number">392</span>, -<span class="number">7053</span>, <span class="number">19739</span>], [<span class="number">609</span>, -<span class="number">5399</span>, <span class="number">39959</span>], [<span class="number">479</span>, -<span class="number">8172</span>, <span class="number">45734</span>], [<span class="number">321</span>, -<span class="number">7102</span>, <span class="number">41224</span>], [<span class="number">720</span>, -<span class="number">4487</span>, <span class="number">11055</span>], [<span class="number">208</span>, -<span class="number">1897</span>, <span class="number">15237</span>], [<span class="number">890</span>, -<span class="number">4427</span>, <span class="number">35168</span>], [<span class="number">513</span>, -<span class="number">5106</span>, <span class="number">45849</span>], [<span class="number">666</span>, -<span class="number">1137</span>, <span class="number">23725</span>], [<span class="number">755</span>, -<span class="number">6732</span>, <span class="number">39995</span>], [<span class="number">589</span>, -<span class="number">6421</span>, <span class="number">43716</span>], [<span class="number">866</span>, -<span class="number">3265</span>, <span class="number">30017</span>], [<span class="number">416</span>, -<span class="number">6540</span>, <span class="number">34979</span>], [<span class="number">840</span>, -<span class="number">1305</span>, <span class="number">18242</span>], [<span class="number">731</span>, -<span class="number">6844</span>, <span class="number">13781</span>], [<span class="number">561</span>, -<span class="number">2728</span>, <span class="number">10298</span>], [<span class="number">863</span>, -<span class="number">5953</span>, <span class="number">23132</span>], [<span class="number">204</span>, -<span class="number">4208</span>, <span class="number">27492</span>], [<span class="number">158</span>, -<span class="number">8701</span>, <span class="number">12720</span>], [<span class="number">802</span>, -<span class="number">4740</span>, <span class="number">16628</span>], [<span class="number">491</span>, -<span class="number">6874</span>, <span class="number">29057</span>], [<span class="number">531</span>, -<span class="number">4829</span>, <span class="number">29205</span>], [<span class="number">363</span>, -<span class="number">4775</span>, <span class="number">41711</span>], [<span class="number">319</span>, -<span class="number">9206</span>, <span class="number">46164</span>], [<span class="number">317</span>, -<span class="number">9270</span>, <span class="number">18290</span>], [<span class="number">680</span>, -<span class="number">5136</span>, <span class="number">12009</span>], [<span class="number">880</span>, -<span class="number">2940</span>, <span class="number">34900</span>], [<span class="number">162</span>, -<span class="number">2587</span>, <span class="number">49881</span>], [<span class="number">997</span>, -<span class="number">5265</span>, <span class="number">20890</span>], [<span class="number">485</span>, -<span class="number">9395</span>, <span class="number">23048</span>], [<span class="number">867</span>, -<span class="number">1652</span>, <span class="number">18926</span>], [<span class="number">691</span>, -<span class="number">7844</span>, <span class="number">11180</span>], [<span class="number">355</span>, -<span class="number">5990</span>, <span class="number">13172</span>], [<span class="number">923</span>, -<span class="number">2018</span>, <span class="number">23110</span>], [<span class="number">214</span>, -<span class="number">4719</span>, <span class="number">23005</span>], [<span class="number">921</span>, -<span class="number">9528</span>, <span class="number">29351</span>], [<span class="number">349</span>, -<span class="number">7957</span>, <span class="number">20161</span>], [<span class="number">470</span>, -<span class="number">1889</span>, <span class="number">46170</span>], [<span class="number">244</span>, -<span class="number">6106</span>, <span class="number">23879</span>], [<span class="number">419</span>, -<span class="number">5440</span>, <span class="number">43576</span>], [<span class="number">930</span>, -<span class="number">1123</span>, <span class="number">29859</span>], [<span class="number">151</span>, -<span class="number">5759</span>, <span class="number">23405</span>], [<span class="number">843</span>, -<span class="number">6770</span>, <span class="number">36558</span>], [<span class="number">574</span>, -<span class="number">6171</span>, <span class="number">33778</span>], [<span class="number">772</span>, -<span class="number">1073</span>, <span class="number">44718</span>], [<span class="number">932</span>, -<span class="number">4037</span>, <span class="number">40088</span>], [<span class="number">848</span>, -<span class="number">5813</span>, <span class="number">27304</span>], [<span class="number">194</span>, -<span class="number">6016</span>, <span class="number">39770</span>], [<span class="number">966</span>, -<span class="number">6789</span>, <span class="number">14217</span>], [<span class="number">219</span>, -<span class="number">6849</span>, <span class="number">40922</span>], [<span class="number">352</span>, -<span class="number">6046</span>, <span class="number">18558</span>], [<span class="number">794</span>, -<span class="number">8254</span>, <span class="number">29748</span>], [<span class="number">618</span>, -<span class="number">5887</span>, <span class="number">15535</span>], [<span class="number">202</span>, -<span class="number">9288</span>, <span class="number">26590</span>], [<span class="number">611</span>, -<span class="number">4341</span>, <span class="number">46682</span>], [<span class="number">155</span>, -<span class="number">7909</span>, <span class="number">16654</span>], [<span class="number">935</span>, -<span class="number">5739</span>, <span class="number">39342</span>], [<span class="number">998</span>, -<span class="number">6538</span>, <span class="number">24363</span>], [<span class="number">125</span>, -<span class="number">5679</span>, <span class="number">36725</span>], [<span class="number">507</span>, -<span class="number">7074</span>, <span class="number">15475</span>], [<span class="number">699</span>, -<span class="number">5836</span>, <span class="number">47549</span>]]</span><br><span class="line">s=<span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(cof_t)):</span><br><span class="line">    A=matrix([cof_t[i],[<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>],[<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>]])</span><br><span class="line">    v=vector([<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>])</span><br><span class="line">    t=A^(<span class="number">200000</span>-<span class="number">2</span>)*v</span><br><span class="line">    s+=<span class="built_in">list</span>(t)[<span class="number">0</span>]</span><br><span class="line">    </span><br><span class="line">s=<span class="built_in">str</span>(s)[-<span class="number">2000</span>:-<span class="number">1000</span>]</span><br><span class="line">key = long_to_bytes(<span class="built_in">int</span>(md5(s.encode()).hexdigest(),<span class="number">16</span>))</span><br><span class="line">check = sha256(key).hexdigest()</span><br><span class="line">verify = <span class="string">&#x27;2cf44ec396e3bb9ed0f2f3bdbe4fab6325ae9d9ec3107881308156069452a6d5&#x27;</span></span><br><span class="line"><span class="keyword">assert</span>(check == verify)</span><br><span class="line">aes = AES.new(key,AES.MODE_ECB)</span><br><span class="line">data = long_to_bytes(<span class="number">0x4f12b3a3eadc4146386f4732266f02bd03114a404ba4cb2dabae213ecec451c9d52c70dc3d25154b5af8a304afafed87</span>)</span><br><span class="line"><span class="built_in">print</span> (aes.decrypt(data))</span><br></pre></td></tr></table></figure>
 <h3 id="crypto405"><a href="#crypto405" class="headerlink" title="crypto405"></a>crypto405</h3><p>选取了5个初始$key$：$k_0,k_1,k_2,k_3,k_4$，$grasshopper=grasshpper.k_0.k_1.k_2.k_3.k_4$，$key$是不断在累乘的，而$flag$的格式为<code>flag&#123;</code>，可以通过这五个明文字符来求$key$，比赛时我们的思路是硬解方程组恢复密钥，赛后看到一个很有意思的思路，于是复现一下。<br>首先列出开头五个字符的变换式子，用$var$赋值打印看看大致情况：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">flag = <span class="string">b&#x27;flag&#123;&#x27;</span></span><br><span class="line">var(<span class="string">&#x27;k0 k1 k2 k3 k4&#x27;</span>)</span><br><span class="line">k = [k0, k1, k2, k3, k4]</span><br><span class="line">res = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(flag)):</span><br><span class="line">    grasshopper = flag[i]</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">5</span>):</span><br><span class="line">        k[j] = grasshopper = grasshopper * k[j]</span><br><span class="line">    res.append(grasshopper)</span><br><span class="line"><span class="built_in">print</span>(res)</span><br></pre></td></tr></table></figure>
-<img src="/2022/08/26/%E7%BD%91%E9%BC%8E%E6%9D%AF%E9%9D%92%E9%BE%99%E7%BB%842022/2.png" class>
+<img src="/.com//08/26/%E7%BD%91%E9%BC%8E%E6%9D%AF%E9%9D%92%E9%BE%99%E7%BB%842022/2.png" class>
 <p>可以看到由于$key$累乘，其次数每一轮都在增大，而由于$flag$的字符也在累乘，其系数也在不断增大。<br>这个思路的关键部分是把乘法看成加法，次幂看成乘法，那么该五组式子就可以看成线性方程组用矩阵处理，将该矩阵通过行列变换得到单位矩阵，那么就能求出$key$（行列变化的加法和乘法分别为乘法和次幂，减法为乘上逆元）：</p>
 <script type="math/tex; mode=display">
 \left[\begin{matrix}1&1&1&1&1\\5&4&3&2&1\\15&10&6&3&1\\35&20&10&4&1\\70&35&15&5&1\end{matrix}\right]</script><p>求出$key$以后再恢复$flag$即可。</p>
@@ -558,19 +558,19 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">crypto</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">ctfshow</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">buu</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">crypto</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">misc</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">ctfshow</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -614,15 +614,23 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">数论</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">re</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">NSS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">新生赛</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -646,7 +654,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">NSS</a>
+                <a href="javascript:void(0)" class="js-tag color1">python数据结构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">队列</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -662,14 +674,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">python数据结构</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">队列</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">栈</a>
               </li>
              
@@ -678,15 +682,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">新生赛</a>
+                <a href="javascript:void(0)" class="js-tag color4">Vigenere</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">内网渗透</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Vigenere</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -722,10 +722,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">威尔逊定理</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">小指数加密</a>
               </li>
              
@@ -743,6 +739,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">LCG</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">威尔逊定理</a>
               </li>
              
               <li class="article-tag-list-item">

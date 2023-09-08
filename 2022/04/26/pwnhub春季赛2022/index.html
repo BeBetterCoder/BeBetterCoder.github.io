@@ -15,18 +15,18 @@
 <meta property="og:site_name" content="ZimaBlue&#39;s Blog">
 <meta property="og:description" content="​    此次hash，佩奇师傅和我一起参加了pwnhub春季赛，卷了两天还是不敌Nu1L，0ops等超级战队，最终获得第七。不管怎么说，被两位师傅带飞，真是太开心了2333，自己也学到很多东西，以后继续加油。这里记录crypto和misc（hash’s wp）。">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/2022/04/26/pwnhub%E6%98%A5%E5%AD%A3%E8%B5%9B2022/1.png">
+<meta property="og:image" content="http://example.com/.com//04/26/pwnhub%E6%98%A5%E5%AD%A3%E8%B5%9B2022/1.png">
 <meta property="og:image" content="https://c.img.dasctf.com/images/2022424/1650813764423-fb638041-a0b6-4d13-b079-abecb23243f6.png">
-<meta property="og:image" content="http://example.com/2022/04/26/pwnhub%E6%98%A5%E5%AD%A3%E8%B5%9B2022/2.png">
-<meta property="og:image" content="http://example.com/2022/04/26/pwnhub%E6%98%A5%E5%AD%A3%E8%B5%9B2022/3.png">
+<meta property="og:image" content="http://example.com/.com//04/26/pwnhub%E6%98%A5%E5%AD%A3%E8%B5%9B2022/2.png">
+<meta property="og:image" content="http://example.com/.com//04/26/pwnhub%E6%98%A5%E5%AD%A3%E8%B5%9B2022/3.png">
 <meta property="article:published_time" content="2022-04-26T00:23:09.000Z">
-<meta property="article:modified_time" content="2022-04-26T02:20:27.282Z">
+<meta property="article:modified_time" content="2022-04-26T02:20:28.000Z">
 <meta property="article:author" content="ZimaBlue">
 <meta property="article:tag" content="crypto">
 <meta property="article:tag" content="misc">
 <meta property="article:tag" content="pwnhub">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2022/04/26/pwnhub%E6%98%A5%E5%AD%A3%E8%B5%9B2022/1.png">
+<meta name="twitter:image" content="http://example.com/.com//04/26/pwnhub%E6%98%A5%E5%AD%A3%E8%B5%9B2022/1.png">
   
     <link rel="alternative" href="/atom.xml" title="ZimaBlue&#39;s Blog" type="application/atom+xml">
   
@@ -198,7 +198,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>​    此次hash，佩奇师傅和我一起参加了pwnhub春季赛，卷了两天还是不敌Nu1L，0ops等超级战队，最终获得第七。不管怎么说，被两位师傅带飞，真是太开心了2333，自己也学到很多东西，以后继续加油。这里记录crypto和misc（hash’s wp）。</p>
-<img src="/2022/04/26/pwnhub%E6%98%A5%E5%AD%A3%E8%B5%9B2022/1.png" class>
+<img src="/.com//04/26/pwnhub%E6%98%A5%E5%AD%A3%E8%B5%9B2022/1.png" class>
 <span id="more"></span>    
 <h3 id="Crypto"><a href="#Crypto" class="headerlink" title="Crypto"></a>Crypto</h3><h4 id="rootRSA"><a href="#rootRSA" class="headerlink" title="rootRSA"></a>rootRSA</h4><p>n是素数</p>
 <p>e与phi不互素，公因子为2，考虑直接在求逆元的时候phi除2，</p>
@@ -227,12 +227,12 @@
 <p><img src="https://c.img.dasctf.com/images/2022424/1650813764423-fb638041-a0b6-4d13-b079-abecb23243f6.png" alt></p>
 <h4 id="被偷的flag"><a href="#被偷的flag" class="headerlink" title="被偷的flag"></a>被偷的flag</h4><p>​    这题做了一大半，最后没出非常可惜QWQ。</p>
 <p>​    开局一张jpg，直接用stegsolve在每个通道查看，发现了二维码，扫码得到部分信息：1e:))}</p>
-<p>​    <img src="/2022/04/26/pwnhub%E6%98%A5%E5%AD%A3%E8%B5%9B2022/2.png" class></p>
+<p>​    <img src="/.com//04/26/pwnhub%E6%98%A5%E5%AD%A3%E8%B5%9B2022/2.png" class></p>
 <p>​    发现数据段有zip，所以直接进行一波foremost分离，得到压缩包和一套字典，显然用字典攻击可以得到密码，解压得到txt和一个pyc。</p>
 <p>​    txt包含零宽字符，在线网站解得字符Unc</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">小明发现叔叔的桌子上一张字条，上面写着[绝密]，便悄悄偷了过来。拆开了纸条并进行了查看，竟然真的是flag，flag居然就在这里！。为了隐藏自己的行为，小明把纸条揣进兜里，丢到了洗衣机，然后把flag分成了4部分藏了起来。叔叔回来后找不到纸条了，就去查看了监控，发现是小明拿走了纸条。小明随后拿出经过洗衣机摧残的纸条，打开发现上面的文字都模糊了。上面写着：&quot;flag&#123;32145(‌‌‌‌‍‍‍‍****-*‌‌‌‌‍‬﻿‬***U****:‌‌‌‌‍‬‌﻿))&#125;&quot;。你能帮叔叔找到flag吗。</span><br></pre></td></tr></table></figure>
 <p>​    一直到这步我都是对的，下一步纯属知识面的问题，拿到pyc第一想法肯定是反编译，但实际上他是一个pyc隐写…参考<a target="_blank" rel="noopener" href="https://www.cnblogs.com/ECJTUACM-873284962/p/10041534.html">博客</a>，总之直接用stegosaurus提取出extra字符：VqtS-HZ&amp;*</p>
-<img src="/2022/04/26/pwnhub%E6%98%A5%E5%AD%A3%E8%B5%9B2022/3.png" class>
+<img src="/.com//04/26/pwnhub%E6%98%A5%E5%AD%A3%E8%B5%9B2022/3.png" class>
 <p>​    这里有个小坑，工具暂未支持py3.9版本，切换了成3.7,成功解决。</p>
 <p>​    之后用base85解密得到字符 base64(</p>
 <p>​    32145联系题目可知是Polybius，32对应m，14对应d，意思是md5</p>
@@ -568,19 +568,19 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">crypto</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">ctfshow</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">buu</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">crypto</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">misc</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">ctfshow</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -624,15 +624,23 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">数论</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">re</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">NSS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">新生赛</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -656,7 +664,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">NSS</a>
+                <a href="javascript:void(0)" class="js-tag color1">python数据结构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">队列</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -672,14 +684,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">python数据结构</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">队列</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">栈</a>
               </li>
              
@@ -688,15 +692,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">新生赛</a>
+                <a href="javascript:void(0)" class="js-tag color4">Vigenere</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">内网渗透</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Vigenere</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -732,10 +732,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">威尔逊定理</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">小指数加密</a>
               </li>
              
@@ -753,6 +749,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">LCG</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">威尔逊定理</a>
               </li>
              
               <li class="article-tag-list-item">

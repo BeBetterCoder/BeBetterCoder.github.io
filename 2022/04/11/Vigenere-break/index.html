@@ -15,14 +15,14 @@
 <meta property="og:site_name" content="ZimaBlue&#39;s Blog">
 <meta property="og:description" content="​    替换密码当中，Vigenere是一种安全性较高运用范围广的密码算法，比赛中也经常出相关的题。本篇通过两道例题系统学习Vigenere及其推广的破解方法。">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/2022/04/11/Vigenere-break/1.png">
+<meta property="og:image" content="http://example.com/.com//04/11/Vigenere-break/1.png">
 <meta property="article:published_time" content="2022-04-11T01:31:04.000Z">
-<meta property="article:modified_time" content="2022-04-11T07:06:00.324Z">
+<meta property="article:modified_time" content="2022-04-11T07:06:02.000Z">
 <meta property="article:author" content="ZimaBlue">
 <meta property="article:tag" content="crypto">
 <meta property="article:tag" content="Vigenere">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2022/04/11/Vigenere-break/1.png">
+<meta name="twitter:image" content="http://example.com/.com//04/11/Vigenere-break/1.png">
   
     <link rel="alternative" href="/atom.xml" title="ZimaBlue&#39;s Blog" type="application/atom+xml">
   
@@ -196,7 +196,7 @@
         <p>​    替换密码当中，Vigenere是一种安全性较高运用范围广的密码算法，比赛中也经常出相关的题。本篇通过两道例题系统学习Vigenere及其推广的破解方法。</p>
 <span id="more"></span>
 <h3 id="一-Vigenere原理"><a href="#一-Vigenere原理" class="headerlink" title="一.Vigenere原理"></a>一.Vigenere原理</h3><p>​    实际上是移位密码的推广，每一个明文字符对应的增量不同：</p>
-<img src="/2022/04/11/Vigenere-break/1.png" class>
+<img src="/.com//04/11/Vigenere-break/1.png" class>
 <h3 id="二-基本类型及其破解思路"><a href="#二-基本类型及其破解思路" class="headerlink" title="二.基本类型及其破解思路"></a>二.基本类型及其破解思路</h3><p>​    task.py：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> string <span class="keyword">import</span> ascii_letters</span><br><span class="line"><span class="keyword">from</span> flag <span class="keyword">import</span> flag</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">ctoi = <span class="keyword">lambda</span> x: ascii_letters.index(x)</span><br><span class="line">itoc = <span class="keyword">lambda</span> x: ascii_letters[x]</span><br><span class="line"></span><br><span class="line">key = flag.strip(<span class="string">&#x27;NCTF&#123;&#125;&#x27;</span>)</span><br><span class="line">len_key = <span class="built_in">len</span>(key)</span><br><span class="line"></span><br><span class="line">plaintext = <span class="built_in">open</span>(<span class="string">&#x27;plaintext.txt&#x27;</span>, <span class="string">&#x27;r&#x27;</span>).read()</span><br><span class="line"></span><br><span class="line">plain = <span class="string">&#x27;&#x27;</span>.join(p <span class="keyword">for</span> p <span class="keyword">in</span> plaintext <span class="keyword">if</span> p <span class="keyword">in</span> ascii_letters)</span><br><span class="line">cipher = <span class="string">&#x27;&#x27;</span>.join( itoc( ( ctoi(p) + ctoi( key[i % len_key] ) ) % <span class="number">52</span> )  <span class="keyword">for</span> i,p <span class="keyword">in</span> <span class="built_in">enumerate</span>(plain) )</span><br><span class="line"></span><br><span class="line"><span class="built_in">open</span>(<span class="string">&#x27;ciphertext.txt&#x27;</span>, <span class="string">&#x27;w&#x27;</span>).write(cipher)</span><br></pre></td></tr></table></figure>
 <p>​    密文：</p>
@@ -541,19 +541,19 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">crypto</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">ctfshow</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">buu</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">crypto</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">misc</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">ctfshow</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -597,15 +597,23 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">数论</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">re</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">NSS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">新生赛</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -629,7 +637,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">NSS</a>
+                <a href="javascript:void(0)" class="js-tag color1">python数据结构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">队列</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -645,14 +657,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">python数据结构</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">队列</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">栈</a>
               </li>
              
@@ -661,15 +665,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">新生赛</a>
+                <a href="javascript:void(0)" class="js-tag color4">Vigenere</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">内网渗透</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Vigenere</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -705,10 +705,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">威尔逊定理</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">小指数加密</a>
               </li>
              
@@ -726,6 +722,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">LCG</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">威尔逊定理</a>
               </li>
              
               <li class="article-tag-list-item">

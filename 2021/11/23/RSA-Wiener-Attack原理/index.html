@@ -15,17 +15,17 @@
 <meta property="og:site_name" content="ZimaBlue&#39;s Blog">
 <meta property="og:description" content="先描述一下RSA密码体制： RSA密码体制：">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/2021/11/23/RSA-Wiener-Attack%E5%8E%9F%E7%90%86/b.png">
-<meta property="og:image" content="http://example.com/2021/11/23/RSA-Wiener-Attack%E5%8E%9F%E7%90%86/c.png">
-<meta property="og:image" content="http://example.com/2021/11/23/RSA-Wiener-Attack%E5%8E%9F%E7%90%86/a.png">
+<meta property="og:image" content="http://example.com/.com//11/23/RSA-Wiener-Attack%E5%8E%9F%E7%90%86/b.png">
+<meta property="og:image" content="http://example.com/.com//11/23/RSA-Wiener-Attack%E5%8E%9F%E7%90%86/c.png">
+<meta property="og:image" content="http://example.com/.com//11/23/RSA-Wiener-Attack%E5%8E%9F%E7%90%86/a.png">
 <meta property="article:published_time" content="2021-11-23T12:44:28.000Z">
-<meta property="article:modified_time" content="2022-03-17T14:40:41.310Z">
+<meta property="article:modified_time" content="2022-03-17T14:40:42.000Z">
 <meta property="article:author" content="ZimaBlue">
 <meta property="article:tag" content="crypto">
 <meta property="article:tag" content="RSA">
 <meta property="article:tag" content="维纳攻击">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2021/11/23/RSA-Wiener-Attack%E5%8E%9F%E7%90%86/b.png">
+<meta name="twitter:image" content="http://example.com/.com//11/23/RSA-Wiener-Attack%E5%8E%9F%E7%90%86/b.png">
   
     <link rel="alternative" href="/atom.xml" title="ZimaBlue&#39;s Blog" type="application/atom+xml">
   
@@ -198,13 +198,13 @@
       
         <p>先描述一下RSA密码体制：</p>
 <p>RSA密码体制：</p>
-<img src="/2021/11/23/RSA-Wiener-Attack%E5%8E%9F%E7%90%86/b.png" class>
+<img src="/.com//11/23/RSA-Wiener-Attack%E5%8E%9F%E7%90%86/b.png" class>
 <span id="more"></span>
 <p>考虑RSA密码体制：n = pq，其中p 和q 是素数。ϕ ( n ) = ( p − 1 ) ( q − 1 ) 。我们知道RSA的加解密主要进行模幂运算，如果利用快速平方乘方法的话，选择一个较小的解密指数会大幅度降低计算时间，提高解密效率。但是这里指出：应该避免解密指数过小。</p>
 <p>这里介绍由<strong>M.Wiener</strong>提出的一种攻击，可以计算出解密指数a。前提条件是：</p>
-<img src="/2021/11/23/RSA-Wiener-Attack%E5%8E%9F%E7%90%86/c.png" class>
+<img src="/.com//11/23/RSA-Wiener-Attack%E5%8E%9F%E7%90%86/c.png" class>
 <p>并且满足：如果n 的二进制表示有L比特，那么当e的二进制表示位数小于L/4-1，p和q 相距不太远时，攻击才算有效。</p>
-<img src="/2021/11/23/RSA-Wiener-Attack%E5%8E%9F%E7%90%86/a.png" class>
+<img src="/.com//11/23/RSA-Wiener-Attack%E5%8E%9F%E7%90%86/a.png" class>
 <p>由连分数的理论可知，此时t/a是b/n的一个<strong>收敛子</strong>。</p>
 <p>因为n和b都是公开的，计算收敛子是容易的。我们只要计算出b/n的所有收敛子，看哪个收敛子可以分解n。（如果t/a是收敛子，我们就有了a和t的值，依据<em>ϕ</em>(n)=(ab−1)/t 就可以计算出ϕ ( n ) ，进而可以解一元二次方程求出p，以此为判断依据确定哪个收敛子才是真正的t和a。）</p>
 <p>验证结束之后，我们就可以得到a的值，不仅破解了密码，大整数n 也被分解了。</p>
@@ -542,19 +542,19 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">crypto</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">ctfshow</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">buu</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">crypto</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">misc</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">ctfshow</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -598,15 +598,23 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">数论</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">re</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">NSS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">新生赛</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -630,7 +638,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">NSS</a>
+                <a href="javascript:void(0)" class="js-tag color1">python数据结构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">队列</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -646,14 +658,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">python数据结构</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">队列</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">栈</a>
               </li>
              
@@ -662,15 +666,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">新生赛</a>
+                <a href="javascript:void(0)" class="js-tag color4">Vigenere</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">内网渗透</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Vigenere</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -706,10 +706,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">威尔逊定理</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">小指数加密</a>
               </li>
              
@@ -727,6 +723,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">LCG</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">威尔逊定理</a>
               </li>
              
               <li class="article-tag-list-item">

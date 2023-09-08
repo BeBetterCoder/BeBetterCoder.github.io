@@ -15,15 +15,15 @@
 <meta property="og:site_name" content="ZimaBlue&#39;s Blog">
 <meta property="og:description" content="​    题目质量很好，后边慢慢复现。">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/2022/06/06/SEETF2022/1.png">
+<meta property="og:image" content="http://example.com/.com//06/06/SEETF2022/1.png">
 <meta property="article:published_time" content="2022-06-06T14:04:08.000Z">
-<meta property="article:modified_time" content="2022-06-09T15:52:22.425Z">
+<meta property="article:modified_time" content="2022-06-09T15:52:24.000Z">
 <meta property="article:author" content="ZimaBlue">
 <meta property="article:tag" content="crypto">
 <meta property="article:tag" content="misc">
 <meta property="article:tag" content="web">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2022/06/06/SEETF2022/1.png">
+<meta name="twitter:image" content="http://example.com/.com//06/06/SEETF2022/1.png">
   
     <link rel="alternative" href="/atom.xml" title="ZimaBlue&#39;s Blog" type="application/atom+xml">
   
@@ -199,7 +199,7 @@
 <h3 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h3><h4 id="Sourceless-Guessy-Web-Baby-Flag"><a href="#Sourceless-Guessy-Web-Baby-Flag" class="headerlink" title="Sourceless Guessy Web (Baby Flag)"></a>Sourceless Guessy Web (Baby Flag)</h4><p>目录遍历，flag在根目录下的etc/passwd。payload：?page=../../../etc/passwd，这里如果不确定往回退几个目录可以多加几层../，最终会到根目录底下。<br><code>SEE&#123;2nd_fl4g_n33ds_RCE_g00d_luck_h4x0r&#125;</code></p>
 <h3 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a>Misc</h3><h4 id="Regex101"><a href="#Regex101" class="headerlink" title="Regex101"></a>Regex101</h4><p>有很多个txt文件，flag是其中一个txt的内容；给了flag格式，所以读出每个txt的内容然后正则过滤就行。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line">f = <span class="built_in">open</span>(<span class="string">&quot;flags.txt&quot;</span>,<span class="string">&#x27;r&#x27;</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3000</span>):</span><br><span class="line">    m = f.readline().strip()</span><br><span class="line">    <span class="keyword">if</span> re.search(<span class="string">r&quot;[A-Z]&#123;5&#125;[0-9]&#123;5&#125;[A-Z]&#123;6&#125;&quot;</span>,m):</span><br><span class="line">        <span class="built_in">print</span>(m)</span><br><span class="line"></span><br><span class="line"><span class="comment"># SEE&#123;RGSXG13841KLWIUO&#125;</span></span><br></pre></td></tr></table></figure>
-<h3 id="FORENSICS"><a href="#FORENSICS" class="headerlink" title="FORENSICS"></a>FORENSICS</h3><h4 id="Sniffed-Traffic"><a href="#Sniffed-Traffic" class="headerlink" title="Sniffed Traffic"></a>Sniffed Traffic</h4><p>首先分析http流量，可以看到传输了zip文件；导出http对象即可获取zip。<br><img src="/2022/06/06/SEETF2022/1.png" class><br>追踪tcp流，在32组发现zip密码：<br>hey!<br>what the? who is this<br>someone who stole your thingamajig. now whats the password?<br>im really not sure why i would willingly give you the password. but for the sake of story telling, here it is <code>49949ec89a41ed9bdd18c4ce74f37ae4</code><br>解开是stuff.stuff，winhex分析发现有压缩包的痕迹，所以binwalk再把最后一层zip分出来。需要密码而并非伪加密，于是爆破，得到解压密码john，解开就是flag。<code>SEE&#123;w1r35haRk_d0dod0_4c87be4cd5e37eb1e9a676e110fe59e3&#125;</code></p>
+<h3 id="FORENSICS"><a href="#FORENSICS" class="headerlink" title="FORENSICS"></a>FORENSICS</h3><h4 id="Sniffed-Traffic"><a href="#Sniffed-Traffic" class="headerlink" title="Sniffed Traffic"></a>Sniffed Traffic</h4><p>首先分析http流量，可以看到传输了zip文件；导出http对象即可获取zip。<br><img src="/.com//06/06/SEETF2022/1.png" class><br>追踪tcp流，在32组发现zip密码：<br>hey!<br>what the? who is this<br>someone who stole your thingamajig. now whats the password?<br>im really not sure why i would willingly give you the password. but for the sake of story telling, here it is <code>49949ec89a41ed9bdd18c4ce74f37ae4</code><br>解开是stuff.stuff，winhex分析发现有压缩包的痕迹，所以binwalk再把最后一层zip分出来。需要密码而并非伪加密，于是爆破，得到解压密码john，解开就是flag。<code>SEE&#123;w1r35haRk_d0dod0_4c87be4cd5e37eb1e9a676e110fe59e3&#125;</code></p>
 <h3 id="CRYPTO"><a href="#CRYPTO" class="headerlink" title="CRYPTO"></a>CRYPTO</h3><h4 id="Close-Enough"><a href="#Close-Enough" class="headerlink" title="Close Enough"></a>Close Enough</h4><p>p,q取的太接近了，费马分解n就行。</p>
 <h4 id="Lost-Modulus"><a href="#Lost-Modulus" class="headerlink" title="Lost Modulus"></a>Lost Modulus</h4><p>服务端对提交的m1和m2有限制：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">assert</span> m1.bit_length() &gt;= <span class="number">1600</span> <span class="keyword">and</span> long_to_bytes(m1).startswith(<span class="string">b&quot;SEE&#123;&quot;</span>)</span><br><span class="line"><span class="keyword">assert</span> <span class="number">500</span> &lt;= m2.bit_length() &lt;= <span class="number">600</span></span><br></pre></td></tr></table></figure>
@@ -216,7 +216,7 @@ c_{2}=m_{2} ^ e \mod n</script><p>故c2^3 - c1为关于n的多项式。由于每
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;We will use e=65537 because it is good practice.&#x27;</span>)</span><br><span class="line">      e = <span class="number">65537</span></span><br><span class="line">      m = bytes_to_long(js.encode())</span><br><span class="line">      c = <span class="built_in">pow</span>(m, e, p * q)</span><br><span class="line"></span><br><span class="line">      <span class="comment"># decode</span></span><br><span class="line">      <span class="built_in">print</span>(<span class="string">&#x27;Now what should the corresponding value of d be?&#x27;</span>)</span><br><span class="line">      d = <span class="built_in">int</span>(<span class="built_in">input</span>(<span class="string">&#x27;d=&#x27;</span>))</span><br><span class="line">      m = <span class="built_in">pow</span>(c, d, p * q)</span><br><span class="line">      </span><br><span class="line">      <span class="comment"># interpret as json</span></span><br><span class="line">      js = json.loads(long_to_bytes(m).decode())</span><br><span class="line">      <span class="keyword">assert</span> js[<span class="string">&#x27;token&#x27;</span>] == token, <span class="string">&#x27;Invalid token!&#x27;</span></span><br><span class="line">      <span class="built_in">print</span>(<span class="string">&#x27;RSA test passed!&#x27;</span>)</span><br></pre></td></tr></table></figure>
 <p>最后，若js中有”flag”，才会打印flag：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="string">&#x27;flag&#x27;</span> <span class="keyword">in</span> js:</span><br><span class="line">          <span class="keyword">from</span> secret <span class="keyword">import</span> flag</span><br><span class="line">          <span class="built_in">print</span>(flag)</span><br></pre></td></tr></table></figure>
-<p>关于p和q的取值，只需要爆破低位取得prime即可；解密若直接传入真实的私钥d，则解出的json数据虽然可以通过验证并不会包含”flag”；所以需要伪造一个d，让解密出的json数据既有token键值对又有”flag”；那么问题转化为：伪造一个明文$fake_m$，$fake_m=c^d\mod n$，已知$fake_{m}$和c、n，求d。<br>为了能快速求离散对数，我们需要找到光滑的p和q，最后用ph算法和crt求解即可。exp：</p>
+<p>关于p和q的取值，只需要爆破低位取得prime即可；解密若直接传入真实的私钥d，则解出的json数据虽然可以通过验证并不会包含”flag”；所以需要伪造一个d，让解密出的json数据既有token键值对又有”flag”；那么问题转化为：伪造一个明文$fake<em>m$，$fake_m=c^d\mod n$，已知$fake</em>{m}$和c、n，求d。<br>为了能快速求离散对数，我们需要找到光滑的p和q，最后用ph算法和crt求解即可。exp：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line">e = <span class="number">65537</span></span><br><span class="line">p = <span class="number">314159265358979300000000000000000010539</span></span><br><span class="line">q = <span class="number">271828182845904500000000000000000000701</span></span><br><span class="line">n = p*q</span><br><span class="line"></span><br><span class="line"><span class="comment"># json数据测试 构造可以绕过的明文</span></span><br><span class="line">token = <span class="string">&quot;rltmvyFGNAI&quot;</span></span><br><span class="line">js = json.dumps(&#123;<span class="string">&#x27;token&#x27;</span>: token&#125;)</span><br><span class="line"><span class="built_in">print</span>(js)</span><br><span class="line">m = js.encode()</span><br><span class="line">m = bytes_to_long(m)</span><br><span class="line"></span><br><span class="line">f = <span class="string">b&#x27;&#123;&quot;token&quot;:&quot;rltmvyFGNAI&quot;,&quot;flag&quot;:8&#125;&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(json.loads(f))</span><br><span class="line">fake_m = bytes_to_long(f)</span><br><span class="line"><span class="built_in">print</span>(fake_m.bit_length())</span><br><span class="line"></span><br><span class="line">c = <span class="built_in">pow</span>(m,e,n)</span><br><span class="line"><span class="built_in">print</span>()</span><br><span class="line"><span class="built_in">print</span>(c)</span><br><span class="line"></span><br><span class="line">G =GF(p)</span><br><span class="line">g = G(c)</span><br><span class="line">h = G(fake_m)</span><br><span class="line">k1 = discrete_log(h,g)</span><br><span class="line"><span class="built_in">print</span>(k1)</span><br><span class="line"></span><br><span class="line">G1 = GF(q)</span><br><span class="line">g1 = G1(c)</span><br><span class="line">h1 = G1(fake_m)</span><br><span class="line">k2 = discrete_log(h1,g1)</span><br><span class="line"><span class="built_in">print</span>(k2)</span><br><span class="line"></span><br><span class="line">d = crt([k1,k2],[p-<span class="number">1</span>,q-<span class="number">1</span>])</span><br><span class="line"><span class="built_in">print</span>(d)</span><br><span class="line"><span class="comment"># 把d发送给服务器check获得flag</span></span><br><span class="line"><span class="comment"># SEE&#123;pohlig-hellman_easy_as_pie_db01d3f24beda43e&#125;</span></span><br></pre></td></tr></table></figure>
 <h4 id="The-True-ECC"><a href="#The-True-ECC" class="headerlink" title="The True ECC"></a>The True ECC</h4><p>本质上是paper题，可参考<a target="_blank" rel="noopener" href="https://blog.kelte.cc/ctf/writeup/2020/05/24/m0lecon-ctf-2020-teaser-king-exchange.html">m0leCon CTF 2020 Teaser — King Exchange</a>，相关论文<a target="_blank" rel="noopener" href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.66.8688&amp;rep=rep1&amp;type=pdf">点击这里</a>。只需要参考paper建立同构关系即可，exp：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> random <span class="keyword">import</span> randint</span><br><span class="line"><span class="keyword">from</span> os <span class="keyword">import</span> urandom</span><br><span class="line"><span class="keyword">from</span> Crypto.Cipher <span class="keyword">import</span> AES</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.Padding <span class="keyword">import</span> pad, unpad</span><br><span class="line"><span class="keyword">from</span> hashlib <span class="keyword">import</span> sha1</span><br><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> <span class="type">Tuple</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Ellipse</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="string">&quot;&quot;&quot;Represents the curve x^2 + ay^2 = 1 mod p&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, a: <span class="built_in">int</span>, p: <span class="built_in">int</span></span>):</span></span><br><span class="line"></span><br><span class="line">        self.a = a</span><br><span class="line">        self.p = p</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__repr__</span>(<span class="params">self</span>) -&gt; <span class="built_in">str</span>:</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">f&quot;x^2 + <span class="subst">&#123;self.a&#125;</span>y^2 = 1 mod <span class="subst">&#123;self.p&#125;</span>&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__eq__</span>(<span class="params">self, other: <span class="string">&#x27;Ellipse&#x27;</span></span>) -&gt; <span class="built_in">bool</span>:</span> <span class="comment"># 判断曲线是否相同 equal</span></span><br><span class="line">        <span class="keyword">return</span> self.a == other.a <span class="keyword">and</span> self.p == other.p</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">is_on_curve</span>(<span class="params">self, pt: <span class="string">&#x27;Point&#x27;</span></span>) -&gt; <span class="built_in">bool</span>:</span> <span class="comment"># 判断点是否在曲线上</span></span><br><span class="line"></span><br><span class="line">        x, y = pt.x, pt.y</span><br><span class="line">        a, p = self.a, self.p</span><br><span class="line">        <span class="keyword">return</span> (x*x + a * y*y) % p == <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Point</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="string">&quot;&quot;&quot;Represents a point on curve&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, curve: Ellipse, x: <span class="built_in">int</span>, y: <span class="built_in">int</span></span>):</span></span><br><span class="line"></span><br><span class="line">        self.x = x</span><br><span class="line">        self.y = y</span><br><span class="line">        self.curve = curve</span><br><span class="line">        <span class="keyword">assert</span> self.curve.is_on_curve(self)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__repr__</span>(<span class="params">self</span>) -&gt; <span class="built_in">str</span>:</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">f&quot;(<span class="subst">&#123;self.x&#125;</span>, <span class="subst">&#123;self.y&#125;</span>)&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__add__</span>(<span class="params">self, other: <span class="string">&#x27;Point&#x27;</span></span>) -&gt; &#x27;Point&#x27;:</span> <span class="comment"># 椭圆曲线的点加法</span></span><br><span class="line"></span><br><span class="line">        x, y = self.x, self.y</span><br><span class="line">        w, z = other.x, other.y</span><br><span class="line">        a, p = self.curve.a, self.curve.p</span><br><span class="line"></span><br><span class="line">        nx = (x*w - a*y*z) % p</span><br><span class="line">        ny = (x*z + y*w) % p</span><br><span class="line">        <span class="keyword">return</span> Point(self.curve, nx, ny)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__mul__</span>(<span class="params">self, n: <span class="built_in">int</span></span>) -&gt; &#x27;Point&#x27;:</span> <span class="comment"># 椭圆曲线数乘</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">assert</span> n &gt; <span class="number">0</span></span><br><span class="line"></span><br><span class="line">        Q = Point(self.curve, <span class="number">1</span>, <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">while</span> n &gt; <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">if</span> n &amp; <span class="number">1</span> == <span class="number">1</span>:</span><br><span class="line">                Q += self</span><br><span class="line">            self += self</span><br><span class="line">            n = n//<span class="number">2</span></span><br><span class="line">        <span class="keyword">return</span> Q</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__eq__</span>(<span class="params">self, other: <span class="string">&#x27;Point&#x27;</span></span>) -&gt; <span class="built_in">bool</span>:</span> <span class="comment"># 判断点是否相等</span></span><br><span class="line">        <span class="keyword">return</span> self.x == other.x <span class="keyword">and</span> self.y == other.y</span><br><span class="line"></span><br><span class="line">a, p = <span class="number">376014</span>, (<span class="number">1</span> &lt;&lt; <span class="number">521</span>) - <span class="number">1</span></span><br><span class="line">F.&lt;i&gt; = GF(p ^ <span class="number">2</span>, modulus=x ^ <span class="number">2</span> + a)</span><br><span class="line"></span><br><span class="line">gx = <span class="number">0x1bcfc82fca1e29598bd932fc4b8c573265e055795ba7d68ca3985a78bb57237b9ca042ab545a66b352655a10b4f60785ba308b060d9b7df2a651ca94eeb63b86fdb</span></span><br><span class="line">gy = <span class="number">0xca00d73e3d1570e6c63b506520c4fcc0151130a7f655b0d15ae3227423f304e1f7ffa73198f306d67a24c142b23f72adac5f166da5df68b669bbfda9fb4ef15f8e</span></span><br><span class="line">ax, ay = <span class="number">2138196312148079184382240325330500803425686967483863166176111074666553873369606997586883533252879522314508512610120185663459330505669976143538280185135503158</span>,<span class="number">1350098408534349199229781714086607605984656432458083815306756044307591092126215092360795039519565477039721903019874871683998662788499599535946383133093677646</span></span><br><span class="line">bx, by = <span class="number">4568773897927114993549462717422746966489956811871132275386853917467440322628373530720948282919382453518184702625364310911519327021756484938266990998628406420</span>,<span class="number">3649097172525610846241260554130988388479998230434661435854337888813320693155483292808012277418005770847521067027991154263171652473498536483631820529350606213</span></span><br><span class="line">ct = <span class="string">b&quot;q\xfa\xf2\xe5\xe3\xba.H\xa5\x07az\xc0;\xc4%\xdf\xfe\xa0MI&gt;o8\x96M\xb0\xfe]\xb2\xfdi\x8e\x9e\xea\x9f\xca\x98\xf9\x95\xe6&amp;\x1fB\xd5\x0b\xf2\xeb\xac\x18\x82\xdcu\xd5\xd5\x8e&lt;\xb3\xe4\x85e\xddX\xca0;\xe2G\xef7\\uM\x8d0A\xde+\x9fu&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">phi</span>(<span class="params">x,y</span>):</span></span><br><span class="line">    <span class="keyword">return</span> x+y*i</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">decrypt</span>(<span class="params">shared: Point, ct: <span class="built_in">bytes</span></span>) -&gt; <span class="built_in">bytes</span>:</span></span><br><span class="line"></span><br><span class="line">    iv, ct = ct[:<span class="number">16</span>], ct[<span class="number">16</span>:]</span><br><span class="line">    key = sha1(<span class="built_in">str</span>(shared).encode()).digest()[:<span class="number">16</span>]</span><br><span class="line">    cipher = AES.new(key, AES.MODE_CBC, iv)</span><br><span class="line">    pt = cipher.decrypt(ct)</span><br><span class="line">    <span class="keyword">return</span> unpad(pt, <span class="number">16</span>)</span><br><span class="line"></span><br><span class="line">aa = phi(ax, ay).log(phi(gx, gy))</span><br><span class="line">curve = Ellipse(a, p)</span><br><span class="line">B = Point(curve, <span class="built_in">int</span>(bx), <span class="built_in">int</span>(by))</span><br><span class="line">shared = B * <span class="built_in">int</span>(aa)</span><br><span class="line"><span class="built_in">print</span>(decrypt(shared, ct))</span><br><span class="line"><span class="comment"># b&#x27;SEE&#123;W4it_whaT_do_y0u_meaN_Ecc_d0esnt_Us3_e1Lipses&#125;&#x27;</span></span><br></pre></td></tr></table></figure>
@@ -550,19 +550,19 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">crypto</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">ctfshow</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">buu</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">crypto</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">misc</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">ctfshow</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -606,15 +606,23 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">数论</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">re</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">NSS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">新生赛</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -638,7 +646,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">NSS</a>
+                <a href="javascript:void(0)" class="js-tag color1">python数据结构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">队列</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -654,14 +666,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">python数据结构</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">队列</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">栈</a>
               </li>
              
@@ -670,15 +674,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">新生赛</a>
+                <a href="javascript:void(0)" class="js-tag color4">Vigenere</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">内网渗透</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Vigenere</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -714,10 +714,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">威尔逊定理</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">小指数加密</a>
               </li>
              
@@ -735,6 +731,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">LCG</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">威尔逊定理</a>
               </li>
              
               <li class="article-tag-list-item">

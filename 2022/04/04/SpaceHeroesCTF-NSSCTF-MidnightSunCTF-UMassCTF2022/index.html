@@ -15,20 +15,20 @@
 <meta property="og:site_name" content="ZimaBlue&#39;s Blog">
 <meta property="og:description" content="​    4月初有很多比赛，每个比赛都做了一些题，难题大多是hash师傅教的。">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/2022/04/04/SpaceHeroesCTF-NSSCTF-MidnightSunCTF-UMassCTF2022/1.png">
-<meta property="og:image" content="http://example.com/2022/04/04/SpaceHeroesCTF-NSSCTF-MidnightSunCTF-UMassCTF2022/2.png">
-<meta property="og:image" content="http://example.com/2022/04/04/SpaceHeroesCTF-NSSCTF-MidnightSunCTF-UMassCTF2022/3.png">
-<meta property="og:image" content="http://example.com/2022/04/04/SpaceHeroesCTF-NSSCTF-MidnightSunCTF-UMassCTF2022/4.png">
-<meta property="og:image" content="http://example.com/2022/04/04/SpaceHeroesCTF-NSSCTF-MidnightSunCTF-UMassCTF2022/5.png">
-<meta property="og:image" content="http://example.com/2022/04/04/SpaceHeroesCTF-NSSCTF-MidnightSunCTF-UMassCTF2022/6.png">
+<meta property="og:image" content="http://example.com/.com//04/04/SpaceHeroesCTF-NSSCTF-MidnightSunCTF-UMassCTF2022/1.png">
+<meta property="og:image" content="http://example.com/.com//04/04/SpaceHeroesCTF-NSSCTF-MidnightSunCTF-UMassCTF2022/2.png">
+<meta property="og:image" content="http://example.com/.com//04/04/SpaceHeroesCTF-NSSCTF-MidnightSunCTF-UMassCTF2022/3.png">
+<meta property="og:image" content="http://example.com/.com//04/04/SpaceHeroesCTF-NSSCTF-MidnightSunCTF-UMassCTF2022/4.png">
+<meta property="og:image" content="http://example.com/.com//04/04/SpaceHeroesCTF-NSSCTF-MidnightSunCTF-UMassCTF2022/5.png">
+<meta property="og:image" content="http://example.com/.com//04/04/SpaceHeroesCTF-NSSCTF-MidnightSunCTF-UMassCTF2022/6.png">
 <meta property="article:published_time" content="2022-04-04T06:26:36.000Z">
-<meta property="article:modified_time" content="2022-04-11T15:26:24.390Z">
+<meta property="article:modified_time" content="2022-04-11T15:26:26.000Z">
 <meta property="article:author" content="ZimaBlue">
 <meta property="article:tag" content="crypto">
 <meta property="article:tag" content="misc">
 <meta property="article:tag" content="web">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2022/04/04/SpaceHeroesCTF-NSSCTF-MidnightSunCTF-UMassCTF2022/1.png">
+<meta name="twitter:image" content="http://example.com/.com//04/04/SpaceHeroesCTF-NSSCTF-MidnightSunCTF-UMassCTF2022/1.png">
   
     <link rel="alternative" href="/atom.xml" title="ZimaBlue&#39;s Blog" type="application/atom+xml">
   
@@ -216,14 +216,14 @@ a*nounce+b =h(m)s^-1+r2xs2^-1 \mod q</script><p>高斯消元消去nounce以后�
 <h3 id="UMassCTF"><a href="#UMassCTF" class="headerlink" title="UMassCTF"></a>UMassCTF</h3><h4 id="Web1"><a href="#Web1" class="headerlink" title="Web1"></a>Web1</h4><p>考察jwt，因为web学的很少所以第一次见到jwt就顺便学习了一波。</p>
 <p>关于jwt：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45070175/article/details/118559272">https://blog.csdn.net/weixin_45070175/article/details/118559272</a></p>
 <p>首先题目给了签名接口的git项目地址，去访问发现隐藏了代码，去看提交的history找到所有代码；分析代码找到关键点：</p>
-<img src="/2022/04/04/SpaceHeroesCTF-NSSCTF-MidnightSunCTF-UMassCTF2022/1.png" class>
-<img src="/2022/04/04/SpaceHeroesCTF-NSSCTF-MidnightSunCTF-UMassCTF2022/2.png" class>
+<img src="/.com//04/04/SpaceHeroesCTF-NSSCTF-MidnightSunCTF-UMassCTF2022/1.png" class>
+<img src="/.com//04/04/SpaceHeroesCTF-NSSCTF-MidnightSunCTF-UMassCTF2022/2.png" class>
 <p>即post的数据会通过该接口签名生成完整的jwt。</p>
 <p>第二步，请求get_flag，bp抓包看jwt，base64解码发现user字段是anonymous，要获取flag需要把这个改为admin，但这样之后签名值sign发生改变，所以需要把改为admin之后的header和data base64加密以后和在一起并去掉原来的签名post到服务器让服务器再签一次名（重放），然后拿到之后再把token修改一下提交给服务器获得flag。</p>
-<img src="/2022/04/04/SpaceHeroesCTF-NSSCTF-MidnightSunCTF-UMassCTF2022/3.png" class>
-<img src="/2022/04/04/SpaceHeroesCTF-NSSCTF-MidnightSunCTF-UMassCTF2022/4.png" class>
-<img src="/2022/04/04/SpaceHeroesCTF-NSSCTF-MidnightSunCTF-UMassCTF2022/5.png" class>
-<img src="/2022/04/04/SpaceHeroesCTF-NSSCTF-MidnightSunCTF-UMassCTF2022/6.png" class>
+<img src="/.com//04/04/SpaceHeroesCTF-NSSCTF-MidnightSunCTF-UMassCTF2022/3.png" class>
+<img src="/.com//04/04/SpaceHeroesCTF-NSSCTF-MidnightSunCTF-UMassCTF2022/4.png" class>
+<img src="/.com//04/04/SpaceHeroesCTF-NSSCTF-MidnightSunCTF-UMassCTF2022/5.png" class>
+<img src="/.com//04/04/SpaceHeroesCTF-NSSCTF-MidnightSunCTF-UMassCTF2022/6.png" class>
 <h4 id="quickmath"><a href="#quickmath" class="headerlink" title="quickmath"></a>quickmath</h4><p>交互题，计算1000次服务器发送的加减乘除，pwntool直接自动化处理：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="comment"># 做1000次加减乘除运算</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">quickmath</span>(<span class="params">a,n1,n2</span>):</span></span><br><span class="line">    <span class="keyword">if</span> a == <span class="string">&#x27;+&#x27;</span> <span class="keyword">or</span> a == <span class="string">&quot;+ &quot;</span>:</span><br><span class="line">        <span class="keyword">return</span> n1+n2</span><br><span class="line">    <span class="keyword">elif</span> a == <span class="string">&quot;-&quot;</span> <span class="keyword">or</span> a == <span class="string">&quot;- &quot;</span>:</span><br><span class="line">        <span class="keyword">return</span> n1-n2</span><br><span class="line">    <span class="keyword">elif</span> a == <span class="string">&quot;*&quot;</span> <span class="keyword">or</span> a == <span class="string">&quot;* &quot;</span>:</span><br><span class="line">        <span class="keyword">return</span> n1*n2</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> n1//n2</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">oi=remote(<span class="string">&#x27;34.148.103.218&#x27;</span>,<span class="number">1228</span>)</span><br><span class="line">oi.recvuntil(<span class="string">b&quot;!&quot;</span>)</span><br><span class="line">r1 = oi.recv(<span class="number">15</span>)[<span class="number">3</span>:]</span><br><span class="line">r1 = <span class="built_in">str</span>(r1)</span><br><span class="line"><span class="built_in">print</span>(r1)</span><br><span class="line"></span><br><span class="line">start = r1.find(<span class="string">&quot;&#x27;&quot;</span>)</span><br><span class="line">space = r1.find(<span class="string">&quot; &quot;</span>)</span><br><span class="line">n1 = <span class="built_in">int</span>(r1[start+<span class="number">1</span>:space])</span><br><span class="line">a = r1[space+<span class="number">1</span>:space+<span class="number">3</span>]</span><br><span class="line">n2 = <span class="built_in">int</span>(r1[space+<span class="number">3</span>:].replace(<span class="string">&quot;n&quot;</span>,<span class="string">&quot;&quot;</span>).replace(<span class="string">&quot;\\&quot;</span>,<span class="string">&#x27;&#x27;</span>).replace(<span class="string">&quot;&#x27;&quot;</span>,<span class="string">&#x27;&#x27;</span>).strip())</span><br><span class="line"><span class="built_in">print</span>(a,n1,n2)</span><br><span class="line">an1 = quickmath(a,n1,n2)</span><br><span class="line"><span class="comment">#有bug，第一次接收的不能是除法</span></span><br><span class="line"><span class="built_in">print</span>(an1)</span><br><span class="line">oi.sendline(<span class="built_in">str</span>(an1).encode())</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">999</span>):</span><br><span class="line">    <span class="built_in">print</span>(i)</span><br><span class="line">    <span class="built_in">print</span>(oi.recvuntil(<span class="string">b&quot;!&quot;</span>))</span><br><span class="line">    r2 = oi.recv(<span class="number">15</span>)[<span class="number">1</span>:]</span><br><span class="line">    r2 = <span class="built_in">str</span>(r2)</span><br><span class="line">    <span class="built_in">print</span>(r2)</span><br><span class="line">    start1 = r2.find(<span class="string">&quot;&#x27;&quot;</span>)</span><br><span class="line">    space1 = r2.find(<span class="string">&quot; &quot;</span>)</span><br><span class="line">    n3 = <span class="built_in">int</span>(r2[start1+<span class="number">1</span>:space1])</span><br><span class="line">    a_ = r2[space1+<span class="number">1</span>:space1+<span class="number">3</span>]</span><br><span class="line">    n4 = <span class="built_in">int</span>(r2[space1+<span class="number">3</span>:].replace(<span class="string">&quot;n&quot;</span>,<span class="string">&quot;&quot;</span>).replace(<span class="string">&quot;\\&quot;</span>,<span class="string">&#x27;&#x27;</span>).replace(<span class="string">&quot;&#x27;&quot;</span>,<span class="string">&#x27;&#x27;</span>).strip())</span><br><span class="line">    an2 = quickmath(a_,n3,n4)</span><br><span class="line">    <span class="built_in">print</span>(an2)</span><br><span class="line">    oi.sendline(<span class="built_in">str</span>(an2).encode())</span><br><span class="line">flag = <span class="built_in">str</span>(oi.recv(<span class="number">1000</span>))</span><br><span class="line"><span class="built_in">print</span>(flag)</span><br></pre></td></tr></table></figure>
 
@@ -556,19 +556,19 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">crypto</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">ctfshow</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">buu</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">crypto</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">misc</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">ctfshow</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -612,15 +612,23 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">数论</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">re</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">NSS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">新生赛</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -644,7 +652,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">NSS</a>
+                <a href="javascript:void(0)" class="js-tag color1">python数据结构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">队列</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -660,14 +672,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">python数据结构</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">队列</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">栈</a>
               </li>
              
@@ -676,15 +680,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">新生赛</a>
+                <a href="javascript:void(0)" class="js-tag color4">Vigenere</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">内网渗透</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Vigenere</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -720,10 +720,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">威尔逊定理</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">小指数加密</a>
               </li>
              
@@ -741,6 +737,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">LCG</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">威尔逊定理</a>
               </li>
              
               <li class="article-tag-list-item">

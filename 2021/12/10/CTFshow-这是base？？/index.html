@@ -15,14 +15,14 @@
 <meta property="og:site_name" content="ZimaBlue&#39;s Blog">
 <meta property="og:description" content="​    打开题目文件，由两部分组成，一部分是密码算法包含的所有符号，另一部分则是密文。加密算法的符号一共64个，正好和base64的密文符号组对应，但是它的字符顺序和base64的顺序不一样，猜测应该是进行了移位，比如码值为0原本对应A的，现在对应J，所以我们只需要获取密文每个字符在当前密文符中的位置，去对应原本base64的字符就可。">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/2021/12/10/CTFshow-%E8%BF%99%E6%98%AFbase%EF%BC%9F%EF%BC%9F/1.png">
+<meta property="og:image" content="http://example.com/.com//12/10/CTFshow-%E8%BF%99%E6%98%AFbase%EF%BC%9F%EF%BC%9F/1.png">
 <meta property="article:published_time" content="2021-12-10T08:11:56.000Z">
-<meta property="article:modified_time" content="2022-01-13T03:07:14.672Z">
+<meta property="article:modified_time" content="2022-01-13T03:07:16.000Z">
 <meta property="article:author" content="ZimaBlue">
 <meta property="article:tag" content="crypto">
 <meta property="article:tag" content="ctfshow">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2021/12/10/CTFshow-%E8%BF%99%E6%98%AFbase%EF%BC%9F%EF%BC%9F/1.png">
+<meta name="twitter:image" content="http://example.com/.com//12/10/CTFshow-%E8%BF%99%E6%98%AFbase%EF%BC%9F%EF%BC%9F/1.png">
   
     <link rel="alternative" href="/atom.xml" title="ZimaBlue&#39;s Blog" type="application/atom+xml">
   
@@ -195,7 +195,7 @@
       
         <p>​    打开题目文件，由两部分组成，一部分是密码算法包含的所有符号，另一部分则是密文。加密算法的符号一共64个，正好和base64的密文符号组对应，但是它的字符顺序和base64的顺序不一样，猜测应该是进行了移位，比如码值为0原本对应A的，现在对应J，所以我们只需要获取密文每个字符在当前密文符中的位置，去对应原本base64的字符就可。</p>
 <span id="more"></span>
-<img src="/2021/12/10/CTFshow-%E8%BF%99%E6%98%AFbase%EF%BC%9F%EF%BC%9F/1.png" class>
+<img src="/.com//12/10/CTFshow-%E8%BF%99%E6%98%AFbase%EF%BC%9F%EF%BC%9F/1.png" class>
 <p>解密脚本：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> base64</span><br><span class="line">base=<span class="string">&#x27;JKLMNOxyUVzABCDEFGH789PQIabcdefghijklmWXYZ0123456RSTnopqrstuvw+/&#x27;</span></span><br><span class="line">base1=<span class="string">&#x27;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/&#x27;</span></span><br><span class="line">chipertext=<span class="string">&#x27;FlZNfnF6Qol6e9w17WwQQoGYBQCgIkGTa9w3IQKw&#x27;</span></span><br><span class="line">s=<span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> chipertext:</span><br><span class="line">    j=<span class="built_in">int</span>(base.find(i))</span><br><span class="line">    s=s+base1[j]</span><br><span class="line"><span class="built_in">print</span>(s)</span><br><span class="line">flag=base64.b64decode(s)</span><br><span class="line"><span class="built_in">print</span>(flag)</span><br></pre></td></tr></table></figure>
 <p>BJD{D0_Y0u_kNoW_Th1s_b4se_map}</p>
@@ -521,19 +521,19 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">crypto</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">ctfshow</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">buu</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">crypto</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">misc</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">ctfshow</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -577,15 +577,23 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">数论</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">re</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">NSS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">新生赛</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -609,7 +617,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">NSS</a>
+                <a href="javascript:void(0)" class="js-tag color1">python数据结构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">队列</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -625,14 +637,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">python数据结构</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">队列</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">栈</a>
               </li>
              
@@ -641,15 +645,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">新生赛</a>
+                <a href="javascript:void(0)" class="js-tag color4">Vigenere</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">内网渗透</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Vigenere</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -685,10 +685,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">威尔逊定理</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">小指数加密</a>
               </li>
              
@@ -706,6 +702,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">LCG</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">威尔逊定理</a>
               </li>
              
               <li class="article-tag-list-item">

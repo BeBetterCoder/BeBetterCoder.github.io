@@ -15,16 +15,16 @@
 <meta property="og:site_name" content="ZimaBlue&#39;s Blog">
 <meta property="og:description" content="​    格是我很感兴趣的内容，会尽可能详细地学习。">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/2022/05/04/Lattice-Lesson0/%E6%A0%BC1.png">
-<meta property="og:image" content="http://example.com/2022/05/04/Lattice-Lesson0/%E6%A0%BC2.png">
-<meta property="og:image" content="http://example.com/2022/05/04/Lattice-Lesson0/%E6%A0%BC3.png">
-<meta property="og:image" content="http://example.com/2022/05/04/Lattice-Lesson0/%E6%A0%BC4.png">
+<meta property="og:image" content="http://example.com/.com//05/04/Lattice-Lesson0/%E6%A0%BC1.png">
+<meta property="og:image" content="http://example.com/.com//05/04/Lattice-Lesson0/%E6%A0%BC2.png">
+<meta property="og:image" content="http://example.com/.com//05/04/Lattice-Lesson0/%E6%A0%BC3.png">
+<meta property="og:image" content="http://example.com/.com//05/04/Lattice-Lesson0/%E6%A0%BC4.png">
 <meta property="article:published_time" content="2022-05-04T06:48:18.000Z">
-<meta property="article:modified_time" content="2022-05-08T09:56:57.975Z">
+<meta property="article:modified_time" content="2022-05-08T09:56:58.000Z">
 <meta property="article:author" content="ZimaBlue">
 <meta property="article:tag" content="Lattice">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2022/05/04/Lattice-Lesson0/%E6%A0%BC1.png">
+<meta name="twitter:image" content="http://example.com/.com//05/04/Lattice-Lesson0/%E6%A0%BC1.png">
   
     <link rel="alternative" href="/atom.xml" title="ZimaBlue&#39;s Blog" type="application/atom+xml">
   
@@ -213,7 +213,7 @@
 <h4 id="三-格的定义方法"><a href="#三-格的定义方法" class="headerlink" title="三.格的定义方法"></a>三.格的定义方法</h4><p><strong>1.利用格基来表示格</strong></p>
 <p>格的基是一组<strong>线性无关的向量</strong>，由这一组向量可以生成完整的格，也就是可以由他们的线性组合构成所有的格点。</p>
 <p>格的基是多样的，在二维空间中，若确定一个格点为原点，<strong>以原点出发连接其余任何n个格点所得的n个向量都可以作为格的基。同理，不同的基可以生成同一个格。</strong></p>
-<img src="/2022/05/04/Lattice-Lesson0/%E6%A0%BC1.png" class>
+<img src="/.com//05/04/Lattice-Lesson0/%E6%A0%BC1.png" class>
 <p>通常用L(B)来表示格，把B看作一个矩阵，矩阵的列就是基向量。</p>
 <p><strong>2.利用子群定义格</strong></p>
 <p>另一种定义方式不需要考虑格基，而是把格定义为R^n下的离散加法子群。</p>
@@ -247,16 +247,16 @@ xmodP(B)=(a_{1}mod1)b_{1}+...+(a_{n}mod1)b_{n}</script><p>这样做就把这个�
 <p>行列式衡量了格的密度大小，若行列式较大，则证明格点比较稀疏，密度较小。</p>
 <p><strong>4.施密特正交化</strong></p>
 <p>有序向量集合：向量次序有先后之分，目的是为了将后边的向量投影到前面的向量上。但一些格点对应的向量投影（分解）以后就不再是格点了。关于施密特正交化：<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%96%BD%E5%AF%86%E7%89%B9%E6%AD%A3%E4%BA%A4%E5%8C%96/756386?fr=aladdin">百度百科</a></p>
-<img src="/2022/05/04/Lattice-Lesson0/%E6%A0%BC2.png" class>
+<img src="/.com//05/04/Lattice-Lesson0/%E6%A0%BC2.png" class>
 <p>上图是把斜向上的格基投影到横着的格基和垂直的向量上，再将向量都除以一个长度，这样就得到新的基（单位向量——R^n的基，但不一定是格点和格基）。</p>
 <p>下图的表示方法实际上是格基的另一种矩阵表示法，每个列向量都是<strong>格基</strong>。比如，|v‘1|是上图横着的向量的长度，其余行为0。|v’2|则是上图蓝色向量的长度，*代表非0数，因此第二列实际上就是原来投影前的另一格基。</p>
-<img src="/2022/05/04/Lattice-Lesson0/%E6%A0%BC3.png" class>
+<img src="/.com//05/04/Lattice-Lesson0/%E6%A0%BC3.png" class>
 <p>​    QR分解的两个结论：</p>
 <p>​    1.由v1，v2…vn为格基构成的格的基本区域（行列式）就等于v’1,v’2…的乘积，上三角矩阵的行列式为对角线之积。</p>
 <p>​    2.最短非零向量不小于最小的v’i（范数）的长度。证明思路为当若干个非全零系数乘上每一列时，总会有最靠右边的非0列出现，那么该非0列一定会有一个v‘j无法被消去，即格向量至少为这个值，证明结束。（这个结论与LLL算法相关）</p>
 <h4 id="六-Minkowski定理"><a href="#六-Minkowski定理" class="headerlink" title="六.Minkowski定理"></a>六.Minkowski定理</h4><p>1.Blichfeld定理</p>
 <p>当在格向量空间任取一个大于格的基本区域的体积的空间s时，一定能在<strong>s中</strong>找到两个点，其相连构成的向量为某个格点（向量）。下面这个袋鼠很形象：</p>
-<img src="/2022/05/04/Lattice-Lesson0/%E6%A0%BC4.png" class>
+<img src="/.com//05/04/Lattice-Lesson0/%E6%A0%BC4.png" class>
 <p>2.Minkowski</p>
 <p>任取一个格，在其上取一个集合s，这个s是有条件的：</p>
 <p>1.s是一个凸集合</p>
@@ -602,19 +602,19 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">crypto</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">ctfshow</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">buu</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">crypto</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">misc</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">ctfshow</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -658,15 +658,23 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">数论</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">re</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">NSS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">新生赛</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -690,7 +698,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">NSS</a>
+                <a href="javascript:void(0)" class="js-tag color1">python数据结构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">队列</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -706,14 +718,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">python数据结构</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">队列</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">栈</a>
               </li>
              
@@ -722,15 +726,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">新生赛</a>
+                <a href="javascript:void(0)" class="js-tag color4">Vigenere</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">内网渗透</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Vigenere</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -766,10 +766,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">威尔逊定理</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">小指数加密</a>
               </li>
              
@@ -787,6 +783,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">LCG</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">威尔逊定理</a>
               </li>
              
               <li class="article-tag-list-item">

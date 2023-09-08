@@ -15,21 +15,21 @@
 <meta property="og:site_name" content="ZimaBlue&#39;s Blog">
 <meta property="og:description" content="​    刚好看到就做了下题，真的感叹国外赛事的高质量，每次都能学点东西。比赛地址：https:&#x2F;&#x2F;2022.imaginaryctf.org&#x2F;Challenges">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/2022/07/19/ImaginaryCTF2022/1.png">
-<meta property="og:image" content="http://example.com/2022/07/19/ImaginaryCTF2022/2.png">
-<meta property="og:image" content="http://example.com/2022/07/19/ImaginaryCTF2022/3.png">
-<meta property="og:image" content="http://example.com/2022/07/19/ImaginaryCTF2022/4.png">
-<meta property="og:image" content="http://example.com/2022/07/19/ImaginaryCTF2022/5.png">
-<meta property="og:image" content="http://example.com/2022/07/19/ImaginaryCTF2022/6.png">
-<meta property="og:image" content="http://example.com/2022/07/19/ImaginaryCTF2022/7.png">
+<meta property="og:image" content="http://example.com/.com//07/19/ImaginaryCTF2022/1.png">
+<meta property="og:image" content="http://example.com/.com//07/19/ImaginaryCTF2022/2.png">
+<meta property="og:image" content="http://example.com/.com//07/19/ImaginaryCTF2022/3.png">
+<meta property="og:image" content="http://example.com/.com//07/19/ImaginaryCTF2022/4.png">
+<meta property="og:image" content="http://example.com/.com//07/19/ImaginaryCTF2022/5.png">
+<meta property="og:image" content="http://example.com/.com//07/19/ImaginaryCTF2022/6.png">
+<meta property="og:image" content="http://example.com/.com//07/19/ImaginaryCTF2022/7.png">
 <meta property="article:published_time" content="2022-07-19T03:06:32.000Z">
-<meta property="article:modified_time" content="2022-07-24T01:38:54.418Z">
+<meta property="article:modified_time" content="2022-07-24T01:38:56.000Z">
 <meta property="article:author" content="ZimaBlue">
 <meta property="article:tag" content="crypto">
 <meta property="article:tag" content="misc">
 <meta property="article:tag" content="web">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2022/07/19/ImaginaryCTF2022/1.png">
+<meta name="twitter:image" content="http://example.com/.com//07/19/ImaginaryCTF2022/1.png">
   
     <link rel="alternative" href="/atom.xml" title="ZimaBlue&#39;s Blog" type="application/atom+xml">
   
@@ -202,19 +202,19 @@
       
         <p>​    刚好看到就做了下题，真的感叹国外赛事的高质量，每次都能学点东西。比赛地址：<a target="_blank" rel="noopener" href="https://2022.imaginaryctf.org/Challenges">https://2022.imaginaryctf.org/Challenges</a></p>
 <span id="more"></span>
-<h3 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h3><h4 id="button"><a href="#button" class="headerlink" title="button"></a>button</h4><p>页面看起来是空白的，审计前端代码，发现有非常多的白色小按钮(所以看不见)，在源码搜索ctf可以找到嵌入式js代码，可以发现有几个button对应执行的是motSusfunclion()，所以我们只要去控制台输入此函数就能弹出flag：<code>ictf&#123;y0u_f0und_7h3_f1ag!&#125;</code><br><img src="/2022/07/19/ImaginaryCTF2022/1.png" class></p>
+<h3 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h3><h4 id="button"><a href="#button" class="headerlink" title="button"></a>button</h4><p>页面看起来是空白的，审计前端代码，发现有非常多的白色小按钮(所以看不见)，在源码搜索ctf可以找到嵌入式js代码，可以发现有几个button对应执行的是motSusfunclion()，所以我们只要去控制台输入此函数就能弹出flag：<code>ictf&#123;y0u_f0und_7h3_f1ag!&#125;</code><br><img src="/.com//07/19/ImaginaryCTF2022/1.png" class></p>
 <h4 id="rooCookie"><a href="#rooCookie" class="headerlink" title="rooCookie"></a>rooCookie</h4><p>根据题目描述，出题人把密码藏在了cookie里，审计会看到cookie以及生成cookie的js代码，于是把算法逆一下就可以恢复password，即flag。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createToken</span>(<span class="params">text</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">let</span> encrypted = <span class="string">&quot;&quot;</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; text.length; i++) &#123;</span><br><span class="line">		encrypted += ((text[i].charCodeAt(<span class="number">0</span>)-<span class="number">43</span>+<span class="number">1337</span>) &gt;&gt; <span class="number">0</span>).toString(<span class="number">2</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">document</span>.cookie = encrypted</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">cookie = <span class="string">&#x27;101100000111011000000110101110011101100000001010111110010101101111101011110111010111001110101001011101001100001011000000010101111101101011111011010011000010100101110101001101001010010111010101111110101011011111011000000110110000001101100001011010111110110110000000101011100101010100101110100110000101011101111010111000110110000010101011101001011000100110101110110101001111101010111111010101000001101011011011010100010110101110110101011011111010100010110101101101101100001011010110111110101000011101011111001010100010110101101101101100000101010011111010100111110101011011011010111000010101000010101011100101011000101110100110000&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">bin</span>(<span class="number">1337</span>))<span class="comment">#可以确定每个字符对应11位01序列的密文</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">len</span>(cookie))</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="number">627</span>,<span class="number">11</span>): </span><br><span class="line">    <span class="comment">#print(i)</span></span><br><span class="line">    s = <span class="built_in">int</span>(cookie[i:i+<span class="number">11</span>],<span class="number">2</span>)</span><br><span class="line">    <span class="comment">#print(s)</span></span><br><span class="line">    m = s - <span class="number">1337</span> + <span class="number">43</span></span><br><span class="line">   <span class="comment"># print(m)</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">chr</span>(m),end=<span class="string">&#x27;&#x27;</span>)</span><br><span class="line"><span class="comment"># username=&quot;roo&quot; &amp; password=&quot;ictf&#123;h0p3_7ha7_wa5n7_t00_b4d&#125;&quot;</span></span><br></pre></td></tr></table></figure>
 <h4 id="SSTI-Golf"><a href="#SSTI-Golf" class="headerlink" title="SSTI Golf"></a>SSTI Golf</h4><p>这种白盒ssti应该算是最简单的，也没什么过滤，基本就只有payload长度限制；首先看一下源码：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python3</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask, render_template_string, request, Response</span><br><span class="line"></span><br><span class="line">app = Flask(__name__)</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/&#x27;</span></span>)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">index</span>():</span></span><br><span class="line">    <span class="keyword">return</span> Response(<span class="built_in">open</span>(__file__).read(), mimetype=<span class="string">&#x27;text/plain&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/ssti&#x27;</span></span>)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">ssti</span>():</span></span><br><span class="line">    query = request.args[<span class="string">&#x27;query&#x27;</span>] <span class="keyword">if</span> <span class="string">&#x27;query&#x27;</span> <span class="keyword">in</span> request.args <span class="keyword">else</span> <span class="string">&#x27;...&#x27;</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(query) &gt; <span class="number">48</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Too long!&quot;</span></span><br><span class="line">    <span class="keyword">return</span> render_template_string(query)</span><br><span class="line"></span><br><span class="line">app.run(<span class="string">&#x27;0.0.0.0&#x27;</span>, <span class="number">1337</span>)</span><br></pre></td></tr></table></figure>
-<p>试一下模板解析，可以成功：<br><img src="/2022/07/19/ImaginaryCTF2022/2.png" class><br>所以接下来尝试执行命令，首先用config看看全局变量，发现有os，那么可以利用lipsum访问os进行命令执行（popen有回显）<br><img src="/2022/07/19/ImaginaryCTF2022/3.png" class></p>
+<p>试一下模板解析，可以成功：<br><img src="/.com//07/19/ImaginaryCTF2022/2.png" class><br>所以接下来尝试执行命令，首先用config看看全局变量，发现有os，那么可以利用lipsum访问os进行命令执行（popen有回显）<br><img src="/.com//07/19/ImaginaryCTF2022/3.png" class></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lipsum  flask的一个方法，可以用于得到__builtins__，而且lipsum.__globals__含有os模块：&#123;&#123;lipsum.__globals__[<span class="string">&#x27;os&#x27;</span>].popen(<span class="string">&#x27;ls&#x27;</span>).read()&#125;&#125;</span><br></pre></td></tr></table></figure>
-<p>这是payload：<br><img src="/2022/07/19/ImaginaryCTF2022/4.png" class><br><img src="/2022/07/19/ImaginaryCTF2022/5.png" class><br>其实这题还有其他利用方法，我们可以用脚本去遍历一下object的子类，利用其他子类的特性进行rce，作为拓展，给出链接：<br><a target="_blank" rel="noopener" href="http://www.hackdig.com/06/hack-677892.htm">http://www.hackdig.com/06/hack-677892.htm</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/zbbjya/article/details/124185476">https://blog.csdn.net/zbbjya/article/details/124185476</a></p>
+<p>这是payload：<br><img src="/.com//07/19/ImaginaryCTF2022/4.png" class><br><img src="/.com//07/19/ImaginaryCTF2022/5.png" class><br>其实这题还有其他利用方法，我们可以用脚本去遍历一下object的子类，利用其他子类的特性进行rce，作为拓展，给出链接：<br><a target="_blank" rel="noopener" href="http://www.hackdig.com/06/hack-677892.htm">http://www.hackdig.com/06/hack-677892.htm</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/zbbjya/article/details/124185476">https://blog.csdn.net/zbbjya/article/details/124185476</a></p>
 <h3 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a>Misc</h3><h4 id="Sponsors"><a href="#Sponsors" class="headerlink" title="Sponsors"></a>Sponsors</h4><p>给了赞助商的主页，访问其中一个，有个视频，视频的结尾处有flag。</p>
 <h4 id="pyprison"><a href="#pyprison" class="headerlink" title="pyprison"></a>pyprison</h4><p>python沙盒逃逸，以前经常遇到但不会做，这次的比较简单，学习了一下。<br>首先是给了我们python jail的源码：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python3</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">  a = <span class="built_in">input</span>(<span class="string">&quot;&gt;&gt;&gt; &quot;</span>)</span><br><span class="line">  <span class="keyword">assert</span> <span class="built_in">all</span>(n <span class="keyword">in</span> <span class="string">&quot;()abcdefghijklmnopqrstuvwxyz&quot;</span> <span class="keyword">for</span> n <span class="keyword">in</span> a)</span><br><span class="line">  <span class="built_in">exec</span>(a)</span><br></pre></td></tr></table></figure>
-<p>服务器会过滤除了字母和()之外的所有符号，其余的部分用exec当作命令执行，在操作之前，先了解一下<a target="_blank" rel="noopener" href="https://blog.csdn.net/xjcoolice/article/details/100334111">python动态加载模块</a>。逃逸过程分析：<br>1.eval(input())<br>这里绕过了过滤，并且可以把我们输入的字符当作命令执行，这里之所以要加上eval，是因为出题人故意用的exec，它是无回显的，所以我们才需要自己加一层eval(有回显)，或者用print(exec())<br>2.—import—(‘os’).system(‘ls’)<br>这里不多说了，动态加载os模块rce<br>两种利用方法：<br><img src="/2022/07/19/ImaginaryCTF2022/6.png" class><br><img src="/2022/07/19/ImaginaryCTF2022/7.png" class></p>
+<p>服务器会过滤除了字母和()之外的所有符号，其余的部分用exec当作命令执行，在操作之前，先了解一下<a target="_blank" rel="noopener" href="https://blog.csdn.net/xjcoolice/article/details/100334111">python动态加载模块</a>。逃逸过程分析：<br>1.eval(input())<br>这里绕过了过滤，并且可以把我们输入的字符当作命令执行，这里之所以要加上eval，是因为出题人故意用的exec，它是无回显的，所以我们才需要自己加一层eval(有回显)，或者用print(exec())<br>2.—import—(‘os’).system(‘ls’)<br>这里不多说了，动态加载os模块rce<br>两种利用方法：<br><img src="/.com//07/19/ImaginaryCTF2022/6.png" class><br><img src="/.com//07/19/ImaginaryCTF2022/7.png" class></p>
 <h3 id="Crypto"><a href="#Crypto" class="headerlink" title="Crypto"></a>Crypto</h3><h4 id="emojis"><a href="#emojis" class="headerlink" title="emojis"></a>emojis</h4><p>序列有两种符号，分别转成0和1，再转成字符串即可：<code>ictf&#123;enc0ding_is_n0t_encrypti0n_1b2e0d43&#125;</code></p>
 <h4 id="smoll"><a href="#smoll" class="headerlink" title="smoll"></a>smoll</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> gmpy2 <span class="keyword">import</span> *</span><br><span class="line"><span class="comment"># factor分解n</span></span><br><span class="line">p = <span class="number">1314503602874176261160006408736468830398552989268751172636991566212261500942084902638924872933455766527167138778836649666000256787470232570894174402457567851267</span></span><br><span class="line">n = <span class="number">13499674168194561466922316170242276798504319181439855249990301432638272860625833163910240845751072537454409673251895471438416265237739552031051231793428184850123919306354002012853393046964765903473183152496753902632017353507140401241943223024609065186313736615344552390240803401818454235028841174032276853980750514304794215328089</span></span><br><span class="line">q = n//p</span><br><span class="line">phi = (p-<span class="number">1</span>)*(q-<span class="number">1</span>)</span><br><span class="line">e = <span class="number">65537</span></span><br><span class="line">d = invert(e,phi)</span><br><span class="line">c = <span class="number">12788784649128212003443801911238808677531529190358823987334139319133754409389076097878414688640165839022887582926546173865855012998136944892452542475239921395969959310532820340139252675765294080402729272319702232876148895288145134547288146650876233255475567026292174825779608187676620580631055656699361300542021447857973327523254</span></span><br><span class="line"><span class="built_in">print</span>(long_to_bytes(<span class="built_in">pow</span>(c,d,n)))</span><br></pre></td></tr></table></figure>
 <h4 id="huge"><a href="#huge" class="headerlink" title="huge"></a>huge</h4><p>n由很多个不大的素数相乘，多因子，高次数n求phi即可。</p>
@@ -568,19 +568,19 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">crypto</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">ctfshow</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">buu</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">crypto</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">misc</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">ctfshow</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -624,15 +624,23 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">数论</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">re</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">NSS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">新生赛</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -656,7 +664,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">NSS</a>
+                <a href="javascript:void(0)" class="js-tag color1">python数据结构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">队列</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -672,14 +684,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">python数据结构</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">队列</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">栈</a>
               </li>
              
@@ -688,15 +692,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">新生赛</a>
+                <a href="javascript:void(0)" class="js-tag color4">Vigenere</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">内网渗透</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Vigenere</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -732,10 +732,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">威尔逊定理</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">小指数加密</a>
               </li>
              
@@ -753,6 +749,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">LCG</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">威尔逊定理</a>
               </li>
              
               <li class="article-tag-list-item">

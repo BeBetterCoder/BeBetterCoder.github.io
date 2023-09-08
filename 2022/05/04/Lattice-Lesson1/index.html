@@ -15,22 +15,22 @@
 <meta property="og:site_name" content="ZimaBlue&#39;s Blog">
 <meta property="og:description" content="​    这一部分主要讲了格中平均困难问题SIS，高斯分布与格的联系以及如何将SIVP规约到SIS上。针对格，我只是站在一个研究者的角度去学习，并非为了能够套脚本做ctf题目，所以每个定理都尽可能去理解原理，可能记录的比较繁琐。">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/2022/05/04/Lattice-Lesson1/1.png">
-<meta property="og:image" content="http://example.com/2022/05/04/Lattice-Lesson1/2.png">
-<meta property="og:image" content="http://example.com/2022/05/04/Lattice-Lesson1/3.png">
-<meta property="og:image" content="http://example.com/2022/05/04/Lattice-Lesson1/4.png">
-<meta property="og:image" content="http://example.com/2022/05/04/Lattice-Lesson1/5.png">
-<meta property="og:image" content="http://example.com/2022/05/04/Lattice-Lesson1/6.png">
-<meta property="og:image" content="http://example.com/2022/05/04/Lattice-Lesson1/7.png">
-<meta property="og:image" content="http://example.com/2022/05/04/Lattice-Lesson1/8.png">
-<meta property="og:image" content="http://example.com/2022/05/04/Lattice-Lesson1/9.png">
-<meta property="og:image" content="http://example.com/2022/05/04/Lattice-Lesson1/10.png">
+<meta property="og:image" content="http://example.com/.com//05/04/Lattice-Lesson1/1.png">
+<meta property="og:image" content="http://example.com/.com//05/04/Lattice-Lesson1/2.png">
+<meta property="og:image" content="http://example.com/.com//05/04/Lattice-Lesson1/3.png">
+<meta property="og:image" content="http://example.com/.com//05/04/Lattice-Lesson1/4.png">
+<meta property="og:image" content="http://example.com/.com//05/04/Lattice-Lesson1/5.png">
+<meta property="og:image" content="http://example.com/.com//05/04/Lattice-Lesson1/6.png">
+<meta property="og:image" content="http://example.com/.com//05/04/Lattice-Lesson1/7.png">
+<meta property="og:image" content="http://example.com/.com//05/04/Lattice-Lesson1/8.png">
+<meta property="og:image" content="http://example.com/.com//05/04/Lattice-Lesson1/9.png">
+<meta property="og:image" content="http://example.com/.com//05/04/Lattice-Lesson1/10.png">
 <meta property="article:published_time" content="2022-05-04T09:33:17.000Z">
-<meta property="article:modified_time" content="2022-05-09T15:05:24.276Z">
+<meta property="article:modified_time" content="2022-05-09T15:05:26.000Z">
 <meta property="article:author" content="ZimaBlue">
 <meta property="article:tag" content="Lattice">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2022/05/04/Lattice-Lesson1/1.png">
+<meta name="twitter:image" content="http://example.com/.com//05/04/Lattice-Lesson1/1.png">
   
     <link rel="alternative" href="/atom.xml" title="ZimaBlue&#39;s Blog" type="application/atom+xml">
   
@@ -223,44 +223,44 @@
 </div>
 <h4 id="二-SIS问题"><a href="#二-SIS问题" class="headerlink" title="二.SIS问题"></a><strong>二.SIS问题</strong></h4><p><strong>1.Average-Case Problems——The Small Integer Solution(SIS) Problem</strong></p>
 <p>(1)definition</p>
-<p>Given:Random vectors $a_{1}$,…,$a_{m}$ in $Z^{n}_{q}$</p>
-<img src="/2022/05/04/Lattice-Lesson1/1.png" class>
-<p>Find:non-trivial(非平凡，不全为0) solution $Z_{1}$,…,$Z_{m}$ in {-1,0,1} such that</p>
-<img src="/2022/05/04/Lattice-Lesson1/2.png" class>
+<p>Given:Random vectors $a<em>{1}$,…,$a</em>{m}$ in $Z^{n}_{q}$</p>
+<img src="/.com//05/04/Lattice-Lesson1/1.png" class>
+<p>Find:non-trivial(非平凡，不全为0) solution $Z<em>{1}$,…,$Z</em>{m}$ in {-1,0,1} such that</p>
+<img src="/.com//05/04/Lattice-Lesson1/2.png" class>
 <p>注：</p>
 <p>1.当不限定$Z_i$的范围的时候，可以用高斯消元法很快得到满足条件的值，限定Z取值以后这就成为了数学困难问题。</p>
-<p>2.与格的联系：令S为所有使得$a_{1}z_{1}+…+a_{m}z_{m}=0modq$的整数向量z组成的集合，由于满足条件的向量的线性组合仍满足条件（封闭性），故整个集合构成了格。<strong>所以SIS的困难性可以理解为在格S中找到一个短向量（范数为1{-1，0，1}），这就和最短向量问题联系起来了。</strong></p>
+<p>2.与格的联系：令S为所有使得$a<em>{1}z</em>{1}+…+a<em>{m}z</em>{m}=0modq$的整数向量z组成的集合，由于满足条件的向量的线性组合仍满足条件（封闭性），故整个集合构成了格。<strong>所以SIS的困难性可以理解为在格S中找到一个短向量（范数为1{-1，0，1}），这就和最短向量问题联系起来了。</strong></p>
 <p>(2)Collision-Resistant Hash Function</p>
 <p>基于SIS可以构造出抗碰撞hash函数</p>
-<img src="/2022/05/04/Lattice-Lesson1/3.png" class>
-<p>类似于前边定义的SIS问题，我们只需要选定向量簇$a_{i}$，然后将要做hash的message转为二进制，每一位分别对应$z_{i}$的值，同时为了保证数据做hash被压缩，还需要有：</p>
+<img src="/.com//05/04/Lattice-Lesson1/3.png" class>
+<p>类似于前边定义的SIS问题，我们只需要选定向量簇$a<em>{i}$，然后将要做hash的message转为二进制，每一位分别对应$z</em>{i}$的值，同时为了保证数据做hash被压缩，还需要有：</p>
 <script type="math/tex; mode=display">
-m>n*\log2^{q}</script><p>那么，针对这样的哈希函数，若找到碰撞，则可以找到$a_{1}z_{1}+…+a_{m}z_{m}=0$以及$a_{1}y_{1}+…+a_{m}y_{m}$，两者做差就得到了$a_{1}(z_{1}-y_{1})+…+a_{m}(z_{m}-y_{m})=0,z_{i}-y_{i} \in {-1,0,1}$，这说明要破解类似的hash函数等价于解决一个SIS困难问题…</p>
+m>n*\log2^{q}</script><p>那么，针对这样的哈希函数，若找到碰撞，则可以找到$a<em>{1}z</em>{1}+…+a<em>{m}z</em>{m}=0$以及$a<em>{1}y</em>{1}+…+a<em>{m}y</em>{m}$，两者做差就得到了$a<em>{1}(z</em>{1}-y<em>{1})+…+a</em>{m}(z<em>{m}-y</em>{m})=0,z<em>{i}-y</em>{i} \in {-1,0,1}$，这说明要破解类似的hash函数等价于解决一个SIS困难问题…</p>
 <p><strong>2.Gaussian Distributions and Lattices</strong></p>
 <p>(1)高斯分布</p>
 <p>一维高斯分布（经典正态分布）：</p>
-<img src="/2022/05/04/Lattice-Lesson1/4.png" class>
+<img src="/.com//05/04/Lattice-Lesson1/4.png" class>
 <p>二维或多维高斯分布：每一维度的取值都分别满足一维高斯分布，然后将多维的概率相乘：</p>
-<img src="/2022/05/04/Lattice-Lesson1/5.png" class>
+<img src="/.com//05/04/Lattice-Lesson1/5.png" class>
 <p>二维或多维高斯分布有一个非常好的特性就是每一个点取得的概率只和它离原点的距离有关，并且分布关于0点对称。</p>
 <p>随机取一个一维高斯分布上的点（期望）到原点的距离仅比标准差小一点点。所以n维的高斯分布上的点到原点的距离约等于标准差乘$\sqrt{n}$。</p>
 <p>(2)高斯分布的性质</p>
 <p>a.多维高斯分布等于几个一维高斯分布表达式相乘</p>
 <p>b.高斯分布关于原点对称</p>
 <p>c.这个性质就是高斯分布和格的联系，有点复杂，参考知乎大佬的<a target="_blank" rel="noopener" href="https://www.zhihu.com/column/datasec">总结</a>，这是关键部分：</p>
-<img src="/2022/05/04/Lattice-Lesson1/6.png" class>
-<p>备注：B的$\lambda_{n}$值的意思是B中存在n个格向量，这n个格向量的长度都小于B的$\lambda_{n}$值。</p>
+<img src="/.com//05/04/Lattice-Lesson1/6.png" class>
+<p>备注：B的$\lambda<em>{n}$值的意思是B中存在n个格向量，这n个格向量的长度都小于B的$\lambda</em>{n}$值。</p>
 <p><strong>关于XmodC均匀分布有点抽象，做一些解释：</strong></p>
 <p><strong>因为高斯分布的S大于5$\lambda_n$，而$\lambda_n$大于C(本质上是格)每个维度的格基，所以每个维度都满足均匀分布，故整个高斯分布也均匀分布。</strong></p>
 <p>总结一下就是这个：</p>
-<img src="/2022/05/04/Lattice-Lesson1/7.png" class>
+<img src="/.com//05/04/Lattice-Lesson1/7.png" class>
 <p><strong>3.Reducing a Worst-Case Lattice Problem to SIS</strong></p>
 <p>核心问题仅一个：SIVP——&gt;SIS，如何规约?（给定一个格和随意的格基，用SIS算法找到更短的格向量）</p>
 <p>1.首先要做的是，得到在平行多面体上均匀分布的点。</p>
 <p>(1)首先将格点区域划分为更小的块，每个格点之间间隔了三块，每块的边缘用周期性数字表示，那么格点坐标全都是（0,0）。</p>
-<img src="/2022/05/04/Lattice-Lesson1/8.png" class>
+<img src="/.com//05/04/Lattice-Lesson1/8.png" class>
 <p>(2)然后依据高斯分布采样，图中标为彩色的点。红色点$r_{i}$是随机选择的格点，在实际实验中，无法随机取到这样的随机点；我们依据高斯分布在红点附件采样点，可能满足高斯分布的点不在网格上，可以采用舍入的方式来把它放在网格上。</p>
-<img src="/2022/05/04/Lattice-Lesson1/9.png" class>
+<img src="/.com//05/04/Lattice-Lesson1/9.png" class>
 <p>(3)background：all the samples are uniform in $Z_{q}^{n}$ ，q = 3  why?</p>
 <ul>
 <li>选取高斯分布的参数为比5$\lambda_n$更大的值，由上述总结的定理可知我们选取的点在平行多面体中是均匀随机分布的。</li>
@@ -268,7 +268,7 @@ m>n*\log2^{q}</script><p>那么，针对这样的哈希函数，若找到碰撞�
 </ul>
 <p>(4)我们不知道$\lambda_n$的值，但只要取S够大，规约算法就可以不断执行；不断减小S的值（二分法等），直到算法停止，那么就可以找到和$\lambda_n$近似的值。</p>
 <p>2.将采样的点用SIS处理找到最短向量或近似值  <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/144875395">参考</a></p>
-<img src="/2022/05/04/Lattice-Lesson1/10.png" class>
+<img src="/.com//05/04/Lattice-Lesson1/10.png" class>
 
       
 
@@ -591,19 +591,19 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">crypto</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">ctfshow</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">buu</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">crypto</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">misc</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">ctfshow</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -647,15 +647,23 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">数论</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">re</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">NSS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">新生赛</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -679,7 +687,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">NSS</a>
+                <a href="javascript:void(0)" class="js-tag color1">python数据结构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">队列</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -695,14 +707,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">python数据结构</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">队列</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">栈</a>
               </li>
              
@@ -711,15 +715,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">新生赛</a>
+                <a href="javascript:void(0)" class="js-tag color4">Vigenere</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">内网渗透</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Vigenere</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -755,10 +755,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">威尔逊定理</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">小指数加密</a>
               </li>
              
@@ -776,6 +772,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">LCG</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">威尔逊定理</a>
               </li>
              
               <li class="article-tag-list-item">
